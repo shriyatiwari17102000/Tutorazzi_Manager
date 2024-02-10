@@ -58,20 +58,37 @@ const QuoteModal = ({ popupFunc, isPopup, func, data1 }) => {
     return (
         <Modal cls={`${classes.popup}`} value={isPopup} Func={popupFunc}>
             <div className={classes.top}>
-                <Heading heading={'Reschedule'} p={''} />
+                <Heading heading={'Add Quote'} p={''} />
             </div>
 
             <div className={classes.body}>
-              <LabelledInput  id={'subject'} label={'Subject'} value="gggg" />
+              <LabelledInput cls={classes.cls_W}  id={'subject'} label={'Subject'} value="gggg" />
             
-              <div >
-                <label className={classes.label1}>Category</label>
+              <div className={classes.wd}>
+                <label className={classes.label1}>Select Subject</label>
                 <select className={classes.input_div1}>
                     <option selected value="High">High</option>
                     <option value="Medium">Medium</option>
                     <option value="Low">Low</option>
                 </select>
               </div>
+              <div className={classes.wd}>
+                <label className={classes.label1}>Select Teacher</label>
+                <select className={classes.input_div1}>
+                    <option selected value="High">High</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Low">Low</option>
+                </select>
+              </div>
+              <div className={classes.wd}>
+                <label className={classes.label1}>Select No of Classes</label>
+                <select className={classes.input_div1}>
+                    <option selected value="High">High</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Low">Low</option>
+                </select>
+              </div>
+              <LabelledInput  cls={classes.wd}  id={'price'} label={'Price Per Class'} value="gggg"/>
               
                 <div className={classes.txtarea}>
                     <label htmlFor="txt">Description</label>
