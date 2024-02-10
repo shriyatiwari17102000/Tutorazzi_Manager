@@ -1,0 +1,20 @@
+.container{
+    position: relative;
+    overflow: hidden;
+}
+.container > img{
+    position: absolute;
+    right: 6px;
+    top: 12px;
+}
+.container > select{
+    height: 40px;
+    border: none;
+    width: 100px;
+    display: flex;
+    padding: 0 10px;
+    font-size: 14px;
+    font-weight: 500;
+    appearance: inherit;
+    outline: none;
+}

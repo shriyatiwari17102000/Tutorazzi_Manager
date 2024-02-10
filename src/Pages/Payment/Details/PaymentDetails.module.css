@@ -1,0 +1,71 @@
+.my_card{
+row-gap: 15px;
+grid-column: span 8;
+}
+
+.flex{
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    width: 100%;
+}
+
+.gray_span{
+    font-size: 12px;
+    width: max-content;
+    padding: 4px 8px;
+    background: #F5F3F3;
+    border-radius: var(--br);
+    font-weight: 500;
+}
+
+/* My Grid */
+
+.grid{
+    row-gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 20px;
+}
+
+.inner_box{
+    grid-column: span 4;
+    padding: 20px;
+    display: flex;
+    row-gap: 20px;
+    flex-direction: column;
+
+    @media (width  < 850px){
+            grid-column: span 8;
+    }
+}
+
+.heading{
+    width: 100%;
+    text-align: start;
+    font-weight: 500;
+    grid-column: inherit;
+}
+
+.link{
+    color:#0060D4;
+    font-size: 13px;
+    text-decoration: none;
+}
+
+.inner_box_2{
+    padding: 20px;
+    display: flex;
+    row-gap: 10px;
+    width: 100%;
+    flex-direction: column;
+    grid-column: span 8;
+}
+
+
+.my_class_details{
+    border: none;
+    padding: 0;
+    margin-bottom: 0;
+    
+}

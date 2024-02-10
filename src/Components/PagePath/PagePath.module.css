@@ -1,0 +1,25 @@
+.path {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.path_span {
+  cursor: pointer;
+  margin-right: 6px;
+  font-weight: 400;
+  color: #a3a3a3;
+  text-transform: capitalize;
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+}
+
+.path_span > img {
+  margin-left: 6px;
+  margin-top: 2px;
+}
+
+.active_span {
+  color: black;
+}

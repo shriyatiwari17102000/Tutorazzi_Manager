@@ -1,0 +1,33 @@
+.container {
+    align-items: center;
+    display: flex;
+    margin-bottom: 25px;
+    justify-content: space-between;
+}
+
+.container>div>h3 {
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.container>div>p {
+    color: #989898;
+    font-size: 13px;
+}
+
+.button {
+    height: 40px;
+    padding: 0 20px;
+}
+
+@media screen and (max-width:650px) {
+    .container {
+        flex-direction: column;
+        row-gap: 20px;
+        align-items: flex-start;
+    }
+
+    .button {
+        width: 100%;
+    }
+}

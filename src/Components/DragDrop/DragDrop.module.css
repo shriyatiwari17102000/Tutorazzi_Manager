@@ -1,0 +1,28 @@
+.container {
+  position: relative;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: var(--sc);
+  height: 258px;
+  border-radius: var(--br);
+  border: 1px dashed;
+}
+.container > img {
+}
+.container > input {
+  /* visibility: hidden;
+  position: absolute; */
+}
+.container > p {
+  margin-top: 5px;
+  color: gray;
+  font-weight: 500;
+  font-size: 14px;
+}
+.container > p > label {
+  color: black;
+  text-decoration: underline;
+}

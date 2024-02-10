@@ -1,0 +1,50 @@
+.fold > div:nth-child(1){
+    background-color: rgb(226, 226, 226);
+}
+.fold_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+.fold{
+    width: 100%;
+}
+.fold_body {
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+}
+.btns {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.btns button:nth-child(1) {
+    color: black;
+    border: 1px solid currentColor;
+    border-radius: var(--br);
+    background: none;
+}
+.btns button {
+    height: 45px;
+    width: 49.5%;
+    font-weight: 500;
+    font-size: 13px;
+}
+
+.fold_body p {
+    font-size: 14px;
+    color: #898989;
+}
+
+.fold_header h5{
+    font-weight: 500;
+}
+
+@media screen and (max-width:450px){
+    .btns button {
+        width: 49%;
+    }
+}

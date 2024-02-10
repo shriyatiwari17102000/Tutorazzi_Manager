@@ -1,0 +1,38 @@
+.sb {
+    border: 1px solid var(--border);
+    width: max-content;
+    border-radius: var(--br);
+}
+
+.box {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 10px;
+
+    @media screen and (width > 1200px) {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    @media screen and (720px < width < 1200px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.student {
+    padding: 20px;
+    display: block;
+    border: 1px solid var(--border);
+    border-radius: var(--br);
+    text-decoration: none;
+    color: initial;
+}
+
+.i {
+    color: darkgrey;
+}
+
+
+.my_student_Card{
+    flex-direction: row !important;
+    align-items: center !important;
+}

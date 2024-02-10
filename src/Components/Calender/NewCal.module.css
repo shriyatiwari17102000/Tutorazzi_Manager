@@ -1,0 +1,88 @@
+/* src/App.css */
+.calendar_container {
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+.calendar_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.calendar {
+ display: flex;
+ flex-direction: column;
+}
+
+.day {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+
+.other_month {
+    color: #ccc;
+}
+
+.selected {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.selected_date {
+    margin-top: 20px;
+}
+
+button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    outline: none;
+}
+
+.weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    font-weight: bold;
+    border: 1px solid var(--border);
+    border-radius: var(--br);
+}
+
+.weekdays > div {
+    width: 146px;
+    text-align: center;
+    padding: 9px 0;
+    border-right: 1px solid var(--border);
+    color: #191717;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.weekdays > div:last-child{
+    border-right: none;
+}
+
+.days{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.days > div {
+    border: 1px solid var(--border);
+    width: 146px;
+    height: 146px;
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-end;
+    padding: 10px;
+}

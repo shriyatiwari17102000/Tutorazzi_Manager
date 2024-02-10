@@ -1,0 +1,118 @@
+.card {
+  padding: 20px;
+  margin-bottom: 20px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card_data {
+  display: flex;
+  flex-direction: column;
+  row-gap: 13px;
+}
+
+
+.card_data>h3 {
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.red_span{
+  margin-left: 20px;
+  font-size: 13px;
+  color: red;
+}
+
+
+.link {
+  position: absolute;
+  right: 15px;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  color: black;
+  text-decoration: none;
+  font-size: 15px;
+  bottom: 18px;
+  border: none;
+  background-color: transparent;
+}
+
+.flex {
+  display: flex;
+  column-gap: 20px;
+}
+
+.flex p {
+  color: #958c8c;
+  font-size: 14px;
+}
+
+.flex p span {
+  text-decoration: underline;
+}
+
+.btn_container {
+  display: flex;
+  gap: 10px;
+}
+
+.btn {
+  border: none;
+  width: max-content;
+  padding: 10px 10px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: var(--br);
+}
+
+.cancel {
+  color: #C50000;
+  background: #FFDFDF;
+}
+
+.accept {
+  color: #04B90B;
+  background: #D5FFD7;
+}
+
+.reschedule {
+  color: #B76E03;
+  background: #FFE3B9;
+}
+
+.done{
+  color: #4D4D4D;
+  background:#ECECEC ;
+}
+
+@media screen and (max-width:650px) {
+  .link {
+    position: unset;
+    margin-top: 20px;
+    justify-content: end;
+  }
+
+  .link>img {
+    margin-top: 3px;
+  }
+
+  .card{    
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  
+}
+
+@media screen and (max-width:500px){
+  .flex:nth-child(3){
+    flex-direction: column;
+    row-gap: 10px;
+  }
+}

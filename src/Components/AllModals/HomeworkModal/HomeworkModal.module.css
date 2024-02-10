@@ -1,0 +1,50 @@
+.popup{
+    width: 350px;
+    padding: 20px;
+}
+
+.body{
+    margin: 0 0 30px;
+    display: flex;
+    row-gap: 10px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.body > div{
+    width: 100%;
+}
+
+.body > div:nth-child(3),
+.body > div:nth-child(4){
+    width: 48%;
+}
+
+.bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.bottom > button {
+    border-radius: var(--br);
+    border: none;
+    height: 40px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.bottom > button:nth-child(1) {
+    width: 40%;
+    background: #f1f3f4;
+}
+
+.bottom > button:nth-child(2) {
+    width: 55%;
+}
+
+@media screen and (max-width:520px){
+    .popup{
+        width: 90%;
+    }
+}

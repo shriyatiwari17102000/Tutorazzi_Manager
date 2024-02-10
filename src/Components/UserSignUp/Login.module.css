@@ -1,0 +1,244 @@
+.popup_main {
+    /* display: flex; */
+    height: 90vh;
+}
+
+/* .left {
+    width: 50%;
+    position: relative;
+    background: url('../../assets/login.png') no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100%;
+    box-shadow: 0 -102px 145px -36px black inset;
+} */
+.img1{
+    z-index: 1;
+    margin-left: -34px;
+    margin-right: -52px;
+    margin-top: -30px;
+}
+.div_gap{
+    width: 50%;
+}
+.div_gap1{
+    width: 100%;
+}
+.left>div {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 0;
+    width: 90%;
+    margin-inline: auto;
+    color: white !important;
+}
+
+.left>div p {
+    color: white !important;
+}
+
+.right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 50px 100px;
+    /* width: 60%; */
+    align-items: center;
+    text-align: center;
+}
+
+/* .right1{
+    width: 25%;
+} */
+
+.reversed>div {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.reversed>div h3 {
+    font-size: 25px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.reversed>div p {
+    font-size: 13px;
+    width: 90%;
+}
+
+
+.form {
+    width: 100%;
+    text-align: left;
+    row-gap: 20px;
+    display: flex;
+    flex-direction: column;    
+}
+
+.form button {
+    width: 100%;
+    height: 40px;
+    margin-top: 10px;
+}
+.width_ele{
+width: 100%;
+}
+
+.inp {
+    margin-bottom: 20px;
+}
+
+.form p {
+    font-size: 12px;
+    font-weight: 500;
+    color: #646464;
+    /* text-decoration: underline; */
+    text-align: center;
+}
+
+.form p a {
+    color: black;
+    text-decoration: none;
+}
+
+.right>.p {
+    margin-top: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #646464;
+    width: 48%;
+}
+
+.right>.p a {
+    color: black;
+    text-decoration: none;
+}
+
+
+.inp::placeholder {
+    color: #646464;
+}
+.button {
+    width: 100%;
+    height: 40px;
+    border-radius: 4px;
+    background-color: #000;
+    color: white;
+    border: none;
+    font-size: 14px;
+  }
+
+
+@media screen and (max-width:550px) {
+    .popup {
+        width: 90%;
+    }
+
+    .left {
+        display: none !important;
+    }
+
+    .right {
+        width: 100%;
+        border-left: none;
+        padding: 20px !important;
+    }
+    .right>.p{
+        width: 90%;
+    }
+
+}
+
+
+.style_div{
+    display: flex;
+    margin: 50px 0;
+    align-items: center;
+    justify-content: center;
+}
+
+.style_div_p {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    background: black;
+    border-radius: 50%;
+    color: #FFE4A3;
+    border: none;
+    z-index: 100;
+}
+.inn_div{
+    z-index: 100;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.inn_div > span {
+    font-size: 13px;
+    font-weight: 500;
+    margin: 10px 0;
+}
+.p2{
+    background: #f2f2f2 !important;
+    color: black !important;
+    font-weight: 500 !important;
+}
+.nav{
+    display: flex;
+    align-items: end;
+    justify-content: end ;
+    padding: 15px 30px ;
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+}
+.toggle_btn{
+    height: 40px;
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    border:1px solid  black;
+    color: black;
+    text-decoration: none;
+}
+
+/* complete page */
+.upload_box {
+    height: 252px;
+    flex-shrink: 0;
+    border-radius: 15px;
+    border: 2px dashed #7d7d7d;
+    background: #f9f9f9;
+    width: 100% !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .upload_box > svg {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  .label1{
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #2A2A2A;
+    text-align: center;
+}
+.res_a{
+    width: 240px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+}

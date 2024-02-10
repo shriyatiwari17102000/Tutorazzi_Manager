@@ -1,0 +1,30 @@
+.container {
+    padding: 0 20px;
+}
+
+.long_tile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+
+.long_tile:last-child{
+    border-bottom: none;
+}
+.long_tile>div h3 {
+    font-weight: 500;
+    margin-bottom: 15px;
+    font-size: 13px;
+}
+
+.long_tile>div p {
+    font-size: 12px;
+    width: 84%;
+}
+
+.long_tile>h1 {
+    font-weight: 600;
+}

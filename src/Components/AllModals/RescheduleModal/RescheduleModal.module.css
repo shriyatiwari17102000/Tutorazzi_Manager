@@ -1,0 +1,67 @@
+.popup{
+    width: 550px;
+    padding: 20px;
+}
+
+.body{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    row-gap: 10px;
+    margin: 10px 0 30px;
+}
+.body > div:nth-child(1),
+.body > div:nth-child(2),
+.body > div:nth-child(3),
+.body > div:nth-child(4),
+.body > div:nth-child(5),
+.body > div:nth-child(6){
+    width: 32%;
+}
+
+.body > div:nth-child(7),
+.body > div:nth-child(8)
+{
+    width: 100%;
+}
+
+
+.bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.bottom > button {
+    border-radius: var(--br);
+    border: none;
+    height: 40px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.bottom > button:nth-child(1) {
+    width: 40%;
+    background: #f1f3f4;
+}
+
+.bottom > button:nth-child(2) {
+    width: 55%;
+}
+
+
+@media screen and (max-width:550px){
+    .popup{
+        width: 90%;
+    }
+
+    .body > div:nth-child(1),
+.body > div:nth-child(2),
+.body > div:nth-child(3),
+.body > div:nth-child(4),
+.body > div:nth-child(5),
+.body > div:nth-child(6){
+    width: 49%;
+}
+
+}

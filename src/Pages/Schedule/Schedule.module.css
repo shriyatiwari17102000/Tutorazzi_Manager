@@ -1,0 +1,23 @@
+.btn_container {
+    display: flex;
+    height: 45px;
+    border-radius: var(--br);
+    overflow: hidden;
+    margin-bottom: 20px;
+    border: 1px solid var(--border);
+    width: max-content;
+}
+
+.btn_container>button {
+    padding: 0 20px;
+    border: none;
+    background: white;
+    cursor: pointer;
+    border-right: 1px solid var(--sc);
+}
+
+.btn_container>button:hover,
+.active {
+    background: black !important;
+    color: white;
+}

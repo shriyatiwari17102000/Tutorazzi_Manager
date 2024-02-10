@@ -1,0 +1,55 @@
+.heading{
+    margin: 20px 0;
+}
+.sb{
+    border: 1px solid var(--border);
+    border-radius: var(--br);
+    height: 40px;
+    overflow: hidden;
+}
+
+.sb_div{
+    display: flex;
+    column-gap: 10px;
+    justify-content: space-between;
+}
+.choose_date > div:nth-child(1) {
+    border: 1px solid #d9d9d9;
+    border-radius: var(--br);
+    height: 40px;
+    width: max-content;
+    padding-inline: 10px;
+    font-size: 13px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 10px;
+  }
+  
+  .choose_date svg {
+    width: 14px;
+    stroke: #757272;
+  }
+
+.toggle_btns{
+    display: flex;
+    border: 1px solid var(--border);
+    border-radius: var(--br);
+    width: max-content;
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+.toggle_btns button{
+    border: none;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    font-weight: 500;
+}
+.toggle_btns button.active{
+    background-color: black;
+    color: white;
+}

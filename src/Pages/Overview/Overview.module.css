@@ -1,0 +1,157 @@
+.grid {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas:
+        "one one"
+        "three three"
+        "two two"
+        "four five"
+    ;
+
+    @media (width > 1000px){
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-areas:
+            "one one one two two two"
+            "three four five two two two"
+        ;
+    }
+}
+
+.grid>:nth-child(1) {
+    grid-area: one;
+}
+
+.grid>:nth-child(2) {
+    grid-area: two;
+}
+
+.grid>:nth-child(3) {
+    grid-area: three;
+}
+
+.grid>:nth-child(4) {
+    grid-area: four;
+}
+
+.grid>:nth-child(5) {
+    grid-area: five;
+}
+
+
+.heading {
+    margin-bottom: 0;
+}
+
+.colored_box {
+    height: 200px;
+    border-radius: var(--br);
+    border: 1px solid var(--border);
+}
+
+.graph {
+    border-radius: var(--br);
+    border: 1px solid var(--border);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    background: #ECFAFF;
+}
+
+
+/* Grid 2 */
+
+.grid_2 {
+    margin-top: 20px;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-areas:
+        "one one one one one one"
+        "two two two two two two"
+        "three three three six six six"
+        "four four four five five five"
+        "seven seven seven eight eight eight"
+        "nine nine nine nine nine nine"
+        "ten ten ten ten ten ten"
+    ;
+
+    @media (width > 1000px){
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-areas:
+            "one one one two two  "
+            "three four five two two "
+            "six seven eight two two "
+            "nine nine ten ten ten"
+        ;
+    }
+}
+
+.grid_2>:nth-child(1) {
+    grid-area: one;
+}
+
+.grid_2>:nth-child(2) {
+    grid-area: two;
+}
+
+.grid_2>:nth-child(3) {
+    grid-area: three;
+}
+
+.grid_2>:nth-child(4) {
+    grid-area: four;
+}
+
+.grid_2>:nth-child(5) {
+    grid-area: five;
+}
+
+.grid_2>:nth-child(6) {
+    grid-area: six;
+}
+
+.grid_2>:nth-child(7) {
+    grid-area: seven;
+}
+
+.grid_2>:nth-child(8) {
+    grid-area: eight;
+}
+
+.grid_2>:nth-child(9) {
+    grid-area: nine;
+}
+
+.grid_2>:nth-child(10) {
+    grid-area: ten;
+}
+
+
+.heading {
+    font-weight: 600;
+}
+
+
+/* 
+@media screen and (width >=1000px) {
+    .grid {
+
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-areas:
+            "one one one two two two"
+            "three four five two two two"
+        ;
+    }
+
+    .grid_2 {
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-areas:
+            "one one one two two  "
+            "three four five two two "
+            "six seven eight two two "
+            "nine nine ten ten ten"
+        ;
+    }
+} */

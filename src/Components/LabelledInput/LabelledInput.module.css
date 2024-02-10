@@ -1,0 +1,32 @@
+.input_div{}
+.input_div > label{
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: #2A2A2A;
+}
+.input_div > input{
+    border-radius: var(--br);
+    border: 1px solid var(--border);
+    height: 40px;
+    padding-left: 10px;
+    font-size: 14px;
+    color: #989898;
+    font-weight: 400;
+    width: 100%;
+    outline: none;
+}
+
+.password_toggle_icon {
+    position: absolute;
+    top: 60%;
+    right: 15px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #6c757d !important;/* Adjust the color as needed */
+  }
+  
+  .password_toggle_icon:hover {
+    color: #007bff; /* Adjust the hover color as needed */
+  }

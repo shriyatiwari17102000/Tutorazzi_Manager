@@ -1,0 +1,15 @@
+/* .react-datepicker-wrapper{
+    position: absolute;
+    right: 0;
+} */
+
+.react-datepicker-wrapper input {
+    height: 40px;
+    border-radius: var(--br);
+    border: 1px solid var(--border);
+    text-align: center;
+    font-weight: 500;
+    width: 131px;
+    background: #F4F4F4;
+    outline: none;
+}

@@ -1,0 +1,7 @@
+.fc .fc-daygrid-day-number {
+    z-index: 7;
+}
+.fc-h-event {
+    background: none;
+    border: none !important;
+}

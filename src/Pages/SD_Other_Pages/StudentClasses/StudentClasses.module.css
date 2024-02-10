@@ -1,0 +1,27 @@
+.button_con{
+    margin-bottom: 30px;
+    border-bottom: 1px solid var(--border);
+}
+
+.active_btn{
+    background: black !important;
+    color: white !important;
+    border-radius: var(--br) var(--br) 0 0;
+}
+
+
+.button_con > button{
+    height: 40px;
+    padding: 0 15px;
+    font-weight: 400;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: black;
+}
+
+
+.filter_btn{
+    margin-bottom: 30px;
+    width: min-content;
+}

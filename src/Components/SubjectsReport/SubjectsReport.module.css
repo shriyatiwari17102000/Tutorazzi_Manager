@@ -1,0 +1,40 @@
+.container {
+  padding: 20px;
+}
+.heading {
+  margin-bottom: 30px;
+  font-weight: 400;
+  font-size: 15px;
+}
+.main_con {
+}
+.row {
+  display: flex;
+}
+.row > div:first-child {
+  width: 200px !important;
+  justify-content: flex-start;
+}
+.row > div {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.row_title {
+    font-weight: 500;
+}
+.row > div > span {
+    width: 30px;
+    height: 30px;
+    overflow: hidden;
+    display: flex;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+}
+.row > div > span.bs {
+    background-color: black;
+}
+.row > div > span.bs > img {
+}

@@ -1,0 +1,45 @@
+.sb{
+    border: 1px solid var(--border);
+    width: max-content;
+    border-radius: var(--br);
+}
+
+.box{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.teacher{
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid var(--border);
+    border-radius: var(--br);
+    text-decoration: none;
+    color: initial;
+}
+.teacher > div:nth-child(1){
+    width: calc(50% - 100px);
+    
+    @media (width < 1000px){
+        width: calc(70% - 100px);
+    }
+    @media (width < 500px){
+        width: calc(80% - 100px);
+    }
+
+}
+
+.i{
+    color: darkgrey;
+}
+.review{
+    color: black;
+    font-weight: 500;
+    font-size: 12px;
+}
+.my_teacher_card{
+    flex-direction: row !important;
+    align-items: center !important;
+}

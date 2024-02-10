@@ -1,0 +1,89 @@
+.backdrop {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: #b6b2b261;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.sidebar {
+  display: flex;
+  position: fixed;
+  right: -350px;
+  top: 0;
+  width: 300px;
+  background: white;
+  padding: 20px;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: 0.2s ease-in;
+
+  z-index: 11;
+}
+
+.sidebar>.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid var(--border);
+  padding-bottom: 18px;
+}
+
+.sidebar>.header>h3 {
+  font-weight: 500;
+  color: #6d6d6d;
+}
+
+.sidebar>.header>img {
+  cursor: pointer;
+}
+
+.sidebar>.body {
+  height: 100%;
+  padding: 20px 0;
+  overflow: scroll;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+
+.sidebar>.body::-webkit-scrollbar {
+  display: none;
+}
+
+.sidebar>.footer {
+  padding-top: 20px;
+  border-top: 2px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sidebar>.footer>button {
+  width: 62%;
+  height: 40px;
+  border-radius: var(--br);
+  font-weight: 500;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.sidebar>.footer>button.btn1 {
+  width: 35%;
+  border: 1px solid var(--border);
+  height: 41px;
+}
+
+.sidebar>.footer>button.btn2 {}
+
+
+.dn {
+  display: none !important;
+}
+
+.view {
+  right: 0px;
+}

@@ -1,0 +1,33 @@
+.grid{
+    display: grid;
+    grid-template-columns: repeat(6,1fr);
+    gap: 20px;
+    grid-template-rows: 175px 175px;
+}
+
+.grid > div:nth-child(1){
+    grid-column: 1 / span 2;
+}
+.grid > div:nth-child(2){
+    grid-column: span 4;
+}
+.grid > div:nth-child(3),
+.grid > div:nth-child(4){
+    grid-column: 1 / span 6;
+}
+
+.graph{
+    
+}
+
+
+@media screen and (max-width:900px){
+    .grid{
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .grid > div{
+        width: 100%;
+    }
+}

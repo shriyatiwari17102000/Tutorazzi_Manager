@@ -1,0 +1,42 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+.container > div:nth-child(1) {
+    margin-bottom: 0;
+}
+.filter_container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.search_bar {
+    width: 300px;
+    position: relative;
+    margin-right: 10px;
+}
+
+.search_bar > img {
+  position: absolute;
+  width: 20px;
+  top: 8px;
+  left: 13px;
+  cursor: pointer;
+}
+
+.search_bar > input {
+    width: 100%;
+    height: 42px;
+    border-radius: var(--br);
+    border: 0px solid var(--sc);
+    padding: 0px 50px;
+    outline: none;
+    color: #b6b6b6;
+    background: var(--sc);
+}
+
+.search_bar input::placeholder {
+  color: #b6b6b6;
+}

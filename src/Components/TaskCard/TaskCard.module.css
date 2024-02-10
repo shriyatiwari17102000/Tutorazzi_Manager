@@ -1,0 +1,40 @@
+.card {
+    padding: 20px;
+    width: 100%;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.header h5 {
+    font-weight: 500;
+}
+
+.header img {}
+
+.p {
+    font-size: 14px;
+    color: #898989;
+}
+
+.btn {
+    margin-top: 30px;
+    color: black;
+    border: 1px solid currentColor;
+    border-radius: var(--br);
+    background: none;
+    height: 45px;
+    width: 100%;
+    font-weight: 500;
+    font-size: 13px;
+}
+
+.btn:hover{
+    background: black;
+    color: white;
+}
