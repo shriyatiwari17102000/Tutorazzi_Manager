@@ -20,7 +20,7 @@ const Layout = (props) => {
     <div className={classes.layout}>
         <MainNavbar />
         <div>{props.children}</div>
-        <MainFooter />
+        {/* <MainFooter /> */}
     </div>
   )
 }

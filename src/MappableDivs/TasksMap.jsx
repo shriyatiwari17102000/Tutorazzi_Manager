@@ -7,7 +7,7 @@ const TasksMap = props => {
   return (
     <div className={props.cls}>
       {data?.map((item, index) => (
-        <TaskCard data={item} />
+        <TaskCard data={item} func={props.func} />
       ))}
       {/* <TaskCard isDone={true} />
       <TaskCard isDone={false} />

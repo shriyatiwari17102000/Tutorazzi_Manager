@@ -23,7 +23,7 @@ const SearchBar = (props) => {
     return (
         <div className={`${classes.search_bar} ${props.cls}`}>
             <img src={search} alt="" />
-            <input placeholder='Search...' type="text" onChange={(e) => setSearch(e.target.value)}  />
+            <input placeholder='Search...' type="text" value={searchComp} onChange={(e) => setSearch(e.target.value)}  />
         </div>
     )
 }

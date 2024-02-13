@@ -3,9 +3,10 @@ import { Rating } from 'react-simple-star-rating'
 import classes from "./ClassesDetail.module.css"
 
 const RatingCard = (props) => {
+  console.log(props)
     // const [rating, setRating] = useState('')
     // console.log(props.data.ratings.rating)
-    let rating = props?.data?.ratings === null ? 0 : props?.data?.ratings?.rating
+    let rating = props?.data
   return (
     <>
     <div>

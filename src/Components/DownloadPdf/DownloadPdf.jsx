@@ -28,7 +28,7 @@ import { FaDownload } from 'react-icons/fa';
 
 const DownloadPdf = (props) => {
   let data = props?.item
-  console.log(data)
+  // console.log(data)
 
   const downloadFile = (
     filePath

@@ -76,8 +76,8 @@
 
 .label1{
     display: block;
-    font-size: 14px;
-    font-weight: 600;
+    font-size: 13px;
+    font-weight: 500;
     margin-bottom: 5px;
     color: #2A2A2A;
 }
@@ -102,4 +102,42 @@
         width: 100%;
     }
 
+}
+
+
+.input_con{
+    width: 49%;
+}
+.input_con label{
+ 
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: #2A2A2A;
+}
+.boxed_input{
+    display: flex;
+    border: 1px solid var(--border);
+    height: 40px;
+    width: 100%;
+    border-radius: var(--br);
+    margin-top: 5px;
+}
+.sign{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    border-right: 1px solid var(--border);
+}
+.boxed_input input{
+    width: calc(100% - 40px);
+    border: none;
+    outline: none;
+    padding-inline: 20px;
+    font-size: 14px;
+    color: #989898;
+    font-weight: 400;
 }

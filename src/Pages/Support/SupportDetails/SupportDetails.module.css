@@ -1,0 +1,292 @@
+/* .container {
+    padding: 20px;
+}
+
+.container2 {
+    padding: 20px;
+    height: 515px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.header select {
+    width: 100px;
+    border: 1px solid var(--border);
+    border-radius: var(--br);
+    height: 35px;
+    font-size: 12px;
+    font-weight: 500;
+    padding-left: 5px;
+    text-align: center;
+    appearance: none;
+    outline: none;
+}
+
+.header>div {
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+}
+
+.header>div h3 {
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.header>div span {
+    color: #7D7D7D;
+    font-size: 14px
+}
+
+.middle {
+    width: 300px;
+}
+
+.row {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.row>span {
+    color: #7D7D7D;
+}
+
+
+.response {
+    min-width: 150px;
+    max-width: 50%;
+}
+
+.response .con {
+    background: #f9f9f9;
+    border: 1px solid #f9f9f9;
+}
+
+.message_footer {
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    font-weight: 500;
+    column-gap: 10px;
+    padding-top: 5px;
+    color: #7D7D7D;
+}
+
+.reply {
+    min-width: 150px;
+    max-width: 50%;
+    margin-left: auto;
+}
+
+.con {
+    padding: 15px;
+    font-size: 13px;
+}
+
+.reply .message_footer {
+    justify-content: end;
+}
+
+
+
+.innter_top {
+    height: 400px;
+    overflow: scroll;
+}
+
+.innter_bottom>div {
+    padding: 0;
+}
+
+
+@media screen and (max-width:600px) {
+    .middle {
+        width: 100%;
+    }
+
+    .reply {
+        max-width: 90%;
+    }
+
+    .response {
+        max-width: 90%;
+    }
+
+    .innter_top {
+        display: flex;
+        flex-direction: column;
+        row-gap: 15px;
+    }
+} */
+
+.container_css {
+    padding: 20px;
+    height: 65vh;
+    row-gap: 30px;
+    display: flex;
+    flex-direction: column;
+}
+.container {
+    padding: 20px;
+}
+.chats_container{
+    width: 100%;
+    height: calc(100% - 40px);
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.container2 {
+    padding: 20px;
+    height: 515px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.close_btn{
+    color: white;
+    background: black;
+    padding: 10px 10px;
+    border-radius: 5px;
+}
+.close_btn:disabled
+ {
+    cursor: not-allowed;
+    background: #c9c9cd;
+    border: 1px solid #c9c9cd;
+}
+.header select {
+    width: 100px;
+    border: 1px solid var(--border);
+    border-radius: var(--br);
+    height: 35px;
+    font-size: 12px;
+    font-weight: 500;
+    padding-left: 5px;
+    text-align: center;
+    appearance: none;
+    outline: none;
+}
+
+.header>div {
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+}
+
+.header>div h3 {
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.header>div span {
+    color: #7D7D7D;
+    font-size: 14px
+}
+
+.middle {
+    width: 300px;
+}
+
+.row {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.row>span {
+    color: #7D7D7D;
+}
+
+
+.response {
+    min-width: 150px;
+    max-width: 50%;
+}
+
+.response .con {
+    background: #f9f9f9;
+    border: 1px solid #f9f9f9;
+}
+
+.message_footer {
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    font-weight: 500;
+    column-gap: 10px;
+    padding-top: 5px;
+    color: #7D7D7D;
+}
+
+.reply {
+    min-width: 150px;
+    max-width: 50%;
+    margin-left: auto;
+}
+
+.con {
+    padding: 15px;
+    font-size: 13px;
+}
+
+.reply .message_footer {
+    justify-content: end;
+}
+
+
+
+.innter_top {
+    height: 400px;
+    overflow: scroll;
+}
+
+.innter_bottom>div {
+    padding: 0;
+}
+
+
+@media screen and (max-width:600px) {
+    .middle {
+        width: 100%;
+    }
+
+    .reply {
+        max-width: 90%;
+    }
+
+    .response {
+        max-width: 90%;
+    }
+
+    .innter_top {
+        display: flex;
+        flex-direction: column;
+        row-gap: 15px;
+    }
+}

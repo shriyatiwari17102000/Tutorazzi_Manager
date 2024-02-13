@@ -26,6 +26,9 @@ import TrialClassDetail from './Pages/Classes/ClassesDetail/TrialClassDetail'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import SignInPage from './Components/UserSignUp/SignInPage'
+import SupportDetails from './Pages/Support/SupportDetails/SupportDetails'
+import Chat from './Pages/messages/Chat'
+import TrialClassPast from './Pages/Classes/ClassesDetail/TrialClassPast'
 
 
 const App = () => {
@@ -62,7 +65,7 @@ const App = () => {
               </Route>
               <Route path='teacher'>
                 <Route index element={<Teachers />} />
-                <Route path='/teacher/details/' element={<TeacherDetails />} />
+                <Route path='/teacher/details/:id' element={<TeacherDetails />} />
               </Route>
               <Route path='payment'>
                 <Route index element={<Payment />} />
@@ -80,9 +83,10 @@ const App = () => {
               <Route path='/classes/upcoming-details/:id' element={<UpcomingClassDetail />} />
               <Route path='/classes/past-details/:id' element={<PastClassDetail />} />
               <Route path='/classes/trial-details/:id' element={<TrialClassDetail />} />
+              <Route path='/classes/trial-past-details/:id' element={<TrialClassPast />} />
 
               <Route path='chats'>
-                <Route index element={<Chats />} />
+                <Route index element={<Chat />} />
               </Route>
               <Route path='reports'>
                 <Route index element={<Reports />} />
@@ -92,6 +96,7 @@ const App = () => {
               </Route>
               <Route path='support'>
                 <Route index element={<Support />} />
+                <Route path="details" element={<SupportDetails />} />
               </Route>
             </Routes>
           </main>

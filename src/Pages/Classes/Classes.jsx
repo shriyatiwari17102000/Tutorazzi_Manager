@@ -72,7 +72,7 @@ const Classes = () => {
         Authorization: `Bearer ${token}`
       }
     })
-    console.log(res.data.data)
+    // console.log(res.data.data)
     setRescheduleData(res.data.data)
   }
   const getResourceData = async () => {

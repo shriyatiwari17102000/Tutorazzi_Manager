@@ -1,0 +1,104 @@
+.popup {
+    width: 550px;
+    padding: 20px;
+}
+
+.body {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    row-gap: 10px;
+    margin: 10px 0 30px;
+}
+
+.txtarea {
+    width: 100% !important;
+}
+.cls_W{
+    width: 100% !important;
+}
+.txtarea>label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #2A2A2A;
+}
+
+.txtarea>textarea {
+    border-radius: var(--br);
+    border: 1px solid var(--border);
+    height: 40px;
+    padding: 10px;
+    font-size: 14px;
+    color: #989898;
+    font-weight: 400;
+    width: 100%;
+    outline: none;
+    min-height: 100px;
+    min-width: 100%;
+    max-width: 100%;
+}
+
+.body>div:nth-child(1),
+.body>div:nth-child(2) {
+    width: 49%;
+}
+
+.body>div:nth-child(3) {
+    width: 100%;
+}
+
+
+.bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.bottom>button {
+    border-radius: var(--br);
+    border: none;
+    height: 40px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.bottom>button:nth-child(1) {
+    width: 40%;
+    background: #f1f3f4;
+}
+
+.bottom>button:nth-child(2) {
+    width: 55%;
+}
+
+.label1{
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #2A2A2A;
+}
+.input_div1{
+    border-radius: var(--br);
+    border: 1px solid var(--border);
+    height: 40px;
+    padding-left: 10px;
+    font-size: 14px;
+    color: #989898;
+    font-weight: 400;
+    width: 100%;
+    outline: none;
+}
+@media screen and (max-width:550px) {
+    .popup {
+        width: 90%;
+    }
+
+    .body>div:nth-child(1),
+    .body>div:nth-child(2) {
+        width: 100%;
+    }
+
+}

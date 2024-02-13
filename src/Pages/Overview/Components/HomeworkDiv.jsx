@@ -4,7 +4,7 @@ import classes from './OComp.module.css'
 import HomeworkFold from '../../../Components/AllFolds/Homework/HomeworkFold'
 
 const HomeworkDiv = props => {
-  console.log(props?.data)
+  // console.log(props?.data)
   const {data} = props
   return (
     <Container cls={`${classes.homework_div} ${props.cls}`}>

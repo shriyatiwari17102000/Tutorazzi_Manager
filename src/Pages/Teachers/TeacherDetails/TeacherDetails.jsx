@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import Heading from '../../../Components/Heading/Heading'
 import classes from './TeacherDetails.module.css'
 import Container from '../../../UI/Container/Container'
@@ -7,60 +7,16 @@ import LabelledInput from '../../../Components/LabelledInput/LabelledInput'
 import BlackButton from '../../../Components/BlackButton/BlackButton'
 import MiniDetail from '../../../Components/MiniDetail/MiniDetail'
 import TicketComp from '../../../Components/TicketComp/TicketComp'
+import axios from 'axios'
+import { BASE_URL } from '../../../Apis/BaseUrl'
+import Cookies from 'js-cookie'
+import { useParams } from 'react-router-dom'
+import { RiDeleteBin6Line } from "react-icons/ri";
+import Iframe1 from './Iframe1'
 
 
-const perosnal_info = [
-    {
-        label: "First Name",
-        id: 'fn',
-        value: 'Puneet'
-    },
-    {
-        label: "Last Name",
-        id: 'ln',
-        value: 'Shrivastav'
-    },
-    {
-        label: "Email",
-        id: 'em',
-        value: 'psri@gmail.com'
-    },
-    {
-        label: "Mobile",
-        id: 'mob',
-        value: '9311676139'
-    },
-    {
-        label: "Parent Email id",
-        id: 'em2',
-        value: 'Shrivastav@gmail.com'
-    },
-    {
-        label: "Parent Phone Number",
-        id: 'mob2',
-        value: '12329293993'
-    },
-    {
-        label: "Grade",
-        id: 'gr',
-        value: 'A'
-    },
-    {
-        label: "City",
-        id: 'city',
-        value: 'New Delhi'
-    },
-    {
-        label: "Standard",
-        id: 'standard',
-        value: '12th'
-    },
-    {
-        label: "Address",
-        id: 's1',
-        value: 'CA 76 D Hari Nagar New Delhi'
-    }
-]
+
+
 
 const curruiculam_info = [
     {
@@ -125,58 +81,165 @@ const class_info = [
 
 const degree_data = [
     {
-        title:'Bsc (Bachelors Of Science)',
-        d1:'2008 - 2011',
-        d2:'Bits Pilani, Delhi'
+        title: 'Bsc (Bachelors Of Science)',
+        d1: '2008 - 2011',
+        d2: 'Bits Pilani, Delhi'
     },
     {
-        title:'Bsc (Bachelors Of Science)',
-        d1:'2008 - 2011',
-        d2:'Bits Pilani, Delhi'
+        title: 'Bsc (Bachelors Of Science)',
+        d1: '2008 - 2011',
+        d2: 'Bits Pilani, Delhi'
     },
     {
-        title:'Bsc (Bachelors Of Science)',
-        d1:'2008 - 2011',
-        d2:'Bits Pilani, Delhi'
+        title: 'Bsc (Bachelors Of Science)',
+        d1: '2008 - 2011',
+        d2: 'Bits Pilani, Delhi'
     },
     {
-        title:'Bsc (Bachelors Of Science)',
-        d1:'2008 - 2011',
-        d2:'Bits Pilani, Delhi'
+        title: 'Bsc (Bachelors Of Science)',
+        d1: '2008 - 2011',
+        d2: 'Bits Pilani, Delhi'
     },
     {
-        title:'Bsc (Bachelors Of Science)',
-        d1:'2008 - 2011',
-        d2:'Bits Pilani, Delhi'
+        title: 'Bsc (Bachelors Of Science)',
+        d1: '2008 - 2011',
+        d2: 'Bits Pilani, Delhi'
     },
     {
-        title:'Bsc (Bachelors Of Science)',
-        d1:'2008 - 2011',
-        d2:'Bits Pilani, Delhi'
+        title: 'Bsc (Bachelors Of Science)',
+        d1: '2008 - 2011',
+        d2: 'Bits Pilani, Delhi'
     },
     {
-        title:'Bsc (Bachelors Of Science)',
-        d1:'2008 - 2011',
-        d2:'Bits Pilani, Delhi'
+        title: 'Bsc (Bachelors Of Science)',
+        d1: '2008 - 2011',
+        d2: 'Bits Pilani, Delhi'
     },
     {
-        title:'Bsc (Bachelors Of Science)',
-        d1:'2008 - 2011',
-        d2:'Bits Pilani, Delhi'
+        title: 'Bsc (Bachelors Of Science)',
+        d1: '2008 - 2011',
+        d2: 'Bits Pilani, Delhi'
     },
     {
-        title:'Bsc (Bachelors Of Science)',
-        d1:'2008 - 2011',
-        d2:'Bits Pilani, Delhi'
+        title: 'Bsc (Bachelors Of Science)',
+        d1: '2008 - 2011',
+        d2: 'Bits Pilani, Delhi'
     },
     {
-        title:'Bsc (Bachelors Of Science)',
-        d1:'2008 - 2011',
-        d2:'Bits Pilani, Delhi'
+        title: 'Bsc (Bachelors Of Science)',
+        d1: '2008 - 2011',
+        d2: 'Bits Pilani, Delhi'
     },
 ]
 
 const TeacherDetails = () => {
+    const [data, setData] = useState({})
+    const[ticketData, setTicketData] = useState([])
+    const [testimonial, setTestimonial] = useState([])
+    const [teacherData, setTeacherData] = useState({})
+    const [degreeDetail, setDegreeDetail] = useState([])
+    const [curriculum, setCurriculum] = useState([])
+    const [expdetail, setExpDetail] = useState([])
+    const { id } = useParams()
+
+    const perosnal_info = [
+        {
+            label: "Name",
+            id: 'fn',
+            value: teacherData?.user_id?.name
+        },
+        // {
+        //     label: "Last Name",
+        //     id: 'ln',
+        //     value: 'Shrivastav'
+        // },
+        {
+            label: "Email",
+            id: 'em',
+            value: teacherData?.user_id?.email
+        },
+        {
+            label: "Mobile",
+            id: 'mob',
+            value: teacherData?.user_id?.mobile_number
+        },
+        // {
+        //     label: "Parent Email id",
+        //     id: 'em2',
+        //     value: 'Shrivastav@gmail.com'
+        // },
+        // {
+        //     label: "Parent Phone Number",
+        //     id: 'mob2',
+        //     value: '12329293993'
+        // },
+        {
+            label: "Grade",
+            id: 'gr',
+            value: teacherData?.grade?.name
+        },
+        {
+            label: "gender",
+            id: 'gd',
+            value: teacherData?.gender
+        },
+        {
+            label: "City",
+            id: 'city',
+            value: teacherData?.city
+        },
+        {
+            label: "State",
+            id: 'state',
+            value: teacherData?.state
+        },
+        {
+            label: "Country",
+            id: 'country',
+            value: teacherData?.country
+        },
+        // {
+        //     label: "Standard",
+        //     id: 'standard',
+        //     value: '12th'
+        // },
+        {
+            label: "Address",
+            id: 's1',
+            value: teacherData.address
+        }
+    ]
+    const tutToken = Cookies.get("tutorazzi_academic")
+    const getTutToken = JSON.parse(tutToken)
+    const token = getTutToken.access_token
+
+    const getData = async () => {
+
+        let register = `${BASE_URL}/teacher-by-id?id=${id}`
+        console.log(register)
+        let res = await axios.get(register, {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
+        })
+        console.log(res.data.data)
+        setData(res.data.data)
+        setTicketData(res.data.data?.latest_support)
+        setTeacherData(res.data.data?.teacherResponse)
+        setDegreeDetail(res.data.data?.teacherResponse?.degree)
+        setCurriculum(res.data.data?.teacherResponse?.subject_curriculum)
+        // console.log(res.data.data.teacherResponse.curriculam)
+        setExpDetail(res.data.data?.teacherResponse?.exp_details)
+        setTestimonial(res.data.data?.testimonialResponse)
+    }
+    useEffect(() => {
+        getData()
+    }, [])
+console.log(expdetail)
+    // console.warn('re-redning')
+
+    // console.log(testimonial.map((item) => console.log(item)))
     return (
         <Fragment>
             <Heading heading={'Teachers Profile'} p={'Porem ipsum dolor sit amet, consectetur adipiscing elit.'} >
@@ -184,24 +247,24 @@ const TeacherDetails = () => {
             </Heading>
             <div className={classes.grid}>
                 <Container cls={classes.inner_box_1}>
-                    <UserDiv data={{ name: 'Puneet', rank: 'Rookie', rating: '4.5' }} />
+                    <UserDiv data={teacherData?.user_id} cit={true} citData={teacherData}/>
                 </Container>
                 <Container cls={classes.inner_box_1}>
                     <div className={classes.det_box}>
-                        <h1>36</h1>
+                        <h1>{data?.upcomingClasses}</h1>
                         <p>Upcoming Classes</p>
                     </div>
                 </Container>
                 <Container cls={classes.inner_box_1}>
                     <div className={classes.det_box}>
-                        <h1>36</h1>
+                        <h1>{data?.pastClass}</h1>
                         <p>Past Classes</p>
                     </div>
                 </Container>
                 <Container cls={classes.inner_box_1}>
                     <div className={classes.det_box}>
-                        <h1>₹60k</h1>
-                        <p>Total Revenue</p>
+                        <h1>{data?.trialClassesDone}</h1>
+                        <p>Trial Classes Done</p>
                     </div>
                 </Container>
 
@@ -209,7 +272,7 @@ const TeacherDetails = () => {
                     <h4 className={classes.heading}>Personal Info</h4>
                     {
                         perosnal_info.map((element, index) => (
-                            <LabelledInput key={index} data={element} />
+                            <LabelledInput key={index} data={element} in_d={true} label={element.label} />
                         ))
                     }
                 </Container>
@@ -217,7 +280,7 @@ const TeacherDetails = () => {
                 <Container cls={classes.inner_box_3} >
                     <h4 className={classes.heading}>Bachelors and masters details</h4>
                     <div className={classes.scroll_box}>
-                        {degree_data.map((element,index)=>(
+                        {degreeDetail.map((element, index) => (
                             <MiniDetail key={index} data={element} />
                         ))}
                     </div>
@@ -225,7 +288,7 @@ const TeacherDetails = () => {
                 <Container cls={classes.inner_box_3} >
                     <h4 className={classes.heading}>Curriculum & subjects</h4>
                     <div className={classes.scroll_box}>
-                        {degree_data.map((element,index)=>(
+                        {curriculum.map((element, index) => (
                             <MiniDetail key={index} data={element} />
                         ))}
                     </div>
@@ -233,22 +296,49 @@ const TeacherDetails = () => {
                 <Container cls={classes.inner_box_4} >
                     <h4 className={classes.heading}>Experience</h4>
                     <div className={classes.scroll_box}>
-                        {degree_data.map((element,index)=>(
+                        {expdetail.map((element, index) => (
                             <div key={index} className={classes.experience}>
                                 <MiniDetail key={index} data={element} />
                                 <p>
-                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aperiam rem expedita alias cupiditate tempore veniam sequi eos dolorum quaerat a veritatis quidem eum eligendi corrupti dicta error quos provident eaque excepturi, soluta repudiandae repellendus fugit ut! Magni numquam velit impedit! Porro tempore ad quaerat nostrum iste ducimus eum repellat, nemo nisi est exercitationem delectus quidem!
+                                    {element?.description}
                                 </p>
                             </div>
                         ))}
                     </div>
                 </Container>
+                 <Container cls={classes.inner_box_5} >
+                <h4 className={classes.heading}>Testimonials</h4>
+                {testimonial.map((item, index) => (<div className={classes.test_div} key={index}>
+                    <iframe
+                    width="100%"
+                    height="300"
+                    src={item.video}
+                    frameBorder="0"
+                    style={{ borderRadius: "5px" }}
+                    className="mx-2"
+                allowFullScreen
+                ></iframe>
+                </div>))}
+                </Container>
+                {/*
+                    {testimonial.map((item) => (
+                                // <div  >
+                                    <Iframe1 src={item.video}/>
+                                // </div>
+                            ) )
+                            
+                        // ) 
+                        // : (
+                        //     <p style={{ fontSize: "13px", color: "#989898" }}>No testimonials found</p>
+                        // )
+                    }
+                </Container> */}
                 <Container cls={classes.inner_box_5} >
                     <h4 className={classes.heading}>Latest Ticket</h4>
-                    <TicketComp />
-                    <TicketComp />
-                    <TicketComp />
-                    <TicketComp />
+                    {ticketData.map((item)=>(
+                    <TicketComp data={item} />
+                    ))}
+        
                 </Container>
             </div>
         </Fragment>

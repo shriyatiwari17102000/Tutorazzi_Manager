@@ -4,7 +4,7 @@ import BlackButton from '../../../Components/BlackButton/BlackButton'
 import classes from './ClassesDetail.module.css'
 import Container from '../../../UI/Container/Container'
 import UserDiv from '../../../Components/UserDiv/UserDiv'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import DownloadPdf from '../../../Components/DownloadPdf/DownloadPdf'
 import UpcomingClassCard from '../../../Components/UpcomingClassCard/UpcomingClassCard'
 import HomeworkDiv from '../../Overview/Components/HomeworkDiv'
@@ -16,6 +16,8 @@ import axios from 'axios'
 import Moment from 'react-moment'
 import RatingCard from './RatingCard'
 import QuoteModal from '../../../Components/AllModals/Quote/QuoteModal'
+import { LuPlus } from "react-icons/lu";
+import { FaPlus } from 'react-icons/fa'
 
 
 const PastClassDetail = () => {
@@ -43,7 +45,13 @@ const PastClassDetail = () => {
         console.log(res.data.data)
         setData(res.data.data)
     }
-    console.log(data)
+    let teacherId = data?.teacherDetails?.user_id?._id
+    // console.log(teacherId)
+    const navigate = useNavigate()
+    const handleNavigate = () => {
+        console.log(`teacher-detail/${teacherId}`)
+        navigate(`/teacher/details/${teacherId}`)
+    }
 
     useEffect(() => {
         getUpcomingData()
@@ -51,7 +59,7 @@ const PastClassDetail = () => {
     return (
         <React.Fragment>
             <Heading heading={'Past Class Details'} p={'Porem ipsum dolor sit amet, consectetur adipiscing elit.'} >
-                <BlackButton func={popupHandler} funcVal={show} cls={classes.btn}>Add Quote</BlackButton>
+                {/* <BlackButton func={popupHandler} funcVal={show} cls={classes.btn}>Add Quote</BlackButton> */}
             </Heading>
             <div className={classes.box}>
                 <Container cls={classes.header}>
@@ -73,8 +81,8 @@ const PastClassDetail = () => {
                 </Container>
                 <Container cls={`${classes.inner_box}`}>
                     <h4 className={classes.secondary_heading}>Teacher's Details</h4>
-                    <UserDiv data={{ name: 'Puneet', city: 'MYP05 (Grade 5)' }}>
-                        <Link className={classes.link} to="/">View Profile</Link>
+                    <UserDiv data={data?.teacherDetails}>
+                        <div className={classes.link} onClick={handleNavigate} >View Profile</div>
                     </UserDiv>
                 </Container>
                 <Container cls={`${classes.inner_box1}`}>
@@ -96,28 +104,26 @@ const PastClassDetail = () => {
 
 
                 {/* Homework and IDk */}
-                <HomeworkDiv cls={classes.small_box} data={data?.homeworkResponse} />
+                <HomeworkDiv cls={classes.small_box} data={data?.homeworkResponse}  />
                 <Container cls={`${classes.inner_box} ${classes.small_box} ${classes.my_task_container}`}>
                     <h4 className={classes.secondary_heading}>Task Information</h4>
-                    <TasksMap cls={classes.my_tasks} data={data?.taskResponse} />
+                    <TasksMap cls={classes.my_tasks} data={data?.taskResponse} func={getUpcomingData} />
                 </Container>
                 <Container cls={`${classes.inner_box}  ${classes.widthh}`} >
                     <h4 className={classes.secondary_heading}>Rate this Class</h4>
-                    <RatingCard data={data} readonly={true} />
+                    <RatingCard data={data?.ratingsResponse?.rating} readonly={true} />
                 </Container>
 
 
-
-                {/* <div className={`${classes.inner_box} ${classes.my_upcoming_classes}`}>
-                    <h4 className={classes.secondary_heading}>My Upcoming Classes</h4>
+{/* 
+                <div className={`${classes.inner_box} ${classes.my_upcoming_classes}`}>
+                    <h4 className={classes.secondary_heading}>Pricing Section</h4>
                     <UpcomingClassCard />
-                    <UpcomingClassCard />
-                    <UpcomingClassCard />
-                    <UpcomingClassCard />
-                    <UpcomingClassCard />
+                      
                 </div> */}
+             
             </div>
-            {show && <QuoteModal isPopup={show} popupFunc={setShow} func={getUpcomingData}  />}
+            {show && <QuoteModal isPopup={show} popupFunc={setShow} func={getUpcomingData}  data1={data} />}
         </React.Fragment>
     )
 }

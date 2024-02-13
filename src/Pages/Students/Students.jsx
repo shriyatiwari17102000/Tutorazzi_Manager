@@ -49,7 +49,7 @@ const Students = () => {
         <React.Fragment>
             <Heading heading={'All Students'} p={'Porem ipsum dolor sit amet, consectetur adipiscing elit.'}>
                 <div className={classes.sb}>
-                    <SearchBar />
+                    <SearchBar search={search} setSearch={setSearch} />
                 </div>
             </Heading>
             <div className={classes.box}>

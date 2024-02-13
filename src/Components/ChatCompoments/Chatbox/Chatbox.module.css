@@ -1,0 +1,20 @@
+.container {
+    padding: 20px;
+    height: 65vh;
+    row-gap: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.chats_container{
+    width: 100%;
+    height: calc(100% - 40px);
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+
+

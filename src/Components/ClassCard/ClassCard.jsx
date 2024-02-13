@@ -14,7 +14,7 @@ import ToasterUpdate from '../Toaster/ToasterUpdate'
 
 
 const ClassCard = (props) => {
-  console.log(props.data)
+  // console.log(props.data)
   let tagData = props?.data?._id
 
 
@@ -27,7 +27,7 @@ const tagstoBtn = (tag) => {
     e.preventDefault()
     let register = `${BASE_URL}/accept-class/${tagData}`
     const myToast = toast.loading('Please Wait...')
-    console.log(register)
+    // console.log(register)
     try {
 
       let res = await axios.patch(register, {}, {
@@ -36,7 +36,7 @@ const tagstoBtn = (tag) => {
           Authorization: `Bearer ${token} `,
         },
       })
-      console.log(res)
+      // console.log(res)
       // You can make your patch API call here
       // Update state to indicate acceptance
       if (!res.data.success) {
@@ -118,7 +118,7 @@ const tagstoBtn = (tag) => {
   }
 
   const data = props.data
-  console.log(data)
+  // console.log(data)
   return (
     <Container cls={`${classes.card} ${props.cls}`}>
       <div className={classes.card_data}>

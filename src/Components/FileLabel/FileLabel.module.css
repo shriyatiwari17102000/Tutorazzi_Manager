@@ -1,0 +1,33 @@
+.input_container {
+    display: flex;
+    position: relative;
+    width: 100% !important;
+    border: 1px solid var(--border);
+    border-radius: var(--br);
+    overflow: hidden;
+    cursor: pointer;
+}
+.input_container > input {
+    position: absolute;
+    visibility: hidden;
+    cursor: pointer;
+}
+.input_container > label {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    padding: 0px 10px;
+    border-right: 1px solid var(--border);
+    font-size: 14px;
+    font-weight: 400;
+    background: #f9f9f9;
+}
+.input_container > div{
+    display: flex;
+    align-items: center;
+    padding-inline: 15px;
+    font-size: 14px;
+    color: #989898;
+    font-weight: 400;
+    cursor: pointer;
+}

@@ -106,7 +106,7 @@ const SignInPage = () => {
             onSubmit={send}
             className={classes.form}>
             {data.map((item, index) => (
-              <LabelInput cls={classes.width_ele} key={index} plceholder={item.ph} name={item.label} func={item.setFunc} value={item.setVal} ph={item.ph} id={item.id} type={item.type} />
+              <LabelInput required={true} cls={classes.width_ele} key={index} plceholder={item.ph} name={item.label} func={item.setFunc} value={item.setVal} ph={item.ph} id={item.id} type={item.type} />
             ))}
             <p>Don't Remeber Password ? <Link to={'/auth-reset'}>Forget Password</Link></p>
             <button disabled={isLoading} type='submit' className={classes.button}>Login In</button>

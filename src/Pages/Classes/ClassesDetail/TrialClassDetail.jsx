@@ -77,7 +77,7 @@ const TrialClassDetail = () => {
                 <Container cls={`${classes.inner_box}`}>
                     <h4 className={classes.secondary_heading}>Teacher’s Instructions</h4>
                     <p className={`${classes.instruction}`}>
-                       {data?.classDetails?.notes}
+                       {data?.classDetails?.notes ? data?.classDetails?.notes : "no data found!" }
                     </p>
                 </Container>
                 <Container cls={`${classes.inner_box}`}>

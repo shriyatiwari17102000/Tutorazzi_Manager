@@ -1,4 +1,4 @@
-.data_div_con {
+/* .data_div_con {
     row-gap: 20px;
     display: grid;
     grid-template-columns: repeat(8, 1fr);
@@ -49,4 +49,56 @@
 .active {
     background: black;
     color: white;
+} */
+
+.card {
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #d9d9d9;
+    border-radius: 5px;
+    line-height: 2.5;
+  }
+.h6{
+    font-size: 14px;
+}
+  .span{
+    padding: 3px 7px;
+    background: red;
+    border-radius: 100%;
+    color: white;
+    font-size: 12px;
+    margin-left: 10px;
+  }
+  .p{
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .open, .closed{
+    color: #F0A434;
+    background: #FFF1D0;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+  }
+
+  .closed{
+    color: #00A707;
+    background: #D5FFD7;
+  }
+
+  .heading{
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+
+  .btn {
+    width: 120px;
+    height: 40px;
+    font-size: 13px;
+    border: none;
 }

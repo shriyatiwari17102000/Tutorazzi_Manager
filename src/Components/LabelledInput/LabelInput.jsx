@@ -19,7 +19,8 @@ const togglePasswordVisibility = () => {
         // type={props.type ? props.type : 'text'}
         type={isPasswordVisible ? "text" : props.type}
         id={props.id}
-        placeholder={props.ph} />
+        placeholder={props.ph} 
+        required={props.required}/>
           {props.type === "password" && (
           <span
             className={classes.password_toggle_icon}
