@@ -54,7 +54,7 @@ const PaymentDetails = () => {
                 }
             <Container cls={classes.inner_box_2} >
                 <h4 className={classes.heading}>Class Details</h4>
-                <ClassCard data={data2} cls={classes.my_class_details} /> 
+                {/* <ClassCard data={data2} cls={classes.my_class_details} />  */}
             </Container>
             </div>
         </Fragment>

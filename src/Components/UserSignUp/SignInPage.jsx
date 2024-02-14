@@ -84,7 +84,7 @@ const SignInPage = () => {
   };
 
   useEffect(() => {
-    let auth = Cookies.get("tutorazzi_token")
+    let auth = Cookies.get("tutorazzi_academic")
     if (auth) {
       navigate('/dashboard')
     }

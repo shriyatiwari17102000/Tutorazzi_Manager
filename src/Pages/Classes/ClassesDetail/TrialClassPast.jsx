@@ -18,12 +18,16 @@ import RatingCard from './RatingCard'
 import QuoteModal from '../../../Components/AllModals/Quote/QuoteModal'
 import { LuPlus } from "react-icons/lu";
 import { FaPlus } from 'react-icons/fa'
+import NewPagination from '../../../Components/NewPagination/NewPagination'
 
 
 const TrialClassPast = () => {
     const [show, setShow] = useState(false)
     const [data, setData] = useState({})
-    const[quote, setQuote] = useState([])
+    const [quote, setQuote] = useState([])
+    const [limit, setLimit] = useState(3)
+    const [page, setPage] = useState(1)
+    const [pageInfo, setPageInfo] = useState({})
 
     const popupHandler = () => {
         setShow(!show)
@@ -45,19 +49,47 @@ const TrialClassPast = () => {
         })
         console.log(res.data.data)
         setData(res.data.data)
-        setQuote(res.data.data?.quotes)
+        // setQuote(res.data.data?.quotes)
     }
+
+
+
     let teacherId = data?.teacherDetails?.user_id?._id
-    // console.log(teacherId)
     const navigate = useNavigate()
     const handleNavigate = () => {
-        // console.log(`teacher-detail/${teacherId}`)
         navigate(`/teacher/details/${teacherId}`)
     }
 
     useEffect(() => {
         getUpcomingData()
     }, [])
+    // console.log(quote)
+
+    const getPricingData = async () => {
+        // console.log("hhhhhhhhhhh")
+        let register = `${BASE_URL}/quotes?class_id=${id}&page=${page}&limit=${limit}`
+        // console.log(register)
+        let res = await axios.get(register, {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
+        })
+        console.log(res.data.data?.result?.docs)
+        // setData(res.data.data)
+        setPageInfo({ ...res.data.data?.result, docs: null })
+        setQuote(res.data.data.result?.docs)
+    }
+
+    useEffect(() => {
+        getPricingData()
+    }, [limit, page])
+
+    const paginationProps = {
+        setPage,
+        pageInfo
+    }
+
     return (
         <React.Fragment>
             <Heading heading={'Past Class Details'} p={'Porem ipsum dolor sit amet, consectetur adipiscing elit.'} >
@@ -106,7 +138,7 @@ const TrialClassPast = () => {
 
 
                 {/* Homework and IDk */}
-                <HomeworkDiv cls={classes.small_box} data={data?.homeworkResponse}  />
+                <HomeworkDiv cls={classes.small_box} data={data?.homeworkResponse} />
                 <Container cls={`${classes.inner_box} ${classes.small_box} ${classes.my_task_container}`}>
                     <h4 className={classes.secondary_heading}>Task Information</h4>
                     <TasksMap cls={classes.my_tasks} data={data?.taskResponse} func={getUpcomingData} />
@@ -118,22 +150,31 @@ const TrialClassPast = () => {
 
 
 
-                <div className={`${classes.inner_box} ${classes.my_upcoming_classes}`}>
+                <div className={`${classes.inner_box}`} style={{padding:"0"}}>
                     <h4 className={classes.secondary_heading}>Pricing Section</h4>
-              {quote && quote.map((item, index) => (
-                      <UpcomingClassCard key={index} data={item}/>
-              ))}
-                        {/* <UpcomingClassCard />
+                    {quote?.length > 0 ? <div  className={classes.top_quote}>
+                        <div className={classes.inn_quote}>
+                            {
+                                quote?.map((item, index) => (
+                                    // console.log(item)
+                                    <div key={index} className={classes.most_inn_quote} >
+                                        <UpcomingClassCard func={getPricingData} data={item} />
+                                    </div>
+                                ))}
+                        </div>
+                        <NewPagination {...paginationProps} />
+                    </div> : "no data found!"}
+                    {/* <UpcomingClassCard />
                         <UpcomingClassCard />
                         <UpcomingClassCard />
                         <UpcomingClassCard /> */}
-                    
-                        {/* <BlackButton func={popupHandler} funcVal={show} cls={classes.add_price}><LuPlus style={{fontSize:"40px"}} /> <br/> Add Quote</BlackButton> */}
-                        {/* <button className={classes.add_price}> <br/> Add Quote</button> */}
+
+                    {/* <BlackButton func={popupHandler} funcVal={show} cls={classes.add_price}><LuPlus style={{fontSize:"40px"}} /> <br/> Add Quote</BlackButton> */}
+                    {/* <button className={classes.add_price}> <br/> Add Quote</button> */}
                 </div>
-             
+
             </div>
-            {show && <QuoteModal isPopup={show} popupFunc={setShow} func={getUpcomingData}  data1={data} />}
+            {show && <QuoteModal isPopup={show} popupFunc={setShow} func={getUpcomingData} data1={data} />}
         </React.Fragment>
     )
 }

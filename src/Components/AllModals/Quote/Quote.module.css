@@ -106,7 +106,7 @@
 
 
 .input_con{
-    width: 49%;
+    width: 49% !important;
 }
 .input_con label{
  

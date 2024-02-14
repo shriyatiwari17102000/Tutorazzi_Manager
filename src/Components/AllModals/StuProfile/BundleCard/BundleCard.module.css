@@ -1,0 +1,51 @@
+.card {
+    padding: 20px;
+    margin-bottom: 20px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #d9d9d9;
+    border-radius: 5px;
+    line-height: 2;
+  }
+  .flex{
+    display: flex;
+    gap: 10px;
+  }
+  .card > div > h1 {
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .card > div> div > p {
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .cls_span{
+    background: #f9f9f9;
+    padding: 5px;
+    border-radius: 5px;
+    font-weight: 400;
+    margin-left: 10px;
+  }
+  .pen_div{
+    display: flex;
+    gap: 10px;
+  }
+  .pend{
+    background: #FFE3B9;
+    color: #B76E03;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+  }
+  .don{
+    background: #D5FFD7;
+    color: #04B90B;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+  }
+
+
+  

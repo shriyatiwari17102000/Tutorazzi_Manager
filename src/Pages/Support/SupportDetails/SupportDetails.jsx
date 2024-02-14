@@ -21,7 +21,7 @@ const SupportDetails = () => {
 
     const { id } = useParams()
     console.log(id)
-    const tutToken = Cookies.get("tutorazzi_token")
+    const tutToken = Cookies.get("tutorazzi_academic")
     const getTutToken = JSON.parse(tutToken)
     const token = getTutToken.access_token
 

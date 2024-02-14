@@ -27,9 +27,9 @@ const Navbar = (props) => {
         <div className={classes.nav_btn}>
           <img src={setting} alt="" />
         </div>
-        <div className={classes.nav_btn}>
+        {/* <div className={classes.nav_btn}>
           <img src={calender} alt="" />
-        </div>
+        </div> */}
         <div className={classes.nav_profile}>
           <div>
             <img src={dp} alt="" />

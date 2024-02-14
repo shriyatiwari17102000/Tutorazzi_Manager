@@ -1,20 +1,24 @@
 import React from 'react'
 import classes from "./Support.module.css"
 import { useNavigate } from 'react-router-dom'
+import Moment from 'react-moment'
 
 const SupportCard = (props) => {
+  const {data} = props
+  console.log(data)
     const navigate = useNavigate()
-    const handleNavigate = () => {
-        navigate('details')
+    const handleNavigate = (id) => {
+      console.log(`/support/details/${id}`)
+        navigate(`/support/details/${id}`)
     }
   return (
-    <div className={classes.card} onClick={handleNavigate}>
+    <div className={classes.card} onClick={()=>handleNavigate(data._id)}>
         <div>
-            <h5 className={classes.h6}>Topic <span className={classes.span}>3</span></h5> 
-            <p className={classes.p}>20/08/2024</p>
+            <h5 className={classes.h6}>{data?.subject} {data?.response_count && <span className={classes.span}>{data?.response_count}</span> }</h5> 
+            <p className={classes.p}><Moment format="DD/MM/YYYY">{data.createdAt}</Moment></p>
         </div>
-        {props.open && <button className={classes.open}>Open</button>}
-        {props.closed && <button className={classes.closed}>Closed</button>}
+        {data?.status == "Pending" && <button className={classes.open}>Open</button>}
+        {data?.status == "Resolved" && <button className={classes.closed}>Closed</button>}
     </div>
   )
 }

@@ -37,7 +37,7 @@ const MainNavbar = () => {
                     </nav>
                     <div className={classes.btns_con}>
                         <SearchBar cls={classes.sb} />
-                        <button><BsCalendarWeek /></button>
+                        {/* <button><BsCalendarWeek /></button> */}
                         <button><AiOutlineBell /></button>
                         <button><BiMessageDetail /></button>
                         <div className={classes.profile_con}><img src={dp} alt="" /></div>

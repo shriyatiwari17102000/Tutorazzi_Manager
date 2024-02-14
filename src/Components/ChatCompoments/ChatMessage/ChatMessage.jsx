@@ -13,10 +13,11 @@ const ChatMessage = ({ data }) => {
         false: classes.reply,
         counselor: ''
     }
-
+    console.log("bhdbfhdbfhdbhfhg")
+    console.log(data.response)
     return (
         <div className={`${classes.message} ${mycls[data.is_sender]}`}>
-            {data.response && data.attachment ? (
+            {data.response && data.response_document_url ? (
                 <div className={classes.para}>
                     <p >
                         {data.response}
@@ -24,25 +25,25 @@ const ChatMessage = ({ data }) => {
                     <a
                         target="_blank"
                         style={{ fontSize: "12px" }}
-                        href={data.attachment}
-                        
+                        href={data.response_document_url}
+
                     >
-                        {data.attachment}
+                        {data.response_document}
                     </a>
                 </div>
             ) : data.response ? (
                 <p className={classes.para}>
                     {data.response}
                 </p>
-            ) :  data.attachment ? (
-                <a
+            ) : data.response_document_url ? (
+                <p className={classes.para}>  <a
                     target="_blank"
                     style={{ fontSize: "12px" }}
-                    href={data.attachment}
-                    className={classes.para}
+                    href={data.response_document_url}
+                    // className={classes.para}
                 >
-                    {data.attachment}
-                </a>
+                    {data.response_document}
+                </a></p>
             ) : ""}
 
             {data.isQuote && <Link to={`/service-checkout/${data._id}`} className={classes.quotation}>

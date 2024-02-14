@@ -11,6 +11,10 @@
     margin: 10px 0 30px;
 }
 
+.cls_W{
+    width: 100% !important;
+}
+
 .txtarea {
     width: 100% !important;
 }

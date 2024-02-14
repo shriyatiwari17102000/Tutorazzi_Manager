@@ -30,7 +30,7 @@ const SupportModal = ({ popupFunc, isPopup, func }) => {
         setSelectedImage(file);
     };
 
-    let profileTokenJson = Cookies.get("tutorazzi_token");
+    let profileTokenJson = Cookies.get("tutorazzi_academic");
     let profileToken = JSON.parse(profileTokenJson);
     // console.log(profileToken.access_token)
     let token = profileToken.access_token;
@@ -40,7 +40,7 @@ const SupportModal = ({ popupFunc, isPopup, func }) => {
         // console.log("yyyy")
         const formData = new FormData();
         formData.append('title', subject);
-        formData.append('category', priority);
+        // formData.append('category', priority);
         formData.append('description', query);
         if (selectedImage) {
             formData.append('file', selectedImage);
@@ -94,17 +94,17 @@ const SupportModal = ({ popupFunc, isPopup, func }) => {
             </div>
 
             <div className={classes.body}>
-              <LabelledInput func={setSubject} value={subject} id={'subject'} label={'Subject'} />
+              <LabelledInput cls={classes.cls_W} func={setSubject} value={subject} id={'subject'} label={'Subject'} />
                 {/* <LabelledInput func={setPriority} value={priority} id={'priority'} label={'Priority'} /> */}
 
-              <div >
+              {/* <div >
                 <label className={classes.label1}>Category</label>
                 <select className={classes.input_div1}>
                     <option selected value="High">High</option>
                     <option value="Medium">Medium</option>
                     <option value="Low">Low</option>
                 </select>
-              </div>
+              </div> */}
               
                 <div className={classes.txtarea}>
                     <label htmlFor="txt">Description</label>
@@ -120,7 +120,7 @@ const SupportModal = ({ popupFunc, isPopup, func }) => {
 
             <div className={classes.bottom}>
                 <button type='submit' onClick={() => { popupFunc(!isPopup) }}>Cancel</button>
-                <BlackButton disabled={isLoading} func={handleDataUpload}>Add Ticket</BlackButton>
+                <BlackButton disabled={isLoading} func={handleDataUpload}>Create Ticket</BlackButton>
             </div>
         </Modal>
     )

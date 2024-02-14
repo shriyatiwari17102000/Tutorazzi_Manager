@@ -9,7 +9,7 @@ const DataDiv = (props) => {
 
     return (
         <Link to={data.link} style={{background:data.bg}} className={classes.container}>
-            <div style={{background:data.color}} className={classes.colored_div}>{data.icon}</div>
+            {data.icon && <div style={{background:data.color}} className={classes.colored_div}>{data.icon}</div>}
             <h1 className={classes.h1}>{data.h1}</h1>
             <p className={classes.p}>{data.p}</p>
         </Link>

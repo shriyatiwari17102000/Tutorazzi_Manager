@@ -12,7 +12,7 @@ const BlackButton = (props) => {
   }
 
   return (
-    <button type='button' onClick={run} disabled={props.disabled} className={`${classes.button} ${props.cls}`}>
+    <button onClick={run} disabled={props.disabled} className={`${classes.button} ${props.cls}`}>
         {props.children}
     </button>
   )

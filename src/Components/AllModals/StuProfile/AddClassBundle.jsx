@@ -7,10 +7,10 @@ import Cookies from 'js-cookie'
 import moment from 'moment'
 import ToasterUpdate from '../../Toaster/ToasterUpdate'
 import { BASE_URL } from '../../../Apis/BaseUrl'
-import classes from "./Quote.module.css"
+import classes from "../Quote/Quote.module.css"
 import LabelledInput from '../../LabelledInput/LabelledInput'
 
-const AddExtraClass = ({ popupFunc, isPopup, func, data1 }) => {
+const AddClassBundle = ({ popupFunc, isPopup, func, data1 }) => {
     // console.log(data1)
     const [query, setQuery] = useState('')
     const[price, setPrice] = useState('')
@@ -110,7 +110,7 @@ const AddExtraClass = ({ popupFunc, isPopup, func, data1 }) => {
     return (
         <Modal cls={`${classes.popup}`} value={isPopup} Func={popupFunc}>
             <div className={classes.top}>
-                <Heading heading={'Add Extra Class'} p={''} />
+                <Heading heading={'Add Class bundle'} p={'You can Add class bundle for student'} />
             </div>
 
             <div className={classes.body}>
@@ -140,10 +140,10 @@ const AddExtraClass = ({ popupFunc, isPopup, func, data1 }) => {
 
             <div className={classes.bottom}>
                 <button type='submit' onClick={() => { popupFunc(!isPopup) }}>Cancel</button>
-                <button style={{ background: "black", color: "white" }} disabled={isLoading} onClick={handleDataUpload}>Add Extra Class</button>
+                <button style={{ background: "black", color: "white" }} disabled={isLoading} onClick={handleDataUpload}>Add Class Bundle</button>
             </div>
         </Modal>
     )
 }
 
-export default AddExtraClass
+export default AddClassBundle

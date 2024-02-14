@@ -10,7 +10,8 @@
     flex-wrap: wrap;
     justify-content: space-between;
 }
-.add_price{
+
+.add_price {
     /* width: 200px; */
     font-size: 14px;
     font-weight: 500;
@@ -22,21 +23,41 @@
     flex-direction: column;
     justify-content: center;
 }
+
+.top_quote {
+    flex-direction: column;
+    display: flex;
+    width: 100%;
+}
+.inn_quote {
+    display: flex;
+    width: 100%;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+.most_inn_quote{
+    width: 32.39%;
+}
+
 /* Header */
 
-.trial_css{
+.trial_css {
     display: flex;
 }
-.trial_css_p, .trial_css_span {
+
+.trial_css_p,
+.trial_css_span {
     font-size: 14px;
     font-weight: 500;
     line-height: 1.5;
 }
-.trial_css_span{
+
+.trial_css_span {
     color: #989898;
     /* margin-top: 50px !important; */
 }
-.class_status{
+
+.class_status {
     background: #ffd9d9;
     color: #DE0101;
     font-size: 13px;
@@ -48,7 +69,8 @@
     align-items: center;
     gap: 10px;
 }
-.class_status1{
+
+.class_status1 {
     background: #e2f3e2;
     color: green;
     font-size: 13px;
@@ -121,6 +143,7 @@
     row-gap: 20px;
     width: 100%;
 }
+
 .inner_box1 {
     padding: 20px;
     display: flex;
@@ -182,27 +205,30 @@
 
 
 
-.my_task_container{
+.my_task_container {
     height: 380px;
 }
 
-.my_tasks{
+.my_tasks {
     height: calc(100% - 30px);
     overflow: scroll;
     display: flex;
     flex-wrap: wrap;
     row-gap: 10px;
 }
-.trial_class_btn  {
+
+.trial_class_btn {
     width: 150px;
     height: 40px;
     margin-left: auto;
 }
-.trial_class_h6  {
+
+.trial_class_h6 {
     font-size: 14px;
     font-weight: 400;
 }
-.trial_class_status  {
+
+.trial_class_status {
     width: max-content;
     display: inline-flex;
     padding-inline: 15px;
@@ -214,7 +240,8 @@
     color: #DE0101;
     /* margin-left: 20px; */
 }
-.instruction  {
+
+.instruction {
     padding: 10px;
     border-radius: var(--br);
     border: 1px solid var(--border);
@@ -223,13 +250,13 @@
     color: #6b6b6b;
 }
 
-@media  (width < 900px){
+@media (width < 900px) {
     .my_upcoming_classes>div {
         grid-column: span 3;
     }
 }
 
-@media  (width < 700px){
+@media (width < 700px) {
     .my_upcoming_classes>div {
         grid-column: span 6;
     }
@@ -237,22 +264,31 @@
     .small_box {
         width: 100%;
     }
+    .most_inn_quote{
+        width: 100%;
+    }
 }
 
-@media (width < 560px){
+@media (width < 560px) {
     .header {
         align-items: flex-start;
         width: 100%;
         flex-direction: column;
         row-gap: 20px;
     }
-    .header_btn{
+
+    .header_btn {
         width: 100%;
     }
-    .header_right_inner{
+
+    .header_right_inner {
         width: calc(100% - 50px);
     }
-    .btn{
+
+    .btn {
+        width: 100%;
+    }
+    .most_inn_quote{
         width: 100%;
     }
 }

@@ -236,7 +236,7 @@ const MessageSidebar = (props) => {
             <div className="msgside_div">
               <div className="msgside_div1">
                 {user
-                  .filter((o) => o.student.name.includes(search))
+                  ?.filter((o) => o.student.name.includes(search))
                   .map((item, index) => (
                     <div
                       // value=""
@@ -249,7 +249,7 @@ const MessageSidebar = (props) => {
                       {item.student.name}
                     </div>
                   ))}
-                {user.filter((o) => o.student.name.includes(search)).length === 0 && (
+                {user?.filter((o) => o.student.name.includes(search)).length === 0 && (
                   <div>no result found</div>
                 )}
               </div>

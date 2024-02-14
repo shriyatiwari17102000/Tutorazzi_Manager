@@ -65,7 +65,7 @@ const CompletePage = () => {
             if (!response.data.success) {
                 throw new Error(response.data.message)
             }
-            Cookies.set("tutorazzi_token", JSON.stringify(response.data.data), {
+            Cookies.set("tutorazzi_academic", JSON.stringify(response.data.data), {
                 expires: 1,
             });
 

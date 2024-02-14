@@ -24,6 +24,13 @@
     right: 6%;
     top: 30%;
 }
+.attach1{
+    position: absolute;
+    left: 20px;
+    top: 12px;
+    color: #989898;
+    font-size: 14px;
+}
 
 .my_btn {
     width: 40px;

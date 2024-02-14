@@ -21,17 +21,19 @@ const EditQuote = ({ popupFunc, isPopup, func, data1 }) => {
     const [isLoading, setLoading] = useState(false)
     const[teacherData, setTeacherData] = useState([])
     const[teacher, setTeacher] = useState("")
+    const[quoteData, setQuoteData] = useState({})
     const handleQueryChange = (e) => {
         setQuery(e.target.value);
     };
-// console.log(data1?.classDetails?.curriculum_name)
+    let id = data1._id
+    console.log(id)
 
     const tutToken = Cookies.get("tutorazzi_academic")
     const getTutToken = JSON.parse(tutToken)
     const token = getTutToken.access_token
 
     const getQuote = async () => {
-        const register = `${BASE_URL}/quote?quote_id=`
+        const register = `${BASE_URL}/quote?quote_id=${id}`
         let response = await axios.get(register, {
             headers: {
                 "Content-Type": "application/json",
@@ -39,16 +41,24 @@ const EditQuote = ({ popupFunc, isPopup, func, data1 }) => {
             },
         })
 
-        console.log(response.data.data)
-        setSub(response.data.data)
+        console.log(response.data.data?.subject_name)
+        setQuoteData(response.data.data)
+        setPrice(response.data.data?.amount)
+        setQuery(response.data.data?.description)
+        setClassCount(response.data.data?.class_count)
+        setClassNames(response.data.data?.class_name)
+        setSubject(response.data.data?.subject_name)
+        // console.log(subject)
+        // setSub(response.data.data?.
+        //     subject_curriculum_grade)
     }
 
     useEffect(() => {
         getQuote()
     }, [])
+    console.log(quoteData.curriculum_name)
     const getCurriculum = async () => {
-        const register = `${BASE_URL}/subject-by-curriculum?curriculum=${data1?.
-            classDetails?.curriculum_name}`
+        const register = `${BASE_URL}/subject-by-curriculum?curriculum=${quoteData.curriculum_name}`
         let response = await axios.get(register, {
             headers: {
                 "Content-Type": "application/json",
@@ -81,30 +91,30 @@ const EditQuote = ({ popupFunc, isPopup, func, data1 }) => {
         getTeacher()
     }, [])
 
-    console.log(sub)
+    console.log(subject)
 
     const handleDataUpload = async () => {
 
-        const register = `${BASE_URL}/Quote`
+        const register = `${BASE_URL}/quote/${quoteData.id}`
         // console.log(register)
         const myToast = toast.loading('Please Wait...')
         // console.log({ start_time: timeDate })
         let bdy = {
-            teacher_id: data1?.classDetails?.teacher_id?.id,
-            student_id: data1?.classDetails?.student_id?.id,
+            teacher_id: quoteData?.teacher_id,
+            student_id: quoteData?.student_id,
             amount: price,
             class_count: classCount,
             description: query,
             class_name: classNames,
             subject: subject,
-            curriculum: data1?.classDetails?.curriculum_name ,
-            grade: data1?.classDetails?.grade_name
+            curriculum: quoteData?.curriculum_name ,
+            grade: quoteData?.grade_name
 
         }
 
         setLoading(true)
         try {
-            let response = await axios.post(register, bdy, {
+            let response = await axios.patch(register, bdy, {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token} `,

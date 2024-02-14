@@ -62,6 +62,8 @@ const App = () => {
               <Route path='student'>
                 <Route index element={<Students />} />
                 <Route path='/student/details/:id' element={<StudentDetails />} />
+                {/* <Route path='/student/payment/:id' element={<PaymentDetails />} /> */}
+
               </Route>
               <Route path='teacher'>
                 <Route index element={<Teachers />} />
@@ -69,7 +71,7 @@ const App = () => {
               </Route>
               <Route path='payment'>
                 <Route index element={<Payment />} />
-                <Route path='/payment/details/' element={<PaymentDetails />} />
+                <Route path='/payment/details/:id' element={<PaymentDetails />} />
               </Route>
 
               <Route path="/classes" element={<Classes />}>
@@ -96,7 +98,7 @@ const App = () => {
               </Route>
               <Route path='support'>
                 <Route index element={<Support />} />
-                <Route path="details" element={<SupportDetails />} />
+                <Route path="/support/details/:id" element={<SupportDetails />} />
               </Route>
             </Routes>
           </main>

@@ -1,6 +1,6 @@
 .popup {
-    width: 550px;
-    padding: 40px;
+    width: 740px;
+    padding: 30px;
 }
 
 .body {
@@ -93,14 +93,63 @@
     width: 100%;
     outline: none;
 }
+
+.middle {
+    width: 300px;
+}
+.flex2{
+    display: flex;
+    justify-content: space-between;
+  }
+  .flex2 > button {
+    height: 45px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    background-color: black;
+  }
+
+.row {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
+    font-weight: 500;
+}
+.h5{
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.row>span {
+    color: #7D7D7D;
+}
+.view_height{
+    height: 50vh;
+    overflow: scroll;
+}
 @media screen and (max-width:550px) {
     .popup {
         width: 90%;
     }
-
-    .body>div:nth-child(1),
-    .body>div:nth-child(2) {
+    ul li span{
+        width: fit-content;
+        text-align: right;
+    }
+    ul li {
+        gap:inherit !important ;
+    }
+.body{
+    overflow: scroll;
+    height: 100vh;
+}
+    .body>div,
+    .body>div>div {
         width: 100%;
+        flex-direction: column !important;
     }
 
 }
@@ -143,15 +192,19 @@ ul{
     list-style: none;
 }
 ul li {
+    align-items: center;
+    justify-content: space-between;
     line-height: 3;
     font-size: 14px;
     font-weight: 500;
-    display: flex; 
-    gap: 100px;
+    display: flex;
+    gap: 60px;
 }
 ul li span{
     color: #989898;
     font-size: 14px;
+    width: 200px;
+    line-height: 1;
 }
 .boxed_input input{
     width: calc(100% - 40px);

@@ -20,7 +20,8 @@ const PaymentCard = (props) => {
             {!props.details && <h6>Student : <Link>Nishant Choudhary</Link> </h6>}
             <div className={classes.row}>
                 <h6>5 x class of Mathematics</h6>
-                {!props.details && <Link className={classes.link} to={'details'}>View Details</Link>}
+                {!props.details && <Link className={classes.link} to={`/payment/details/{id}`}  // id
+                >View Details</Link>}
             </div>
             {props.children}
         </Container>

@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom'
 import Cookies from 'js-cookie'
 import { BASE_URL } from '../../Apis/BaseUrl'
 import axios from 'axios'
+import NewPagination from '../../Components/NewPagination/NewPagination'
 
 
 const Students = () => {
@@ -52,14 +53,20 @@ const Students = () => {
                     <SearchBar search={search} setSearch={setSearch} />
                 </div>
             </Heading>
-            <div className={classes.box}>
-                {data.map((element, index) => (
+            <div>
+                {data.length > 0 ? <div>
+              <div className={classes.box}>
+              {
+                  data.map((element, index) => (
                     <Link to={`details/${element?.user_id?._id}`} key={index} className={classes.student}>
                         <UserDiv cls={classes.my_student_Card} data={element} >
                         <FaChevronRight className={classes.i} />
                         </UserDiv>
                     </Link>
                 ))}
+              </div>
+                <NewPagination {...paginationProps}/>
+                </div>: "no data found!"}
             </div>
         </React.Fragment>
     )

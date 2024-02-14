@@ -10,29 +10,19 @@ import { BASE_URL } from '../../../Apis/BaseUrl'
 import classes from "./StuProfile.module.css"
 import LabelledInput from '../../LabelledInput/LabelledInput'
 
-const ViewProfileModal = ({ popupFunc, isPopup, func, data1 }) => {
+const ViewProfileModal = ({ popupFunc, id, isPopup, func, data1 }) => {
     // console.log(data1)
-    const [query, setQuery] = useState('')
-    const[sub, setSub] = useState([])
-    const[subject, setSubject] = useState('')
-    const[price, setPrice] = useState('')
-    const[classCount, setClassCount] = useState('')
-    const[classNames, setClassNames] = useState('')
-    const [isLoading, setLoading] = useState(false)
-    const[teacherData, setTeacherData] = useState([])
-    const[teacher, setTeacher] = useState("")
-    const handleQueryChange = (e) => {
-        setQuery(e.target.value);
-    };
-// console.log(data1?.classDetails?.curriculum_name)
+    const [sub, setSub] = useState([])
+    const [stuId, setStuId] = useState({})
+
+    // console.log(data1?.classDetails?.curriculum_name)
 
     const tutToken = Cookies.get("tutorazzi_academic")
     const getTutToken = JSON.parse(tutToken)
     const token = getTutToken.access_token
 
     const getCurriculum = async () => {
-        const register = `${BASE_URL}/subject-by-curriculum?curriculum=${data1?.
-            classDetails?.curriculum_name}`
+        const register = `${BASE_URL}/student-details?student_id=${id}`
         let response = await axios.get(register, {
             headers: {
                 "Content-Type": "application/json",
@@ -41,72 +31,73 @@ const ViewProfileModal = ({ popupFunc, isPopup, func, data1 }) => {
         })
 
         console.log(response.data.data)
-        setSub(response.data.data)
+        setSub(response.data.data?.studentDetails)
+        setStuId(response.data.data)
     }
 
     useEffect(() => {
         getCurriculum()
     }, [])
 
-    const getTeacher = async () => {
-        const register = `${BASE_URL}/all-teachers`
-        let response = await axios.get(register, {
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token} `,
-            },
-        })
+    // const getTeacher = async () => {
+    //     const register = `${BASE_URL}/all-teachers`
+    //     let response = await axios.get(register, {
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //             Authorization: `Bearer ${token} `,
+    //         },
+    //     })
 
-        console.log(response.data.data?.docs)
-        setTeacherData(response.data.data?.docs)
-    }
+    //     console.log(response.data.data?.docs)
+    //     setTeacherData(response.data.data?.docs)
+    // }
 
-    useEffect(() => {
-        getTeacher()
-    }, [])
+    // useEffect(() => {
+    //     getTeacher()
+    // }, [])
 
-    console.log(sub)
+    // console.log(sub)
 
-    const handleDataUpload = async () => {
+    // const handleDataUpload = async () => {
 
-        const register = `${BASE_URL}/Quote`
-        // console.log(register)
-        const myToast = toast.loading('Please Wait...')
-        // console.log({ start_time: timeDate })
-        let bdy = {
-            teacher_id: data1?.classDetails?.teacher_id?.id,
-            student_id: data1?.classDetails?.student_id?.id,
-            amount: price,
-            class_count: classCount,
-            description: query,
-            class_name: classNames,
-            subject: subject,
-            curriculum: data1?.classDetails?.curriculum_name ,
-            grade: data1?.classDetails?.grade_name
+    //     const register = `${BASE_URL}/Quote`
+    //     // console.log(register)
+    //     const myToast = toast.loading('Please Wait...')
+    //     // console.log({ start_time: timeDate })
+    //     let bdy = {
+    //         teacher_id: data1?.classDetails?.teacher_id?.id,
+    //         student_id: data1?.classDetails?.student_id?.id,
+    //         amount: price,
+    //         class_count: classCount,
+    //         description: query,
+    //         class_name: classNames,
+    //         subject: subject,
+    //         curriculum: data1?.classDetails?.curriculum_name,
+    //         grade: data1?.classDetails?.grade_name
 
-        }
+    //     }
 
-        setLoading(true)
-        try {
-            let response = await axios.post(register, bdy, {
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${token} `,
-                },
-            })
+    //     setLoading(true)
+    //     try {
+    //         let response = await axios.post(register, bdy, {
+    //             headers: {
+    //                 "Content-Type": "application/json",
+    //                 Authorization: `Bearer ${token} `,
+    //             },
+    //         })
 
-            console.log(response)
-            ToasterUpdate(myToast, response.data.message, "success")
-            func()
-        } catch (error) {
-            ToasterUpdate(myToast, error.message, "error")
-        }
-        finally {
-            popupFunc(!isPopup)
-            setLoading(false)
+    //         console.log(response)
+    //         ToasterUpdate(myToast, response.data.message, "success")
+    //         func()
+    //     } catch (error) {
+    //         ToasterUpdate(myToast, error.message, "error")
+    //     }
+    //     finally {
+    //         popupFunc(!isPopup)
+    //         setLoading(false)
 
-        }
-    }
+    //     }
+    // }
 
 
     // let new_d = moment(new Date()).format('YYYY-MM-DDTHH:mm');
@@ -118,72 +109,70 @@ const ViewProfileModal = ({ popupFunc, isPopup, func, data1 }) => {
             </div>
 
             <div className={classes.body}>
-            <h6 className={classes.heading}>Personal Information</h6>
-          <div style={{display:"flex", justifyContent:"space-between"}}>
-          <ul>
-            <li>
-              Full Name   <span>hello</span>
-            </li>
-            <li>
-                Email ID <span>hello</span>
-            </li>
-            <li>
-                Phone Number <span>hello</span>
-            </li>
-            <li>
-                Student ID <span>hello</span>
-            </li>
-            <li>
-                Parent ID <span>hello</span>
-            </li>
-            <li>
-                School <span>hello</span>
-            </li>
-            <li>
-                Standard <span>hello</span>
-            </li>
-           </ul>
-           <ul>
-            <li>
-                Address <span>hello</span>
-            </li>
-            <li>
-                City <span>hello</span>
-            </li>
-            <li>
-                State <span>hello</span>
-            </li>
-         
-           </ul>
-          </div>
-            <h6 className={classes.heading}>Curriculum information</h6>
-            <div>
-              <ul>
-              <li style={{gap:"50px"}}>Curriculum <span>gggggg</span></li>
-              </ul>
-          <div style={{display:"flex", justifyContent:"space-between"}}>
-          <ul>
-            <li>
-                Subject 1 <span>hello</span>
-            </li>
-            <li>
-            Subject 2<span>hello</span>
-            </li>
-            
-           </ul>
-           <ul>
-            <li>
-            Subject 3 <span>hello</span>
-            </li>
-            <li>
-            Subject 4 <span>hello</span>
-            </li>
-           </ul>
-          </div>
-          </div>
+                <h6 className={classes.heading}>Personal Information</h6>
+                <div style={{ display: "flex", justifyContent: "space-between" }}>
+                    <ul>
+                        <li>
+                            Full Name   <span>{sub?.preferred_name}</span>
+                        </li>
+                        <li>
+                            Email ID <span>{sub?.user_id?.email}</span>
+                        </li>
+                        <li>
+                            Phone Number <span>{sub?.user_id?.mobile_number}</span>
+                        </li>
+                        <li>
+                            Student ID <span>{stuId?.studentId}</span>
+                        </li>
+                        <li>
+                            Parent ID <span>{stuId?.parentID}</span>
+                        </li>
+                        <li>
+                            School <span>{sub?.school}</span>
+                        </li>
+                        <li>
+                            Standard <span>{sub?.grade_name}</span>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            Address <span>{sub?.address}</span>
+                        </li>
+                        <li>
+                            City <span>{sub?.city}</span>
+                        </li>
+                        <li>
+                            State <span>{sub?.state}</span>
+                        </li>
+
+                    </ul>
+                </div>
+                <h6 className={classes.heading}>Curriculum information</h6>
+                <div>
+                    <ul>
+                        <li style={{ gap: "50px", justifyContent: "flex-start" }}>Curriculum <span>{sub?.curriculum_name}</span></li>
+                    </ul>
+                    <div style={{ display: "flex", justifyContent: "space-between" }}>
+                        <ul>
+                            {sub?.subjects?.map((item, index) => (
+                                <li>
+                                    Subject {index + 1}<span>{item.name}</span>
+                                </li>
+                            ))}
+                        </ul>
+                        {/* <ul>
+                            <li>
+                                Subject <span>hello</span>
+                            </li>
+                            <li>
+                                Subject  <span>hello</span>
+                            </li>
+                        </ul> */}
+                    </div>
+                </div>
             </div>
 
-         
+
         </Modal>
     )
 }

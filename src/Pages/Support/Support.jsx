@@ -56,19 +56,52 @@
 
 // export default Support
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import SupportCard from './SupportCard'
 import { useNavigate } from 'react-router-dom'
 import classes from "./Support.module.css"
 import Heading from '../../Components/Heading/Heading'
 import BlackButton from '../../Components/BlackButton/BlackButton'
 import SupportModal from '../../Components/AllModals/SupportModal/SupportModal'
+import Cookies from 'js-cookie'
+import axios from 'axios'
+import { BASE_URL } from '../../Apis/BaseUrl'
+import NewPagination from '../../Components/NewPagination/NewPagination'
 
 const Support = () => {
+  const[data, setData]  = useState([])
+  const [limit, setLimit] = useState(10);
+  const [page, setPage] = useState(1);
+  const [pageInfo, setPageInfo] = useState({});
     const [show, setShow] = useState(false)
     const popupHandler = () => setShow(!show)
+
     
+    const tutToken = Cookies.get("tutorazzi_academic")
+    const getTutToken = JSON.parse(tutToken)
+    const token = getTutToken.access_token
+    const getData = async () => {
+    
+      let register = `${BASE_URL}/tickets?limit=${limit}&page=${page}`
+      console.log(register)
+      let res = await axios.get(register, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
+        }
+      })
+      console.log(res.data.data)
+      setPageInfo({ ...res.data.data, docs: null })
+      setData(res.data.data?.docs)
+    }
+    useEffect(() => {
+      getData()
+    }, [limit, page])
   
+    const paginationProps = {
+      setPage,
+      pageInfo
+    }
     return (
         <div>
                   <Heading heading={'Support'}  >
@@ -77,9 +110,13 @@ const Support = () => {
                 cls={classes.btn}
                 >Add Ticket</BlackButton>
             </Heading>
-            <SupportCard open={true}  />
-            <SupportCard closed={true} />
-          {show &&  <SupportModal isPopup={show} popupFunc={setShow} />}
+         {data.length > 0 ? <>
+         {
+          data.map((item)=> (
+            <SupportCard open={true} data={item}  />
+                     ))}  <NewPagination {...paginationProps}/></> : "no data found"}
+            {/* <SupportCard closed={true} /> */}
+          {show &&  <SupportModal func={getData} isPopup={show} popupFunc={setShow} />}
         </div>
     )
 }
