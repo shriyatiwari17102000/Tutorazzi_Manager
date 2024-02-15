@@ -30,7 +30,7 @@ const ViewProfileModal = ({ popupFunc, id, isPopup, func, data1 }) => {
             },
         })
 
-        console.log(response.data.data)
+        // console.log(response.data.data)
         setSub(response.data.data?.studentDetails)
         setStuId(response.data.data)
     }
@@ -150,13 +150,13 @@ const ViewProfileModal = ({ popupFunc, id, isPopup, func, data1 }) => {
                 <h6 className={classes.heading}>Curriculum information</h6>
                 <div>
                     <ul>
-                        <li style={{ gap: "50px", justifyContent: "flex-start" }}>Curriculum <span>{sub?.curriculum_name}</span></li>
+                        <li style={{ gap: "85px", justifyContent: "flex-start" }} className={classes.btm_curr}>Curriculum <span>{sub?.curriculum_name}</span></li>
                     </ul>
                     <div style={{ display: "flex", justifyContent: "space-between" }}>
-                        <ul>
+                        <ul  className={classes.btm_ul}>
                             {sub?.subjects?.map((item, index) => (
-                                <li>
-                                    Subject {index + 1}<span>{item.name}</span>
+                                <li style={{gap: "98px"}}> 
+                                    Subject {index + 1}<span >{item.name}</span>
                                 </li>
                             ))}
                         </ul>

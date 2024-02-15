@@ -15,8 +15,8 @@ const RescheduleClasses = ({ popupFunc, isPopup, func, data1 }) => {
     const [timeDate, setTimeDate] = useState(moment().format('YYYY-MM-DDTHH:mm'))
 
     let data = data1
-    // console.log(data)
-    let id = data?.classDetails?._id 
+    console.log(data)
+    let id = data?.classDetails?._id ? data?.classDetails?._id : data?._id
     console.log(id)
      const tutToken = Cookies.get("tutorazzi_academic")
     const getTutToken = JSON.parse(tutToken)

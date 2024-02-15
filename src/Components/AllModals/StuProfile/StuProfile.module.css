@@ -11,7 +11,10 @@
     margin: 0 0 30px;
 
 }
-
+.btm_ul{
+display:flex;
+ flex-wrap:wrap
+}
 .txtarea {
     width: 100% !important;
 }
@@ -131,16 +134,23 @@
     height: 50vh;
     overflow: scroll;
 }
-@media screen and (max-width:550px) {
+@media screen and (max-width:620px) {
     .popup {
         width: 90%;
     }
+    .btm_ul{
+        display: block;
+    }
+  
     ul li span{
         width: fit-content;
         text-align: right;
     }
     ul li {
         gap:inherit !important ;
+    }
+    .btm_curr{
+        gap: 85px !important;
     }
 .body{
     overflow: scroll;
@@ -214,4 +224,30 @@ ul li span{
     font-size: 14px;
     color: #989898;
     font-weight: 400;
+}
+.top{
+    color: #9F0000;
+    background: #FFCBCB;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 17px;
+    align-items: center;
+}
+.top > h1{
+font-size: 14px;
+font-weight: 500;
+}
+.cont{
+    padding: 20px;
+    height: 400px;
+    overflow: scroll;
+}
+.top > button {
+    color: #9F0000;
+    background: none;
+    border: none;
+    font-size: 18px;
+    font-weight: 500;
 }

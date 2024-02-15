@@ -18,7 +18,11 @@ grid-column: span 8;
     border-radius: var(--br);
     font-weight: 500;
 }
-
+.inn_clss{
+    border: 1px solid #d9d9d9;
+    padding: 20px;
+    border-radius: 5px;
+}
 /* My Grid */
 
 .grid{

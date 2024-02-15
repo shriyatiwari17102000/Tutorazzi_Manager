@@ -5,7 +5,7 @@ import { FiChevronRight, FiChevronLeft } from "react-icons/fi";
 import ClassCardContainer from '../../UI/ClassCardContainer/ClassCardContainer';
 import { Link } from 'react-router-dom';
 import img from '../../assets/add-square-03.png'
-import RescheduleModal from '../AllModals/RescheduleModal/RescheduleModal';
+import RescheduleModal from '../AllModals/RescheduleModal1/RescheduleModal';
 const ListCalendar = () => {
 
     const [popup,setPopup] = useState(false)

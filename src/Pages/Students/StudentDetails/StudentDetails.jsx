@@ -229,21 +229,26 @@ import { BASE_URL } from '../../../Apis/BaseUrl'
 import axios from 'axios'
 import Moment from 'react-moment'
 import StuDetailMap from './StuDetailMap'
+import StuPaymentMap from './StuPaymentMap'
 
 
 const StudentDetails = () => {
   const[data1, setData1] = useState([])
   const[classData, setClassData] = useState([])
+  const[paymentData, setPaymentData] = useState([])
   const[show, setShow] = useState(false)
   const[show1, setShow1] = useState(false)
   const [inx, setInx] = useState(0)
   const [limit, setLimit] = useState(10)
     const [page, setPage] = useState(1)
     const [pageInfo, setPageInfo] = useState({})
+  const [limit1, setLimit1] = useState(10)
+    const [page1, setPage1] = useState(1)
+    const [pageInfo1, setPageInfo1] = useState({})
   const [value, onChange] = useState('');
 
   const {id} = useParams()
-  console.log(id)
+  // console.log(id)
 
   const popupHandler = () => setShow(!show)
   const handleOpen = () => setShow1(!show1)
@@ -254,7 +259,7 @@ const StudentDetails = () => {
     const getData = async () => {
 
       let register = `${BASE_URL}/student-by-id?student_id=${id}`
-      console.log(register)
+      // console.log(register)
       let res = await axios.get(register, {
         headers: {
           "Content-Type": "application/json",
@@ -271,7 +276,7 @@ const StudentDetails = () => {
     const getClasses = async () => {
 
       let register = `${BASE_URL}/student-classes?student_id=${id}&limit=${limit}&page=${page}`
-      console.log(register)
+      // console.log(register)
       let res = await axios.get(register, {
         headers: {
           "Content-Type": "application/json",
@@ -285,13 +290,37 @@ const StudentDetails = () => {
     useEffect(() => {
       getClasses()
     }, [limit, page])
+
+    const getPayment = async () => {
+
+      let register = `${BASE_URL}/student-payments?student_id=${id}&limit=${limit1}&page=${page1}`
+      // console.log(register)
+      let res = await axios.get(register, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
+        }
+      })
+      console.log(res.data.data)
+      setPaymentData(res.data.data?.docs)
+      setPageInfo1({ ...res.data.data, docs: null })
+    }
+    useEffect(() => {
+      getPayment()
+    }, [limit1, page1])
+
    const paginationProps = {
         setPage,
         pageInfo
     }
+   const paginationProps1 = {
+        setPage : setPage1 ,
+        pageInfo : pageInfo1
+    }
+    // console.log(paymentData)
   const renderDiv = {
-    0: <StuDetailMap data={classData} paginationProps={paginationProps} />,
-    1: <PaymentCard />
+    0: <StuDetailMap data={classData} id={id} paginationProps={paginationProps} />,
+    1: <StuPaymentMap data={paymentData} paginationProps={paginationProps1}/>
   }
   const data = [
     {
@@ -358,7 +387,7 @@ let profile_img = data1?.studentResponse?.user_id?.profile_image_url
 
       </div>
       {show && <ViewProfileModal id={id} isPopup={show} popupFunc={setShow}/>}
-      {show1 && <AddClassBundle isPopup={show1} popupFunc={setShow1}/>}
+      {show1 && <AddClassBundle id={id} isPopup={show1} func={getClasses} popupFunc={setShow1}/>}
     </>
   )
 }

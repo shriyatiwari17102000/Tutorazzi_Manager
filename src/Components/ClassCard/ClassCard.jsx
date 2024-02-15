@@ -36,13 +36,9 @@ const tagstoBtn = (tag) => {
           Authorization: `Bearer ${token} `,
         },
       })
-      // console.log(res)
-      // You can make your patch API call here
-      // Update state to indicate acceptance
       if (!res.data.success) {
         ToasterUpdate(myToast, res.data.message, "error")
       }
-      // setIsAccepted(res.data.message);
       ToasterUpdate(myToast, res.data.message, "success")
     } catch (error) {
       console.log(error)
