@@ -11,7 +11,7 @@ const RatingCard = (props) => {
     <>
     <div>
         {/* <h5>Rate this Class</h5> */}
-        <p className={classes.para}>Rate Teacher By Selecting From 1 to 5 Stars To Express your Views</p>
+        <p className={classes.para}>{props.p}</p>
     </div>
     <Rating
     className={classes.stars_con}

@@ -82,7 +82,7 @@ const PastClassDetail = () => {
                 <Container cls={`${classes.inner_box}`}>
                     <h4 className={classes.secondary_heading}>Teacher's Details</h4>
                     <UserDiv data={data?.teacherDetails}>
-                        <div className={classes.link} onClick={handleNavigate} >View Profile</div>
+                        <div className={classes.link} style={{cursor:"pointer"}}  onClick={handleNavigate} >View Profile</div>
                     </UserDiv>
                 </Container>
                 <Container cls={`${classes.inner_box1}`}>
@@ -110,9 +110,19 @@ const PastClassDetail = () => {
                     <TasksMap cls={classes.my_tasks} data={data?.taskResponse} func={getUpcomingData} />
                 </Container>
                 <Container cls={`${classes.inner_box}  ${classes.widthh}`} >
-                    <h4 className={classes.secondary_heading}>Rate this Class</h4>
-                    <RatingCard data={data?.ratingsResponse?.rating} readonly={true} />
+                    <div>
+                    <h4 className={classes.secondary_heading}>Rate Your Teacher</h4>
+                    <RatingCard data={data?.teacherRatings} readonly={true} p={'Rate Teacher By Selecting From 1 to 5 Stars To Express your Views'} />
+                    </div>
+                  <div>
+                  <h4 className={classes.secondary_heading}>Rate this Class</h4>
+                    <RatingCard data={data?.ratingsResponse} readonly={true} p={'Rate This Class By Selecting From 1 to 5 Stars To Express your Views'}/>
+                  </div>
                 </Container>
+                {/* <Container cls={`${classes.inner_box}  ${classes.widthh}`} >
+                    <h4 className={classes.secondary_heading}>Rate this Class</h4>
+                    <RatingCard data={data?.ratingsResponse} readonly={true} p={"Rate This Class By Selecting From 1 to 5 Stars To Express your Views"}/>
+                </Container> */}
 
 
 {/* 

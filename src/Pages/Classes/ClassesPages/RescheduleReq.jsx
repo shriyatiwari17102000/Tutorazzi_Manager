@@ -12,6 +12,7 @@ import axios from 'axios'
 import DatePicker from 'react-date-picker'
 import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';  
+import moment from 'moment'
 
 const RescheduleReq = () => {
   const [rescheduleData, setRescheduleData] = useState([])
@@ -57,7 +58,7 @@ const RescheduleReq = () => {
       </Heading>
       {rescheduleData.length > 0 ? <div>
         {rescheduleData.map((item, index)=> (
-        <ClassCard key={index} data={item} tags={["accept", 'reschedule', "cancel"]}  />
+        <ClassCard func={getRescheduleData} key={index} data={item} tags={["accept", 'reschedule', "cancel"]}  />
       
     ) )}
       <NewPagination {...paginationProps} />

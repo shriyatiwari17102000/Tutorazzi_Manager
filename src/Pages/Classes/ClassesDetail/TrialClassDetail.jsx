@@ -80,20 +80,7 @@ const TrialClassDetail = () => {
                        {data?.classDetails?.notes ? data?.classDetails?.notes : "no data found!" }
                     </p>
                 </Container>
-                <Container cls={`${classes.inner_box}`}>
-                <div> <div className={classes.trial_css}>
-                        <h4 className={classes.secondary_heading}>Class Status</h4><span  >{data?.classDetails?.response === "Disliked" ? <span className={classes.class_status}>Didn't Like <BiDislike /> </span> : <span className={classes.class_status1}> Liked <FcLike /> </span>}</span></div>
-                        {data?.classDetails?.reason_disliking &&  <>         <p className={classes.trial_css_p}>Reason why student didn’t like Trial Class</p> <span className={classes.trial_css_span}>{data?.classDetails?.reason_disliking}</span> </>}
-               
-                    </div>
-                    {/* <h4 className={classes.secondary_heading}>Class Status <span className={classes.trial_class_status}>Didn't Like Class</span></h4>
-                    <h6 className={classes.trial_class_h6}>Reason why student didn’t like Trial Class</h6>
-                    <p className={`${classes.instruction}`}>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Necessitatibus odit praesentium quos excepturi eveniet iusto, unde a recusandae saepe delectus nisi quibusdam in tempora iure porro sunt fugit tempore libero nam? Vel veritatis aliquid iusto et ea voluptates nobis ullam voluptatum voluptas? Officiis, quibusdam qui.
-                    </p> */}
-{/* 
-                    <BlackButton cls={classes.trial_class_btn}>Contact Student</BlackButton> */}
-                </Container>
+              
             </div>
         </React.Fragment>
     )

@@ -1,12 +1,17 @@
 import React from 'react'
 import classes from './Sidebar.module.css'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { RxCross2 } from 'react-icons/rx'
 import img from '../../assets/dp.png'
 import { createPortal } from 'react-dom'
 import { ImSwitch } from "react-icons/im";
 
 const MySidebar = props => {
+  const navigate = useNavigate()
+  const handleLogout = () => {
+    navigate('/')
+    Cookies.remove("tutorazzi_academic")
+  }
   return (
     <div className={classes.sidebar}>
       <div className={classes.top}>
@@ -39,12 +44,12 @@ const MySidebar = props => {
         {/* <NavLink className={classes.link} to={'/'}>
           Profile
         </NavLink> */}
-        <NavLink className={classes.link} to={'/'}>
+        {/* <NavLink className={classes.link} to={'/'}>
           Preferences
         </NavLink>
         <NavLink className={classes.link} to={'/'}>
           Role
-        </NavLink>
+        </NavLink> */}
         <NavLink className={classes.link} to={'/'}>
           Support
         </NavLink>
@@ -52,7 +57,7 @@ const MySidebar = props => {
         </NavLink>
       </div>
 
-      <div className={classes.bottom}>
+      <div className={classes.bottom} onClick={handleLogout} >
         <button className={classes.logout_button}>
           <ImSwitch /> Logout
         </button>

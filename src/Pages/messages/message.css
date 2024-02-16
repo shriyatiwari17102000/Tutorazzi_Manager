@@ -155,8 +155,10 @@
 }
 
 .searchmsg {
+  position: relative;
   /* border-bottom: 1px solid gray; */
   .searchForm {
+    position: relative;
     .searchinput {
       border-radius: 3px;
       border: 1px solid #d9d9d9;
@@ -165,6 +167,7 @@
       height: 36px;
       margin: 16px;
       outline: none;
+      position: relative;
     }
   }
 }
@@ -481,7 +484,7 @@
 
 .msg_span_bar{
   position: absolute;
-  top: 20%;
+  top: 38%;
   color:gray
 }
 .no_chat{

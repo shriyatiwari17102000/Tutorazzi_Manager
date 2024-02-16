@@ -12,6 +12,7 @@ import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';  
 import NewPagination from '../../../Components/NewPagination/NewPagination'
 import axios from 'axios'
+import moment from 'moment'
 
 const data = {
   title: 'Maths Class',
@@ -59,8 +60,8 @@ const ResourceReq = () => {
     <React.Fragment>
       <Heading cls={classes.heading} heading={'Resource Requests'} p={'Porem ipsum dolor sit amet, consectetur adipiscing elit.'}>
          <div className={classes.sb_div}>
-         <SearchBar cls={classes.sb}/>
-          <DateButton />
+         <SearchBar cls={classes.sb} search={search} setSearch={setSearch}/>
+         <DatePicker className={classes.choose_date} onChange={onChange} value={value} />
          </div>
       </Heading>
       {resourceData.length > 0 ? <div>

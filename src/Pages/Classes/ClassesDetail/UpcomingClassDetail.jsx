@@ -4,7 +4,7 @@ import BlackButton from '../../../Components/BlackButton/BlackButton'
 import classes from './ClassesDetail.module.css'
 import Container from '../../../UI/Container/Container'
 import UserDiv from '../../../Components/UserDiv/UserDiv'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import img from '../../../assets/ins.png'
 import DownloadPdf from '../../../Components/DownloadPdf/DownloadPdf'
 import UpcomingClassCard from '../../../Components/UpcomingClassCard/UpcomingClassCard'
@@ -44,6 +44,17 @@ const UpcomingClassDetail = () => {
     useEffect(()=>{
         getUpcomingData()
     },[])
+    let teacherId = data?.teacherDetails?.user_id?._id
+    let stu_id = data?.studentDetails?.user_id
+    const navigate = useNavigate()
+    const handleNavigate = () => {
+        navigate(`/teacher/details/${teacherId}`)
+    }
+    const handleNavigateStudent = () => {
+        // console.log(`teacher-detail/${stu_id}`)
+        navigate(`/student/details/${stu_id}`)
+    }
+
     return (
         <React.Fragment>
             <Heading heading={'Upcoming Class Details'} p={'Porem ipsum dolor sit amet, consectetur adipiscing elit.'} >
@@ -74,18 +85,18 @@ const UpcomingClassDetail = () => {
                 <Container cls={`${classes.small_box} ${classes.inner_box}`}>
                     <h4 className={classes.secondary_heading}>Teacher's Details</h4>
                     <UserDiv data={data?.teacherDetails}>
-                        <Link className={classes.link} to="/">View Profile</Link>
+                        <div className={classes.link} style={{cursor:"pointer"}}  onClick={handleNavigate}>View Profile</div>
                     </UserDiv>
                 </Container>
                 <Container cls={`${classes.small_box} ${classes.inner_box}`}>
                     <h4 className={classes.secondary_heading}>Student's Details</h4>
                     <UserDiv data={data?.classDetails?.student_id} curr={data?.studentDetails?.curriculum}>
-                        <Link className={classes.link} to="/">View Profile</Link>
+                        <div className={classes.link} style={{cursor:"pointer"}} onClick={handleNavigateStudent}>View Profile</div>
                     </UserDiv>
                 </Container>
                 <Container cls={`${classes.inner_box}`}>
                     <h4 className={classes.secondary_heading}>Teacher’s Instructions</h4>
-                  {data?.classDetails?.notes ?  data?.classDetails?.notes : <div><img className={classes.my_img} src={img} alt="" />
+                  {data?.classDetails?.notes ?  data?.classDetails?.notes : <div className={classes.teach_img}><img className={classes.my_img} src={img} alt="" />
                     <p className={`${classes.page_para} ${classes.text_center}`}>No Information available from Teacher</p></div>}
                 </Container>
                 {/* <div className={`${classes.inner_box} ${classes.my_upcoming_classes}`}>
@@ -96,16 +107,13 @@ const UpcomingClassDetail = () => {
                     <UpcomingClassCard />
                     <UpcomingClassCard />
                 </div> */}
-                <Container cls={`${classes.inner_box}`}>
+                {data?.classDetails?.materials_url.length > 0 && <Container cls={`${classes.inner_box}`}>
                     <h4 className={classes.secondary_heading}>Class Resources</h4>
                     {data?.classDetails?.materials_url.map((item, index) => (
                         <DownloadPdf item={item} />
                     ))}
-                    {/* <DownloadPdf />
-                    <DownloadPdf />
-                    <DownloadPdf />
-                    <DownloadPdf /> */}
-                </Container>
+                </Container> }
+                
             </div>
             {popup && <RescheduleClasses isPopup={popup} popupFunc={setPop} func={getUpcomingData} data1={data} />}
         </React.Fragment>

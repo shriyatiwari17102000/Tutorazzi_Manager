@@ -13,6 +13,7 @@ import DatePicker from 'react-date-picker'
 import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
 import NewPagination from '../../../Components/NewPagination/NewPagination'
+import moment from 'moment'
 
 const NewTrial = () => {
   const [trialData, setTrialData] = useState([])
@@ -56,10 +57,10 @@ const NewTrial = () => {
   }
 
   const links = (data) => {
-    console.log(data.is_past)
+    // console.log(data.is_past)
     let link = mylinks[`${data.is_past}`] + `/${data._id}`
-    console.log(mylinks[`false`])
-    console.log(link)
+    // console.log(mylinks[`false`])
+    // console.log(link)
     navigate(link)
   }
 

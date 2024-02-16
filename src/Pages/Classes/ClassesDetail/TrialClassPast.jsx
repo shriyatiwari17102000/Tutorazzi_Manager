@@ -19,6 +19,8 @@ import QuoteModal from '../../../Components/AllModals/Quote/QuoteModal'
 import { LuPlus } from "react-icons/lu";
 import { FaPlus } from 'react-icons/fa'
 import NewPagination from '../../../Components/NewPagination/NewPagination'
+import { BiDislike } from 'react-icons/bi'
+import { FcLike } from 'react-icons/fc'
 
 
 const TrialClassPast = () => {
@@ -144,8 +146,14 @@ const TrialClassPast = () => {
                     <TasksMap cls={classes.my_tasks} data={data?.taskResponse} func={getUpcomingData} />
                 </Container>
                 <Container cls={`${classes.inner_box}  ${classes.widthh}`} >
-                    <h4 className={classes.secondary_heading}>Rate this Class</h4>
-                    <RatingCard data={data?.ratingsResponse?.rating} readonly={true} />
+                    <div>
+                    <h4 className={classes.secondary_heading}>Rate Your Teacher</h4>
+                    <RatingCard data={data?.teacherRatings} readonly={true} p={'Rate Teacher By Selecting From 1 to 5 Stars To Express your Views'} />
+                    </div>
+                  <div>
+                  <h4 className={classes.secondary_heading}>Rate this Class</h4>
+                    <RatingCard data={data?.ratingsResponse} readonly={true} p={'Rate This Class By Selecting From 1 to 5 Stars To Express your Views'}/>
+                  </div>
                 </Container>
 
 
@@ -158,20 +166,28 @@ const TrialClassPast = () => {
                                 quote?.map((item, index) => (
                                     // console.log(item)
                                     <div key={index} className={classes.most_inn_quote} >
-                                        <UpcomingClassCard func={getPricingData} data={item} />
+                                        <UpcomingClassCard func={getPricingData} data={item} id={data?.studentDetails?.user_id} />
                                     </div>
                                 ))}
                         </div>
                         <NewPagination {...paginationProps} />
                     </div> : "no data found!"}
-                    {/* <UpcomingClassCard />
-                        <UpcomingClassCard />
-                        <UpcomingClassCard />
-                        <UpcomingClassCard /> */}
-
-                    {/* <BlackButton func={popupHandler} funcVal={show} cls={classes.add_price}><LuPlus style={{fontSize:"40px"}} /> <br/> Add Quote</BlackButton> */}
-                    {/* <button className={classes.add_price}> <br/> Add Quote</button> */}
+                   
                 </div>
+                <Container cls={`${classes.inner_box}`}>
+                <div> <div className={classes.trial_css}>
+                        <h4 className={classes.secondary_heading}>Class Status</h4><span  >{data?.classDetails?.response === "Disliked" ? <span className={classes.class_status}>Didn't Like <BiDislike /> </span> : <span className={classes.class_status1}> Liked <FcLike /> </span>}</span></div>
+                        {data?.classDetails?.reason_disliking &&  <>         <p className={classes.trial_css_p}>Reason why student didn’t like Trial Class</p> <span className={classes.trial_css_span}>{data?.classDetails?.reason_disliking}</span> </>}
+               
+                    </div>
+                    {/* <h4 className={classes.secondary_heading}>Class Status <span className={classes.trial_class_status}>Didn't Like Class</span></h4>
+                    <h6 className={classes.trial_class_h6}>Reason why student didn’t like Trial Class</h6>
+                    <p className={`${classes.instruction}`}>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Necessitatibus odit praesentium quos excepturi eveniet iusto, unde a recusandae saepe delectus nisi quibusdam in tempora iure porro sunt fugit tempore libero nam? Vel veritatis aliquid iusto et ea voluptates nobis ullam voluptatum voluptas? Officiis, quibusdam qui.
+                    </p> */}
+{/* 
+                    <BlackButton cls={classes.trial_class_btn}>Contact Student</BlackButton> */}
+                </Container>
 
             </div>
             {show && <QuoteModal isPopup={show} popupFunc={setShow} func={getUpcomingData} data1={data} />}

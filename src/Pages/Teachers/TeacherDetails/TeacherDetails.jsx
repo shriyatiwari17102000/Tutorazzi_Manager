@@ -13,133 +13,134 @@ import Cookies from 'js-cookie'
 import { useParams } from 'react-router-dom'
 import { RiDeleteBin6Line } from "react-icons/ri";
 import Iframe1 from './Iframe1'
+import NewPagination from '../../../Components/NewPagination/NewPagination'
 
+// const curruiculam_info = [
+//     {
+//         label: 'Curriculum',
+//         id: 'Curriculum',
+//         value: 'Curriculum'
+//     },
+//     {
+//         label: 'Grade',
+//         id: 'Grade',
+//         value: 'Grade'
+//     },
+//     {
+//         label: 'Subject 1',
+//         id: 'Subject 1',
+//         value: 'Subject 1'
+//     },
+//     {
+//         label: 'Subject 2',
+//         id: 'Subject 2',
+//         value: 'Subject 2'
+//     },
+//     {
+//         label: 'Subject 3',
+//         id: 'Subject 3',
+//         value: 'Subject 3'
+//     },
+//     {
+//         label: 'Subject 4',
+//         id: 'Subject 4',
+//         value: 'Subject 4'
+//     },
+// ]
 
+// const class_info = [
+//     {
+//         label: 'Class Name',
+//         id: 'classname',
+//         value: 'Science'
+//     },
+//     {
+//         label: 'Class Per Hour',
+//         id: 'cph',
+//         value: '2'
+//     },
+//     {
+//         label: 'Teacher Name',
+//         id: 'tn',
+//         value: 'Puneet Shrivastav'
+//     },
+//     {
+//         label: 'No of Hours',
+//         id: 'noh',
+//         value: '1'
+//     },
+//     {
+//         label: 'Start Date',
+//         id: 'sd',
+//         value: '20/8/2023'
+//     },
+// ]
 
-
-
-const curruiculam_info = [
-    {
-        label: 'Curriculum',
-        id: 'Curriculum',
-        value: 'Curriculum'
-    },
-    {
-        label: 'Grade',
-        id: 'Grade',
-        value: 'Grade'
-    },
-    {
-        label: 'Subject 1',
-        id: 'Subject 1',
-        value: 'Subject 1'
-    },
-    {
-        label: 'Subject 2',
-        id: 'Subject 2',
-        value: 'Subject 2'
-    },
-    {
-        label: 'Subject 3',
-        id: 'Subject 3',
-        value: 'Subject 3'
-    },
-    {
-        label: 'Subject 4',
-        id: 'Subject 4',
-        value: 'Subject 4'
-    },
-]
-
-const class_info = [
-    {
-        label: 'Class Name',
-        id: 'classname',
-        value: 'Science'
-    },
-    {
-        label: 'Class Per Hour',
-        id: 'cph',
-        value: '2'
-    },
-    {
-        label: 'Teacher Name',
-        id: 'tn',
-        value: 'Puneet Shrivastav'
-    },
-    {
-        label: 'No of Hours',
-        id: 'noh',
-        value: '1'
-    },
-    {
-        label: 'Start Date',
-        id: 'sd',
-        value: '20/8/2023'
-    },
-]
-
-const degree_data = [
-    {
-        title: 'Bsc (Bachelors Of Science)',
-        d1: '2008 - 2011',
-        d2: 'Bits Pilani, Delhi'
-    },
-    {
-        title: 'Bsc (Bachelors Of Science)',
-        d1: '2008 - 2011',
-        d2: 'Bits Pilani, Delhi'
-    },
-    {
-        title: 'Bsc (Bachelors Of Science)',
-        d1: '2008 - 2011',
-        d2: 'Bits Pilani, Delhi'
-    },
-    {
-        title: 'Bsc (Bachelors Of Science)',
-        d1: '2008 - 2011',
-        d2: 'Bits Pilani, Delhi'
-    },
-    {
-        title: 'Bsc (Bachelors Of Science)',
-        d1: '2008 - 2011',
-        d2: 'Bits Pilani, Delhi'
-    },
-    {
-        title: 'Bsc (Bachelors Of Science)',
-        d1: '2008 - 2011',
-        d2: 'Bits Pilani, Delhi'
-    },
-    {
-        title: 'Bsc (Bachelors Of Science)',
-        d1: '2008 - 2011',
-        d2: 'Bits Pilani, Delhi'
-    },
-    {
-        title: 'Bsc (Bachelors Of Science)',
-        d1: '2008 - 2011',
-        d2: 'Bits Pilani, Delhi'
-    },
-    {
-        title: 'Bsc (Bachelors Of Science)',
-        d1: '2008 - 2011',
-        d2: 'Bits Pilani, Delhi'
-    },
-    {
-        title: 'Bsc (Bachelors Of Science)',
-        d1: '2008 - 2011',
-        d2: 'Bits Pilani, Delhi'
-    },
-]
+// const degree_data = [
+//     {
+//         title: 'Bsc (Bachelors Of Science)',
+//         d1: '2008 - 2011',
+//         d2: 'Bits Pilani, Delhi'
+//     },
+//     {
+//         title: 'Bsc (Bachelors Of Science)',
+//         d1: '2008 - 2011',
+//         d2: 'Bits Pilani, Delhi'
+//     },
+//     {
+//         title: 'Bsc (Bachelors Of Science)',
+//         d1: '2008 - 2011',
+//         d2: 'Bits Pilani, Delhi'
+//     },
+//     {
+//         title: 'Bsc (Bachelors Of Science)',
+//         d1: '2008 - 2011',
+//         d2: 'Bits Pilani, Delhi'
+//     },
+//     {
+//         title: 'Bsc (Bachelors Of Science)',
+//         d1: '2008 - 2011',
+//         d2: 'Bits Pilani, Delhi'
+//     },
+//     {
+//         title: 'Bsc (Bachelors Of Science)',
+//         d1: '2008 - 2011',
+//         d2: 'Bits Pilani, Delhi'
+//     },
+//     {
+//         title: 'Bsc (Bachelors Of Science)',
+//         d1: '2008 - 2011',
+//         d2: 'Bits Pilani, Delhi'
+//     },
+//     {
+//         title: 'Bsc (Bachelors Of Science)',
+//         d1: '2008 - 2011',
+//         d2: 'Bits Pilani, Delhi'
+//     },
+//     {
+//         title: 'Bsc (Bachelors Of Science)',
+//         d1: '2008 - 2011',
+//         d2: 'Bits Pilani, Delhi'
+//     },
+//     {
+//         title: 'Bsc (Bachelors Of Science)',
+//         d1: '2008 - 2011',
+//         d2: 'Bits Pilani, Delhi'
+//     },
+// ]
 
 const TeacherDetails = () => {
     const [data, setData] = useState({})
-    const[ticketData, setTicketData] = useState([])
+    const [ticketData, setTicketData] = useState([])
     const [testimonial, setTestimonial] = useState([])
     const [teacherData, setTeacherData] = useState({})
     const [degreeDetail, setDegreeDetail] = useState([])
     const [curriculum, setCurriculum] = useState([])
     const [expdetail, setExpDetail] = useState([])
+    const [limit, setLimit] = useState(4)
+    const [page, setPage] = useState(1)
+    const [pageInfo, setPageInfo] = useState({})
+
     const { id } = useParams()
 
     const perosnal_info = [
@@ -231,23 +232,46 @@ const TeacherDetails = () => {
         setCurriculum(res.data.data?.teacherResponse?.subject_curriculum)
         // console.log(res.data.data.teacherResponse.curriculam)
         setExpDetail(res.data.data?.teacherResponse?.exp_details)
-        setTestimonial(res.data.data?.testimonialResponse)
+        // setTestimonial(res.data.data?.testimonialResponse)
     }
     useEffect(() => {
         getData()
     }, [])
-console.log(expdetail)
+
+    const getTestimonialData = async () => {
+
+        let register = `${BASE_URL}/teacher-testimonials?teacher_id=${id}&limit=10&page=1`
+        console.log(register)
+        let res = await axios.get(register, {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
+        })
+        console.log(res.data.data)
+        setTestimonial(res.data.data.docs)
+        setPageInfo({ ...res.data.data, docs: null })
+
+    }
+    useEffect(() => {
+        getTestimonialData()
+    }, [])
+    const paginationProps = {
+        setPage,
+        pageInfo
+    }
+    console.log(expdetail)
     // console.warn('re-redning')
 
     // console.log(testimonial.map((item) => console.log(item)))
     return (
         <Fragment>
             <Heading heading={'Teachers Profile'} p={'Porem ipsum dolor sit amet, consectetur adipiscing elit.'} >
-                <BlackButton cls={classes.btn}>See His Classes</BlackButton>
+                {/* <BlackButton cls={classes.btn}>See His Classes</BlackButton> */}
             </Heading>
             <div className={classes.grid}>
                 <Container cls={classes.inner_box_1}>
-                    <UserDiv data={teacherData?.user_id} cit={true} citData={teacherData}/>
+                    <UserDiv data={teacherData?.user_id} cit={true} citData={teacherData} />
                 </Container>
                 <Container cls={classes.inner_box_1}>
                     <div className={classes.det_box}>
@@ -306,19 +330,21 @@ console.log(expdetail)
                         ))}
                     </div>
                 </Container>
-                 <Container cls={classes.inner_box_5} >
-                <h4 className={classes.heading}>Testimonials</h4>
-                {testimonial.map((item, index) => (<div className={classes.test_div} key={index}>
-                    <iframe
-                    width="100%"
-                    height="300"
-                    src={item.video}
-                    frameBorder="0"
-                    style={{ borderRadius: "5px" }}
-                    className="mx-2"
-                allowFullScreen
-                ></iframe>
-                </div>))}
+                <Container cls={classes.inner_box_6} >
+                    <h4 className={classes.heading}>Testimonials</h4>
+                    {testimonial?.length > 0 && <div>
+                        <div className={classes.inn_div}>
+                            {testimonial?.map((item, index) => (<div className={classes.test_div} key={index}>
+                                <iframe
+                                    width="100%"
+                                    height="300"
+                                    src={item.video}
+                                    frameBorder="0"
+                                    style={{ borderRadius: "5px" }}
+                                    className="mx-2"
+                                    allowFullScreen
+                                ></iframe>
+                            </div>))} </div> <NewPagination {...paginationProps} /></div>}
                 </Container>
                 {/*
                     {testimonial.map((item) => (
@@ -335,10 +361,10 @@ console.log(expdetail)
                 </Container> */}
                 <Container cls={classes.inner_box_5} >
                     <h4 className={classes.heading}>Latest Ticket</h4>
-                    {ticketData.map((item)=>(
-                    <TicketComp data={item} />
+                    {ticketData.map((item) => (
+                        <TicketComp data={item} />
                     ))}
-        
+
                 </Container>
             </div>
         </Fragment>

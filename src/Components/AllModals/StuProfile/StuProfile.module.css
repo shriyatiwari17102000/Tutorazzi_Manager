@@ -225,7 +225,7 @@ ul li span{
     color: #989898;
     font-weight: 400;
 }
-.top{
+.top1{
     color: #9F0000;
     background: #FFCBCB;
     display: flex;
@@ -235,7 +235,7 @@ ul li span{
     margin-bottom: 17px;
     align-items: center;
 }
-.top > h1{
+.top1 > h1{
 font-size: 14px;
 font-weight: 500;
 }
@@ -244,7 +244,7 @@ font-weight: 500;
     height: 400px;
     overflow: scroll;
 }
-.top > button {
+.top1 > button {
     color: #9F0000;
     background: none;
     border: none;

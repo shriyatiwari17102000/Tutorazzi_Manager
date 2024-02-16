@@ -10,7 +10,15 @@
     flex-wrap: wrap;
     justify-content: space-between;
 }
-
+.widthh{
+    justify-content: space-between;
+    flex-direction: row !important;
+    line-height: 2;
+}
+.teach_img{
+    display: flex;
+    flex-direction: column;
+}
 .add_price {
     /* width: 200px; */
     font-size: 14px;

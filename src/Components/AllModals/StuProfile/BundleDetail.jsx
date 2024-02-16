@@ -19,14 +19,14 @@ const BundleDetail = ({ popupFunc, isPopup, func, data1, stuId }) => {
     console.log(data1)
     const [show, setShow] = useState(false)
     const [isShow, setIsShow] = useState(true);
-
+// let ClosePop = popupFunc
     const handleClose = () => {
       setIsShow(false);
     }
 
     const handleShow = () => {
-        // popupFunc(false)
         setShow(!show)
+        // ClosePop(!isPopup)
     }
 let id = data1._id
 // console.log(id)
@@ -64,7 +64,7 @@ useEffect(()=>{
                   <button>x</button>
                 </div>} */}
                  {bundleInfo?.show === true && isShow && (
-        <div className={classes.top}>
+        <div className={classes.top1}>
           <h1>Student request to increase their class subscription</h1>
           <button onClick={handleClose}>x</button>
         </div>

@@ -291,6 +291,26 @@ margin-bottom:10px
  
     border:1px solid var(--border);
 }
+
+.label1{
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: #2A2A2A;
+}
+.input_div1{
+    border-radius: var(--br);
+    border: 1px solid var(--border);
+    height: 40px;
+    padding-left: 10px;
+    font-size: 14px;
+    color: #989898;
+    font-weight: 400;
+    width: 100%;
+    outline: none;
+}
+/* .wd{width: 49% !important;} */
 @media (width < 600px){
   .sb_div{
     flex-direction: column;

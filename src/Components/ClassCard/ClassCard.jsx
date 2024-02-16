@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import classes from './ClassCard.module.css'
 import Container from '../../UI/Container/Container'
 import { Link } from 'react-router-dom'
@@ -8,21 +8,92 @@ import { toast } from 'react-toastify'
 import { BASE_URL } from '../../Apis/BaseUrl'
 import axios from 'axios'
 import ToasterUpdate from '../Toaster/ToasterUpdate'
+import RescheduleClasses from '../AllModals/RescheduleModal copy/RescheduleClasses'
 
 
 
 
 
 const ClassCard = (props) => {
+  const [popup, setPopup] = useState(false)
+  const handleShow = () => setPopup(true)
   // console.log(props.data)
   let tagData = props?.data?._id
-
+// console.log(tagData)
 
 const tagstoBtn = (tag) => {
   const tutToken = Cookies.get("tutorazzi_academic")
   const getTutToken = JSON.parse(tutToken)
   const token = getTutToken.access_token
 
+  const notifyStudent = async(e) => {
+    e.preventDefault()
+    let register = `${BASE_URL}/notify-student`
+    const myToast = toast.loading('Please Wait...')
+    // console.log(register)
+    try {
+
+      let res = await axios.post(register, {homework_id : tagData}, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token} `,
+        },
+      })
+      if (!res.data.success) {
+        ToasterUpdate(myToast, res.data.message, "error")
+      }
+      ToasterUpdate(myToast, res.data.message, "success")
+    } catch (error) {
+      console.log(error)
+      ToasterUpdate(myToast, error.message, "error")
+    }
+  }
+  const notifyTeacher = async(e) => {
+    e.preventDefault()
+    let register = `${BASE_URL}/notify-teacher`
+    const myToast = toast.loading('Please Wait...')
+    // console.log(register)
+    try {
+
+      let res = await axios.post(register, {resource_request_id : tagData}, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token} `,
+        },
+      })
+      if (!res.data.success) {
+        ToasterUpdate(myToast, res.data.message, "error")
+      }
+      ToasterUpdate(myToast, res.data.message, "success")
+    } catch (error) {
+      console.log(error)
+      ToasterUpdate(myToast, error.message, "error")
+    }
+  }
+
+  const handleResolve = async (e) => {
+    e.preventDefault()
+    let register = `${BASE_URL}/mark-homework-done/${tagData}`
+    const myToast = toast.loading('Please Wait...')
+    // console.log(register)
+    try {
+
+      let res = await axios.patch(register, {}, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token} `,
+        },
+      })
+      if (!res.data.success) {
+        ToasterUpdate(myToast, res.data.message, "error")
+      }
+      ToasterUpdate(myToast, res.data.message, "success")
+    } catch (error) {
+      console.log(error)
+      ToasterUpdate(myToast, error.message, "error")
+    }
+
+  };
   const handleAccept = async (e) => {
     e.preventDefault()
     let register = `${BASE_URL}/accept-class/${tagData}`
@@ -49,13 +120,13 @@ const tagstoBtn = (tag) => {
   // console.log(tag)
   switch (tag) {
     case 'Cancelled':
-      return <button className={`${classes.btn} ${classes.cancel}`}>Cancel</button>
+      return <button className={`${classes.btn} ${classes.cancel}`}>Cancelled</button>
     case 'Scheduled':
-      return <button className={`${classes.btn} ${classes.accept}`}>Accept</button>
+      return <button className={`${classes.btn} ${classes.accept}`}>Accepted</button>
     case 'reschedule':
       return <button className={`${classes.btn} ${classes.reschedule}`}>Reschedule</button>
     case 'Resolved':
-      return <button className={`${classes.btn} ${classes.accept}`}>Resolve</button>
+      return <button className={`${classes.btn} ${classes.done}`}>Resolved</button>
     case 'notify-teacher':
       return <button className={`${classes.btn} ${classes.reschedule}`}>Notify Teacher</button>
     case 'notify-student':
@@ -65,8 +136,31 @@ const tagstoBtn = (tag) => {
     case 'Pending':
       return (
       <>
+      {/* {!props.home ? (<>
         <button type='button' className={`${classes.btn} ${classes.accept}`}  onClick={handleAccept}>Accept</button>
-        <button className={`${classes.btn} ${classes.reschedule}`}>Reschedule</button>
+        <button type='button' onClick={handleShow}  className={`${classes.btn} ${classes.reschedule}`}>Reschedule</button></>): (
+          <>
+            <button type='button' onClick={notifyStudent}  className={`${classes.btn} ${classes.reschedule}`}>Notify Student</button>
+            <button type='button' className={`${classes.btn} ${classes.accept}`}  onClick={handleResolve}>Resolve</button>
+        </>
+        )} */}
+    
+    {props.home && (
+        <>
+            <button type='button' onClick={notifyStudent} className={`${classes.btn} ${classes.reschedule}`}>Notify Student</button>
+            <button type='button' className={`${classes.btn} ${classes.accept}`} onClick={handleResolve}>Resolve</button>
+        </>
+    )}
+    {props.resource && (
+        <button type='button' onClick={notifyTeacher} className={`${classes.btn} ${classes.reschedule}`}>Notify Teacher</button>
+    )}
+    {!props.home && !props.resource && (
+        <>
+            <button type='button' className={`${classes.btn} ${classes.accept}`} onClick={handleAccept}>Accept</button>
+            <button type='button' onClick={handleShow} className={`${classes.btn} ${classes.reschedule}`}>Reschedule</button>
+        </>
+    )}
+
       </>
       )
   }
@@ -116,6 +210,7 @@ const tagstoBtn = (tag) => {
   const data = props.data
   // console.log(data)
   return (
+    <>
     <Container cls={`${classes.card} ${props.cls}`}>
       <div className={classes.card_data}>
         <h3>{data.subject_name || data.class_id.subject_name} {data.alert && <span className={classes.red_span}>{data.alert}</span>}</h3>
@@ -130,6 +225,9 @@ const tagstoBtn = (tag) => {
         } */}
       </div>
     </Container>
+          {popup && <RescheduleClasses isPopup={popup} popupFunc={setPopup} func={props?.func} data1={data} />}
+
+    </>
   )
 }
 

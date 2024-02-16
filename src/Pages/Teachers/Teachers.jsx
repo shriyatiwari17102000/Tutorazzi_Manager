@@ -10,6 +10,7 @@ import Cookies from 'js-cookie'
 import { BASE_URL } from '../../Apis/BaseUrl'
 import axios from 'axios'
 import NewPagination from '../../Components/NewPagination/NewPagination'
+import { MdStar } from 'react-icons/md'
 
 
 const Teachers = () => {
@@ -54,11 +55,12 @@ const Teachers = () => {
                 </div>
             </Heading>
             <div className={classes.box}>
-                {data.length > 0 ? <>
-                  {data.map((element, index) => (
+                {data?.length > 0 ? <>
+                  {data?.map((element, index) => (
                     <Link to={`details/${element.user_id}`} key={index} className={classes.teacher}>
                         <UserDiv cls={classes.my_teacher_card} data={element} >
-                            <h6 className={classes.review}>{element.ratings} ({element.reviews} reviews)</h6>
+                            <h6 className={classes.review}><MdStar />
+                            {element?.ratings ? element.ratings.toFixed(1) : "0"} ({element.reviews} reviews)</h6>
                         </UserDiv>
                         <FaChevronRight className={classes.i} />
                     </Link>

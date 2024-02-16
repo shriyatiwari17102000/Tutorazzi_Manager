@@ -57,7 +57,7 @@ const BundleCard = (props) => {
             </div>
             <div>
                 {data.status == "Pending" && (<div className={classes.pen_div}>
-                    <button className={classes.don} onClick={handleAccept} disabled={loading}>Accept</button>
+                   {data.rescheduled_by != "academic_manager" &&  <button className={classes.don} onClick={handleAccept} disabled={loading}>Accept</button>}
                     <button className={classes.pend} onClick={handleShow}>Reschedule</button></div>)}
                 {data.status == "Done" && <button className={classes.don}>Done</button>}
                 {data.status == "Scheduled" && <button className={classes.pend}>Schedule</button>}

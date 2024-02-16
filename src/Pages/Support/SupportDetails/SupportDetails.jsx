@@ -3,7 +3,7 @@ import classes from './SupportDetails.module.css'
 import PagePath from '../../../Components/PagePath/PagePath'
 import Container from '../../../UI/Container/Container'
 import ChatsFooter from '../../../Components/ChatsMain/ChatsMainComp/ChatsFooter/ChatsFooter'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import ToasterUpdate from '../../../Components/Toaster/ToasterUpdate'
 import { BASE_URL } from '../../../Apis/BaseUrl'
@@ -17,7 +17,7 @@ const SupportDetails = () => {
     const [loading, setLoading] = useState(false)
     const [data, setData] = useState({})
     const [myChat, setMyChat] = useState([])
-
+const navigate = useNavigate()
 
     const { id } = useParams()
     console.log(id)
@@ -64,6 +64,7 @@ const SupportDetails = () => {
             }
             ToasterUpdate(myToast, response.data.message, "success")
             reqData()
+            navigate('/support')
         } catch (error) {
             console.error('Error while uploading data:', error);
             ToasterUpdate(myToast, error.message, "error")

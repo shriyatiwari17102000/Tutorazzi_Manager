@@ -22,7 +22,7 @@ const AddExtraClass = ({id, popupFunc, isPopup, func, data1 }) => {
     const handleQueryChange = (e) => {
         setQuery(e.target.value);
     };
-    //   console.log(data1)
+      console.log(data1)
 
     const tutToken = Cookies.get("tutorazzi_academic")
     const getTutToken = JSON.parse(tutToken)
@@ -59,9 +59,9 @@ const AddExtraClass = ({id, popupFunc, isPopup, func, data1 }) => {
             amount: price,
             class_count: classCount,
             description: query,
-            subject : data1?.subject,
+            subject : data1?.subject || data1.subject_name,
             class_name: classNames,
-            curriculum: data1?.curriculum ,
+            curriculum: data1?.curriculum || data1.curriculum_name,
             // grade: data1?.grade_name
             
         }

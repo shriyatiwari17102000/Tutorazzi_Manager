@@ -129,26 +129,26 @@
 //           value: 'CA 76 D Hari Nagar New Delhi'
 //         }
 //       ]
-    // const tutToken = Cookies.get("tutorazzi_academic")
-    // const getTutToken = JSON.parse(tutToken)
-    // const token = getTutToken.access_token
+// const tutToken = Cookies.get("tutorazzi_academic")
+// const getTutToken = JSON.parse(tutToken)
+// const token = getTutToken.access_token
 
-    // const getData = async () => {
+// const getData = async () => {
 
-    //   let register = `${BASE_URL}/student-by-id?student_id=${id}`
-    //   console.log(register)
-    //   let res = await axios.get(register, {
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //       Authorization: `Bearer ${token}`
-    //     }
-    //   })
-    //   console.log(res.data.data)
-    //   setData(res.data.data)
-    // }
-    // useEffect(() => {
-    //   getData()
-    // }, [])
+//   let register = `${BASE_URL}/student-by-id?student_id=${id}`
+//   console.log(register)
+//   let res = await axios.get(register, {
+//     headers: {
+//       "Content-Type": "application/json",
+//       Authorization: `Bearer ${token}`
+//     }
+//   })
+//   console.log(res.data.data)
+//   setData(res.data.data)
+// }
+// useEffect(() => {
+//   getData()
+// }, [])
 //     return (
 //         <Fragment>
 //             <Heading heading={'Student Profile'} p={'Porem ipsum dolor sit amet, consectetur adipiscing elit.'} />
@@ -230,97 +230,122 @@ import axios from 'axios'
 import Moment from 'react-moment'
 import StuDetailMap from './StuDetailMap'
 import StuPaymentMap from './StuPaymentMap'
+import moment from 'moment'
 
 
 const StudentDetails = () => {
-  const[data1, setData1] = useState([])
-  const[classData, setClassData] = useState([])
-  const[paymentData, setPaymentData] = useState([])
-  const[show, setShow] = useState(false)
-  const[show1, setShow1] = useState(false)
+  const [data1, setData1] = useState([])
+  const [classData, setClassData] = useState([])
+  const [paymentData, setPaymentData] = useState([])
+  const [show, setShow] = useState(false)
+  const [show1, setShow1] = useState(false)
   const [inx, setInx] = useState(0)
   const [limit, setLimit] = useState(10)
-    const [page, setPage] = useState(1)
-    const [pageInfo, setPageInfo] = useState({})
+  const [page, setPage] = useState(1)
+  const [pageInfo, setPageInfo] = useState({})
   const [limit1, setLimit1] = useState(10)
-    const [page1, setPage1] = useState(1)
-    const [pageInfo1, setPageInfo1] = useState({})
+  const [page1, setPage1] = useState(1)
+  const [pageInfo1, setPageInfo1] = useState({})
   const [value, onChange] = useState('');
+  const [teacher, setTeacher] = useState('')
+  const [teacherData, setTeacherData] = useState([])
 
-  const {id} = useParams()
+  const { id } = useParams()
   // console.log(id)
 
   const popupHandler = () => setShow(!show)
   const handleOpen = () => setShow1(!show1)
- const tutToken = Cookies.get("tutorazzi_academic")
-    const getTutToken = JSON.parse(tutToken)
-    const token = getTutToken.access_token
+  const tutToken = Cookies.get("tutorazzi_academic")
+  const getTutToken = JSON.parse(tutToken)
+  const token = getTutToken.access_token
 
-    const getData = async () => {
+  const getTeacher = async () => {
+    const register = `${BASE_URL}/all-teachers`
+    let response = await axios.get(register, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token} `,
+      },
+    })
 
-      let register = `${BASE_URL}/student-by-id?student_id=${id}`
-      // console.log(register)
-      let res = await axios.get(register, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`
-        }
-      })
-      console.log(res.data.data)
-      setData1(res.data.data)
-    }
-    useEffect(() => {
-      getData()
-    }, [])
+    console.log(response.data.data?.docs)
+    setTeacherData(response.data.data?.docs)
+    // setTeacher(response.data.data?.docs[0]?.user_id)
+  }
 
-    const getClasses = async () => {
+  useEffect(() => {
+    getTeacher()
+  }, [])
 
-      let register = `${BASE_URL}/student-classes?student_id=${id}&limit=${limit}&page=${page}`
-      // console.log(register)
-      let res = await axios.get(register, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`
-        }
-      })
-      setPageInfo({ ...res.data.data?.result, docs: null })
-      console.log(res.data.data)
-      setClassData(res.data.data.result?.docs)
-    }
-    useEffect(() => {
-      getClasses()
-    }, [limit, page])
+  const getData = async () => {
 
-    const getPayment = async () => {
+    let register = `${BASE_URL}/student-by-id?student_id=${id}`
+    // console.log(register)
+    let res = await axios.get(register, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+      }
+    })
+    console.log(res.data.data)
+    setData1(res.data.data)
+  }
+  useEffect(() => {
+    getData()
+  }, [])
 
-      let register = `${BASE_URL}/student-payments?student_id=${id}&limit=${limit1}&page=${page1}`
-      // console.log(register)
-      let res = await axios.get(register, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`
-        }
-      })
-      console.log(res.data.data)
-      setPaymentData(res.data.data?.docs)
-      setPageInfo1({ ...res.data.data, docs: null })
-    }
-    useEffect(() => {
-      getPayment()
-    }, [limit1, page1])
+  const getClasses = async () => {
 
-   const paginationProps = {
-        setPage,
-        pageInfo
-    }
-   const paginationProps1 = {
-        setPage : setPage1 ,
-        pageInfo : pageInfo1
-    }
-    // console.log(paymentData)
+    let register = `${BASE_URL}/student-classes?student_id=${id}&limit=${limit}&page=${page}&teacher_id=${teacher}`
+    // console.log(register)
+    let res = await axios.get(register, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+      }
+    })
+    console.log(res.data.data)
+    setClassData(res.data.data?.result?.docs)
+    setPageInfo({ ...res.data.data?.result, docs: null })
+  }
+  useEffect(() => {
+    getClasses()
+  }, [limit, page, teacher])
+
+  const getPayment = async () => {
+    let dateValue = value ? moment(value).format('YYYY-MM-DD') : " "; 
+    console.log(dateValue)
+    let register = `${BASE_URL}/student-payments?student_id=${id}&limit=${limit1}&page=${page1}&date=${dateValue}`
+    // console.log(register)
+    let res = await axios.get(register, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+      }
+    })
+    console.log(res.data.data)
+    setPaymentData(res.data.data?.docs)
+    setPageInfo1({ ...res.data.data, docs: null })
+  }
+  useEffect(() => {
+    getPayment()
+  }, [limit1, page1, value])
+
+  const paginationProps = {
+    setPage,
+    pageInfo
+  }
+  const paginationProps1 = {
+    setPage: setPage1,
+    pageInfo: pageInfo1
+  }
+
+
+
+  // console.log(paymentData)
   const renderDiv = {
     0: <StuDetailMap data={classData} id={id} paginationProps={paginationProps} />,
-    1: <StuPaymentMap data={paymentData} paginationProps={paginationProps1}/>
+    1: <StuPaymentMap data={paymentData} paginationProps={paginationProps1} />
   }
   const data = [
     {
@@ -335,7 +360,7 @@ const StudentDetails = () => {
       color: '#BCCFFF',
       bg: '#DBE5FF',
     },
- 
+
     // {
     //   h1: '35',
     //   p: 'Recourses Requests',
@@ -350,17 +375,17 @@ const StudentDetails = () => {
     // },
   ]
   const navigate = useNavigate()
-const handleNavigate = () => {
-navigate('/chats')
-}
-let profile_img = data1?.studentResponse?.user_id?.profile_image_url
+  const handleNavigate = () => {
+    navigate('/chats')
+  }
+  let profile_img = data1?.studentResponse?.user_id?.profile_image_url
   return (
     <>
       <Heading heading={'Student Profile'} p={'Porem ipsum dolor sit amet, consectetur adipiscing elit.'} />
       <div>
         <FallbackImage imgData={profile_img} cls={classes.img1} />
         <div className={classes.curr_top}>
-          <p>{data1?.studentResponse?.preferred_name}</p> <span onClick={popupHandler} style={{cursor:"pointer"}}>View Details</span>
+          <p>{data1?.studentResponse?.preferred_name}</p> <span onClick={popupHandler} style={{ cursor: "pointer" }}>View Details</span>
         </div>
         <div className={classes.curr_div}>
           <p>{data1?.studentResponse?.user_id?.email}</p>
@@ -379,15 +404,22 @@ let profile_img = data1?.studentResponse?.user_id?.profile_image_url
             <button onClick={() => setInx(0)} className={inx === 0 ? classes.active : ''}> Classe Bundles</button>
             <button onClick={() => setInx(1)} className={inx === 1 ? classes.active : ''}>Payments</button>
           </div>
-          <DatePicker className={classes.choose_date} onChange={onChange} value={value} />
+          {inx == 0 && <div className={classes.wd}>
+            {/* <label className={classes.label1}>Select Teacher</label> */}
+            <select className={classes.input_div1} value={teacher} onChange={(e) => setTeacher(e.target.value)}>
+            <option value="">Select Teacher</option>
+              {teacherData && teacherData?.map((element, index) => (<option key={index} selected value={element.user_id}>{element.preferred_name}</option>))}
+            </select>
+          </div>}
+          {inx == 1 && <DatePicker className={classes.choose_date} onChange={onChange} value={value} />}
         </div>
         {
           renderDiv[inx]
         }
 
       </div>
-      {show && <ViewProfileModal id={id} isPopup={show} popupFunc={setShow}/>}
-      {show1 && <AddClassBundle id={id} isPopup={show1} func={getClasses} popupFunc={setShow1}/>}
+      {show && <ViewProfileModal id={id} isPopup={show} popupFunc={setShow} />}
+      {show1 && <AddClassBundle id={id} isPopup={show1} func={getClasses} popupFunc={setShow1} />}
     </>
   )
 }
