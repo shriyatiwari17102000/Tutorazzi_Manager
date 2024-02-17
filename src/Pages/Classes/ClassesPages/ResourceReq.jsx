@@ -66,7 +66,7 @@ const ResourceReq = () => {
       </Heading>
       {resourceData.length > 0 ? <div>
         {resourceData.map((item, index)=> (
-      <ClassCard resource={true} layout={1} data={item}  />
+      <ClassCard func={getResourceData} resource={true} layout={1} data={item}  />
       ) )}
       <NewPagination {...paginationProps} />
       </div> : "No data found!"}

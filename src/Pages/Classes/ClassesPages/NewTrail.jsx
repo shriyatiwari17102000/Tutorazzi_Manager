@@ -53,15 +53,16 @@ const NewTrial = () => {
 
   const mylinks = {
     'true': `/classes/trial-past-details`,
-    'false' :`/classes/trial-details`
+    'false': `/classes/trial-details`
   }
 
-  const links = (data) => {
-    // console.log(data.is_past)
+  const links = (event, data) => {
+    event.stopPropagation();
+    console.log(event.target.id)
     let link = mylinks[`${data.is_past}`] + `/${data._id}`
-    // console.log(mylinks[`false`])
-    // console.log(link)
-    navigate(link)
+    if (event.target.id != "button") {
+      navigate(link)
+    }
   }
 
   return (
@@ -74,10 +75,16 @@ const NewTrial = () => {
       </Heading>
       {trialData.length > 0 ? <div>
         {trialData.map((item) => (
-          <div onClick={() => links(item)} style={{ textDecoration: "none" }}>
+          <div id="div" onClick={(event) => links(event, item)} style={{ textDecoration: "none" }}>
             <ClassCard data={item} tags={["accept", 'reschedule', "cancel"]} />
           </div>
         ))}
+
+        {/* {trialData.map((item) => (
+          <div onClick={() => links(item)} style={{ textDecoration: "none" }}>
+            <ClassCard data={item} tags={["accept", 'reschedule', "cancel"]} />
+          </div>
+        ))} */}
         <NewPagination {...paginationProps} />
       </div> : "No data found!"}
 

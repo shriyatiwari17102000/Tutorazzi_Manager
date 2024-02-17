@@ -10,8 +10,9 @@ import { BASE_URL } from '../../../Apis/BaseUrl'
 import classes from "./Quote.module.css"
 import LabelledInput from '../../LabelledInput/LabelledInput'
 
-const AddExtraClass = ({id, popupFunc, isPopup, func, data1 }) => {
+const AddExtraClass = ({id, popupFunc, isPopup, setShow, show,  data1 }) => {
     // console.log(data1)
+    console.log("fhjfgfgfggfh")
     const [query, setQuery] = useState('')
     const[price, setPrice] = useState('')
     const[classCount, setClassCount] = useState('')
@@ -19,6 +20,7 @@ const AddExtraClass = ({id, popupFunc, isPopup, func, data1 }) => {
     const [isLoading, setLoading] = useState(false)
     const[teacherData, setTeacherData] = useState([])
     const[teacher, setTeacher] = useState("")
+
     const handleQueryChange = (e) => {
         setQuery(e.target.value);
     };
@@ -78,7 +80,7 @@ const AddExtraClass = ({id, popupFunc, isPopup, func, data1 }) => {
 
             console.log(response)
             ToasterUpdate(myToast, response.data.message, "success")
-            func()
+            setShow(!show)
         } catch (error) {
             ToasterUpdate(myToast, error.message, "error")
         }
@@ -122,7 +124,7 @@ const AddExtraClass = ({id, popupFunc, isPopup, func, data1 }) => {
             </div>
 
             <div className={classes.bottom}>
-                <button type='submit' onClick={() => { popupFunc(!isPopup) }}>Cancel</button>
+                {/* <button type='submit' onClick={() => { popupFunc(!isPopup) }}>Cancel</button> */}
                 <button style={{ background: "black", color: "white" }} disabled={isLoading} onClick={handleDataUpload}>Add Extra Class</button>
             </div>
         </Modal>

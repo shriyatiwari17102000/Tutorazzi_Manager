@@ -303,7 +303,7 @@ margin-bottom:10px
     border-radius: var(--br);
     border: 1px solid var(--border);
     height: 40px;
-    padding-left: 10px;
+    padding-inline: 10px;
     font-size: 14px;
     color: #989898;
     font-weight: 400;

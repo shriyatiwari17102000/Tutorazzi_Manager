@@ -66,7 +66,7 @@ const HomeworkReq = () => {
       </Heading>
       {rescheduleData.length > 0 ? <div>
         {rescheduleData.map((item, index)=> (
-        <ClassCard key={index} home={true}   tags =  {['notify-student','resolve']} layout={1} data={item}   />
+        <ClassCard key={index} home={true} func={getHomeworkData}   tags =  {['notify-student','resolve']} layout={1} data={item}   />
       
     ) )}
       <NewPagination {...paginationProps} />

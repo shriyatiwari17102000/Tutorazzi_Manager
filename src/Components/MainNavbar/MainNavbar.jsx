@@ -26,12 +26,12 @@ const MainNavbar = () => {
 
     const staticResults = [
         { label: "Dashboard", route: "/dashboard" },
-        { label: "Students", route: "/student" },
+        { label: "Student Info", route: "/student" },
         { label: "Payment", route: "/payment" },
         { label: "Classes", route: "/classes" },
         { label: "Chats", route: "/chats" },
         { label: "Support", route: "/support" },
-        { label: "Profile", route: "/profile" },
+        // { label: "Profile", route: "/profile" },
         // Add more static results as needed
     ];
     const filteredResults = staticResults.filter(
