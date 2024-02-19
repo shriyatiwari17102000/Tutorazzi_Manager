@@ -12,6 +12,7 @@ import DatePicker from 'react-date-picker'
 import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css'; 
 import { BASE_URL } from '../../../Apis/BaseUrl'
+import moment from 'moment'
 
 const data = {
   title: 'Maths Class',
@@ -35,8 +36,8 @@ const HomeworkReq = () => {
   const token = getTutToken.access_token
 
   const getHomeworkData = async () => {
-  
-    let register = `${BASE_URL}/homeworks-list?limit=${limit}&page=${page}&search=${search}&date=${value}`
+    let dateValue = value ? moment(value).format('YYYY-MM-DD') : " "; 
+    let register = `${BASE_URL}/homeworks-list?limit=${limit}&page=${page}&search=${search}&date=${dateValue}`
     console.log(register)
     let res = await axios.get(register, {
       headers: {
