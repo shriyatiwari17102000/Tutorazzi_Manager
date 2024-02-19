@@ -5,6 +5,7 @@ import { RxCross2 } from 'react-icons/rx'
 import img from '../../assets/dp.png'
 import { createPortal } from 'react-dom'
 import { ImSwitch } from "react-icons/im";
+import Cookies from 'js-cookie'
 
 const MySidebar = props => {
   const navigate = useNavigate()

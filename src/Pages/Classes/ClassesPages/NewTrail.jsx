@@ -76,7 +76,7 @@ const NewTrial = () => {
       {trialData.length > 0 ? <div>
         {trialData.map((item) => (
           <div id="div" onClick={(event) => links(event, item)} style={{ textDecoration: "none" }}>
-            <ClassCard data={item} tags={["accept", 'reschedule', "cancel"]} />
+            <ClassCard data={item} tags={["accept", 'reschedule', "cancel"]} func={getTrialData} />
           </div>
         ))}
 

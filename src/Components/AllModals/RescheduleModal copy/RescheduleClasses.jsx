@@ -70,14 +70,14 @@ const RescheduleClasses = ({ popupFunc, isPopup, func, data1 }) => {
                         <label className={styles.modal_label}>
                             Reschedule Date and Time
                         </label>
-                        <input min={new_d} type="datetime-local" value={timeDate} onChange={(e) => setTimeDate(e.target.value)} className={`${styles.input_box2}`} required />
+                        <input min={new_d} id='button' type="datetime-local" value={timeDate} onChange={(e) => setTimeDate(e.target.value)} className={`${styles.input_box2}`} required />
                     </div>
                 </form>
             </div>
 
             <div className={styles.bottom}>
                 <button type='submit' onClick={() => { popupFunc(!isPopup) }}>Cancel</button>
-                <button style={{ background: "black", color: "white" }} disabled={isLoading} onClick={handleDataUpload}>Reschedule</button>
+                <button style={{ background: "black", color: "white" }} id="button" disabled={isLoading} onClick={handleDataUpload}>Reschedule</button>
             </div>
         </Modal>
     )

@@ -8,8 +8,6 @@ import ToasterUpdate from '../../Components/Toaster/ToasterUpdate'
 import { BASE_URL } from '../../Apis/BaseUrl'
 import Cookies from 'js-cookie'
 import axios from 'axios'
-import animation from "../../assets/animation.png"
-import LabelledSignInInput from '../LabelledInput/LabelledSignInInput'
 
 
 const ForgotPassword = () => {

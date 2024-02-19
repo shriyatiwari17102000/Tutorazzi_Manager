@@ -29,6 +29,7 @@ import SignInPage from './Components/UserSignUp/SignInPage'
 import SupportDetails from './Pages/Support/SupportDetails/SupportDetails'
 import Chat from './Pages/messages/Chat'
 import TrialClassPast from './Pages/Classes/ClassesDetail/TrialClassPast'
+import ForgotPassword from './Components/UserSignUp/ForgotPassword'
 
 
 const App = () => {
@@ -47,10 +48,11 @@ const App = () => {
         theme="light"
       /> 
 
-      {path === '/' ?
+      {path.includes('auth') || path === '/' ?
 
         <Routes>
           <Route path='/' element={<SignInPage />} />
+          <Route path='/auth-reset' element={<ForgotPassword />} />
         </Routes>
 
         :
