@@ -10,8 +10,8 @@ console.log(props)
 
     return (
         <div className={`${classes.container} ${props.cls}`} >
-            {data.length > 0 ? <div >
-                {data.map(element => (
+            {data?.length > 0 ? <div >
+                {data?.map(element => (
                 <Link className={classes.link} to={`/classes/${props.link}/${element._id}`}>
                     <ClassCard data={element} />
                 </Link>
