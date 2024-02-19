@@ -55,8 +55,8 @@ const Notifications = (props) => {
       ></div>
       <Container cls={classes.box}>
         <div className={classes.header}>Notifications</div>
-        <div className={classes.body}>
-       {notificationData?.length !== 0 ? <div>
+        {/* <div className={classes.body}> */}
+       {notificationData?.length !== 0 ? <div className={classes.body}>
         {notificationData?.map((element) => (
             <NotificationDiv
               setterFunc={props.setterFunc}
@@ -67,10 +67,10 @@ const Notifications = (props) => {
             func={getNotification}
             />
           ))} 
-       </div> : <div className="d-flex align-items-center justify-content-center p-4">
+       </div> : <div style={{padding:"10px"}}>
        0 notifications or announcements
         </div>}
-        </div>
+        {/* </div> */}
       </Container>
     </>
   );

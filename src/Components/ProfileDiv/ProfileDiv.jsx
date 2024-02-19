@@ -8,8 +8,8 @@ const ProfileDiv = () => {
         <img src={img} alt="" />
         <div>
             <h3>Puneet Shrivastav</h3>
-            <h5>puneetsri9990@gmail.com</h5>
-            <h5>+91 9311676139</h5>
+            <h5>Academic Manager</h5>
+            {/* <h5>+91 9311676139</h5> */}
         </div>
     </div>
   )

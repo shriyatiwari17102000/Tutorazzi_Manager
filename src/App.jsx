@@ -30,6 +30,7 @@ import SupportDetails from './Pages/Support/SupportDetails/SupportDetails'
 import Chat from './Pages/messages/Chat'
 import TrialClassPast from './Pages/Classes/ClassesDetail/TrialClassPast'
 import ForgotPassword from './Components/UserSignUp/ForgotPassword'
+import Profile from './Pages/Profile/Profile'
 
 
 const App = () => {
@@ -91,6 +92,9 @@ const App = () => {
 
               <Route path='chats'>
                 <Route index element={<Chat />} />
+              </Route>
+              <Route path='profile'>
+                <Route index element={<Profile />} />
               </Route>
               <Route path='reports'>
                 <Route index element={<Reports />} />
