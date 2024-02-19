@@ -33,6 +33,19 @@
 }
 .prof_label{
   position: relative;
+  width: fit-content;
+}
+.d2{
+  width: fit-content;
+  text-align: center;
+}
+.del_btn{
+  background: none;
+  border: none;
+  font-size: 16px;
+}
+.del_btn > svg{
+  color: #950000;  
 }
 .img_div{
   width: 100px;
@@ -42,17 +55,18 @@
 .icons_div{
   position: absolute;
   bottom: 0px;
-  left: 23px;
+  left: 21px;
   border: 1px solid #d9d9d9;
   padding: 5px 6px 2px 6px;
-  border-radius: 3px;
-  background: white;
-  gap: 5px;
+  border-radius: 15px;
+  background: #fff;
+  gap: 9px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #989898;
 }
+
 @media screen and (max-width:900px) {
   .profile_div {
     align-items: flex-start;

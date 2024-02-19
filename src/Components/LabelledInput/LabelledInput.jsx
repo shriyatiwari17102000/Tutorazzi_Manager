@@ -4,7 +4,7 @@ import classes from './LabelledInput.module.css'
 const LabelledInput = (props) => {
 
   const { data } = props
-  console.log(props)
+  // console.log(props)
 
   return (
     <div className={`${classes.input_div} ${props.cls}`}>

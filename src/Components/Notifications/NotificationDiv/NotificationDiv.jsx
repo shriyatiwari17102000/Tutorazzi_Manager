@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { BsBell } from 'react-icons/bs'
 import classes from './NotificationDiv.module.css'
 import Cookies from 'js-cookie'
@@ -7,8 +7,10 @@ import axios from 'axios'
 import Moment from 'react-moment'
 
 const NotificationDiv = (props) => {
+  const [read, setRead] = useState({})
 
     const data = props?.data
+    console.log(data)
 
     const functionHandler = () => {
         props.popupFunc(true)
@@ -17,25 +19,23 @@ const NotificationDiv = (props) => {
     let profileTokenJson = Cookies.get("tutorazzi_academic");
     let profileToken = JSON.parse(profileTokenJson);
     let token = profileToken.access_token;
-    console.log(token)
+    // console.log(token)
   
     const handleClick = async () => {
       try {
         props?.handleModal(data)
-  
-        // Api request fo
-  
-        const register = `${BASE_URL}/clear-notifications`; //get id by props
+ 
+        const register = `${BASE_URL}/notification?id=${data._id}`; //get id by props
   
         let res = await axios
-          .patch(register,{}, {
+          .get(register, {
             headers: {
               "Content-Type": "application/json",
               'Authorization': `Bearer ${token}`,
             }
           })
         console.log(res.data.data, "ttt");
-        props?.func()
+        setRead(res.data.data)
       } catch (error) {
         console.log(error)
       }
@@ -44,10 +44,11 @@ const NotificationDiv = (props) => {
     }
 
     const differTime = <Moment fromNow date={data?.createdAt} />
+    const conditionalClass = data.is_read == true ? classes.row : classes.row1;
 
   
     return (
-        <div className={classes.row} onClick={handleClick}>
+        <div className={conditionalClass} onClick={handleClick}>
             <div className={classes.bell}><BsBell /></div>
             <p className={classes.p}>{data?.title?.slice(0, 20)}...</p>
             <span className={classes.span}>{data?.time_diff}</span>

@@ -2,8 +2,17 @@ import React, { useEffect, useState } from 'react'
 import classes from './Profile.module.css'
 import Container from '../../UI/Container/Container'
 import FallbackImage from '../../Components/FallbackImgae/FallbackImage'
+import { useNavigate } from 'react-router-dom'
 
-const RightSidebar = () => {
+const RightSidebar = ({ stuData, teacData }) => {
+
+    const navigate = useNavigate()
+    const navigateStudent = () => {
+        navigate('/student')
+    }
+    const navigateTeacher = () => {
+        navigate('/teacher')
+    }
 
     return (
         <React.Fragment>
@@ -11,87 +20,36 @@ const RightSidebar = () => {
             <Container cls={classes.cont_main}>
                 <div className={classes.teach_div}>
                     <h5>All Teachers</h5>
-                    <div className={classes.inn_teach}>
-                        <FallbackImage cls={classes.img2} imgData={""} />
-                        <div className={classes.teach_div2}>
-                            <h5>Shriya</h5>
-                            <p>Australian Curriculum</p>
+                    {teacData?.map((item) => (
+                        <div className={classes.inn_teach}>
+                            <FallbackImage cls={classes.img2} imgData={item.user_id.profile_img_url} />
+                            <div className={classes.teach_div2}>
+                                <h5>{item.preferred_name}</h5>
+                                <p>{item.curriculum.name}</p>
+                            </div>
                         </div>
-                    </div>
-                    <div className={classes.inn_teach}>
-                        <FallbackImage cls={classes.img2} imgData={""} />
-                        <div className={classes.teach_div2}>
-                            <h5>Shriya</h5>
-                            <p>Australian Curriculum</p>
-                        </div>
-                    </div>
-                    <div className={classes.inn_teach}>
-                        <FallbackImage cls={classes.img2} imgData={""} />
-                        <div className={classes.teach_div2}>
-                            <h5>Shriya</h5>
-                            <p>Australian Curriculum</p>
-                        </div>
-                    </div>
-                    <div className={classes.inn_teach}>
-                        <FallbackImage cls={classes.img2} imgData={""} />
-                        <div className={classes.teach_div2}>
-                            <h5>Shriya</h5>
-                            <p>Australian Curriculum</p>
-                        </div>
-                    </div>
-                    {/* <div className={classes.inn_teach}>
-                        <FallbackImage cls={classes.img2} imgData={""} />
-                        <div className={classes.teach_div2}>
-                            <h5>Shriya</h5>
-                            <p>Australian Curriculum</p>
-                        </div>
-                    </div> */}
+                    ))}
 
-                        <button className={classes.view_btn}>View All</button>
-                    
+
+                    <button className={classes.view_btn} onClick={navigateTeacher}>View All</button>
+
                 </div>
-                <div className={classes.teach_div} style={{marginTop:"40px"}}>
+                <div className={classes.teach_div} style={{ marginTop: "40px" }}>
                     <h5>All Students</h5>
-                    {/* <div className={classes.inn_teach}>
-                        <FallbackImage cls={classes.img2} imgData={""} />
-                        <div className={classes.teach_div2}>
-                            <h5>Shriya</h5>
-                            <p>Australian Curriculum</p>
-                        </div>
-                    </div> */}
-                    <div className={classes.inn_teach}>
-                        <FallbackImage cls={classes.img2} imgData={""} />
-                        <div className={classes.teach_div2}>
-                            <h5>Shriya</h5>
-                            <p>Australian Curriculum</p>
-                        </div>
-                    </div>
-                    <div className={classes.inn_teach}>
-                        <FallbackImage cls={classes.img2} imgData={""} />
-                        <div className={classes.teach_div2}>
-                            <h5>Shriya</h5>
-                            <p>Australian Curriculum</p>
-                        </div>
-                    </div>
-                    <div className={classes.inn_teach}>
-                        <FallbackImage cls={classes.img2} imgData={""} />
-                        <div className={classes.teach_div2}>
-                            <h5>Shriya</h5>
-                            <p>Australian Curriculum</p>
-                        </div>
-                    </div>
-                    <div className={classes.inn_teach}>
-                        <FallbackImage cls={classes.img2} imgData={""} />
-                        <div className={classes.teach_div2}>
-                            <h5>Shriya</h5>
-                            <p>Australian Curriculum</p>
-                        </div>
-                    </div>
 
-                        <button className={classes.view_btn}>View All</button>
-                    
+                    {stuData?.map((item) => (
+                        <div className={classes.inn_teach}>
+                            <FallbackImage cls={classes.img2} imgData={item.user_id.profile_img_url} />
+                            <div className={classes.teach_div2}>
+                                <h5>{item.preferred_name}</h5>
+                                <p>{item.curriculum.name}</p>
+                            </div>
+                        </div>
+                    ))}
+                    <button className={classes.view_btn} onClick={navigateStudent}>View All</button>
+
                 </div>
-               
+
             </Container>
 
         </React.Fragment>

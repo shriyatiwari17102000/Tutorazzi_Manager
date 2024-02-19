@@ -51,8 +51,11 @@ const MySidebar = props => {
         <NavLink className={classes.link} to={'/'}>
           Role
         </NavLink> */}
-        <NavLink className={classes.link} to={'/'}>
+        <NavLink className={classes.link} to={'/support'}>
           Support
+        </NavLink>
+        <NavLink className={classes.link} to={'/profile'}>
+          Profile
         </NavLink>
         <NavLink className={classes.link} to={'/'}>
         </NavLink>

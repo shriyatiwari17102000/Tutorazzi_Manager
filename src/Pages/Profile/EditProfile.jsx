@@ -5,69 +5,84 @@ import ProfileHeader from '../../Components/ProfileHeader/ProfileHeader'
 import Container from '../../UI/Container/Container'
 import LabelledInput from '../../Components/LabelledInput/LabelledInput'
 import LabelledTextarea from '../../Components/LabelledTextarea/LabelledTextarea'
-import PagePath from '../../Components/PagePath/PagePath'
 import Cookies from 'js-cookie'
 import { BASE_URL } from '../../Apis/BaseUrl'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import RightSidebar from './RightSidebar'
+import ToasterUpdate from '../../Components/Toaster/ToasterUpdate'
 
 
 const EditProfile = () => {
-    const [degreeDetail, setDegreeDetails] = useState([])
-   
-    const [basicDetail, setBasicDetail] = useState({})
-    const [subjectCurriculums, setSubjectCurriculums] = useState([])
-    const [bankDetails, setBankDetails] = useState([])
-    const [profileImg, setProfileImage] = useState("")
-
+    const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
+    const [phone, setPhone] = useState('')
+    const [gender, setGender] = useState('')
+    const [DOB, setDOB] = useState('')
+    const [city, setCity] = useState('')
+    const [state, setState] = useState('')
+    const [address, setAddress] = useState('')
+    const [country, setCountry] = useState('')
+    const [profileImg, setProfileImg] = useState('')
+    const [countryData, setCountryData] = useState([])
+const[loading, setLoading] = useState(false)
     const data = [
         {
             label: "Name",
             id: 'fn',
-            value: basicDetail.preferred_name
+            value: name,
+            func: setName,
+            ro: false
         },
         {
             label: "Email ID",
             id: 'em',
-            value: basicDetail?.user_id?.email
+            value: email,
+            func: setEmail,
+            ro: true
         },
         {
             label: "Phone",
             id: 'mob',
-            value: basicDetail?.user_id?.mobile_number
-        },
-        {
-            label: "Gender",
-            id: 'gender',
-            value: basicDetail?.gender
+            value: phone,
+            func: setPhone,
+            ro: false
         },
         {
             label: "Date Of Birth",
             id: 'dob',
-            value: basicDetail?.dob
+            value: DOB,
+            func: setDOB,
+            ro: false
         },
     ]
     const data3 = [
         {
             label: 'City',
             id: 'city',
-            value: "New Delhi"
+            value: city,
+            func: setCity,
+            ro: false
         },
         {
             label: 'State',
             id: 'state',
-            value: "Delhi"
+            value: state,
+            func: setState,
+            ro: false
         },
-        {
-            label: 'Country',
-            id: 'country',
-            value: "India"
-        },
-    ]
 
-    const tutToken = Cookies.get("tutorazzi_token")
+    ]
+    useEffect(() => {
+        (async () => {
+            let res = await fetch('https://restcountries.com/v3.1/all')
+            let result = await res.json()
+            let data = result.map(element => element.name.common)
+            setCountryData(data)
+
+        })()
+    }, [])
+    const tutToken = Cookies.get("tutorazzi_academic")
     const getTutToken = JSON.parse(tutToken)
     const token = getTutToken.access_token
 
@@ -81,7 +96,16 @@ const EditProfile = () => {
             }
         })
         console.log(res.data.data)
-       
+        setName(res.data.data.profileDetails.preferred_name)
+        setDOB(res.data.data.profileDetails.dob)
+        setCity(res.data.data.profileDetails.city)
+        setState(res.data.data.profileDetails.state)
+        setCountry(res.data.data.profileDetails.country)
+        setAddress(res.data.data.profileDetails.address)
+        setGender(res.data.data.profileDetails.gender)
+        setEmail(res.data.data.userDetails.email)
+        setPhone(res.data.data.userDetails.mobile_number)
+        setProfileImg(res.data.data.userDetails?.profile_img_url)
         // console.log(res.data.data?.testimonialResponse)
     }
 
@@ -89,51 +113,106 @@ const EditProfile = () => {
         getData()
     }, [])
     const navigate = useNavigate()
-    const handleNavigate = () => {
-        console.log("hhhhhhhhhh")
-        navigate('edit')
-    }
+
+    const handleEdit = async (e) => {
+        e.preventDefault();
+        let bdy = {
+            name, email, city, state, country, gender,
+            address, dob: DOB, mobile_number: phone,
+        }
 
 
-    
+        const myToast = toast.loading('Please Wait...')
+        setLoading(true)
+        try {
+            const register = `${BASE_URL}/profile`;
+            const response = await axios
+                .patch(register, bdy, {
+                    headers: {
+                        // "Content-Type": "multipart/form-data",
+                        Authorization: `Bearer ${token}`,
+                    },
+                })
+
+            const { data } = response;
+            if (!data.success) {
+                ToasterUpdate(myToast, data.message, "error")
+                return
+            }
+            // navigate("/auth-upload");
+            ToasterUpdate(myToast, response.data.message, "success")
+            console.log(data, "oooooo");
+            navigate('/profile')
+
+        } catch (error) {
+            console.log(error)
+            ToasterUpdate(myToast, error.message, "error")
+        }
+
+        finally {
+
+            setLoading(false)
+
+            const dismiss = () => toast.dismiss(myToast);
+
+            setTimeout(() => {
+                dismiss()
+            }, 1000);
+        }
+
+    };
+
     return (
         <React.Fragment>
             {/* <PagePath /> */}
 
-          
+
             <div style={{
                 display: "flex", justifyContent: "space-between"
             }}>
                 <Heading cls={classes.my_page_heading} heading={'Profile Details'} p='Here you can see your Profile ' />
-                <button className={classes.edit_btn} onClick={handleNavigate} style={{
-                    background: "black", color: "white", padding: "0px 15px", height: "45px",
-                    border: "none",
-                    borderRadius: "5px"
-                }}>Edit Profile</button>
+
             </div>
-            <ProfileHeader user_info={basicDetail} profileUpdater={profileImg} icon={true} />
+            <ProfileHeader profileUpdater={profileImg} icon={true} getData={getData} />
 
             <Container cls={classes.flex}>
                 <div className={`${classes.flex2} `} style={{ border: "none", padding: "0" }}>
 
                     {data.map((element, index) => (
-                        <LabelledInput key={index} id={element.id} label={element.label} value={element.value} />
+                        <LabelledInput key={index} id={element.id} ro={element.ro} label={element.label} func={element.func} value={element.value} />
                     ))}
+                    <div className={classes.select_div}>
+                        <label htmlFor="gender" className={classes.select_label}>Gender</label>
+                        <select value={gender} className={classes.select_input} onChange={(e) => setGender(e.target.value)}>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
                 </div>
 
 
-                <LabelledTextarea id={'ta'} value={basicDetail?.bio} label={'Address'} ro={true} />
+                <LabelledTextarea id={'ta'} func={setAddress} label={'Address'} value={address} ro={false} />
 
 
                 <div className={`${classes.border_box} ${classes.flex2}`}>
-                    
+
                     {data3.map((element, index) => (
-                        <LabelledInput ro={false} key={index} id={element.id} label={element.label} value={element.value} />
+                        <LabelledInput key={index} id={element.id} ro={element.ro} label={element.label} func={element.func} value={element.value} />
                     ))}
+                    <div className={classes.select_div}>
+                        <label htmlFor="gender" className={classes.select_label}>Country of Origin</label>
+                        <select className={classes.select_input} value={country} onChange={(e) => setCountry(e.target.value)}>
+                            {countryData && countryData?.map((element, index) => (<option key={index} value={element}>{element}</option>))}
+                        </select>
+                    </div>
+
                 </div>
 
 
-
+                <div className={classes.bottom}>
+                    <button >Cancel</button>
+                    <button onClick={handleEdit} disabled={loading}>Add Class</button>
+                </div>
 
             </Container>
 

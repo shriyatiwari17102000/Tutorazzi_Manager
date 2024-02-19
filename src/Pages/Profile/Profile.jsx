@@ -5,51 +5,24 @@ import ProfileHeader from '../../Components/ProfileHeader/ProfileHeader'
 import Container from '../../UI/Container/Container'
 import LabelledInput from '../../Components/LabelledInput/LabelledInput'
 import LabelledTextarea from '../../Components/LabelledTextarea/LabelledTextarea'
-import PagePath from '../../Components/PagePath/PagePath'
 import Cookies from 'js-cookie'
 import { BASE_URL } from '../../Apis/BaseUrl'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
-import { toast } from 'react-toastify'
 import RightSidebar from './RightSidebar'
 
-
-
-const data2 = [
-
-]
-
-
-
-const td1 = [
-    {
-        h5: 'Total Received amount',
-        h1: '₹34,000',
-        p: 'See here your total amount received from admin side against for sessions'
-    }
-]
-
-// Tile Data 2
-const td2 = [
-    {
-        h5: 'Total Received amount',
-        h1: '₹34,000',
-        p: 'See here your total amount received from admin side against for sessions'
-    },
-    {
-        h5: 'Total Received amount',
-        h1: '₹34,000',
-        p: 'See here your total amount received from admin side against for sessions'
-    }
-]
-
 const Profile = () => {
-    const [degreeDetail, setDegreeDetails] = useState([])
+    const [dob, setDob] = useState("")
    
     const [basicDetail, setBasicDetail] = useState({})
-    const [subjectCurriculums, setSubjectCurriculums] = useState([])
+    const [allData, setAllData] = useState({})
     const [bankDetails, setBankDetails] = useState([])
     const [profileImg, setProfileImage] = useState("")
+    const[teacherList, setTeacherList] = useState([])
+    const[studentList, setStudentList] = useState([])
+
+
+
 
     const data = [
         {
@@ -60,12 +33,12 @@ const Profile = () => {
         {
             label: "Email ID",
             id: 'em',
-            value: basicDetail?.user_id?.email
+            value: allData?.email
         },
         {
             label: "Phone",
             id: 'mob',
-            value: basicDetail?.user_id?.mobile_number
+            value: allData?.mobile_number
         },
         {
             label: "Gender",
@@ -75,28 +48,29 @@ const Profile = () => {
         {
             label: "Date Of Birth",
             id: 'dob',
-            value: basicDetail?.dob
+            value: dob
         },
     ]
+  
     const data3 = [
         {
             label: 'City',
             id: 'city',
-            value: "New Delhi"
+            value: basicDetail?.city
         },
         {
             label: 'State',
             id: 'state',
-            value: "Delhi"
+            value: basicDetail?.state
         },
         {
             label: 'Country',
             id: 'country',
-            value: "India"
+            value: basicDetail?.country
         },
     ]
 
-    const tutToken = Cookies.get("tutorazzi_token")
+    const tutToken = Cookies.get("tutorazzi_academic")
     const getTutToken = JSON.parse(tutToken)
     const token = getTutToken.access_token
 
@@ -110,14 +84,13 @@ const Profile = () => {
             }
         })
         console.log(res.data.data)
-        setProfileImage(res.data.data?.profile_image)
-        setDegreeDetails(res.data.data.education_details)
-        setExperienceDetail(res.data.data.experience_details)
-        // setTestimonialData(res.data.data?.testimonialResponse)
-        setBasicDetail(res.data.data?.teacherPersonalDetails)
-        setSubjectCurriculums(res.data.data?.subject_curriculums)
-        setBankDetails(res.data.data?.bank_details)
-        // console.log(res.data.data?.testimonialResponse)
+        setProfileImage(res.data.data?.userDetails?.profile_image_url)
+       setAllData(res.data.data?.userDetails)
+        setBasicDetail(res.data.data?.profileDetails)
+        setDob(res.data.data?.profileDetails?.dob)
+        setTeacherList(res.data.data?.teachersDetails)
+        setStudentList(res.data.data?.studentsDetails)
+        setProfileImage(res.data.data.userDetails?.profile_img_url)
     }
 
     useEffect(() => {
@@ -147,7 +120,7 @@ const Profile = () => {
                     borderRadius: "5px"
                 }}>Edit Profile</button>
             </div>
-            <ProfileHeader user_info={basicDetail} profileUpdater={profileImg}  />
+            <ProfileHeader user_info={basicDetail} profileUpdater={profileImg} />
 
             <Container cls={classes.flex}>
                 <div className={`${classes.flex2} `} style={{ border: "none", padding: "0" }}>
@@ -158,7 +131,7 @@ const Profile = () => {
                 </div>
 
 
-                <LabelledTextarea id={'ta'} value={basicDetail?.bio} label={'Address'} ro={true} />
+                <LabelledTextarea id={'ta'} value={basicDetail?.address} label={'Address'} ro={true} />
 
 
                 <div className={`${classes.border_box} ${classes.flex2}`}>
@@ -174,7 +147,7 @@ const Profile = () => {
             </Container>
             </div>
             <div style={{width:"29%"}}>
-                <RightSidebar />
+                <RightSidebar stuData={studentList} teacData={teacherList} />
             </div>
            </div>
 
