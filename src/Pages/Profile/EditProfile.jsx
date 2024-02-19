@@ -14,36 +14,7 @@ import { toast } from 'react-toastify'
 import RightSidebar from './RightSidebar'
 
 
-
-const data2 = [
-
-]
-
-
-
-const td1 = [
-    {
-        h5: 'Total Received amount',
-        h1: '₹34,000',
-        p: 'See here your total amount received from admin side against for sessions'
-    }
-]
-
-// Tile Data 2
-const td2 = [
-    {
-        h5: 'Total Received amount',
-        h1: '₹34,000',
-        p: 'See here your total amount received from admin side against for sessions'
-    },
-    {
-        h5: 'Total Received amount',
-        h1: '₹34,000',
-        p: 'See here your total amount received from admin side against for sessions'
-    }
-]
-
-const Profile = () => {
+const EditProfile = () => {
     const [degreeDetail, setDegreeDetails] = useState([])
    
     const [basicDetail, setBasicDetail] = useState({})
@@ -110,13 +81,7 @@ const Profile = () => {
             }
         })
         console.log(res.data.data)
-        setProfileImage(res.data.data?.profile_image)
-        setDegreeDetails(res.data.data.education_details)
-        setExperienceDetail(res.data.data.experience_details)
-        // setTestimonialData(res.data.data?.testimonialResponse)
-        setBasicDetail(res.data.data?.teacherPersonalDetails)
-        setSubjectCurriculums(res.data.data?.subject_curriculums)
-        setBankDetails(res.data.data?.bank_details)
+       
         // console.log(res.data.data?.testimonialResponse)
     }
 
@@ -135,8 +100,7 @@ const Profile = () => {
         <React.Fragment>
             {/* <PagePath /> */}
 
-           <div style={{display:"flex", gap:"2%"}}>
-            <div style={{width:"69%"}}>
+          
             <div style={{
                 display: "flex", justifyContent: "space-between"
             }}>
@@ -147,13 +111,13 @@ const Profile = () => {
                     borderRadius: "5px"
                 }}>Edit Profile</button>
             </div>
-            <ProfileHeader user_info={basicDetail} profileUpdater={profileImg}  />
+            <ProfileHeader user_info={basicDetail} profileUpdater={profileImg} icon={true} />
 
             <Container cls={classes.flex}>
                 <div className={`${classes.flex2} `} style={{ border: "none", padding: "0" }}>
 
                     {data.map((element, index) => (
-                        <LabelledInput key={index} id={element.id} ro={true} label={element.label} value={element.value} />
+                        <LabelledInput key={index} id={element.id} label={element.label} value={element.value} />
                     ))}
                 </div>
 
@@ -164,7 +128,7 @@ const Profile = () => {
                 <div className={`${classes.border_box} ${classes.flex2}`}>
                     
                     {data3.map((element, index) => (
-                        <LabelledInput key={index} id={element.id} ro={true} label={element.label} value={element.value} />
+                        <LabelledInput ro={false} key={index} id={element.id} label={element.label} value={element.value} />
                     ))}
                 </div>
 
@@ -172,14 +136,9 @@ const Profile = () => {
 
 
             </Container>
-            </div>
-            <div style={{width:"29%"}}>
-                <RightSidebar />
-            </div>
-           </div>
 
         </React.Fragment>
     )
 }
 
-export default Profile
+export default EditProfile

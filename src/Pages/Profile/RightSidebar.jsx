@@ -1,37 +1,97 @@
 import React, { useEffect, useState } from 'react'
 import classes from './Profile.module.css'
-import Heading from '../../Components/Heading/Heading'
-import ProfileHeader from '../../Components/ProfileHeader/ProfileHeader'
 import Container from '../../UI/Container/Container'
-import LabelledInput from '../../Components/LabelledInput/LabelledInput'
-import LabelledTextarea from '../../Components/LabelledTextarea/LabelledTextarea'
-import PagePath from '../../Components/PagePath/PagePath'
-import Cookies from 'js-cookie'
-import { BASE_URL } from '../../Apis/BaseUrl'
-import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
-import { toast } from 'react-toastify'
-
+import FallbackImage from '../../Components/FallbackImgae/FallbackImage'
 
 const RightSidebar = () => {
-  
+
     return (
         <React.Fragment>
 
             <Container cls={classes.cont_main}>
+                <div className={classes.teach_div}>
+                    <h5>All Teachers</h5>
+                    <div className={classes.inn_teach}>
+                        <FallbackImage cls={classes.img2} imgData={""} />
+                        <div className={classes.teach_div2}>
+                            <h5>Shriya</h5>
+                            <p>Australian Curriculum</p>
+                        </div>
+                    </div>
+                    <div className={classes.inn_teach}>
+                        <FallbackImage cls={classes.img2} imgData={""} />
+                        <div className={classes.teach_div2}>
+                            <h5>Shriya</h5>
+                            <p>Australian Curriculum</p>
+                        </div>
+                    </div>
+                    <div className={classes.inn_teach}>
+                        <FallbackImage cls={classes.img2} imgData={""} />
+                        <div className={classes.teach_div2}>
+                            <h5>Shriya</h5>
+                            <p>Australian Curriculum</p>
+                        </div>
+                    </div>
+                    <div className={classes.inn_teach}>
+                        <FallbackImage cls={classes.img2} imgData={""} />
+                        <div className={classes.teach_div2}>
+                            <h5>Shriya</h5>
+                            <p>Australian Curriculum</p>
+                        </div>
+                    </div>
+                    {/* <div className={classes.inn_teach}>
+                        <FallbackImage cls={classes.img2} imgData={""} />
+                        <div className={classes.teach_div2}>
+                            <h5>Shriya</h5>
+                            <p>Australian Curriculum</p>
+                        </div>
+                    </div> */}
 
-                <h1>1</h1>
-                <h1>1</h1>
-                <h1>1</h1>
-                <h1>1</h1>
-                <h1>1</h1>
-                <h1>1</h1>
-                <h1>1</h1>
-                <h1>1</h1>
-                <h1>1</h1>
-                <h1>1</h1>
-                <h1>1</h1>
+                        <button className={classes.view_btn}>View All</button>
+                    
+                </div>
+                <div className={classes.teach_div} style={{marginTop:"40px"}}>
+                    <h5>All Students</h5>
+                    {/* <div className={classes.inn_teach}>
+                        <FallbackImage cls={classes.img2} imgData={""} />
+                        <div className={classes.teach_div2}>
+                            <h5>Shriya</h5>
+                            <p>Australian Curriculum</p>
+                        </div>
+                    </div> */}
+                    <div className={classes.inn_teach}>
+                        <FallbackImage cls={classes.img2} imgData={""} />
+                        <div className={classes.teach_div2}>
+                            <h5>Shriya</h5>
+                            <p>Australian Curriculum</p>
+                        </div>
+                    </div>
+                    <div className={classes.inn_teach}>
+                        <FallbackImage cls={classes.img2} imgData={""} />
+                        <div className={classes.teach_div2}>
+                            <h5>Shriya</h5>
+                            <p>Australian Curriculum</p>
+                        </div>
+                    </div>
+                    <div className={classes.inn_teach}>
+                        <FallbackImage cls={classes.img2} imgData={""} />
+                        <div className={classes.teach_div2}>
+                            <h5>Shriya</h5>
+                            <p>Australian Curriculum</p>
+                        </div>
+                    </div>
+                    <div className={classes.inn_teach}>
+                        <FallbackImage cls={classes.img2} imgData={""} />
+                        <div className={classes.teach_div2}>
+                            <h5>Shriya</h5>
+                            <p>Australian Curriculum</p>
+                        </div>
+                    </div>
 
+                        <button className={classes.view_btn}>View All</button>
+                    
+                </div>
+               
             </Container>
 
         </React.Fragment>

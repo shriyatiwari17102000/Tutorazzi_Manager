@@ -31,6 +31,7 @@ import Chat from './Pages/messages/Chat'
 import TrialClassPast from './Pages/Classes/ClassesDetail/TrialClassPast'
 import ForgotPassword from './Components/UserSignUp/ForgotPassword'
 import Profile from './Pages/Profile/Profile'
+import EditProfile from './Pages/Profile/EditProfile'
 
 
 const App = () => {
@@ -95,6 +96,7 @@ const App = () => {
               </Route>
               <Route path='profile'>
                 <Route index element={<Profile />} />
+                <Route path='edit' element={<EditProfile />} />
               </Route>
               <Route path='reports'>
                 <Route index element={<Reports />} />

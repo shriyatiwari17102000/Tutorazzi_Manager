@@ -1,6 +1,11 @@
 .profile_div {
   /* display: flex;
   align-items: center; */
+  display: flex;
+  flex-direction: column;
+  /* position: absolute; */
+  /* left: 36px; */
+  /* top: -47px; */
 }
 
 .profile_div>img {
@@ -26,8 +31,28 @@
 .profile_div>div h5:last-child {
   margin: 0;
 }
-
-
+.prof_label{
+  position: relative;
+}
+.img_div{
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;}
+  
+.icons_div{
+  position: absolute;
+  bottom: 0px;
+  left: 23px;
+  border: 1px solid #d9d9d9;
+  padding: 5px 6px 2px 6px;
+  border-radius: 3px;
+  background: white;
+  gap: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #989898;
+}
 @media screen and (max-width:900px) {
   .profile_div {
     align-items: flex-start;
