@@ -125,8 +125,8 @@ const ListCalendar = () => {
             </div>
 
             <div className={classes.events_container}>
-                {timeArr.map((element) => (
-                    dataArr.map((item, index) => (
+                {timeArr?.map((element) => (
+                    dataArr?.map((item, index) => (
                         <div key={index} className={classes.event_div} onClick={setPopFunction}>
                             <span>{element}</span>
 

@@ -36,7 +36,7 @@ const HomeworkReq = () => {
 
   const getHomeworkData = async () => {
   
-    let register = `${BASE_URL}/homeworks-list?limit=${limit}&page=${page}&search=${search}`
+    let register = `${BASE_URL}/homeworks-list?limit=${limit}&page=${page}&search=${search}&date=${value}`
     console.log(register)
     let res = await axios.get(register, {
       headers: {
@@ -50,7 +50,7 @@ const HomeworkReq = () => {
   }
   useEffect(() => {
     getHomeworkData()
-  }, [limit, page, search])
+  }, [limit, page, search, value])
 
   const paginationProps = {
     setPage,

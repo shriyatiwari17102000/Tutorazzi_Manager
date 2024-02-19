@@ -33,7 +33,7 @@ const DragDrop = () => {
           <p>Max file size 50 MB</p>
         </>
         :
-        values.map((element, index) => (
+        values?.map((element, index) => (
           <p>{element.name}</p>
         ))
 

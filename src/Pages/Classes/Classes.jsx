@@ -26,7 +26,7 @@ const data = [
   },
   {
     h1: '35',
-    p: 'Recourses Requests',
+    p: 'Resources Requests',
     color: '#B5FFB8',
     icon: 'c',
     bg: '#DAFFDB',

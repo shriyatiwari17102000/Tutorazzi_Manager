@@ -225,7 +225,7 @@ const ClassCard = (props) => {
         <div className={classes.btn_container}>
           {/* {
           data.status.map((element, index) => ( */}
-          {tagstoBtn(data.status)}
+          {tagstoBtn(data?.status)}
           {/* ))
         } */}
         </div>

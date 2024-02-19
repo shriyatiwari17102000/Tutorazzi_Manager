@@ -72,7 +72,7 @@ const MainNavbar = () => {
                             {showResults && searchbar && (
                                 <div className={classes.nav_div1}>
                                     {filteredResults.length > 0 ? (
-                                        filteredResults.map((item, index) => (
+                                        filteredResults?.map((item, index) => (
                                             <div key={index}>
                                                 <Link
                                                     to={item.route}
