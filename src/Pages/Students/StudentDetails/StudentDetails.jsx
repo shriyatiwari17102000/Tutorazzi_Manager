@@ -249,6 +249,7 @@ const StudentDetails = () => {
   const [value, onChange] = useState('');
   const [teacher, setTeacher] = useState('')
   const [teacherData, setTeacherData] = useState([])
+  const [isShow, setIsShow] = useState(true);
 
   const { id } = useParams()
   // console.log(id)
@@ -379,8 +380,17 @@ const StudentDetails = () => {
     navigate('/chats')
   }
   let profile_img = data1?.studentResponse?.user_id?.profile_image_url
+  const handleClose = () => {
+    setIsShow(false);
+}
   return (
     <>
+      {data1?.show === true && isShow && (
+                    <div className={classes.top1}>
+                        <h1>This Student’s Plan is about to end please Make a plan for this student</h1>
+                        <button onClick={handleClose}>x</button>
+                    </div>
+                )}
       <Heading heading={'Student Profile'} p={'Porem ipsum dolor sit amet, consectetur adipiscing elit.'} />
       <div>
         <FallbackImage imgData={profile_img} cls={classes.img1} />

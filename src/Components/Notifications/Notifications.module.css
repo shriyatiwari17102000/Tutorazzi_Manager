@@ -22,7 +22,18 @@
     align-items: center;
     padding-left: 10px;
 }
-
+.markasread{
+    text-align: center;
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    width: 100%;
+    color: blue;
+    text-decoration: underline;
+}
 .body {
     /* padding: 10px; */
     margin-top: 10px;

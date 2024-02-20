@@ -101,15 +101,13 @@ const Profile = () => {
         console.log("hhhhhhhhhh")
         navigate('edit')
     }
-
-
     
     return (
         <React.Fragment>
             {/* <PagePath /> */}
 
-           <div style={{display:"flex", gap:"2%"}}>
-            <div style={{width:"69%"}}>
+           <div className={classes.prof_main}>
+            <div>
             <div style={{
                 display: "flex", justifyContent: "space-between"
             }}>
@@ -146,7 +144,7 @@ const Profile = () => {
 
             </Container>
             </div>
-            <div style={{width:"29%"}}>
+            <div>
                 <RightSidebar stuData={studentList} teacData={teacherList} />
             </div>
            </div>

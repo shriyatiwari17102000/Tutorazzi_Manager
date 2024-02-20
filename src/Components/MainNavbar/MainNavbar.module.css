@@ -65,6 +65,7 @@
 
 .profile_con {
     margin-left: 20px;
+    cursor: pointer;
 }
 
 .profile_con img {

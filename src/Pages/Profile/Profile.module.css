@@ -192,25 +192,17 @@ padding-bottom: 10px;
     .wd1{
         width: 100% !important;
     }
-    .video_input{
-        height: 45px;
-        padding: 10px;
-        border: 1px solid #d9d9d9;
-        border-radius: 5px;
-        color: #989898;
-        outline: none;
-        width: 100%;
+    .prof_main{
+        display: flex;
+        gap: 2%;
     }
-    .video_input_btn{
-        background: black;
-        color: white;
-        padding: 10px 15px;
-        border: none;
-        border-radius: 5px;
-        /* margin-top: 10px; */
-        /* width: 150px; */
-        height: 45px;
+    .prof_main > div:nth-child(1){
+        width: 69%;
     }
+    .prof_main > div:nth-child(2){
+        width: 29%;
+    }
+
     .select_div{
         width: 30% !important;
     }
@@ -469,5 +461,16 @@ padding-bottom: 10px;
 
     .flex div:has(input) {
         width: 100%;
+    }
+    .prof_main{
+        display: flex;
+        flex-direction: column;
+        row-gap: 20px;
+    }
+    .prof_main > div:nth-child(1){
+width: 100%;
+    }
+    .prof_main > div:nth-child(2){
+width: 100%;
     }
 }

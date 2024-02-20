@@ -30,23 +30,23 @@ const AddExtraClass = ({id, popupFunc, isPopup, setShow, show,  data1 }) => {
     const getTutToken = JSON.parse(tutToken)
     const token = getTutToken.access_token
 
-    const getTeacher = async () => {
-        const register = `${BASE_URL}/all-teachers`
-        let response = await axios.get(register, {
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token} `,
-            },
-        })
+    // const getTeacher = async () => {
+    //     const register = `${BASE_URL}/all-teachers`
+    //     let response = await axios.get(register, {
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //             Authorization: `Bearer ${token} `,
+    //         },
+    //     })
 
-        console.log(response.data.data?.docs)
-        setTeacherData(response.data.data?.docs)
-        setTeacher(response.data.data.docs[0]?.user_id)
-    }
+    //     console.log(response.data.data?.docs)
+    //     setTeacherData(response.data.data?.docs)
+    //     setTeacher(response.data.data.docs[0]?.user_id)
+    // }
 
-    useEffect(() => {
-        getTeacher()
-    }, [])
+    // useEffect(() => {
+    //     getTeacher()
+    // }, [])
 
     // console.log(sub)
 
@@ -56,7 +56,7 @@ const AddExtraClass = ({id, popupFunc, isPopup, setShow, show,  data1 }) => {
         // console.log(register)
         // console.log({ start_time: timeDate })
         let bdy = {
-            teacher_id: teacher,
+            teacher_id: data1.teacher_id,
             student_id: id,
             amount: price,
             class_count: classCount,
@@ -111,9 +111,10 @@ const AddExtraClass = ({id, popupFunc, isPopup, setShow, show,  data1 }) => {
                 </div>
                 <div className={classes.wd}>
                     <label className={classes.label1}>Select Teacher</label>
-                    <select className={classes.input_div1} value={teacher} onChange={(e) => setTeacher(e.target.value)}>
+                    <input className={classes.input_div1} type='text' value={data1?.teacher_name} readOnly/>
+                    {/* <select className={classes.input_div1} value={teacher} onChange={(e) => setTeacher(e.target.value)}>
                     {teacherData && teacherData?.map((element, index) => (<option key={index} selected value={element.user_id}>{element.preferred_name}</option>))}
-                    </select>
+                    </select> */}
                 </div>
                 {/* <LabelledInput cls={classes.cls_W} id={'class name'} label={"Teacher's Name"} value={teacher} func={setTeacher}/> */}
 
@@ -124,7 +125,7 @@ const AddExtraClass = ({id, popupFunc, isPopup, setShow, show,  data1 }) => {
             </div>
 
             <div className={classes.bottom}>
-                {/* <button type='submit' onClick={() => { popupFunc(!isPopup) }}>Cancel</button> */}
+                <button type='submit' onClick={() => { popupFunc(!isPopup) }}>Cancel</button>
                 <button style={{ background: "black", color: "white" }} disabled={isLoading} onClick={handleDataUpload}>Add Extra Class</button>
             </div>
         </Modal>

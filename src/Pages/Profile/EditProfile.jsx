@@ -26,6 +26,8 @@ const EditProfile = () => {
     const [profileImg, setProfileImg] = useState('')
     const [countryData, setCountryData] = useState([])
 const[loading, setLoading] = useState(false)
+const [basicDetail, setBasicDetail] = useState({})
+
     const data = [
         {
             label: "Name",
@@ -106,6 +108,8 @@ const[loading, setLoading] = useState(false)
         setEmail(res.data.data.userDetails.email)
         setPhone(res.data.data.userDetails.mobile_number)
         setProfileImg(res.data.data.userDetails?.profile_img_url)
+        setBasicDetail(res.data.data?.profileDetails)
+
         // console.log(res.data.data?.testimonialResponse)
     }
 
@@ -173,7 +177,7 @@ const[loading, setLoading] = useState(false)
                 <Heading cls={classes.my_page_heading} heading={'Profile Details'} p='Here you can see your Profile ' />
 
             </div>
-            <ProfileHeader profileUpdater={profileImg} icon={true} getData={getData} />
+            <ProfileHeader user_info={basicDetail}  profileUpdater={profileImg} icon={true} getData={getData} />
 
             <Container cls={classes.flex}>
                 <div className={`${classes.flex2} `} style={{ border: "none", padding: "0" }}>
@@ -211,7 +215,7 @@ const[loading, setLoading] = useState(false)
 
                 <div className={classes.bottom}>
                     <button >Cancel</button>
-                    <button onClick={handleEdit} disabled={loading}>Add Class</button>
+                    <button onClick={handleEdit} disabled={loading}>Edit Profile</button>
                 </div>
 
             </Container>

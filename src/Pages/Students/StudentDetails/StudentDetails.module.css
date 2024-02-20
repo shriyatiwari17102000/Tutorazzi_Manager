@@ -310,6 +310,28 @@ margin-bottom:10px
     width: 100%;
     outline: none;
 }
+
+.top1{
+    color: #9F0000;
+    background: #FFCBCB;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 17px;
+    align-items: center;
+}
+.top1 > h1{
+font-size: 14px;
+font-weight: 500;
+}
+.top1 > button {
+    color: #9F0000;
+    background: none;
+    border: none;
+    font-size: 18px;
+    font-weight: 500;
+}
 /* .wd{width: 49% !important;} */
 @media (width < 600px){
   .sb_div{

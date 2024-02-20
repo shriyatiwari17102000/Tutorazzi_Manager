@@ -62,7 +62,8 @@ console.log(id)
 useEffect(()=>{
     getDetail()
 },[])
-let stu_id = data?.studentDetails?._id
+let stu_id = data?.studentDetails?.user_id?.id
+console.log(stu_id)
 let teac_id = data?.teacherDetails?._id
 const navigate = useNavigate()
 const handleNavigate = () => {

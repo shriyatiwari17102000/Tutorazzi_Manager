@@ -127,6 +127,7 @@ useEffect(() => {
     }
   
  }
+ console.log(userdata?.preferred_name)
   return (
     <div className={classes.profile_div}>
        <label className={classes.prof_label}>

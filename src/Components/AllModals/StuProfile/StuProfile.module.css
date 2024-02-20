@@ -239,15 +239,15 @@ ul li span{
 font-size: 14px;
 font-weight: 500;
 }
-.cont{
-    padding: 20px;
-    height: 400px;
-    overflow: scroll;
-}
 .top1 > button {
     color: #9F0000;
     background: none;
     border: none;
     font-size: 18px;
     font-weight: 500;
+}
+.cont{
+    padding: 20px;
+    height: 400px;
+    overflow: scroll;
 }

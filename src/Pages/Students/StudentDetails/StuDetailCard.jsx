@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import classes from './StudentDetails.module.css'
 import BundleDetail from '../../../Components/AllModals/StuProfile/BundleDetail'
 import AddExtraClass from '../../../Components/AllModals/Quote/AddExtraClass'
+import Moment from 'react-moment'
 
 const StuDetailCard = (props) => {
     const [show, setShow] = useState(false)
@@ -24,7 +25,7 @@ const StuDetailCard = (props) => {
                     <h1>{data?.subject_name} {data?.class_count && <span className={classes.cls_span}>x{data?.class_count}</span>}</h1>
                     <div className={classes.flex}>
                         {data?.curriculum_name && <p>{data?.curriculum_name} Curriculum </p>}
-                        {data?.due_date && <p>Due Date : <>20/02/2023</></p>}
+                        {data?.due_date && <p>Due Date : <Moment format='DD/MM/YYYY'>{data?.due_date}</Moment></p>}
                     </div>
                 </div>
                 <div>
