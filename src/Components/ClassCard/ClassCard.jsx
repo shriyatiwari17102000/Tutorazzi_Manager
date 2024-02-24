@@ -202,7 +202,10 @@ const ClassCard = (props) => {
       default:
         return <>
           <div className={classes.flex}>
-            <p><Moment format="hh:mm A">{data.start_time}</Moment></p>
+            {data.start_time &&(
+              <div style={{display: "flex", gap:"5px"}}>
+               <p><Moment format="hh:mm A">{data.start_time}</Moment>  &</p><p><Moment format="hh:mm A">{data.end_time}</Moment></p></div>
+            )}
             <p><Moment format='DD/MM/YYYY'>{data.start_time}</Moment></p>
           </div>
           <div className={classes.flex}>

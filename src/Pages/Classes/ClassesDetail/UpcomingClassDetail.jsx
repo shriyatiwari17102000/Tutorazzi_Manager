@@ -14,11 +14,14 @@ import axios from 'axios'
 import Moment from 'react-moment'
 import moment from 'moment'
 import RescheduleClasses from '../../../Components/AllModals/RescheduleModal copy/RescheduleClasses'
+import { toast } from 'react-toastify'
+import ToasterUpdate from '../../../Components/Toaster/ToasterUpdate'
 
 
 const UpcomingClassDetail = () => {
     const [popup, setPop] = useState(false)
     const [data, setData] = useState([])
+    const[loading, setLoading] = useState(false)
     const {id} = useParams()
     console.log(id)
     const popupHandler = () => {
@@ -55,6 +58,35 @@ const UpcomingClassDetail = () => {
         navigate(`/student/details/${stu_id}`)
     }
 
+    const startMeet = async() => {
+        let register = `${BASE_URL}/join-class`
+        const myToast = toast.loading('Please Wait...')
+        setLoading(true)
+       try {
+        let res = await axios.post(register, {class_id : id}, {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`
+            }
+          })
+          if (!res.data.success) {
+                    ToasterUpdate(myToast, res.data.message, "error")
+                    return
+                }
+          console.log(res)
+          let token1 = res.data.data.tokenData.token
+        //   setData(res.data.data)
+        navigate(`/meet/${token1}`);
+        ToasterUpdate(myToast, res.data.message, "success")
+       } catch (error) {
+        console.log(error)
+        ToasterUpdate(myToast, error.message, "error")
+       }
+       finally{
+        setLoading(false)
+       }
+      };
+
     return (
         <React.Fragment>
             <Heading heading={'Upcoming Class Details'} p={'Porem ipsum dolor sit amet, consectetur adipiscing elit.'} >
@@ -73,7 +105,7 @@ const UpcomingClassDetail = () => {
                             <h5><Moment format="DD/MM/YYYY">{data?.classDetails?.start_time}</Moment></h5>
                         </div>
                     </div>
-                    <button className={classes.header_btn}>Set Reminder</button>
+                    <button className={classes.header_btn} onClick={startMeet}>Join Class</button>
                 </Container>
                 <Container cls={classes.inner_box}>
                     <h4 className={classes.secondary_heading}>Description</h4>

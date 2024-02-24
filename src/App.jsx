@@ -32,6 +32,7 @@ import TrialClassPast from './Pages/Classes/ClassesDetail/TrialClassPast'
 import ForgotPassword from './Components/UserSignUp/ForgotPassword'
 import Profile from './Pages/Profile/Profile'
 import EditProfile from './Pages/Profile/EditProfile'
+import Meet from './Components/DyteIo/Meet'
 
 
 const App = () => {
@@ -90,7 +91,7 @@ const App = () => {
               <Route path='/classes/past-details/:id' element={<PastClassDetail />} />
               <Route path='/classes/trial-details/:id' element={<TrialClassDetail />} />
               <Route path='/classes/trial-past-details/:id' element={<TrialClassPast />} />
-
+              <Route path="/meet/:token" element={<Meet/>} />
               <Route path='chats'>
                 <Route index element={<Chat />} />
               </Route>
