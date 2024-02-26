@@ -216,6 +216,9 @@
 .my_task_container {
     height: 380px;
 }
+.my_tasks2 {
+    height: fit-content;
+}
 
 .my_tasks {
     height: calc(100% - 30px);

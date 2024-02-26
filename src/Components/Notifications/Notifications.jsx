@@ -96,7 +96,7 @@ ToasterUpdate(myToast, res.data.message, "success")
               func={getNotification}
             />
           ))}
-          <button className={classes.markasread} onClick={markAsRead} disabled={loading}>Mark as Read</button>
+          <button className={classes.markasread} onClick={markAsRead} disabled={loading}>Mark as Read All</button>
         </div> : <div style={{ padding: "10px" }}>
           0 notifications or announcements
         </div>}

@@ -115,6 +115,8 @@ useEffect(() => {
           autoClose: 1500
         });
         
+        Cookies.set("tutorazzi_academic", JSON.stringify({...profileToken, user:{...profileToken.user, profile_image_url:null}}))
+        setProfile(null)
         props.getData()
     } catch (error) {
       toast.update(myToast, {

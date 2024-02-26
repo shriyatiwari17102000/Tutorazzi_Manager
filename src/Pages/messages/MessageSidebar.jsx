@@ -239,9 +239,7 @@ const MessageSidebar = (props) => {
                   ?.filter((o) => o.student.name.includes(search))
                   .map((item, index) => (
                     <div
-                      // value=""
                       className="inn_msg_icon"
-                      // style={{ textTransform: "capitalize", cursor:"pointer" }}
                       key={index}
                       onClick={() => handleSearchUser(item.student)}
                     >

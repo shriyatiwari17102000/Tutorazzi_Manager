@@ -25,7 +25,8 @@
 /* Refer Div */
 
 .heading {
-    font-weight: 600;
+    font-weight: 500;
+    font-size: 16px;
 }
 
 .refer_div_container {
@@ -66,6 +67,13 @@
     flex-direction: column;
     row-gap: 20px;
     height: 380px;
+}
+.no_data {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    height: fit-content;
 }
 
 .homeowrk_fold_container {

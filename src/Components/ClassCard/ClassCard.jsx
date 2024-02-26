@@ -93,6 +93,7 @@ const ClassCard = (props) => {
           ToasterUpdate(myToast, res.data.message, "error")
         }
         ToasterUpdate(myToast, res.data.message, "success")
+        props?.func()
       } catch (error) {
         console.log(error)
         ToasterUpdate(myToast, error.message, "error")

@@ -86,6 +86,8 @@
 }
 
 .nav_div1{
+    position: absolute;
+    width: 100%;
     background: white;
       border: 1px solid #d9d9d9;
       margin: 10px 0;

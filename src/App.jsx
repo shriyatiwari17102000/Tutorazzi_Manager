@@ -33,6 +33,7 @@ import ForgotPassword from './Components/UserSignUp/ForgotPassword'
 import Profile from './Pages/Profile/Profile'
 import EditProfile from './Pages/Profile/EditProfile'
 import Meet from './Components/DyteIo/Meet'
+import PrivateComponent from './Components/privateComponents/PrivateComponent'
 
 
 const App = () => {
@@ -63,6 +64,7 @@ const App = () => {
         <Layout>
           <main className='main_container'>
             <Routes>
+            <Route element={<PrivateComponent />}>
               <Route path='/dashboard' element={<Overview />} />
               <Route path='student'>
                 <Route index element={<Students />} />
@@ -108,6 +110,7 @@ const App = () => {
               <Route path='support'>
                 <Route index element={<Support />} />
                 <Route path="/support/details/:id" element={<SupportDetails />} />
+              </Route>
               </Route>
             </Routes>
           </main>

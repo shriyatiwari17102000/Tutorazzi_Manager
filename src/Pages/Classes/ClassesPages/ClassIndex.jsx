@@ -11,82 +11,10 @@ import { BASE_URL } from '../../../Apis/BaseUrl'
 import axios from 'axios'
 import NewPagination from '../../../Components/NewPagination/NewPagination'
 import SearchBar from '../../../Components/SearchBar/SearchBar'
-
-// const data1 = [
-//     {
-//         title: 'Maths Class',
-//         timing: '10:30pam to 11:30am',
-//         date: '16/07/2023',
-//         teacher: 'Amanjeet Singh',
-//         student: 'Puneet Shrivastav',
-//         tags: ['accept']
-//     },
-//     {
-//         title: 'Maths Class',
-//         timing: '10:30pam to 11:30am',
-//         date: '16/07/2023',
-//         teacher: 'Amanjeet Singh',
-//         student: 'Puneet Shrivastav',
-//         tags: ['accept']
-//     },
-//     {
-//         title: 'Maths Class',
-//         timing: '10:30pam to 11:30am',
-//         date: '16/07/2023',
-//         teacher: 'Amanjeet Singh',
-//         student: 'Puneet Shrivastav',
-//         tags: ['accept']
-//     },
-//     {
-//         title: 'Maths Class',
-//         timing: '10:30pam to 11:30am',
-//         date: '16/07/2023',
-//         teacher: 'Amanjeet Singh',
-//         student: 'Puneet Shrivastav',
-//         tags: ['accept']
-//     },
-//     {
-//         title: 'Maths Class',
-//         timing: '10:30pam to 11:30am',
-//         date: '16/07/2023',
-//         teacher: 'Amanjeet Singh',
-//         student: 'Puneet Shrivastav',
-//         tags: ['accept']
-//     },
-// ]
-// const data2 = [
-//     {
-//         title: 'Maths Class',
-//         timing: '10:30pam to 11:30am',
-//         date: '16/07/2023',
-//         teacher: 'Amanjeet Singh',
-//         student: 'Puneet Shrivastav',
-//         tags: ['done']
-//     },
-//     {
-//         title: 'Maths Class',
-//         timing: '10:30pam to 11:30am',
-//         date: '16/07/2023',
-//         teacher: 'Amanjeet Singh',
-//         student: 'Puneet Shrivastav',
-//         tags: ['done']
-//     },
-//     {
-//         title: 'Maths Class',
-//         timing: '10:30pam to 11:30am',
-//         date: '16/07/2023',
-//         teacher: 'Amanjeet Singh',
-//         student: 'Puneet Shrivastav',
-//         tags: ['done']
-//     }, {
-//         title: 'Maths Class',
-//         timing: '10:30pam to 11:30am',
-//         date: '16/07/2023',
-//         teacher: 'Amanjeet Singh',
-//         student: 'Puneet Shrivastav',
-//         tags: ['done']
-//     }
-// ]
+import DatePicker from 'react-date-picker'
+import 'react-date-picker/dist/DatePicker.css';
+import 'react-calendar/dist/Calendar.css'; 
+import moment from 'moment'
 
 const ClassIndex = () => {
 
@@ -96,14 +24,15 @@ const ClassIndex = () => {
     const [page, setPage] = useState(1);
     const [pageInfo, setPageInfo] = useState({});
     const [search, setSearch] = useState('');
+    const [value, onChange] = useState('');
 
     const tutToken = Cookies.get("tutorazzi_academic")
     const getTutToken = JSON.parse(tutToken)
     const token = getTutToken.access_token
 
     const getRescheduleData = async () => {
-
-        let register = `${BASE_URL}/upcoming-classes?limit=${limit}&page=${page}&search=${search}`
+        let dateValue = value ? moment(value).format('YYYY-MM-DD') : " "; 
+        let register = `${BASE_URL}/upcoming-classes?limit=${limit}&page=${page}&search=${search}&date=${dateValue}`
         console.log(register)
         let res = await axios.get(register, {
             headers: {
@@ -117,11 +46,11 @@ const ClassIndex = () => {
     }
     useEffect(() => {
         getRescheduleData()
-    }, [limit, page, search])
+    }, [limit, page, search, value])
 
     const getPastData = async () => {
-
-        let register = `${BASE_URL}/past-classes?limit=${limit}&page=${page}&search=${search}`
+        let dateValue = value ? moment(value).format('YYYY-MM-DD') : " "; 
+        let register = `${BASE_URL}/past-classes?limit=${limit}&page=${page}&search=${search}&date=${dateValue}`
         console.log(register)
         let res = await axios.get(register, {
             headers: {
@@ -135,7 +64,7 @@ const ClassIndex = () => {
     }
     useEffect(() => {
         getPastData()
-    }, [limit, page, search])
+    }, [limit, page, search, value])
 
     const paginationProps = {
         setPage,
@@ -158,7 +87,11 @@ const ClassIndex = () => {
                     <button onClick={() => setInx(0)} className={inx === 0 ? classes.active : ''}>Upcoming Classes</button>
                     <button onClick={() => setInx(1)} className={inx === 1 ? classes.active : ''}>Past Classes</button>
                 </div>
-                <SearchBar cls={classes.sb} search={search} setSearch={setSearch} />
+          <div className={classes.sb_div}>
+          <SearchBar cls={classes.sb} search={search} setSearch={setSearch} />
+                <DatePicker className={classes.choose_date} onChange={onChange} value={value} />
+          </div>
+
             </div>
 
             {

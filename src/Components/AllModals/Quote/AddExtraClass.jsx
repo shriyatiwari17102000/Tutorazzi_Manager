@@ -100,12 +100,12 @@ const AddExtraClass = ({id, popupFunc, isPopup, setShow, show,  data1 }) => {
 
             <div className={classes.body}>
                 <LabelledInput cls={classes.wd} id={'class name'} label={'Class Name'} value={classNames} func={setClassNames}/>
-                <LabelledInput cls={classes.wd} id={'class count'} label={'Class Count'} value={classCount} func={setClassCount}/>
+                <LabelledInput cls={classes.wd} id={'class count'} type="number" label={'Class Count'} value={classCount} func={setClassCount}/>
                 {/* <LabelledInput cls={classes.wd} id={'price'} label={'Price Per Class'} value="gggg" /> */}
                 <div className={classes.input_con}>
                     <label htmlFor="price">Price Per Class</label>
                 <div className={classes.boxed_input}>
-                    <div className={classes.sign}>$</div>
+                    <div className={classes.sign}>₹</div>
                     <input type="number" min={0}  value={price} onChange={(e)=> setPrice(e.target.value)} />
                 </div>
                 </div>

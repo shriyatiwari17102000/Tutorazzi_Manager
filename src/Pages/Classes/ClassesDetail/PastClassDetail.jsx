@@ -85,27 +85,28 @@ const PastClassDetail = () => {
                         <div className={classes.link} style={{cursor:"pointer"}}  onClick={handleNavigate} >View Profile</div>
                     </UserDiv>
                 </Container>
+                {data.length > 0 &&
                 <Container cls={`${classes.inner_box1}`}>
                     <h4 className={classes.secondary_heading}>Class Resources</h4>
-                    {data?.classDetails?.materials_url.map((item, index) => (
+                   {data?.classDetails?.materials_url.map((item, index) => (
                         <DownloadPdf item={item} />
-                    ))}
+                    )) }
                     {/* <DownloadPdf />
                     <DownloadPdf />        
                     <DownloadPdf />
                     <DownloadPdf /> */}
-                </Container>
+                </Container> }
                 <Container cls={`${classes.inner_box}`}>
                     <h4 className={classes.secondary_heading}>Teacher’s Instructions</h4>
                     <p className={`${classes.instruction}`}>
-                        {data?.classDetails?.notes}
+                        {data?.classDetails?.notes ? data?.classDetails?.notes : "no instruction found" }
                     </p>
                 </Container>
 
 
                 {/* Homework and IDk */}
                 <HomeworkDiv cls={classes.small_box} data={data?.homeworkResponse}  />
-                <Container cls={`${classes.inner_box} ${classes.small_box} ${classes.my_task_container}`}>
+                <Container cls={`${classes.inner_box} ${classes.small_box} ${data?.taskResponse?.length > 0 ? classes.my_tamy_task_containersks : classes.my_tasks2}`}>
                     <h4 className={classes.secondary_heading}>Task Information</h4>
                     <TasksMap cls={classes.my_tasks} data={data?.taskResponse} func={getUpcomingData} />
                 </Container>

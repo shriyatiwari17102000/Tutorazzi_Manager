@@ -6,13 +6,15 @@ import HomeworkFold from '../../../Components/AllFolds/Homework/HomeworkFold'
 const HomeworkDiv = props => {
   // console.log(props?.data)
   const {data} = props
+
+  let classData = data?.length > 0 ? classes.homework_div : classes.no_data
   return (
-    <Container cls={`${classes.homework_div} ${props.cls}`}>
+    <Container cls={`${classData} ${props.cls}`}>
         <h3 className={classes.heading}>Homework</h3>
         <div className={classes.homeowrk_fold_container}>
-          {data?.map((item, index) => (
+          {data?.length > 0 ? data?.map((item, index) => (
             <HomeworkFold data={item} open={true}  />
-          ))}
+          )) : "no data found!"}
             {/* <HomeworkFold open={true} />
             <HomeworkFold />
             <HomeworkFold />

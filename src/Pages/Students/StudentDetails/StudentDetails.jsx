@@ -356,7 +356,7 @@ const StudentDetails = () => {
       bg: '#FFACAC',
     },
     {
-      h1: data1?.last_payment || 0,
+      h1: "₹" + data1?.last_payment || 0,
       p: 'Last Payment',
       color: '#BCCFFF',
       bg: '#DBE5FF',
