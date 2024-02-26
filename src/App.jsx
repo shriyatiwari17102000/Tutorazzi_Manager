@@ -33,7 +33,7 @@ import ForgotPassword from './Components/UserSignUp/ForgotPassword'
 import Profile from './Pages/Profile/Profile'
 import EditProfile from './Pages/Profile/EditProfile'
 import Meet from './Components/DyteIo/Meet'
-import PrivateComponent from './Components/privateComponents/PrivateComponent'
+import PrivateComponent from './Components/PrivateComponents/PrivateComponent'
 
 
 const App = () => {
