@@ -12,10 +12,32 @@
     grid-column: span 4;
   }
 }
+.choose_date > div:nth-child(1) {
+  border: 1px solid #d9d9d9;
+  border-radius: var(--br);
+  height: 45px;
+  width: max-content;
+  padding-inline: 10px;
+  font-size: 13px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 10px;
+}
+
+.choose_date svg {
+  width: 14px;
+  stroke: #757272;
+}
 
 .sb{
   border: 1px solid var(--border);
   border-radius: var(--br);
+}
+.sb_div{
+  display: flex;
+  gap: 10px;
 }
 .cont{
   padding: 20px 20px 20px 0;

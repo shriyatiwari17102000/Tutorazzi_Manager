@@ -11,6 +11,9 @@ import axios from 'axios';
 import NewPagination from '../../Components/NewPagination/NewPagination';
 import PaymentGraph from './PaymentGraph';
 import Container from '../../UI/Container/Container';
+import DatePicker from 'react-date-picker'
+import 'react-date-picker/dist/DatePicker.css';
+import 'react-calendar/dist/Calendar.css';  
 
 
 const data = [
@@ -40,13 +43,14 @@ const Payment = () => {
   const[pageInfo, setPageInfo] = useState({})
   const[search, setSearch] = useState('')
 const[graphData, setGraphData] = useState([])
+const [value, onChange] = useState('');
 
   const tutToken = Cookies.get("tutorazzi_academic")
   const getTutToken = JSON.parse(tutToken)
   const token = getTutToken.access_token
   const getPayment = async () => {
-
-    let register = `${BASE_URL}/payments?limit=${limit}&page=${page}&search=${search}`
+    let dateValue = value ? moment(value).format('YYYY-MM-DD') : " "; 
+    let register = `${BASE_URL}/payments?limit=${limit}&page=${page}&search=${search}&date=${dateValue}`
     // console.log(register)
     let res = await axios.get(register, {
       headers: {
@@ -60,7 +64,7 @@ const[graphData, setGraphData] = useState([])
   }
   useEffect(() => {
     getPayment()
-  }, [limit, page, search])
+  }, [limit, page, search, value])
 const paginationProps = {
   setPage,
   pageInfo
@@ -92,8 +96,9 @@ useEffect(() => {
       <Heading heading={'Monthly Payments'}   cls={classes.cont2} />
     </Container>
       <Heading heading={'Payments Details'} p={''} >
-        <div className={classes.sb}>
-          <SearchBar  search={search} setSearch={setSearch}/>
+        <div className={classes.sb_div} >
+          <SearchBar cls={classes.sb}  search={search} setSearch={setSearch}/>
+          <DatePicker className={classes.choose_date} onChange={onChange} value={value} />
         </div>
       </Heading>
 
