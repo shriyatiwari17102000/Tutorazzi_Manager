@@ -14,6 +14,7 @@ import Container from '../../UI/Container/Container';
 import DatePicker from 'react-date-picker'
 import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';  
+import moment from 'moment';
 
 
 const data = [
@@ -65,6 +66,7 @@ const [value, onChange] = useState('');
   useEffect(() => {
     getPayment()
   }, [limit, page, search, value])
+  
 const paginationProps = {
   setPage,
   pageInfo
