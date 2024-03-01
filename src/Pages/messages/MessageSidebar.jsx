@@ -25,7 +25,7 @@ const MessageSidebar = (props) => {
     if (token) {
       const parseToken = JSON.parse(token).access_token;
       // const register = `${BASE_URL}/student/all?limit=20&page=1`;
-      const register = `${BASE_URL}/all?limit=10&page=1`;
+      const register = `${BASE_URL}/all?limit=10&page=1&search=${search}`;
 
       let x = axios
         .get(register, {
@@ -35,7 +35,7 @@ const MessageSidebar = (props) => {
           },
         })
         .then((res) => {
-       
+
           setUser(res.data.data?.docs);
           console.log(res.data.data.docs);
         })
@@ -65,7 +65,7 @@ const MessageSidebar = (props) => {
     console.log(user.empty);
 
     if (user.empty) {
-         db.collection("users").add({
+      db.collection("users").add({
         uid: chatInfo.id,
         profile: chatInfo.profile,
         name: chatInfo.name,
@@ -78,7 +78,7 @@ const MessageSidebar = (props) => {
       .get();
 
     if (user1.empty) {
-      
+
       db.collection("users").add({
         uid: uid.user.id,
         profile: uid.profileUrl || null,
@@ -92,7 +92,7 @@ const MessageSidebar = (props) => {
       .where("user2", "==", chatInfo.id)
       .get();
     console.log(checkUser.empty, "check");
-   
+
     if (checkUser.empty) {
       let checkUser2 = await db
         .collection("userChats")
@@ -135,7 +135,7 @@ const MessageSidebar = (props) => {
       let resData = [];
       checkUser.forEach((doc) => {
         if (doc.exists) {
-                 resData.push({ ...doc.data(), id: doc.id });
+          resData.push({ ...doc.data(), id: doc.id });
         }
       });
       userChats = resData[0];
@@ -201,14 +201,14 @@ const MessageSidebar = (props) => {
   useEffect(() => {
     msgData()
   }, []);
-  
+
   if (props.func) {
     msgData()
     props.func2()
   }
 
   const selectData = (item) => {
-    props.selectChat(item) 
+    props.selectChat(item)
     props.setFunc(!props.value)
   }
 
@@ -235,8 +235,20 @@ const MessageSidebar = (props) => {
           {search && (
             <div className="msgside_div">
               <div className="msgside_div1">
+                {/* {user
+                  ?.filter((o) => o.student.name.toLowerCase().includes(search))
+                  .map((item, index) => (
+                    <div
+                      className="inn_msg_icon"
+                      key={index}
+                      onClick={() => handleSearchUser(item.student)}
+                    >
+                      <FaUser className="inn_msg_icon_svg" />
+                      {item.student.name}
+                    </div>
+                  ))} */}
                 {user
-                  ?.filter((o) => o.student.name.includes(search))
+                  ?.filter((o) => o.student.name.toLowerCase().includes(search.toLowerCase()))
                   .map((item, index) => (
                     <div
                       className="inn_msg_icon"
@@ -247,9 +259,13 @@ const MessageSidebar = (props) => {
                       {item.student.name}
                     </div>
                   ))}
-                {user?.filter((o) => o.student.name.includes(search)).length === 0 && (
+                {user?.filter((o) => o.student.name.toLowerCase().includes(search.toLowerCase())).length === 0 && (
                   <div>no result found</div>
                 )}
+
+                {/* {user?.filter((o) => o.student.name.toLowerCase().includes(search)).length === 0 && (
+                  <div>no result found</div>
+                )} */}
               </div>
             </div>
           )}
@@ -295,7 +311,7 @@ const MessageSidebar = (props) => {
           return (
             <div
               // onClick={() => props.selectChat(item)}
-              onClick={() =>selectData(item)}
+              onClick={() => selectData(item)}
               className="userChat1 "
               style={{ cursor: "pointer" }}
             >
