@@ -40,8 +40,9 @@ const QuoteModal = ({ popupFunc, isPopup, func, data1 }) => {
             },
         })
 
-        console.log(response.data.data)
+        console.log(response.data.data[0])
         setSub(response.data.data)
+        setSubject(response.data.data[0])
     }
 
     useEffect(() => {
@@ -151,7 +152,7 @@ const QuoteModal = ({ popupFunc, isPopup, func, data1 }) => {
                 <div className={classes.input_con}>
                     <label htmlFor="price">Price Per Class</label>
                 <div className={classes.boxed_input}>
-                    <div className={classes.sign}>$</div>
+                    <div className={classes.sign}>₹</div>
                     <input type="number" min={0}  value={price} onChange={(e)=> setPrice(e.target.value)} />
                 </div>
                 </div>
