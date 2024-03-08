@@ -98,10 +98,10 @@ const Classes = () => {
     setHomeworkData(res.data.data)
   }
 
-  data[0].h1 = trialData
-  data[1].h1 = rescheduleData
-  data[2].h1 = resourceData
-  data[3].h1 = homeworkData
+  data[0].h1 = trialData || 0
+  data[1].h1 = rescheduleData || 0
+  data[2].h1 = resourceData || 0
+  data[3].h1 = homeworkData || 0
 
   useEffect(() => {
     getTrialData()
