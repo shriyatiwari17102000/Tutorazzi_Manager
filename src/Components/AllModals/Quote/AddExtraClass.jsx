@@ -56,7 +56,7 @@ const AddExtraClass = ({id, popupFunc, isPopup, setShow, show,  data1 }) => {
         // console.log(register)
         // console.log({ start_time: timeDate })
         let bdy = {
-            teacher_id: data1.teacher_id,
+            teacher_id: data1.teacher_id || data1.teacher_id._id,
             student_id: id,
             amount: price,
             class_count: classCount,
@@ -111,7 +111,7 @@ const AddExtraClass = ({id, popupFunc, isPopup, setShow, show,  data1 }) => {
                 </div>
                 <div className={classes.wd}>
                     <label className={classes.label1}>Select Teacher</label>
-                    <input className={classes.input_div1} type='text' value={data1?.teacher_name} readOnly/>
+                    <input className={classes.input_div1} type='text' value={data1?.teacher_name ? data1?.teacher_name : data1?.teacher_id?.name} readOnly/>
                     {/* <select className={classes.input_div1} value={teacher} onChange={(e) => setTeacher(e.target.value)}>
                     {teacherData && teacherData?.map((element, index) => (<option key={index} selected value={element.user_id}>{element.preferred_name}</option>))}
                     </select> */}
