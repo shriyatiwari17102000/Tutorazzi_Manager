@@ -10,7 +10,7 @@ import { BASE_URL } from '../../../Apis/BaseUrl'
 import classes from "./Quote.module.css"
 import LabelledInput from '../../LabelledInput/LabelledInput'
 
-const AddExtraClass = ({id, popupFunc, isPopup, setShow, show,  data1 }) => {
+const AddExtraClass = ({id, popupFunc, isPopup, func, setShow, show,  data1 }) => {
     // console.log(data1)
     console.log("fhjfgfgfggfh")
     const [query, setQuery] = useState('')
@@ -18,8 +18,6 @@ const AddExtraClass = ({id, popupFunc, isPopup, setShow, show,  data1 }) => {
     const[classCount, setClassCount] = useState('')
     const[classNames, setClassNames] = useState('')
     const [isLoading, setLoading] = useState(false)
-    const[teacherData, setTeacherData] = useState([])
-    const[teacher, setTeacher] = useState("")
 
     const handleQueryChange = (e) => {
         setQuery(e.target.value);
@@ -80,7 +78,8 @@ const AddExtraClass = ({id, popupFunc, isPopup, setShow, show,  data1 }) => {
 
             console.log(response)
             ToasterUpdate(myToast, response.data.message, "success")
-            setShow(!show)
+            func && func()
+           setShow && setShow(!show)
         } catch (error) {
             ToasterUpdate(myToast, error.message, "error")
         }
