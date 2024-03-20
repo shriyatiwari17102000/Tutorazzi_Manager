@@ -177,7 +177,9 @@
     width: 49.5%;
     height: 379px;
 }
-
+.sb2{
+    height: fit-content;
+}
 .more_small_box {
     width: 40%;
 }

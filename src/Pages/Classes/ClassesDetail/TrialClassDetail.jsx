@@ -11,9 +11,14 @@ import axios from 'axios'
 import Moment from 'react-moment'
 import { BiDislike } from 'react-icons/bi'
 import { FcLike } from "react-icons/fc";
+import SlotModal from '../../../Components/AllModals/ScheduleSlotModal/SlotModal'
 
 const TrialClassDetail = () => {
     const[data, setData] = useState([])
+    const [popup, setPop] = useState(false)
+    const popupHandler = () => {
+        setPop(!popup) 
+    }
     const {id} = useParams()
     console.log(id)
     const tutToken = Cookies.get("tutorazzi_academic")
@@ -39,7 +44,7 @@ const TrialClassDetail = () => {
     console.log(data?.studentDetails?.curriculum)
     return (
         <React.Fragment>
-            <Heading heading={'Trial Class Details'} p={'Porem ipsum dolor sit amet, consectetur adipiscing elit.'} >
+            <Heading heading={'Trial Class Details'} p={'Porem ipsum dolor sit amet, consectetur adipiscing elit.'} btn={'Show all Slots'} btnFunction={popupHandler} btnValue={popup} >
             </Heading>
             <div className={classes.box}>
                 <Container cls={classes.header}>
@@ -58,17 +63,15 @@ const TrialClassDetail = () => {
                     <p className={classes.page_para}>
                        {data?.classDetails?.details ? data?.classDetails?.details : "no data found!"}
                     </p>
-                    {/* <p className={classes.page_para}>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat mollitia tempore veritatis totam optio! Ad sit qui porro aspernatur impedit quam architecto quas enim ratione, beatae eum ea magni fugit voluptatem reiciendis ducimus voluptatibus! Laboriosam eveniet sit quisquam excepturi accusantium sequi incidunt natus quam, ratione, quod velit pariatur a laudantium.
-                    </p> */}
+                   
                 </Container>
-                <Container cls={`${classes.inner_box} ${classes.small_box}`}>
+                <Container cls={`${classes.inner_box} ${classes.small_box}  ${classes.sb2}`}>
                     <h4 className={classes.secondary_heading}>Teacher's Details</h4>
                     <UserDiv data={data?.teacherDetails}>
                         <Link className={classes.link} to="/">View Profile</Link>
                     </UserDiv>
                 </Container>
-                <Container cls={`${classes.inner_box} ${classes.small_box}`}>
+                <Container cls={`${classes.inner_box} ${classes.small_box} ${classes.sb2}`}>
                     <h4 className={classes.secondary_heading}>Student's Details</h4>
                     <UserDiv data={data?.classDetails?.student_id} curr={data?.studentDetails?.curriculum}>
                         <Link className={classes.link} to="/">View Profile</Link>
@@ -82,6 +85,7 @@ const TrialClassDetail = () => {
                 </Container>
               
             </div>
+            {popup && <SlotModal isPopup={popup} popupFunc={setPop} data1={data} />}
         </React.Fragment>
     )
 }
