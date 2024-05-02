@@ -115,7 +115,7 @@ const SlotModal = ({ popupFunc, isPopup, func, data1 }) => {
                         <p>{moment(item).format('hh:mm A')}</p>
                        
                     </label>
-                )) : "no slots available!"}
+                )) : "no slots available!a"}
 
 
 
