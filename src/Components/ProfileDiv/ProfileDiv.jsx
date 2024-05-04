@@ -145,17 +145,11 @@ useEffect(() => {
           <FallbackImage imgData={profile} cls={classes.img_div} alt="Profie Picture" />
          
         </label>
-        {/* <img src={img} alt="" /> */}
         <div className={classes.d2}>
             <h3 style={{textTransform:"capitalize"}}>{userdata?.preferred_name}</h3>
             <h5>Academic Manager</h5>
-            {/* <h5>+91 9311676139</h5> */}
         </div>
-        {/* <img src={img} alt="" />
-        <div>
-            <h3>Puneet Shrivastav</h3>
-            <h5>puneetsri9990@gmail.com</h5>
-        </div> */}
+      
     </div>
   )
 }

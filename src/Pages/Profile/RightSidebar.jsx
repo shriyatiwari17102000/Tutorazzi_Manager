@@ -24,8 +24,8 @@ const RightSidebar = ({ stuData, teacData }) => {
                         <div className={classes.inn_teach}>
                             <FallbackImage cls={classes.img2} imgData={item.user_id.profile_img_url} />
                             <div className={classes.teach_div2}>
-                                <h5>{item.preferred_name}</h5>
-                                <p>{item.curriculum.name}</p>
+                                <h5>{item?.preferred_name}</h5>
+                                <p>{item?.curriculum?.name}</p>
                             </div>
                         </div>
                     ))}
