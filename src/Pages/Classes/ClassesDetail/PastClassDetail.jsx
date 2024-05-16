@@ -18,11 +18,22 @@ import RatingCard from './RatingCard'
 import QuoteModal from '../../../Components/AllModals/Quote/QuoteModal'
 import { LuPlus } from "react-icons/lu";
 import { FaPlus } from 'react-icons/fa'
+import HomeWorkModal from './PastModal/HomeWorkModal'
+import TaskModal from './PastModal/TaskModal'
 
 
 const PastClassDetail = () => {
     const [show, setShow] = useState(false)
     const [data, setData] = useState({})
+    const [openModal, setOpenModal] = useState(false)
+    const[ID, setID] = useState('')
+ 
+
+    const handleOpenModal = (id) => {
+        setOpenModal(true)
+        setID(id)
+    }
+ 
 
     const popupHandler = () => {
         setShow(!show)
@@ -46,16 +57,20 @@ const PastClassDetail = () => {
         setData(res.data.data)
     }
     let teacherId = data?.teacherDetails?.user_id?._id
+    let studentId = data?.studentDetails?.user_id
     // console.log(teacherId)
     const navigate = useNavigate()
     const handleNavigate = () => {
-        console.log(`teacher-detail/${teacherId}`)
         navigate(`/teacher/details/${teacherId}`)
+    }
+    const handleNavigate2 = () => {
+        navigate(`/student/details/${studentId}`)
     }
 
     useEffect(() => {
         getUpcomingData()
     }, [])
+    console.log(data)
     return (
         <React.Fragment>
             <Heading heading={'Past Class Details'} p={'Porem ipsum dolor sit amet, consectetur adipiscing elit.'} >
@@ -79,22 +94,27 @@ const PastClassDetail = () => {
                         {data?.classDetails?.details ? data?.classDetails?.details : "No description found..."}
                     </p>
                 </Container>
-                <Container cls={`${classes.inner_box}`}>
+              <div style={{display:"flex", width:"100%", gap:"20px"}}>
+              <Container cls={`${classes.inner_box}`}>
                     <h4 className={classes.secondary_heading}>Teacher's Details</h4>
                     <UserDiv data={data?.teacherDetails}>
                         <div className={classes.link} style={{cursor:"pointer"}}  onClick={handleNavigate} >View Profile</div>
                     </UserDiv>
                 </Container>
+                <Container cls={`${classes.inner_box}`}>
+                    <h4 className={classes.secondary_heading}>Student's Details</h4>
+                    <UserDiv data={data?.studentDetails}>
+                        <div className={classes.link} style={{cursor:"pointer"}}  onClick={handleNavigate2} >View Profile</div>
+                    </UserDiv>
+                </Container>
+              </div>
                 {data.length > 0 &&
                 <Container cls={`${classes.inner_box1}`}>
                     <h4 className={classes.secondary_heading}>Class Resources</h4>
                    {data?.classDetails?.materials_url.map((item, index) => (
                         <DownloadPdf item={item} />
                     )) }
-                    {/* <DownloadPdf />
-                    <DownloadPdf />        
-                    <DownloadPdf />
-                    <DownloadPdf /> */}
+                  
                 </Container> }
                 <Container cls={`${classes.inner_box}`}>
                     <h4 className={classes.secondary_heading}>Teacher’s Instructions</h4>
@@ -105,9 +125,12 @@ const PastClassDetail = () => {
 
 
                 {/* Homework and IDk */}
-                <HomeworkDiv cls={classes.small_box} data={data?.homeworkResponse}  />
+                <HomeworkDiv cls={classes.small_box} data={data?.homeworkResponse} func={getUpcomingData} id={id} />
                 <Container cls={`${classes.inner_box} ${classes.small_box} ${data?.taskResponse?.length > 0 ? classes.my_tamy_task_containersks : classes.my_tasks2}`}>
-                    <h4 className={classes.secondary_heading}>Task Information</h4>
+                <div style={{display:"flex", justifyContent:"space-between"}}>
+                           <h4 className={`${classes.secondary_heading} w-auto`} style={{width:"auto"}} >Task Information</h4>
+                           <h4 className={`${classes.secondary_heading} w-auto`} style={{width:"auto", textDecoration:"underline", fontSize:"13px", cursor : "pointer"}}  onClick={handleOpenModal} >See All</h4>
+                           </div>
                     <TasksMap cls={classes.my_tasks} data={data?.taskResponse} func={getUpcomingData} />
                 </Container>
                 <Container cls={`${classes.inner_box}  ${classes.widthh}`} >
@@ -119,22 +142,12 @@ const PastClassDetail = () => {
                   <h4 className={classes.secondary_heading}>Rate this Class</h4>
                     <RatingCard data={data?.ratingsResponse} readonly={true} p={'Rate This Class By Selecting From 1 to 5 Stars To Express your Views'}/>
                   </div>
-                </Container>
-                {/* <Container cls={`${classes.inner_box}  ${classes.widthh}`} >
-                    <h4 className={classes.secondary_heading}>Rate this Class</h4>
-                    <RatingCard data={data?.ratingsResponse} readonly={true} p={"Rate This Class By Selecting From 1 to 5 Stars To Express your Views"}/>
-                </Container> */}
-
-
-{/* 
-                <div className={`${classes.inner_box} ${classes.my_upcoming_classes}`}>
-                    <h4 className={classes.secondary_heading}>Pricing Section</h4>
-                    <UpcomingClassCard />
-                      
-                </div> */}
+                </Container>              
              
             </div>
             {show && <QuoteModal isPopup={show} popupFunc={setShow} func={getUpcomingData}  data1={data} />}
+            {openModal && <TaskModal isPopup={openModal} func={getUpcomingData} popupFunc={setOpenModal}  data={data} id={ID} />}
+          
         </React.Fragment>
     )
 }

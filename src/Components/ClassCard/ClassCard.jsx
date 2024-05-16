@@ -28,7 +28,7 @@ const ClassCard = (props) => {
     const tutToken = Cookies.get("tutorazzi_academic")
     const getTutToken = JSON.parse(tutToken)
     const token = getTutToken.access_token
-
+console.log(tag)
     const notifyStudent = async (e) => {
       e.preventDefault()
       let register = `${BASE_URL}/notify-student`
@@ -178,6 +178,7 @@ const ClassCard = (props) => {
         return <>
           <div className={classes.flex}>
             <p>Student : <span>{data.class_id.student_name}</span></p>
+            <p>Teacher : <span>{data.class_id.teacher_name}</span></p>
             <p>Request Date : <Moment format="DD/MM/YYYY">{data.createdAt}</Moment></p>
 
           </div>

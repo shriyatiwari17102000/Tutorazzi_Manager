@@ -42,6 +42,7 @@ const Overview = () => {
   const[resourceData , setResourceData] = useState(0)
   const[ticketData , setTicketData] = useState(0)
   const[homeworkData , setHomeworkData] = useState(0)
+  const[allHomework , setAllHomework] = useState([])
   
   const d2 = [
     {
@@ -148,6 +149,20 @@ const Overview = () => {
     console.log(res.data.data)
     setHomeworkData(res.data.data)
   }
+  const getAllHomework = async () => {
+    const axiosData = `${BASE_URL}/homeworks?page=1&limit=3`
+    let res = await axios.get(axiosData, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+      }
+    })
+    console.log(res.data.data)
+    setAllHomework(res.data.data.docs)
+  }
+  useEffect(()=>{
+    getAllHomework()
+  },[])
 
   d2[0].h1 = trialData
   d2[1].h1 = rescheduleData
@@ -181,7 +196,7 @@ const Overview = () => {
         {d2.map(element => (<ColoredDiv {...element} key={element.id} />))}
 
         <ReferDiv />
-       <HomeworkDiv />
+       <HomeworkDiv data={allHomework}/>
       </div>
     </>
   )
