@@ -23,7 +23,7 @@ let getData = props.func
                            <h4 className={`${classes.secondary_heading} w-auto`} style={{width:"auto", textDecoration:"underline", fontSize:"13px", cursor : "pointer"}}  onClick={handleOpenHomeModal} >See All</h4>
                            </div>
         <div className={classes.homeowrk_fold_container}>
-          {data?.length > 0 ? data?.map((item, index) => (
+          {data?.length > 0 ? data?.slice().reverse().slice(0, 2).map((item, index) => (
             <HomeworkFold data={item} open={true}  />
           )) : "no data found!"}
             {/* <HomeworkFold open={true} />

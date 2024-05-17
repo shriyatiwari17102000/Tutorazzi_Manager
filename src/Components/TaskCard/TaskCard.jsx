@@ -6,8 +6,16 @@ import Cookies from 'js-cookie'
 import { BASE_URL } from '../../Apis/BaseUrl'
 import { toast } from 'react-toastify'
 import axios from 'axios'
+import ViewTaskDetail from '../../Pages/Classes/ClassesDetail/PastModal/ViewTaskDetail'
 const TaskCard = props => {
     const[isLoading, setLoading] = useState(false)
+    const [openModal, setOpenModal] = useState(false)
+    const [ID, setID] = useState('')
+
+    const handleShow = (id) => {
+        setOpenModal(true)
+        setID(id)
+    }
     // console.log(props.data)
     let id = props?.data?._id
     let profileTokenJson = Cookies.get("tutorazzi_academic");
@@ -56,9 +64,13 @@ const TaskCard = props => {
         }
     };
     return (
+        <>
         <Container cls={classes.card}>
             <div className={classes.header}>
-                <h5>{props?.data?.title}</h5>
+            <div style={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
+                                    <h5>{props?.data?.title}</h5>
+                                    <h4 className={`${classes.secondary_heading} w-auto`} style={{ width: "auto", textDecoration: "underline", fontSize: "13px", marginRight: "10px", cursor : "pointer" }} onClick={()=>handleShow(props?.data?._id)} >View Detail</h4>
+                                </div>
                 <img src={props?.data?.status === "Done" ? '/done.png' : '/alert.png'} alt="" />
             </div>
             <p className={classes.p}>
@@ -68,6 +80,8 @@ const TaskCard = props => {
             {props?.data?.status === "Pending" &&
                 <button type='button' onClick={handleMark} className={classes.btn} disabled={isLoading}>Mark Done</button>}
         </Container>
+         {openModal && <ViewTaskDetail id={ID} isPopup={openModal} popupFunc={setOpenModal} />}
+         </>
     )
 }
 

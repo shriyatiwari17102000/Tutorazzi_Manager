@@ -8,7 +8,7 @@ import FallbackImage from '../FallbackImgae/FallbackImage';
 const UserDiv = (props) => {
 // console.log(props.data)
     const { data } = props
-    // console.log(data)
+    console.log(data)
     let img1 = data?.user_id?.profile_image_url || data?.profile_image_url
     // console.log(img1)
     return (

@@ -10,6 +10,7 @@ import ClassCard from '../../../Components/ClassCard/ClassCard'
 import Cookies from 'js-cookie'
 import { BASE_URL } from '../../../Apis/BaseUrl'
 import axios from 'axios'
+import StuDetailCard from '../../Students/StudentDetails/StuDetailCard'
 const data = [
     {
         id: 1,
@@ -35,51 +36,51 @@ const data2 = {
 }
 
 const PaymentDetails = () => {
-    const[data, setData] = useState({})
-    const[classData, setClassData] = useState([])
+    const [data, setData] = useState({})
+    const [classData, setClassData] = useState([])
 
     const tutToken = Cookies.get("tutorazzi_academic")
     const getTutToken = JSON.parse(tutToken)
     const token = getTutToken.access_token
 
-const {id} = useParams()
-console.log(id)
+    const { id } = useParams()
+    console.log(id)
 
     const getDetail = async () => {
         const register = `${BASE_URL}/student-payment-details?payment_id=${id}`
-               let response = await axios.get(register, {
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${token} `,
-                },
-            })
+        let response = await axios.get(register, {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token} `,
+            },
+        })
 
-            console.log(response.data.data)
-            setData(response.data.data)
-            setClassData(response.data.data?.payment?.class_id)
+        console.log(response.data.data)
+        setData(response.data.data)
+        setClassData(response.data.data?.payment?.class_id)
     }
 
-useEffect(()=>{
-    getDetail()
-},[])
-let stu_id = data?.studentDetails?.user_id?.id
-console.log(stu_id)
-let teac_id = data?.teacherDetails?._id
-const navigate = useNavigate()
-const handleNavigate = () => {
-    // console.log(`teacher-detail/${teacherId}`)
-    navigate(`/teacher/details/${teac_id}`)
-}
-const handleNavigateStudent = (teacherId) => {
-    // console.log(`teacher-detail/${stu_id}`)
-    navigate(`/student/details/${stu_id}`)
-}
-console.log(data?.payment?.trx_ref_no)
+    useEffect(() => {
+        getDetail()
+    }, [])
+    let stu_id = data?.studentDetails?.user_id?.id
+    console.log(stu_id)
+    let teac_id = data?.teacherDetails?._id
+    const navigate = useNavigate()
+    const handleNavigate = () => {
+        // console.log(`teacher-detail/${teacherId}`)
+        navigate(`/teacher/details/${teac_id}`)
+    }
+    const handleNavigateStudent = (teacherId) => {
+        // console.log(`teacher-detail/${stu_id}`)
+        navigate(`/student/details/${stu_id}`)
+    }
+    console.log(data?.payment?.trx_ref_no)
     return (
         <Fragment>
             <Heading heading={'Payments'} p={'You can see your Payments here and manage them'} />
             <div className={classes.grid}>
-                <PaymentCard det={false} cls={classes.my_card}  data = {data?.payment} details={true}>
+                <PaymentCard det={false} cls={classes.my_card} data={data?.payment} details={true}>
                     <div className={classes.flex}>
                         <h6>Reference No.</h6>
                         <span className={classes.gray_span}>#{data?.payment_id}</span>
@@ -90,28 +91,35 @@ console.log(data?.payment?.trx_ref_no)
                      
                     ))
                 } */}
-                   <Container  cls={classes.inner_box} >
-                            <h4 className={classes.heading}>Teacher's Detail</h4>
-                            <UserDiv  data={data?.teacherDetails}>
-                                <div className={classes.link} onClick={handleNavigate}>View Profile</div>
-                            </UserDiv>
-                        </Container>
-                   <Container  cls={classes.inner_box} >
-                            <h4 className={classes.heading}>Student's Detail</h4>
-                            <UserDiv data={data?.studentDetails?.user_id} curr={data?.studentDetails?.curriculum}>
-                                <div className={classes.link} onClick={handleNavigateStudent}>View Profile</div>
-                            </UserDiv>
-                        </Container>
-            <Container cls={classes.inner_box_2} >
-                <h4 className={classes.heading}>Class Details</h4>
-             {
-                classData.map((item) => (
-                        <div className={classes.inn_clss}>
-                            <ClassCard data={item} cls={classes.my_class_details} />  
-                        </div>
-                ))
-             }
-            </Container>
+                <Container cls={classes.inner_box} >
+                    <h4 className={classes.heading}>Teacher's Detail</h4>
+                    <UserDiv data={data?.teacherDetails}>
+                        <div className={classes.link} onClick={handleNavigate}>View Profile</div>
+                    </UserDiv>
+                </Container>
+                <Container cls={classes.inner_box} >
+                    <h4 className={classes.heading}>Student's Detail</h4>
+                    <UserDiv data={data?.studentDetails?.user_id} curr={data?.studentDetails?.curriculum}>
+                        <div className={classes.link} onClick={handleNavigateStudent}>View Profile</div>
+                    </UserDiv>
+                </Container>
+                <Container cls={classes.inner_box_2} >
+                    <h4 className={classes.heading}>Class Details</h4>
+                    {/* { */}
+                        {/* // classData.map((item) => ( */}
+                            <div className={classes.inn_clss}>
+                                <StuDetailCard data={data?.payment?.quote_id} cls={classes.my_class_details} />
+                            </div>
+                        {/* ))
+                    } */}
+                    {/* {
+                        classData.map((item) => (
+                            <div className={classes.inn_clss}>
+                                <ClassCard data={item} cls={classes.my_class_details} />
+                            </div>
+                        ))
+                    } */}
+                </Container>
             </div>
         </Fragment>
     )

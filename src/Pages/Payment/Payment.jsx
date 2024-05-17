@@ -4,7 +4,6 @@ import classes from './Payment.module.css'
 import DataDivCon from '../../MappableDivs/DataDivCon/DataDivCon'
 import SearchBar from '../../Components/SearchBar/SearchBar';
 import PaymentCard from '../../Components/PaymentCard/PaymentCard';
-import Pagination from '../../Components/Pagination/Pagination';
 import Cookies from 'js-cookie';
 import { BASE_URL } from '../../Apis/BaseUrl';
 import axios from 'axios';
@@ -45,6 +44,8 @@ const Payment = () => {
   const[search, setSearch] = useState('')
 const[graphData, setGraphData] = useState([])
 const [value, onChange] = useState('');
+const [years, setYears] = useState([]);
+const [selectedYear, setSelectedYear] = useState('');
 
   const tutToken = Cookies.get("tutorazzi_academic")
   const getTutToken = JSON.parse(tutToken)
@@ -72,7 +73,7 @@ const paginationProps = {
   pageInfo
 }
 const getGraphData = async () => {
-  const axiosData = `${BASE_URL}/payment-stats`
+  const axiosData = `${BASE_URL}/payment-stats?year=${selectedYear}`
   let res = await axios.get(axiosData, {
     headers: {
       "Content-Type": "application/json",
@@ -87,19 +88,41 @@ const getGraphData = async () => {
 
 useEffect(() => {
   getGraphData()
-}, [])
+}, [selectedYear])
+
+const fetchYears = async () => {
+  try {
+    const response = await axios.get(`${BASE_URL}/years`,    {headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`
+    }});
+    const availableYears =  response.data.data;
+    console.log(response.data.data)
+    setYears(response.data.data);
+    const currentYear = new Date().getFullYear();
+
+    setSelectedYear(currentYear); // Set the first year as the default selected year
+  } catch (error) {
+    console.error('Error fetching years:', error);
+  }
+};
+useEffect(() => {
+  fetchYears();
+}, []);
+
+console.log(years, "years")
   return (
     <Fragment>
       {/* <DataDivCon data={data} cls={classes.data_div_con} /> */}
       <Heading heading={'Payments'} p={'You can see your Payments here and manage them'} />
     <Container  cls={classes.cont}>
       <Heading heading={'Stats Section'}   cls={classes.cont1} />
-    <PaymentGraph graphData={graphData}/>
+    <PaymentGraph graphData={graphData} selectedYear={selectedYear} setSelectedYear={setSelectedYear} years={years} setYears={setYears}/>
       <Heading heading={'Monthly Payments'}   cls={classes.cont2} />
     </Container>
       <Heading heading={'Payments Details'} p={''} >
         <div className={classes.sb_div} >
-          <SearchBar cls={classes.sb}  search={search} setSearch={setSearch}/>
+          <SearchBar cls={classes.sb}  search={search} setSearch={setSearch} />
           <DatePicker className={classes.choose_date} onChange={onChange} value={value} />
         </div>
       </Heading>

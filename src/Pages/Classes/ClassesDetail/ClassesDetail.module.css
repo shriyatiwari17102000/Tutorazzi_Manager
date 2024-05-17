@@ -217,7 +217,7 @@
 
 
 .my_task_container {
-    height: 380px;
+    height: fit-content !important;
 }
 .my_tasks2 {
     height: fit-content;

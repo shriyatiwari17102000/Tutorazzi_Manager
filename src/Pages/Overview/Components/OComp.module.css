@@ -17,6 +17,10 @@
     font-weight: 400;
     text-align: center;
 }
+.secondary_heading {
+    width: 100%;
+    font-weight: 500;
+}
 
 .my_colored_div>h1 {
     font-weight: 500;

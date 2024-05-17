@@ -42,6 +42,7 @@ const Overview = () => {
   const[resourceData , setResourceData] = useState(0)
   const[ticketData , setTicketData] = useState(0)
   const[homeworkData , setHomeworkData] = useState(0)
+  const[teacherStuData, setTeacherStuData] = useState({})
   const[allHomework , setAllHomework] = useState([])
   
   const d2 = [
@@ -138,6 +139,18 @@ const Overview = () => {
     console.log(res.data.data)
     setTicketData(res.data.data)
   }
+  const getTeacherStudentData = async () => {
+    const axiosData = `${BASE_URL}/total-teachers`
+    let res = await axios.get(axiosData, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+      }
+    })
+    console.log(res.data.data)
+    setTeacherStuData(res.data.data)
+  }
+
   const getHomeworkData = async () => {
     const axiosData = `${BASE_URL}/total-homework-pending`
     let res = await axios.get(axiosData, {
@@ -170,12 +183,16 @@ const Overview = () => {
   d2[4].h1 = ticketData
   d2[5].h1 = homeworkData
 
+  d1[0].h1 = teacherStuData.students
+  d1[1].h1 = teacherStuData.teachers
+
   useEffect(() => {
     getTrialData()
     getRescheduleData()
     getResourceData()
     getTicketData()
     getHomeworkData()
+    getTeacherStudentData()
   }, [])
   return (
     <>

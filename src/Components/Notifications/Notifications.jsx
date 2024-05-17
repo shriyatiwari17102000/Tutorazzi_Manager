@@ -86,17 +86,23 @@ ToasterUpdate(myToast, res.data.message, "success")
         <div className={classes.header}>Notifications</div>
         {/* <div className={classes.body}> */}
         {notificationData?.length !== 0 ? <div className={classes.body}>
+          <div className={classes.inn_bdy}>
           {notificationData?.map((element) => (
-            <NotificationDiv
-              setterFunc={props.setterFunc}
-              key={element.id}
-              popupFunc={setOpen}
-              data={element}
-              handleModal={handleModal}
-              func={getNotification}
-            />
-          ))}
-          <button className={classes.markasread} onClick={markAsRead} disabled={loading}>Mark as Read All</button>
+          
+          <NotificationDiv
+           setterFunc={props.setterFunc}
+           key={element.id}
+           popupFunc={setOpen}
+           data={element}
+           handleModal={handleModal}
+           func={getNotification}
+         />
+        
+       ))}
+          </div>
+         
+         <button className={classes.markasread} onClick={markAsRead} disabled={loading}>Mark as Read All</button>
+         
         </div> : <div style={{ padding: "10px" }}>
           0 notifications or announcements
         </div>}

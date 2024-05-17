@@ -21,6 +21,7 @@ import { FaPlus } from 'react-icons/fa'
 import NewPagination from '../../../Components/NewPagination/NewPagination'
 import { BiDislike } from 'react-icons/bi'
 import { FcLike } from 'react-icons/fc'
+import TaskModal from './PastModal/TaskModal'
 
 
 const TrialClassPast = () => {
@@ -29,7 +30,15 @@ const TrialClassPast = () => {
     const [quote, setQuote] = useState([])
     const [limit, setLimit] = useState(3)
     const [page, setPage] = useState(1)
-    const [pageInfo, setPageInfo] = useState({})
+    const [pageInfo, setPageInfo] = useState({}) 
+      const [openModal, setOpenModal] = useState(false)
+    const[ID, setID] = useState('')
+ 
+
+    const handleOpenModal = (id) => {
+        setOpenModal(true)
+        setID(id)
+    }
 
     const popupHandler = () => {
         setShow(!show)
@@ -57,9 +66,13 @@ const TrialClassPast = () => {
 
 
     let teacherId = data?.teacherDetails?.user_id?._id
+    let studentId = data?.studentDetails?.user_id
     const navigate = useNavigate()
     const handleNavigate = () => {
         navigate(`/teacher/details/${teacherId}`)
+    }
+    const handleNavigate1 = () => {
+        navigate(`/student/details/${studentId}`)
     }
 
     useEffect(() => {
@@ -92,6 +105,8 @@ const TrialClassPast = () => {
         pageInfo
     }
 
+    // console.log(data?.studentDetails)
+
     return (
         <React.Fragment>
             <Heading heading={'Past Class Details'} p={'Porem ipsum dolor sit amet, consectetur adipiscing elit.'} >
@@ -115,12 +130,20 @@ const TrialClassPast = () => {
                         {data?.classDetails?.details ? data?.classDetails?.details : "No description found..."}
                     </p>
                 </Container>
-                <Container cls={`${classes.inner_box}`}>
+             <div style={{display:"flex", gap:"20px", width:"100%"}}>
+             <Container cls={`${classes.inner_box}`}>
                     <h4 className={classes.secondary_heading}>Teacher's Details</h4>
                     <UserDiv data={data?.teacherDetails}>
-                        <div className={classes.link} onClick={handleNavigate} >View Profile</div>
+                        <div style={{cursor:"pointer"}} className={classes.link} onClick={handleNavigate} >View Profile</div>
                     </UserDiv>
                 </Container>
+                <Container cls={`${classes.inner_box}`}>
+                    <h4   className={classes.secondary_heading}> Student's Details</h4>
+                    <UserDiv data={data?.classDetails?.student_id}>
+                        <div style={{cursor:"pointer"}} className={classes.link} onClick={handleNavigate1} >View Profile</div>
+                    </UserDiv>
+                </Container>
+             </div>
                 <Container cls={`${classes.inner_box1}`}>
                     <h4 className={classes.secondary_heading}>Class Resources</h4>
                     {data?.classDetails?.materials_url.map((item, index) => (
@@ -142,7 +165,10 @@ const TrialClassPast = () => {
                 {/* Homework and IDk */}
                 <HomeworkDiv cls={classes.small_box} data={data?.homeworkResponse} />
                 <Container cls={`${classes.inner_box} ${classes.small_box} ${classes.my_task_container}`}>
-                    <h4 className={classes.secondary_heading}>Task Information</h4>
+                <div style={{display:"flex", justifyContent:"space-between"}}>
+                           <h4 className={`${classes.secondary_heading} w-auto`} style={{width:"auto"}} >Task Information</h4>
+                           <h4 className={`${classes.secondary_heading} w-auto`} style={{width:"auto", textDecoration:"underline", fontSize:"13px", cursor : "pointer"}}  onClick={handleOpenModal} >See All</h4>
+                           </div>
                     <TasksMap cls={classes.my_tasks} data={data?.taskResponse} func={getUpcomingData} />
                 </Container>
                 <Container cls={`${classes.inner_box}  ${classes.widthh}`} >
@@ -180,17 +206,12 @@ const TrialClassPast = () => {
                         {data?.classDetails?.reason_disliking &&  <>         <p className={classes.trial_css_p}>Reason why student didn’t like Trial Class</p> <span className={classes.trial_css_span}>{data?.classDetails?.reason_disliking}</span> </>}
                
                     </div>
-                    {/* <h4 className={classes.secondary_heading}>Class Status <span className={classes.trial_class_status}>Didn't Like Class</span></h4>
-                    <h6 className={classes.trial_class_h6}>Reason why student didn’t like Trial Class</h6>
-                    <p className={`${classes.instruction}`}>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Necessitatibus odit praesentium quos excepturi eveniet iusto, unde a recusandae saepe delectus nisi quibusdam in tempora iure porro sunt fugit tempore libero nam? Vel veritatis aliquid iusto et ea voluptates nobis ullam voluptatum voluptas? Officiis, quibusdam qui.
-                    </p> */}
-{/* 
-                    <BlackButton cls={classes.trial_class_btn}>Contact Student</BlackButton> */}
+                  
                 </Container>
 
             </div>
             {show && <QuoteModal isPopup={show} popupFunc={setShow} func={getUpcomingData} data1={data} />}
+            {openModal && <TaskModal isPopup={openModal} func={getUpcomingData} popupFunc={setOpenModal}  data={data} id={ID} />}
         </React.Fragment>
     )
 }

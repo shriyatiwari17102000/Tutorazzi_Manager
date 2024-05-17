@@ -19,7 +19,7 @@ const ViewTaskDetail = (props) => {
     let data = props?.data
     console.log(data?.taskData)
 
-    const tutToken = Cookies.get("tutorazzi_token")
+    const tutToken = Cookies.get("tutorazzi_academic")
     const getTutToken = JSON.parse(tutToken)
     const token = getTutToken.access_token
 

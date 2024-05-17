@@ -11,6 +11,7 @@ import Sidebar from '../Sidebar/Sidebar'
 import Notifications from '../Notifications/Notifications'
 import Cookies from 'js-cookie';
 import FallbackImage from '../FallbackImgae/FallbackImage';
+import { LuMenu } from 'react-icons/lu';
 
 
 const MainNavbar = () => {
@@ -99,7 +100,8 @@ const MainNavbar = () => {
                         <button onClick={() => setNotification(!notification)}><AiOutlineBell /></button>
                         <button onClick={handleNavigate}><BiMessageDetail /></button>
                         <div className={classes.profile_con} onClick={()=>navigate('/profile')}><FallbackImage imgData={img}/></div>
-                        <button onClick={() => setSidebar(true)}>{profileToken?.user?.name.slice(0,1)}</button>
+                        <button onClick={() => setSidebar(true)}><LuMenu />
+</button>
                     </div>
 
 

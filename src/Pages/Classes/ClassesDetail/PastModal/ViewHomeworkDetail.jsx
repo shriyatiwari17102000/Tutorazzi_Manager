@@ -17,7 +17,7 @@ const ViewHomeworkDetail = (props) => {
     const[homeData, setHomeData] = useState({})
 
   
-    const tutToken = Cookies.get("tutorazzi_token")
+    const tutToken = Cookies.get("tutorazzi_academic")
     const getTutToken = JSON.parse(tutToken)
     const token = getTutToken.access_token
     let id = props?.id

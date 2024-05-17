@@ -29,8 +29,8 @@ const StuDetailCard = (props) => {
                     </div>
                 </div>
                 <div>
-                    {data.schedule_status == "pending" && <button type='button' className={classes.pend}>Pending</button>}
-                    {data.schedule_status == "done" && <button type="button" className={classes.don}>All Done</button>}
+                    {data?.schedule_status == "pending" && <button type='button' className={classes.pend}>Pending</button>}
+                    {data?.schedule_status == "done" && <button type="button" className={classes.don}>All Done</button>}
                 </div>
             </div>
             {show && <BundleDetail stuId={id} handleClose1={handleClose} bundleInfo1={bundleInfo} isPopup={show} showModal={showModal} setShowModal={setShowModal} popupFunc={setShow} data1={data} />}

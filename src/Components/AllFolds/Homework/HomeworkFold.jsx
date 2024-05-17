@@ -8,16 +8,23 @@ import Cookies from 'js-cookie'
 import { BASE_URL } from '../../../Apis/BaseUrl'
 import { toast } from 'react-toastify'
 import axios from 'axios'
+import ViewHomeworkDetail from '../../../Pages/Classes/ClassesDetail/PastModal/ViewHomeworkDetail'
 
 const HomeworkFold = (props) => {
+    const [openModal, setOpenModal] = useState(false)
+    const[ID, setID] = useState('')
     const[loading, setLoading] = useState(false)
+
+    const handleShow = (id) => {
+        setOpenModal(true)
+        setID(id)
+    }
     const {data} = props
     let profileTokenJson = Cookies.get("tutorazzi_academic");
     let profileToken = JSON.parse(profileTokenJson);
     let token = profileToken.access_token;
     const id = data?._id
 
-    // console.log("oihvjjcgvjhgjhdghjgvhdgdinnnnnnnnnnnnnnnnn")
     const downloadFile = (
         filePath
       ) => {
@@ -86,9 +93,14 @@ const HomeworkFold = (props) => {
        
     // console.log(data)
     return (
+        <>
         <Foldable open={props.open} cls={classes.fold}>
             <div className={classes.fold_header}>
-                <h5>{data?.title}</h5>
+                {/* <h5>{data?.title}</h5> */}
+                <div style={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
+                                    <h5>{data?.title}</h5>
+                                    <h4 className={`${classes.secondary_heading} w-auto`} style={{ width: "auto", textDecoration: "underline", fontSize: "13px", marginRight: "10px", cursor : "pointer" }} onClick={()=>handleShow(data?._id)} >View Detail</h4>
+                                </div>
                 <img src={greenTick} alt="" />
             </div>
             <div className={classes.fold_body}>
@@ -102,6 +114,8 @@ const HomeworkFold = (props) => {
                 </div>
             </div>
         </Foldable>
+           {openModal && <ViewHomeworkDetail isPopup={openModal} id={ID} popupFunc={setOpenModal} />}
+        </>
     )
 }
 

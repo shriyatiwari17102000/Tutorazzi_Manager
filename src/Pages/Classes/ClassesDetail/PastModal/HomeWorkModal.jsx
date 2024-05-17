@@ -57,7 +57,7 @@ console.log(props)
         <>
             <Modal cls={classes.popup} value={props.isPopup} Func={props.popupFunc}>
 
-                <Heading heading={'Home Detail'} p={'You can see homework here'} />
+                <Heading heading={'Homework Detail'} p={'You can see homework here'} />
 
 
                 <Container cls={classes.fold_body}>
