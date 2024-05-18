@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import classes from './TaskModal.module.css'
+import classes from './Taskmodal.module.css'
 import Modal from '../../../../Components/Modal/Modal'
 import Heading from '../../../../Components/Heading/Heading'
 import BlackButton from '../../../../Components/BlackButton/BlackButton'
