@@ -117,6 +117,7 @@ console.log(tag)
           ToasterUpdate(myToast, res.data.message, "error")
         }
         ToasterUpdate(myToast, res.data.message, "success")
+        props?.func()
       } catch (error) {
         console.log(error)
         ToasterUpdate(myToast, error.message, "error")
@@ -154,7 +155,7 @@ console.log(tag)
             {props.home && (
               <>
                 <button type='button' onClick={notifyStudent} className={`${classes.btn} ${classes.reschedule}`}>Notify Student</button>
-                <button type='button' className={`${classes.btn} ${classes.accept}`} onClick={handleResolve}>Resolve</button>
+                {/* <button type='button' className={`${classes.btn} ${classes.accept}`} onClick={handleResolve}>Resolve</button> */}
               </>
             )}
             {props.resource && (

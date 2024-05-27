@@ -69,9 +69,7 @@ const App = () => {
               <Route path='student'>
                 <Route index element={<Students />} />
                 <Route path='/student/details/:id' element={<StudentDetails />} />
-                {/* <Route path='/student/payment/:id' element={<PaymentDetails />} /> */}
-
-              </Route>
+                         </Route>
               <Route path='teacher'>
                 <Route index element={<Teachers />} />
                 <Route path='/teacher/details/:id' element={<TeacherDetails />} />

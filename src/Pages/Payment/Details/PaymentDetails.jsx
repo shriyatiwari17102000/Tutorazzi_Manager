@@ -94,13 +94,13 @@ const PaymentDetails = () => {
                 <Container cls={classes.inner_box} >
                     <h4 className={classes.heading}>Teacher's Detail</h4>
                     <UserDiv data={data?.teacherDetails}>
-                        <div className={classes.link} onClick={handleNavigate}>View Profile</div>
+                        <div className={classes.link} onClick={handleNavigate} style={{cursor:"pointer"}}>View Profile</div>
                     </UserDiv>
                 </Container>
                 <Container cls={classes.inner_box} >
                     <h4 className={classes.heading}>Student's Detail</h4>
                     <UserDiv data={data?.studentDetails?.user_id} curr={data?.studentDetails?.curriculum}>
-                        <div className={classes.link} onClick={handleNavigateStudent}>View Profile</div>
+                        <div className={classes.link} onClick={handleNavigateStudent} style={{cursor:"pointer"}}>View Profile</div>
                     </UserDiv>
                 </Container>
                 <Container cls={classes.inner_box_2} >

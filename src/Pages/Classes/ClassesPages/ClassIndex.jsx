@@ -24,6 +24,10 @@ const ClassIndex = () => {
     const [page, setPage] = useState(1);
     const [pageInfo, setPageInfo] = useState({});
     const [search, setSearch] = useState('');
+    const [limit1, setLimit1] = useState(10);
+    const [page1, setPage1] = useState(1);
+    const [pageInfo1, setPageInfo1] = useState({});
+    const [search1, setSearch1] = useState('');
     const [value, onChange] = useState('');
 
     const tutToken = Cookies.get("tutorazzi_academic")
@@ -50,7 +54,7 @@ const ClassIndex = () => {
 
     const getPastData = async () => {
         let dateValue = value ? moment(value).format('YYYY-MM-DD') : " "; 
-        let register = `${BASE_URL}/past-classes?limit=${limit}&page=${page}&search=${search}&date=${dateValue}`
+        let register = `${BASE_URL}/past-classes?limit=${limit1}&page=${page1}&search=${search1}&date=${dateValue}`
         console.log(register)
         let res = await axios.get(register, {
             headers: {
@@ -59,23 +63,27 @@ const ClassIndex = () => {
             }
         })
         console.log(res.data.data)
-        setPageInfo({ ...res.data.data, docs: null })
+        setPageInfo1({ ...res.data.data, docs: null })
         setPastData(res.data.data?.docs)
     }
     useEffect(() => {
         getPastData()
-    }, [limit, page, search, value])
+    }, [limit1, page1, search1, value])
 
     const paginationProps = {
         setPage,
         pageInfo
+    }
+    const paginationProps1 = {
+        setPage : setPage1,
+        pageInfo : pageInfo1
     }
 
     const [inx, setInx] = useState(0)
 
     const renderDiv = {
         0: <ClassCardCon link={'upcoming-details'} data={upcomingData} paginationProps={paginationProps} />,
-        1: <ClassCardCon link={'past-details'} data={pastData} paginationProps={paginationProps} />
+        1: <ClassCardCon link={'past-details'} data={pastData} paginationProps={paginationProps1} />
     }
 
 

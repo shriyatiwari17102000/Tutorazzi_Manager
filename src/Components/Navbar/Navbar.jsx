@@ -3,7 +3,6 @@ import classes from './Navbar.module.css'
 
 import search from '../../assets/search.png'
 import setting from '../../assets/setting.png'
-import calender from '../../assets/cal.png'
 import alert from '../../assets/alert.png'
 import dp from '../../assets/dp.png'
 import cd from '../../assets/cd.png'
@@ -27,9 +26,7 @@ const Navbar = (props) => {
         <div className={classes.nav_btn}>
           <img src={setting} alt="" />
         </div>
-        {/* <div className={classes.nav_btn}>
-          <img src={calender} alt="" />
-        </div> */}
+     
         <div className={classes.nav_profile}>
           <div>
             <img src={dp} alt="" />

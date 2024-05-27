@@ -192,7 +192,9 @@ const TrialClassPast = () => {
                                 quote?.map((item, index) => (
                                     // console.log(item)
                                     <div key={index} className={classes.most_inn_quote} >
-                                        <UpcomingClassCard func={getPricingData} data={item} id={data?.studentDetails?.user_id} />
+                                        <UpcomingClassCard
+                                        cls={classes.new_cls}
+                                        func={getPricingData} data={item} id={data?.studentDetails?.user_id} />
                                     </div>
                                 ))}
                         </div>

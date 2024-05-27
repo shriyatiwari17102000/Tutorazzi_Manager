@@ -24,6 +24,7 @@
 
 .main_container{
   padding: 30px;
+  padding-inline: 80px;
 }
 
 button{

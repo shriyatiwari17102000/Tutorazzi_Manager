@@ -34,7 +34,7 @@ import AddExtraClass from '../AllModals/Quote/AddExtraClass'
 import ViewProfileModal from '../AllModals/StuProfile/ViewProfileModal'
 import EditQuote from '../AllModals/Quote/EditQuote'
 
-const UpcomingClassCard = ({ data, func, id }) => {
+const UpcomingClassCard = ({ data, func, id, cls }) => {
   const [show, setShow] = useState(false)
   const [isExpanded, setIsExpanded] = useState(false);
   const [show1, setShow1] = useState(false)
@@ -48,7 +48,7 @@ const UpcomingClassCard = ({ data, func, id }) => {
 let des = "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore nobis vitae ratione repudiandae ipsam sunt impedit, ducimus eveniet ea asperiores ut odit nesciunt illum incidunt consectetur dicta recusandae laboriosam odio dolorum obcaecati optio. Voluptate cupiditate sed numquam hic aperiam, alias dolores, modi enim dolore ex perspiciatis nihil asperiores. Ab tenetur officiis corrupti ea recusandae facere!"
   return (
     <>
-      <Container cls={classes.card}>
+      <Container cls={`${classes.card} ${cls}`}>
         <div style={{ display: "flex", justifyContent: "space-between", borderBottom: "1px solid #d9d9d9" }}>
           <div>
             {data?.subject_name && <h4 className={classes.card_title}>{data?.subject_name} Class Pricing</h4>}

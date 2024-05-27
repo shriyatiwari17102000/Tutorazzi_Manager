@@ -114,13 +114,13 @@ const UpcomingClassDetail = () => {
                     </p>
                    
                 </Container>
-                <Container cls={`${classes.small_box} ${classes.inner_box}`}>
+                <Container cls={`${classes.small_box} ${classes.inner_box} ${classes.hh}`}>
                     <h4 className={classes.secondary_heading}>Teacher's Details</h4>
                     <UserDiv data={data?.teacherDetails}>
                         <div className={classes.link} style={{cursor:"pointer"}}  onClick={handleNavigate}>View Profile</div>
                     </UserDiv>
                 </Container>
-                <Container cls={`${classes.small_box} ${classes.inner_box}`}>
+                <Container cls={`${classes.small_box} ${classes.inner_box}  ${classes.hh}`}>
                     <h4 className={classes.secondary_heading}>Student's Details</h4>
                     <UserDiv data={data?.classDetails?.student_id} curr={data?.studentDetails?.curriculum}>
                         <div className={classes.link} style={{cursor:"pointer"}} onClick={handleNavigateStudent}>View Profile</div>

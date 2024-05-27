@@ -10,26 +10,27 @@ import OverviewAreaChart from './Components/OverviewAreaChart'
 import Cookies from 'js-cookie'
 import { BASE_URL } from '../../Apis/BaseUrl'
 import axios from 'axios'
+import StatisticsGraph from '../../Components/StatisticsGraph/StatisticsGraph'
 
 const d1 = [
   {
     id: '01',
     link: '/student',
-    p: 'Students',
+    p: 'Total revenue',
     h1: '12000',
     bg: '#DBE5FF'
   },
   {
     id: '02',
     link: '/teacher',
-    p: 'Teachers',
+    p: 'Teachers share',
     h1: '15000',
     bg: '#FFACAC'
   },
   {
     id: '03',
     link: '',
-    p: 'Stats 1',
+    p: 'Profit',
     h1: '19000',
     bg: '#FFC2AF'
   },
@@ -102,7 +103,7 @@ const Overview = () => {
         Authorization: `Bearer ${token}`
       }
     })
-    console.log(res.data.data)
+    // console.log(res.data.data)
     setTrialData(res.data.data)
   }
 
@@ -114,7 +115,7 @@ const Overview = () => {
         Authorization: `Bearer ${token}`
       }
     })
-    console.log(res.data.data)
+    // console.log(res.data.data)
     setRescheduleData(res.data.data)
   }
   const getResourceData = async () => {
@@ -125,7 +126,7 @@ const Overview = () => {
         Authorization: `Bearer ${token}`
       }
     })
-    console.log(res.data.data)
+    // console.log(res.data.data)
     setResourceData(res.data.data)
   }
   const getTicketData = async () => {
@@ -136,7 +137,7 @@ const Overview = () => {
         Authorization: `Bearer ${token}`
       }
     })
-    console.log(res.data.data)
+    // console.log(res.data.data)
     setTicketData(res.data.data)
   }
   const getTeacherStudentData = async () => {
@@ -159,7 +160,7 @@ const Overview = () => {
         Authorization: `Bearer ${token}`
       }
     })
-    console.log(res.data.data)
+    // console.log(res.data.data)
     setHomeworkData(res.data.data)
   }
   const getAllHomework = async () => {
@@ -170,7 +171,7 @@ const Overview = () => {
         Authorization: `Bearer ${token}`
       }
     })
-    console.log(res.data.data)
+    // console.log(res.data.data)
     setAllHomework(res.data.data.docs)
   }
   useEffect(()=>{
@@ -200,6 +201,7 @@ const Overview = () => {
         <Heading cls={`${classes.heading} ${classes.box1}`} heading={'Revenue'} p={'Norem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.'} />
         <div className={`${classes.graph}`}>
           <h3 className={classes.heading}>Stats Section</h3>
+          <StatisticsGraph/>
         </div>
 
         {d1.map(element => (<ColoredDiv {...element} key={element.id} />))}

@@ -40,7 +40,7 @@
 .inn_quote {
     display: flex;
     width: 100%;
-    gap: 20px;
+    gap: 18px;
     flex-wrap: wrap;
 }
 .most_inn_quote{
@@ -121,6 +121,9 @@
     display: flex;
     flex-wrap: wrap;
     gap: 4px 10px;
+}
+.new_cls{
+    height: 300px;
 }
 
 .secondary_heading {
@@ -264,6 +267,9 @@
     color: #6b6b6b;
 }
 
+.hh{
+    height: fit-content;
+}
 @media (width < 900px) {
     .my_upcoming_classes>div {
         grid-column: span 3;
