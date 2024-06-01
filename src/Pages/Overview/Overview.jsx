@@ -141,7 +141,7 @@ const Overview = () => {
     setTicketData(res.data.data)
   }
   const getTeacherStudentData = async () => {
-    const axiosData = `${BASE_URL}/total-teachers`
+    const axiosData = `${BASE_URL}/total-teachers-revenue`
     let res = await axios.get(axiosData, {
       headers: {
         "Content-Type": "application/json",
