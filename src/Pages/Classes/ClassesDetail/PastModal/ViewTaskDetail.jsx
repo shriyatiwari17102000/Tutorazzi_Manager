@@ -25,7 +25,7 @@ const ViewTaskDetail = (props) => {
 
     const getTaskData = async () => {
         // console.log("hhhhhhhhhhh")
-        let register = `${BASE_URL}/task-details?id=${id}`
+        let register = `${BASE_URL}/doubt-details?id=${id}`
         let res = await axios.get(register, {
             headers: {
                 "Content-Type": "application/json",
@@ -54,10 +54,10 @@ const ViewTaskDetail = (props) => {
                         <h4> Title</h4>
                         <p> <span>{taskData?.title}</span></p>
                     </div>
-                    <div className={classes.task}>
-                        <h4>Description</h4>
-                        <p>{taskData?.description}</p>
-                    </div>
+                   {taskData?.answer &&  <div className={classes.task}>
+                        <h4>Answer</h4>
+                        <p>{taskData?.answer}</p>
+                    </div>}
                     <div className={classes.task}>
                         <h4 className={classes.para}>Due Date</h4>
                         <p> <Moment format='DD/MM/YYYY'>{taskData?.due_date}</Moment></p>

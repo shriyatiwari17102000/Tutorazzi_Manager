@@ -80,12 +80,12 @@ const TaskModal = (props) => {
         <>
             <Modal cls={classes.popup} value={props.isPopup} Func={props.popupFunc}>
 
-                <Heading heading={'Task Information'} p={'You can see task information here'} />
+                <Heading heading={'Urgent Doubt Solving'} p={'You can see urgent doubt here'} />
 
 
                 <Container cls={`${classes.fold_body}`}>
-                    {data?.taskResponse?.length > 0 ?
-                        data?.taskResponse?.slice()?.reverse()?.map((item, index) => (
+                    {data?.doubtResponse?.length > 0 ?
+                        data?.doubtResponse?.slice()?.reverse()?.map((item, index) => (
                             
                             <div className={classes.card}>
                                 <div className={classes.header}>

@@ -70,7 +70,36 @@ const PastClassDetail = () => {
     useEffect(() => {
         getUpcomingData()
     }, [])
-    console.log(data)
+    // console.log(data)
+
+    const downloadFile = (
+        filePath
+      ) => {
+        let fileName = filePath
+        console.log(fileName)
+      
+        fetch(`${filePath}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/pdf',
+          },
+        })
+          .then(response => response.blob())
+          .then(blob => {
+            const url = window.URL.createObjectURL(new Blob([blob]));
+    
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = fileName;
+    
+            document.body.appendChild(link);
+    
+            link.click();
+    
+            link.parentNode.removeChild(link);
+          });
+      };
+
     return (
         <React.Fragment>
             <Heading heading={'Past Class Details'} p={'Porem ipsum dolor sit amet, consectetur adipiscing elit.'} >
@@ -88,15 +117,15 @@ const PastClassDetail = () => {
                     </div>
                     <button className={classes.header_btn}>View Recording</button>
                 </Container>
-                <Container cls={classes.inner_box}>
+                {/* <Container cls={classes.inner_box}>
                     <h4 className={classes.secondary_heading}>Description</h4>
                     <p className={classes.page_para}>
                         {data?.classDetails?.details ? data?.classDetails?.details : "No description found..."}
                     </p>
-                </Container>
+                </Container> */}
               <div style={{display:"flex", width:"100%", gap:"20px"}}>
               <Container cls={`${classes.inner_box}`}>
-                    <h4 className={classes.secondary_heading}>Teacher's Details</h4>
+                    <h4 className={classes.secondary_heading} style={{color: "rgba(66, 77, 182, 1)"}}>Teacher's Details</h4>
                     <UserDiv data={data?.teacherDetails}>
                         <div className={classes.link} style={{cursor:"pointer"}}  onClick={handleNavigate} >View Profile</div>
                     </UserDiv>
@@ -108,7 +137,7 @@ const PastClassDetail = () => {
                     </UserDiv>
                 </Container>
               </div>
-                {data.length > 0 &&
+                {data?.length > 0 &&
                 <Container cls={`${classes.inner_box1}`}>
                     <h4 className={classes.secondary_heading}>Class Resources</h4>
                    {data?.classDetails?.materials_url.map((item, index) => (
@@ -117,7 +146,7 @@ const PastClassDetail = () => {
                   
                 </Container> }
                 <Container cls={`${classes.inner_box}`}>
-                    <h4 className={classes.secondary_heading}>Teacher’s Instructions</h4>
+                    <h4 className={classes.secondary_heading} style={{color: "rgba(66, 77, 182, 1)"}}>Teacher’s Instructions</h4>
                     <p className={`${classes.instruction}`}>
                         {data?.classDetails?.notes ? data?.classDetails?.notes : "no instruction found" }
                     </p>
@@ -126,20 +155,53 @@ const PastClassDetail = () => {
 
                 {/* Homework and IDk */}
                 <HomeworkDiv cls={classes.small_box} data={data?.homeworkResponse} func={getUpcomingData} id={id} />
-                <Container cls={`${classes.inner_box} ${classes.small_box} ${data?.taskResponse?.length > 0 ? classes.my_tamy_task_containersks : classes.my_tasks2}`}>
+                <Container cls={`${classes.inner_box} ${classes.small_box} ${data?.doubtResponse?.length > 0 ? classes.my_tamy_task_containersks : classes.my_tasks2}`}>
                 <div style={{display:"flex", justifyContent:"space-between"}}>
-                           <h4 className={`${classes.secondary_heading} w-auto`} style={{width:"auto"}} >Task Information</h4>
+                           <h4 className={`${classes.secondary_heading} w-auto`} style={{width:"auto", color: "rgba(66, 77, 182, 1)"}} >Urgent Doubt Solving</h4>
                            <h4 className={`${classes.secondary_heading} w-auto`} style={{width:"auto", textDecoration:"underline", fontSize:"13px", cursor : "pointer"}}  onClick={handleOpenModal} >See All</h4>
                            </div>
-                    <TasksMap cls={classes.my_tasks} data={data?.taskResponse} func={getUpcomingData} />
+                    <TasksMap cls={classes.my_tasks} data={data?.doubtResponse} func={getUpcomingData} />
+                </Container>
+                <Container cls={`${classes.inner_box}`} >
+                    <h4 className={`${classes.secondary_heading} w-auto`} style={{ width: "auto", color: "rgba(66, 77, 182, 1)" }} >Inputs by Parent and Student</h4>
+                    <div style={{
+                        borderBottom: "1px solid #d9d9d9",
+                        paddingBottom: "30px"
+                    }}>
+                        <h6 style={{ fontSize: "15px", marginBlock: "15px", fontWeight: "500", }}>Student Instruction</h6>
+                        <p style={{ fontSize: "14px", color: "#898989" }}>{data?.classDetails?.student_instructions}</p>
+                        {data?.classDetails?.student_instruction_document_url &&   <div className={classes.btns}>
+                      <button  onClick={()=> downloadFile(data?.classDetails?.student_instruction_document_url)}>Student instruction.pdf <FiDownload />
+                            </button>
+                        </div>}
+                       
+                    </div>
+
+                    <div>
+                        <h6 style={{ fontSize: "15px", marginBlock: "15px", fontWeight: "500" }}>Parent Instruction</h6>
+                        <p style={{ fontSize: "14px", color: "#898989" }}>{data.classDetails?.parent_instructions}</p>
+                        {data?.classDetails?.parent_instruction_document_url &&   <div className={classes.btns}>
+                      <button  onClick={()=> downloadFile(data?.classDetails?.parent_instruction_document_url)}>Parent instruction.pdf <FiDownload />
+                            </button>
+                        </div>}
+                        {/* <div className={classes.btns}>
+                            <button>Parent instruction.pdf <FiDownload />
+                            </button>
+                        </div> */}
+                    </div>
+                </Container>
+                <Container cls={`${classes.inner_box}`} >
+                    <h4 className={`${classes.secondary_heading} w-auto`} style={{ width: "auto", color: "rgba(66, 77, 182, 1)" }} >Complaints for Parents</h4>
+
+                    <p style={{ fontSize: "14px", color: "#898989" }}>{data?.classDetails?.parent_complaints}</p>
                 </Container>
                 <Container cls={`${classes.inner_box}  ${classes.widthh}`} >
                     <div>
-                    <h4 className={classes.secondary_heading}>Rate Your Teacher</h4>
+                    <h4 className={classes.secondary_heading} style={{color: "rgba(66, 77, 182, 1)"}}>Rate Your Teacher</h4>
                     <RatingCard data={data?.teacherRatings} readonly={true} p={'Rate Teacher By Selecting From 1 to 5 Stars To Express your Views'} />
                     </div>
                   <div>
-                  <h4 className={classes.secondary_heading}>Rate this Class</h4>
+                  <h4 className={classes.secondary_heading}style={{color: "rgba(66, 77, 182, 1)"}}>Rate this Class</h4>
                     <RatingCard data={data?.ratingsResponse} readonly={true} p={'Rate This Class By Selecting From 1 to 5 Stars To Express your Views'}/>
                   </div>
                 </Container>              

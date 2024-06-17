@@ -103,7 +103,7 @@ const Overview = () => {
         Authorization: `Bearer ${token}`
       }
     })
-    // console.log(res.data.data)
+    console.log(res.data.data)
     setTrialData(res.data.data)
   }
 
@@ -178,11 +178,11 @@ const Overview = () => {
     getAllHomework()
   },[])
 
-  d2[0].h1 = trialData
-  d2[1].h1 = rescheduleData
-  d2[2].h1 = resourceData
-  d2[4].h1 = ticketData
-  d2[5].h1 = homeworkData
+  // d2[0].h1 = trialData
+  // d2[1].h1 = rescheduleData
+  // d2[2].h1 = resourceData
+  // d2[4].h1 = ticketData
+  // d2[5].h1 = homeworkData
 
   d1[0].h1 = teacherStuData.students
   d1[1].h1 = teacherStuData.teachers

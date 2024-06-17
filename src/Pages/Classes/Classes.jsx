@@ -37,6 +37,14 @@ const data = [
     p: 'Homework Requests',
     color: '#FFD28F',
     icon: 'd',
+    bg: 'rgb(248 174 210)',
+    link:'homework-request'
+  },
+  {
+    h1: '35',
+    p: 'Doubt Requests',
+    color: '#FFD28F',
+    icon: 'd',
     bg: '#FFE7C2',
     link:'homework-request'
   },
@@ -47,6 +55,7 @@ const Classes = () => {
   const[rescheduleData , setRescheduleData] = useState(0)
   const[resourceData , setResourceData] = useState(0)
   const[homeworkData , setHomeworkData] = useState(0)
+  const [doubtData, setDoubtData] = useState(0)
 
   const tutToken = Cookies.get("tutorazzi_academic")
   const getTutToken = JSON.parse(tutToken)
@@ -61,7 +70,7 @@ const Classes = () => {
       }
     })
     console.log(res.data.data)
-    setTrialData(res.data.data)
+    setTrialData(res.data.data?.pendingClassResponse)
   }
 
   const getRescheduleData = async () => {
@@ -73,7 +82,7 @@ const Classes = () => {
       }
     })
     // console.log(res.data.data)
-    setRescheduleData(res.data.data)
+    setRescheduleData(res.data.data?.classPendingResponse)
   }
   const getResourceData = async () => {
     const axiosData = `${BASE_URL}/total-resource-requests`
@@ -84,7 +93,7 @@ const Classes = () => {
       }
     })
     console.log(res.data.data)
-    setResourceData(res.data.data)
+    setResourceData(res.data.data?.resourcePendingRequests)
   }
   const getHomeworkData = async () => {
     const axiosData = `${BASE_URL}/total-homework-pending`
@@ -95,19 +104,34 @@ const Classes = () => {
       }
     })
     console.log(res.data.data)
-    setHomeworkData(res.data.data)
+    setHomeworkData(res.data.data?.homeworks)
+  }
+  const getDoubtData = async () => {
+    const axiosData = `${BASE_URL}/total-doubts`
+    let res = await axios.get(axiosData, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+      }
+    })
+    console.log(res.data.data)
+    setDoubtData(res.data.data)
   }
 
   data[0].h1 = trialData || 0
   data[1].h1 = rescheduleData || 0
   data[2].h1 = resourceData || 0
   data[3].h1 = homeworkData || 0
-
+  data[4].h1 = doubtData || 0
+useEffect(()=> {
+  getDoubtData()
+},[])
   useEffect(() => {
     getTrialData()
     getRescheduleData()
     getResourceData()
     getHomeworkData()
+  
   }, [])
 
   return (
