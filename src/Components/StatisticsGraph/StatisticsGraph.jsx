@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classes from "./StatisticsGraph.module.css"
 import Chart from 'react-apexcharts';
+import DatePicker from 'react-date-picker'
+import 'react-date-picker/dist/DatePicker.css';
+import 'react-calendar/dist/Calendar.css';  
 
-const StatisticsGraph = () => {
+const StatisticsGraph = ({data}) => {
+  let graphData = data?.graphDataArray
+  const [value, onChange] = useState('');
   const series = [
     {
       name: 'Total Revenue',
@@ -66,11 +71,17 @@ const StatisticsGraph = () => {
 
   return (
     <div className={classes.statisticschartcard}>
-      {/* <div className={classes.header}>
-        <h3>Statistics</h3>
-        <p>Revenue and Sales</p>
-      </div> */}
+      <div className={classes.header}>
+        <h3>Revenue</h3>
+        <DatePicker className={classes.choose_date} onChange={onChange} value={value} />
+
+      </div>
       <Chart options={options} series={series} type="area" height={278} />
+      <div className={classes.tag}>
+        <p>Total Revenue &nbsp; {data?.totalRevenue}</p>
+        <p>Teacher's Share &nbsp; {data?.payout}</p>
+        <p>Profit &nbsp; {data?.profit}</p>
+      </div>
     </div>
   );
 };
