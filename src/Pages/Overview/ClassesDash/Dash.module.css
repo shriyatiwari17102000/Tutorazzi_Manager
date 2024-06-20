@@ -85,3 +85,12 @@ margin-block: 10px;
     font-weight: 500; 
     margin-top: 20px;
 }
+.btn1{
+    background-color: white !important;
+    font-size: 14px !important;
+    color: rgba(66, 77, 182, 1) !important;
+    padding: 0 !important;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}

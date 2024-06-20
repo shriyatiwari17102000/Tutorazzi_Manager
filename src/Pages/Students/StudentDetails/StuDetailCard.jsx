@@ -3,10 +3,12 @@ import classes from './StudentDetails.module.css'
 import BundleDetail from '../../../Components/AllModals/StuProfile/BundleDetail'
 import AddExtraClass from '../../../Components/AllModals/Quote/AddExtraClass'
 import Moment from 'react-moment'
+import TransferModal from '../../../Components/AllModals/Quote/TransferModal'
 
 const StuDetailCard = (props) => {
     const [show, setShow] = useState(false)
     const [showModal, setShowModal] = useState(false)
+    const [showModal1, setShowModal1] = useState(false)
     const [bundleData, setBundleData] = useState({})
 
     const handleOpen = () => setShow(!show)
@@ -33,8 +35,10 @@ const StuDetailCard = (props) => {
                     {data?.schedule_status == "done" && <button type="button" className={classes.don}>All Done</button>}
                 </div>
             </div>
-            {show && <BundleDetail stuId={id} handleClose1={handleClose} bundleInfo1={bundleInfo} isPopup={show} showModal={showModal} setShowModal={setShowModal} popupFunc={setShow} data1={data} />}
+            {show && <BundleDetail stuId={id} handleClose1={handleClose} bundleInfo1={bundleInfo} isPopup={show} showModal1={showModal1} showModal={showModal} setShowModal1={setShowModal1} setShowModal={setShowModal} popupFunc={setShow} data1={data} />}
+            {/* {showModal1 && <BundleDetail stuId={id} handleClose1={handleClose} bundleInfo1={bundleInfo} isPopup={show} showModal={showModal} setShowModal={setShowModal} popupFunc={setShow} data1={data} />} */}
             {showModal && <AddExtraClass data1={bundleData} id={id} setShow={setShow} show={show} isPopup={showModal} popupFunc={setShowModal} />}
+            {showModal1 && <TransferModal data1={bundleData} id={id} setShow={setShow} show={show} isPopup={showModal1} popupFunc={setShowModal1} />}
         </>
     )
 }

@@ -13,7 +13,7 @@ import BundleCard from './BundleCard/BundleCard'
 import AddExtraClass from '../Quote/AddExtraClass'
 import Container from '../../../UI/Container/Container'
 
-const BundleDetail = ({ popupFunc, handleClose1, isPopup, bundleInfo1, func, data1, stuId, setShowModal, showModal }) => {
+const BundleDetail = ({ popupFunc, handleClose1, isPopup, bundleInfo1, func, data1, stuId, setShowModal, setShowModal1, showModal1, showModal }) => {
     const [bundles, setBundles] = useState([])
     const [bundleInfo, setBundleInfo] = useState([])
     const [isShow, setIsShow] = useState(true);
@@ -28,7 +28,15 @@ const BundleDetail = ({ popupFunc, handleClose1, isPopup, bundleInfo1, func, dat
         handleClose1()
         // console.log(handleClose1())
     }
-  console.log(showModal, "3")
+    const handleTransfer = () => {
+        console.log(showModal1, "2a")
+        console.log("showmodal")
+        setShowModal1(true)
+        console.log(showModal1, "2b")
+        handleClose1()
+        // console.log(handleClose1())
+    }
+  console.log(showModal1, "3")
 
     console.log(data1)
     const handleClose = () => {
@@ -66,10 +74,7 @@ const BundleDetail = ({ popupFunc, handleClose1, isPopup, bundleInfo1, func, dat
     return (
         <>
             <Modal cls={`${classes.popup}`} value={isPopup} Func={popupFunc}>
-                {/* {bundleInfo?.show == true &&    <div className={classes.top}>
-                  <h1>Student request to increase their class subscripton</h1>
-                  <button>x</button>
-                </div>} */}
+                
                 {bundleInfo?.show === true && isShow && (
                     <div className={classes.top1}>
                         <h1>Student request to increase their class subscription</h1>
@@ -95,7 +100,7 @@ const BundleDetail = ({ popupFunc, handleClose1, isPopup, bundleInfo1, func, dat
                                     <span>{bundleInfo?.classRemaining} </span>
                                 </div>
                             </div>
-                            <button onClick={handleShow}>Add Extra Class</button>
+                           
                         </div>
                     </div>
                     <Container cls={classes.cont}>
@@ -104,6 +109,10 @@ const BundleDetail = ({ popupFunc, handleClose1, isPopup, bundleInfo1, func, dat
 
                         </div>
                     </Container>
+                    <div className={classes.butn_div}>
+                    <button onClick={handleShow}>Add Extra Class</button>
+                    <button onClick={handleTransfer}>Transfer Remaining classes</button>
+                    </div>
                 </div>
 
 

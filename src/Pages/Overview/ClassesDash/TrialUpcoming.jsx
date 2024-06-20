@@ -16,9 +16,9 @@ const TrialUpcoming = (props) => {
            {data.class_type === "Trial" &&  <p className={classes.tab}>Trial</p>}
         </div>
        <p className={classes.p1} style={{marginBottom:"10px"}}> <Moment format="hh:mm A">{data?.start_time}</Moment> to <Moment format="hh:mm A">{data?.end_time}</Moment></p>
-       <div>
+       <div style={{display:"flex", gap:"15px"}}>
        <p className={classes.p1}>Student : <span>{data?.student_name}</span></p>
-       <p className={classes.p1}>Teacher : <span>{data?.student_name}</span></p>
+       <p className={classes.p1}>Teacher : <span>{data?.teacher_name}</span></p>
        </div>
         {props.upcoming && 
         <button className={classes.button}>Accepted</button>}

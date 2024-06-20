@@ -179,7 +179,10 @@ const StudentDetails = () => {
                         <button onClick={handleClose}>x</button>
                     </div>
                 )}
-      <Heading heading={'Student Profile'} p={'Porem ipsum dolor sit amet, consectetur adipiscing elit.'} />
+    <div>
+    <Heading heading={'Student Profile'} p={'Porem ipsum dolor sit amet, consectetur adipiscing elit.'} />
+    <button onClick={()=>navigate(`/student/details/${id}/editstu`) }>Edit Student Profile</button>
+    </div>
       <div>
         <FallbackImage imgData={profile_img} cls={classes.img1} />
         <div className={classes.curr_top}>

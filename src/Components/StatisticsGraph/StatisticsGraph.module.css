@@ -18,10 +18,10 @@
     color: gray;
   }
   
-  .choose_date > div:nth-child(1) {
+  .choose_date {
     border: 1px solid #d9d9d9;
     border-radius: var(--br);
-    height: 40px;
+    height: 30px;
     width: max-content;
     padding-inline: 10px;
     font-size: 13px;
@@ -30,6 +30,7 @@
     align-items: center;
     justify-content: center;
     column-gap: 10px;
+    outline: none;
   }
   
   .choose_date svg {

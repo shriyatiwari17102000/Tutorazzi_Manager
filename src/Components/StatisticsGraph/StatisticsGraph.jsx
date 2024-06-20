@@ -5,21 +5,23 @@ import DatePicker from 'react-date-picker'
 import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';  
 
-const StatisticsGraph = ({data}) => {
+const StatisticsGraph = ({data, dependTime, setDependTime}) => {
   let graphData = data?.graphDataArray
   const [value, onChange] = useState('');
+  const { graphDataArray, totalArray, teacherArray, profitArray } = data;
+
   const series = [
     {
       name: 'Total Revenue',
-      data: [400, 300, 200, 278, 189, 239, 349, 450, 550, 300, 400, 500]
+      data: totalArray
     },
     {
       name: "Teacher's share",
-      data: [240, 139, 980, 390, 480, 380, 430, 240, 340, 200, 300, 400]
+      data: teacherArray
     },
     {
       name: 'Profit',
-      data: [210, 139, 200, 190, 480, 880, 430, 270, 340, 800, 900, 400]
+      data: profitArray
     }
   ];
 
@@ -41,7 +43,7 @@ const StatisticsGraph = ({data}) => {
       curve: 'smooth'
     },
     xaxis: {
-      categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+      categories: graphDataArray
     },
     yaxis: {
       labels: {
@@ -73,14 +75,20 @@ const StatisticsGraph = ({data}) => {
     <div className={classes.statisticschartcard}>
       <div className={classes.header}>
         <h3>Revenue</h3>
-        <DatePicker className={classes.choose_date} onChange={onChange} value={value} />
+        <select  className={classes.choose_date} value={dependTime} onChange={(e)=> setDependTime(e.target.value)} >
+          <option value="week">Weekly</option>
+          <option value="month">Monthly</option>
+          <option value="quarterly">Quarterly</option>
+          <option value="half_yearly">Half Yearly</option>
+          <option value="yearly">Yearly</option>
+        </select>
 
       </div>
       <Chart options={options} series={series} type="area" height={278} />
       <div className={classes.tag}>
-        <p>Total Revenue &nbsp; {data?.totalRevenue}</p>
-        <p>Teacher's Share &nbsp; {data?.payout}</p>
-        <p>Profit &nbsp; {data?.profit}</p>
+        <p>Total Revenue &nbsp; ₹{data?.totalRevenue}</p>
+        <p>Teacher's Share &nbsp;₹{data?.payout}</p>
+        <p>Profit &nbsp;₹{data?.profit}</p>
       </div>
     </div>
   );

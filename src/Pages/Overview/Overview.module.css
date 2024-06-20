@@ -231,7 +231,17 @@
         grid-column: span 6;
     }
 }
-
+.flexx{
+    display: flex;
+    justify-content: space-between;
+    & button{
+        background-color: white;
+        border: none;
+        color: rgba(66, 77, 182, 1);
+        text-decoration: underline;
+        font-weight: 500;
+    }
+}
 .inner_div {
     padding: 20px;
     display: flex;

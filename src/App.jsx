@@ -34,6 +34,7 @@ import Profile from './Pages/Profile/Profile'
 import EditProfile from './Pages/Profile/EditProfile'
 import Meet from './Components/DyteIo/Meet'
 import PrivateComponent from './Components/PrivateComponents/PrivateComponent'
+import EditStuProfile from './Pages/Students/EditStuProfile/EditStuProfile'
 
 
 const App = () => {
@@ -69,6 +70,7 @@ const App = () => {
               <Route path='student'>
                 <Route index element={<Students />} />
                 <Route path='/student/details/:id' element={<StudentDetails />} />
+                <Route path='/student/details/:id/editstu' element={<EditStuProfile />} />
                          </Route>
               <Route path='teacher'>
                 <Route index element={<Teachers />} />
