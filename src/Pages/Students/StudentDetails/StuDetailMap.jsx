@@ -9,7 +9,7 @@ const StuDetailMap = (props) => {
     <>
        {data?.length > 0 ? <>
        {data?.map((item, index) => (
-                <StuDetailCard data={item} key={index} id={props?.id}/>
+                <StuDetailCard data={item} getData={props?.getData} key={index} id={props?.id}/>
        ))
        }<NewPagination {...props.paginationProps}/></> : "no data found!"}
     </>

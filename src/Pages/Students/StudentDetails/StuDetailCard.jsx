@@ -20,6 +20,7 @@ const StuDetailCard = (props) => {
         // console.log(data)
         setBundleData(data)
     }
+    console.log(bundleData)
     return (
         <>
             <div className={classes.card} onClick={handleOpen}>
@@ -37,8 +38,8 @@ const StuDetailCard = (props) => {
             </div>
             {show && <BundleDetail stuId={id} handleClose1={handleClose} bundleInfo1={bundleInfo} isPopup={show} showModal1={showModal1} showModal={showModal} setShowModal1={setShowModal1} setShowModal={setShowModal} popupFunc={setShow} data1={data} />}
             {/* {showModal1 && <BundleDetail stuId={id} handleClose1={handleClose} bundleInfo1={bundleInfo} isPopup={show} showModal={showModal} setShowModal={setShowModal} popupFunc={setShow} data1={data} />} */}
-            {showModal && <AddExtraClass data1={bundleData} id={id} setShow={setShow} show={show} isPopup={showModal} popupFunc={setShowModal} />}
-            {showModal1 && <TransferModal data1={bundleData} id={id} setShow={setShow} show={show} isPopup={showModal1} popupFunc={setShowModal1} />}
+            {showModal && <AddExtraClass getData={props?.getData} data1={bundleData} id={id} setShow={setShow} show={show} isPopup={showModal} popupFunc={setShowModal} />}
+            {showModal1 && <TransferModal getData={props?.getData} data1={bundleData} id={id} setShow={setShow} show={show} isPopup={showModal1} popupFunc={setShowModal1} />}
         </>
     )
 }

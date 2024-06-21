@@ -12,6 +12,7 @@ import LabelledInput from '../../../Components/LabelledInput/LabelledInput'
 import LabelledTextarea from '../../../Components/LabelledTextarea/LabelledTextarea'
 import AcademicModal from './AcademicModal'
 import ToasterUpdate from '../../../Components/Toaster/ToasterUpdate'
+import ProfileStu from '../../../Components/ProfileDiv/ProfileStu'
 
 
 const EditStuProfile = () => {
@@ -168,7 +169,7 @@ const EditStuProfile = () => {
                 Authorization: `Bearer ${token}`
             }
         })
-        console.log(res.data.data)
+        console.log(res.data.data?.studentDetails?.user_id?.profile_image_url)
         setName(res.data.data.studentDetails.preferred_name)
         setAge(res.data.data.studentDetails.age)
         setCity(res.data.data.studentDetails.city)
@@ -185,8 +186,8 @@ const EditStuProfile = () => {
         setParentName(res.data.data?.studentDetails?.parent_id?.name)
         setParentPhone(res.data.data?.studentDetails?.parent_id?.mobile_number)
         setSubCurr(res.data.data?.studentDetails?.subject_curriculum)
-        // setProfileImg(res.data.data.userDetails?.profile_img_url)
-        // setBasicDetail(res.data.data?.profileDetails)
+        await setProfileImg(res.data.data?.studentDetails?.user_id?.profile_img_url)
+        setBasicDetail(res.data.data?.studentDetails)
 
         // console.log(res.data.data?.testimonialResponse)
     }
@@ -243,7 +244,7 @@ const EditStuProfile = () => {
         }
 
     };
-
+console.log(profileImg)
     return (
         <React.Fragment>
             {/* <PagePath /> */}
@@ -255,7 +256,7 @@ const EditStuProfile = () => {
                 <Heading cls={classes.my_page_heading} heading={'Profile Details'} p='Here you can see your Profile ' />
 
             </div>
-            <ProfileHeader user_info={basicDetail} profileUpdater={profileImg} icon={true} getData={getData} />
+            <ProfileStu data={basicDetail} profileUpdater={profileImg} icon={true} getData={getData} id={id} />
 
             <Container cls={classes.flex}>
                 <div className={`${classes.flex2}`} style={{ border: "none", padding: "0" }}>

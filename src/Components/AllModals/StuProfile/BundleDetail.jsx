@@ -110,8 +110,10 @@ const BundleDetail = ({ popupFunc, handleClose1, isPopup, bundleInfo1, func, dat
                         </div>
                     </Container>
                     <div className={classes.butn_div}>
-                    <button onClick={handleShow}>Add Extra Class</button>
-                    <button onClick={handleTransfer}>Transfer Remaining classes</button>
+                    <button  onClick={()=>{popupFunc(!isPopup)}}>Cancel</button>
+                    <button onClick={handleShow} style={{background:"rgba(176, 183, 255, 1)", color:"rgba(66, 77, 182, 1)"}}>Add Extra Class</button>
+                    <button onClick={handleTransfer} style={{background:"rgba(66, 77, 182, 1)", color:"white"}}>Transfer Remaining classes</button>
+                   
                     </div>
                 </div>
 

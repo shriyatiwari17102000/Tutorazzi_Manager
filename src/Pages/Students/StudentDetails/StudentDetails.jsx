@@ -102,7 +102,7 @@ const StudentDetails = () => {
   }, [limit, page, teacher])
 
   const getPayment = async () => {
-    let dateValue = value ? moment(value).format('YYYY-MM-DD') : " "; 
+    let dateValue = value ? moment(value).format('YYYY-MM-DD') : " ";
     console.log(dateValue)
     let register = `${BASE_URL}/student-payments?student_id=${id}&limit=${limit1}&page=${page1}&date=${dateValue}`
     // console.log(register)
@@ -133,8 +133,8 @@ const StudentDetails = () => {
 
   // console.log(paymentData)
   const renderDiv = {
-    0: <StuDetailMap data={classData} id={id} paginationProps={paginationProps} />,
-    1: <StuPaymentMap data={paymentData} paginationProps={paginationProps1} />
+    0: <StuDetailMap getData={getClasses} data={classData} id={id} paginationProps={paginationProps} />,
+    1: <StuPaymentMap getData={getPayment} data={paymentData} paginationProps={paginationProps1} />
   }
   const data = [
     {
@@ -144,7 +144,7 @@ const StudentDetails = () => {
       bg: '#FFACAC',
     },
     {
-      h1:  data1?.last_payment ?  "₹" + data1?.last_payment : 0 ,
+      h1: data1?.last_payment ? "₹" + data1?.last_payment : 0,
       p: 'Last Payment',
       color: '#BCCFFF',
       bg: '#DBE5FF',
@@ -170,19 +170,19 @@ const StudentDetails = () => {
   let profile_img = data1?.studentResponse?.user_id?.profile_image_url
   const handleClose = () => {
     setIsShow(false);
-}
+  }
   return (
     <>
       {data1?.show === true && isShow && (
-                    <div className={classes.top1}>
-                        <h1>This Student’s Plan is about to end please Make a plan for this student</h1>
-                        <button onClick={handleClose}>x</button>
-                    </div>
-                )}
-    <div>
-    <Heading heading={'Student Profile'} p={'Porem ipsum dolor sit amet, consectetur adipiscing elit.'} />
-    <button onClick={()=>navigate(`/student/details/${id}/editstu`) }>Edit Student Profile</button>
-    </div>
+        <div className={classes.top1}>
+          <h1>This Student’s Plan is about to end please Make a plan for this student</h1>
+          <button onClick={handleClose}>x</button>
+        </div>
+      )}
+      <div className={classes.main_div}>
+        <Heading heading={'Student Profile'} p={'Porem ipsum dolor sit amet, consectetur adipiscing elit.'} />
+        <button onClick={() => navigate(`/student/details/${id}/editstu`)}>Edit Student Profile</button>
+      </div>
       <div>
         <FallbackImage imgData={profile_img} cls={classes.img1} />
         <div className={classes.curr_top}>
@@ -208,7 +208,7 @@ const StudentDetails = () => {
           {inx == 0 && <div className={classes.wd}>
             {/* <label className={classes.label1}>Select Teacher</label> */}
             <select className={classes.input_div1} value={teacher} onChange={(e) => setTeacher(e.target.value)}>
-            <option value="">Select Teacher</option>
+              <option value="">Select Teacher</option>
               {teacherData && teacherData?.map((element, index) => (<option key={index} selected value={element.user_id}>{element.preferred_name}</option>))}
             </select>
           </div>}

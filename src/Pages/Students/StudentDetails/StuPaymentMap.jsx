@@ -11,7 +11,7 @@ const StuPaymentMap = (props) => {
             {data?.length > 0 ?
                 <div >
                     {data?.map((item, index) => (
-                        <PaymentCard cls={classes.css1} data={item} key={index} />
+                        <PaymentCard cls={classes.css1} getData={props?.getData} data={item} key={index} />
                     ))
                     }
                     <NewPagination {...props.paginationProps} />
