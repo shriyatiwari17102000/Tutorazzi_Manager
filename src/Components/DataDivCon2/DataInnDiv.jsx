@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 const DataInnDiv = (props) => {
 
     const data = props?.data
-    console.log(data)
+    console.log(data.link)
 
     return (
         <Link to={data.link} style={{background:data.bg}} className={classes.container}>

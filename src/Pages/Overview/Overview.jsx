@@ -246,7 +246,8 @@ const data = [
     // icon: 'a',
     bg: 'rgba(243, 244, 255, 1)',
     key: 'trialRequests',
-    txt: "Accepted"
+    txt: "Accepted",
+     link:'trial-request'
   },
   {
 
@@ -257,16 +258,18 @@ const data = [
     // icon: 'b',
     bg: 'rgba(243, 244, 255, 1)',
     key: 'rescheduleRequests',
-    txt: "Accepted"
+    txt: "Accepted",
+      link:'reschedule-request'
   },
   {
     h1: 0,
     h2: 0,
-    p: 'Resource & Doubt request',
+    p: 'Doubt request',
     // color: '#FFD28F',
     // icon: 'd',
     bg: 'rgba(243, 244, 255, 1)',
-    txt: "Fulfilled"
+    txt: "Fulfilled",
+     link:'doubt-request'
   },
   {
     h1: 0,
@@ -276,7 +279,8 @@ const data = [
     // icon: 'c',
     bg: 'rgba(243, 244, 255, 1)',
     key: 'resourceRequests',
-    txt: "Fulfilled"
+    txt: "Fulfilled", 
+    link:'homework-request'
   },
 ]
 

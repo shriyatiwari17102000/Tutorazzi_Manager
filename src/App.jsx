@@ -66,7 +66,14 @@ const App = () => {
           <main className='main_container'>
             <Routes>
             <Route element={<PrivateComponent />}>
-              <Route path='/dashboard' element={<Overview />} />
+            
+              <Route path='dashboard'>
+                <Route path = ""  element={<Overview />}/>
+              <Route path="trial-request" element={<NewTrial />} />
+                <Route path="reschedule-request" element={<RescheduleReq />} />
+                <Route path="resource-request" element={<ResourceReq />} />
+                <Route path="homework-request" element={<HomeworkReq />} />
+                </Route>
               <Route path='student'>
                 <Route index element={<Students />} />
                 <Route path='/student/details/:id' element={<StudentDetails />} />

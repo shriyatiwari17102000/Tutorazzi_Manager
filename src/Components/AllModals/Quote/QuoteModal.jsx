@@ -157,10 +157,10 @@ const QuoteModal = ({ popupFunc, isPopup, func, data1 }) => {
                 </div>
                 </div>
 
-                <div className={classes.txtarea}>
+                {/* <div className={classes.txtarea}>
                     <label htmlFor="txt">Description</label>
                     <textarea id="txt" onChange={handleQueryChange} value={query}></textarea>
-                </div>
+                </div> */}
             </div>
 
             <div className={classes.bottom}>

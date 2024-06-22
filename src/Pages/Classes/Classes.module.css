@@ -1,15 +1,21 @@
 .data_div_con {
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
+    grid-template-columns: repeat(10, 1fr);
     gap: 20px;
+
+    @media (width < 620px) {
+        grid-template-columns: repeat(1, 1fr);
+    
+    }
 }
 
 .data_div_con>a {
     grid-column: span 2;
-
-  @media (width < 1000px){
-    grid-column: span 4;
-  }
+    height: 150px;
+    @media (width < 1000px) {
+        grid-column: span 4;
+        /* height: 150px; */
+    }
 }
 
 .btn_container {

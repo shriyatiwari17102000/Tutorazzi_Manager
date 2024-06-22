@@ -41,14 +41,14 @@ import DataDivCon2 from '../../Components/DataDivCon2/DataDivCon2';
 //     bg: 'rgb(248 174 210)',
 //     link:'homework-request'
 //   },
-//   {
-//     h1: '35',
-//     p: 'Doubt Requests',
-//     color: '#FFD28F',
-//     icon: 'd',
-//     bg: '#FFE7C2',
-//     link:'homework-request'
-//   },
+  // {
+  //   h1: '35',
+  //   p: 'Doubt Requests',
+  //   color: '#FFD28F',
+  //   icon: 'd',
+  //   bg: '#FFE7C2',
+  //   link:'homework-request'
+  // },
 // ]
 
 const data = [
@@ -60,7 +60,8 @@ const data = [
     // icon: 'a',
     bg: 'rgba(243, 244, 255, 1)',
     key: 'trialRequests',
-    txt: "Accepted"
+    txt: "Accepted",
+    link:'trial-request'
   },
   {
 
@@ -71,16 +72,18 @@ const data = [
     // icon: 'b',
     bg: 'rgba(243, 244, 255, 1)',
     key: 'rescheduleRequests',
-    txt: "Accepted"
+    txt: "Accepted",
+      link:'reschedule-request'
   },
   {
     h1: 0,
     h2: 0,
-    p: 'Resource & Doubt request',
+    p: 'Resource Requests',
     // color: '#FFD28F',
     // icon: 'd',
     bg: 'rgba(243, 244, 255, 1)',
-    txt: "Fulfilled"
+    txt: "Fulfilled",
+     link:'resource-request'
   },
   {
     h1: 0,
@@ -90,7 +93,19 @@ const data = [
     // icon: 'c',
     bg: 'rgba(243, 244, 255, 1)',
     key: 'resourceRequests',
-    txt: "Fulfilled"
+    txt: "Fulfilled",
+    link:'homework-request'
+  },
+  {
+    h1: 0,
+    h2: 0,
+    p: 'Doubt Requests',
+    // color: '#FFD28F',
+    // icon: 'd',
+    bg: 'rgba(243, 244, 255, 1)',
+    key: 'resourceRequests',
+    txt: "Fulfilled",
+    link:'doubt-request'
   },
 ]
 
