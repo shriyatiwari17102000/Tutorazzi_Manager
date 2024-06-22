@@ -35,6 +35,7 @@ import EditProfile from './Pages/Profile/EditProfile'
 import Meet from './Components/DyteIo/Meet'
 import PrivateComponent from './Components/PrivateComponents/PrivateComponent'
 import EditStuProfile from './Pages/Students/EditStuProfile/EditStuProfile'
+import GroupChat from './Pages/GroupChat/GroupChat'
 
 
 const App = () => {
@@ -102,7 +103,7 @@ const App = () => {
               <Route path='/classes/trial-past-details/:id' element={<TrialClassPast />} />
               <Route path="/meet/:token" element={<Meet/>} />
               <Route path='chats'>
-                <Route index element={<Chat />} />
+                <Route index element={<GroupChat />} />
               </Route>
               <Route path='profile'>
                 <Route index element={<Profile />} />

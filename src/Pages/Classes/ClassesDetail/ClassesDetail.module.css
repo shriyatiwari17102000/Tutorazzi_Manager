@@ -170,6 +170,12 @@
     color: #6b6b6b;
 }
 
+.para {
+    font-size: 14px;
+    font-weight: 500;
+    /* color: #6b6b6b; */
+}
+
 .link {
     color: #0060D4;
     font-size: 13px;

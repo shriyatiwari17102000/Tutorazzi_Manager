@@ -105,6 +105,35 @@ const TrialClassPast = () => {
         pageInfo
     }
 
+    const downloadFile = (
+        filePath
+      ) => {
+        let fileName = filePath
+        console.log(fileName)
+      
+        fetch(`${filePath}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/pdf',
+          },
+        })
+          .then(response => response.blob())
+          .then(blob => {
+            const url = window.URL.createObjectURL(new Blob([blob]));
+    
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = fileName;
+    
+            document.body.appendChild(link);
+    
+            link.click();
+    
+            link.parentNode.removeChild(link);
+          });
+      };
+
+
     // console.log(data?.studentDetails)
 
     return (
@@ -124,12 +153,12 @@ const TrialClassPast = () => {
                     </div>
                     <button className={classes.header_btn}>View Recording</button>
                 </Container>
-                <Container cls={classes.inner_box}>
+                {/* <Container cls={classes.inner_box}>
                     <h4 className={classes.secondary_heading}>Description</h4>
                     <p className={classes.page_para}>
                         {data?.classDetails?.details ? data?.classDetails?.details : "No description found..."}
                     </p>
-                </Container>
+                </Container> */}
              <div style={{display:"flex", gap:"20px", width:"100%"}}>
              <Container cls={`${classes.inner_box}`}>
                     <h4 className={classes.secondary_heading}>Teacher's Details</h4>
@@ -163,14 +192,50 @@ const TrialClassPast = () => {
 
 
                 {/* Homework and IDk */}
-                <HomeworkDiv cls={classes.small_box} data={data?.homeworkResponse} />
+                <HomeworkDiv cls={classes.small_box} data={data?.homeworkResponse} func={getUpcomingData} id={id} />
+                <Container cls={`${classes.inner_box} ${classes.small_box} ${data?.doubtResponse?.length > 0 ? classes.my_tamy_task_containersks : classes.my_tasks2}`}>
+                <div style={{display:"flex", justifyContent:"space-between"}}>
+                           <h4 className={`${classes.secondary_heading} w-auto`} style={{width:"auto", color: "rgba(66, 77, 182, 1)"}} >Urgent Doubt Solving</h4>
+                           <h4 className={`${classes.secondary_heading} w-auto`} style={{width:"auto", textDecoration:"underline", fontSize:"13px", cursor : "pointer"}}  onClick={handleOpenModal} >See All</h4>
+                           </div>
+                    <TasksMap cls={classes.my_tasks} data={data?.doubtResponse} func={getUpcomingData} />
+                </Container>
+                <Container cls={`${classes.inner_box}`} >
+                    <h4 className={`${classes.secondary_heading} w-auto`} style={{ width: "auto", color: "rgba(66, 77, 182, 1)" }} >Inputs by Parent and Student</h4>
+                    <div style={{
+                        borderBottom: "1px solid #d9d9d9",
+                        paddingBottom: "30px"
+                    }}>
+                        <h6 style={{ fontSize: "15px", marginBlock: "15px", fontWeight: "500", }}>Student Instruction</h6>
+                        <p style={{ fontSize: "14px", color: "#898989" }}>{data?.classDetails?.student_instructions}</p>
+                        {data?.classDetails?.student_instruction_document_url &&   <div className={classes.btns}>
+                      <button  onClick={()=> downloadFile(data?.classDetails?.student_instruction_document_url)}>Student instruction.pdf <FiDownload />
+                            </button>
+                        </div>}
+                       
+                    </div>
+
+                    <div>
+                        <h6 style={{ fontSize: "15px", marginBlock: "15px", fontWeight: "500" }}>Parent Instruction</h6>
+                        <p style={{ fontSize: "14px", color: "#898989" }}>{data.classDetails?.parent_instructions}</p>
+                        {data?.classDetails?.parent_instruction_document_url &&   <div className={classes.btns}>
+                      <button  onClick={()=> downloadFile(data?.classDetails?.parent_instruction_document_url)}>Parent instruction.pdf <FiDownload />
+                            </button>
+                        </div>}
+                        {/* <div className={classes.btns}>
+                            <button>Parent instruction.pdf <FiDownload />
+                            </button>
+                        </div> */}
+                    </div>
+                </Container>
+                {/* <HomeworkDiv cls={classes.small_box} data={data?.homeworkResponse} />
                 <Container cls={`${classes.inner_box} ${classes.small_box} ${classes.my_task_container}`}>
                 <div style={{display:"flex", justifyContent:"space-between"}}>
                            <h4 className={`${classes.secondary_heading} w-auto`} style={{width:"auto"}} >Task Information</h4>
                            <h4 className={`${classes.secondary_heading} w-auto`} style={{width:"auto", textDecoration:"underline", fontSize:"13px", cursor : "pointer"}}  onClick={handleOpenModal} >See All</h4>
                            </div>
                     <TasksMap cls={classes.my_tasks} data={data?.taskResponse} func={getUpcomingData} />
-                </Container>
+                </Container> */}
                 <Container cls={`${classes.inner_box}  ${classes.widthh}`} >
                     <div>
                     <h4 className={classes.secondary_heading}>Rate Your Teacher</h4>

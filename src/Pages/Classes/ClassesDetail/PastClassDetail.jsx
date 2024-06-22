@@ -103,7 +103,7 @@ const PastClassDetail = () => {
     return (
         <React.Fragment>
             <Heading heading={'Past Class Details'} p={'Porem ipsum dolor sit amet, consectetur adipiscing elit.'} >
-                {/* <BlackButton func={popupHandler} funcVal={show} cls={classes.btn}>Add Quote</BlackButton> */}
+                
             </Heading>
             <div className={classes.box}>
                 <Container cls={classes.header}>
@@ -117,12 +117,7 @@ const PastClassDetail = () => {
                     </div>
                     <button className={classes.header_btn}>View Recording</button>
                 </Container>
-                {/* <Container cls={classes.inner_box}>
-                    <h4 className={classes.secondary_heading}>Description</h4>
-                    <p className={classes.page_para}>
-                        {data?.classDetails?.details ? data?.classDetails?.details : "No description found..."}
-                    </p>
-                </Container> */}
+               
               <div style={{display:"flex", width:"100%", gap:"20px"}}>
               <Container cls={`${classes.inner_box}`}>
                     <h4 className={classes.secondary_heading} style={{color: "rgba(66, 77, 182, 1)"}}>Teacher's Details</h4>

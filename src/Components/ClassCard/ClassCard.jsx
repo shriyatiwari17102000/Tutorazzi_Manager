@@ -178,8 +178,8 @@ console.log(tag)
       case 1:
         return <>
           <div className={classes.flex}>
-            <p>Student : <span>{data.class_id.student_name}</span></p>
-            <p>Teacher : <span>{data.class_id.teacher_name}</span></p>
+            <p>Student : <span>{data.student_name}</span></p>
+            <p>Teacher : <span>{data.teacher_name}</span></p>
             <p>Request Date : <Moment format="DD/MM/YYYY">{data.createdAt}</Moment></p>
 
           </div>

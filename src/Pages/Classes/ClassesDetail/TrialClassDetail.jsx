@@ -58,27 +58,55 @@ const TrialClassDetail = () => {
                     </div>
                     <button className={classes.header_btn}>View Recording</button>
                 </Container>
-                <Container cls={classes.inner_box}>
+                {/* <Container cls={classes.inner_box}>
                     <h4 className={classes.secondary_heading}>Description</h4>
                     <p className={classes.page_para}>
                        {data?.classDetails?.details ? data?.classDetails?.details : "no data found!"}
                     </p>
                    
-                </Container>
+                </Container> */}
                 <Container cls={`${classes.inner_box} ${classes.small_box}  ${classes.sb2}`}>
-                    <h4 className={classes.secondary_heading}>Teacher's Details</h4>
+                    <h4 className={classes.secondary_heading} style={{color: "rgba(66, 77, 182, 1)"}}>Teacher's Details</h4>
                     <UserDiv data={data?.teacherDetails}>
                         <Link className={classes.link} to="/">View Profile</Link>
                     </UserDiv>
                 </Container>
                 <Container cls={`${classes.inner_box} ${classes.small_box} ${classes.sb2}`}>
-                    <h4 className={classes.secondary_heading}>Student's Details</h4>
+                    <h4 className={classes.secondary_heading} style={{color: "rgba(66, 77, 182, 1)"}}>Student's Details</h4>
                     <UserDiv data={data?.classDetails?.student_id} curr={data?.studentDetails?.curriculum}>
                         <Link className={classes.link} to="/">View Profile</Link>
                     </UserDiv>
                 </Container>
+                <Container cls={`${classes.inner_box}`} >
+                    <h4 className={`${classes.secondary_heading} w-auto`} style={{ width: "auto", color: "rgba(66, 77, 182, 1)" }} >Inputs by Parent and Student</h4>
+                    <div style={{
+                        borderBottom: "1px solid #d9d9d9",
+                        paddingBottom: "30px"
+                    }}>
+                        <h6 style={{ fontSize: "15px", marginBlock: "15px", fontWeight: "500", }}>Student Instruction</h6>
+                        <p style={{ fontSize: "14px", color: "#898989" }}>{data?.classDetails?.student_instructions}</p>
+                        {data?.classDetails?.student_instruction_document_url &&   <div className={classes.btns}>
+                      <button  onClick={()=> downloadFile(data?.classDetails?.student_instruction_document_url)}>Student instruction.pdf <FiDownload />
+                            </button>
+                        </div>}
+                       
+                    </div>
+
+                    <div>
+                        <h6 style={{ fontSize: "15px", marginBlock: "15px", fontWeight: "500" }}>Parent Instruction</h6>
+                        <p style={{ fontSize: "14px", color: "#898989" }}>{data.classDetails?.parent_instructions}</p>
+                        {data?.classDetails?.parent_instruction_document_url &&   <div className={classes.btns}>
+                      <button  onClick={()=> downloadFile(data?.classDetails?.parent_instruction_document_url)}>Parent instruction.pdf <FiDownload />
+                            </button>
+                        </div>}
+                        {/* <div className={classes.btns}>
+                            <button>Parent instruction.pdf <FiDownload />
+                            </button>
+                        </div> */}
+                    </div>
+                </Container>
                 <Container cls={`${classes.inner_box}`}>
-                    <h4 className={classes.secondary_heading}>Teacher’s Instructions</h4>
+                    <h4 className={classes.secondary_heading} style={{color: "rgba(66, 77, 182, 1)"}}>Teacher’s Instructions</h4>
                     <p className={`${classes.instruction}`}>
                        {data?.classDetails?.notes ? data?.classDetails?.notes : "no data found!" }
                     </p>
