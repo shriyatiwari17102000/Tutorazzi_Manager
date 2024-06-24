@@ -13,7 +13,7 @@ import NewPagination from '../../../Components/NewPagination/NewPagination'
 import SearchBar from '../../../Components/SearchBar/SearchBar'
 import DatePicker from 'react-date-picker'
 import 'react-date-picker/dist/DatePicker.css';
-import 'react-calendar/dist/Calendar.css'; 
+import 'react-calendar/dist/Calendar.css';
 import moment from 'moment'
 
 const ClassIndex = () => {
@@ -29,15 +29,54 @@ const ClassIndex = () => {
     const [pageInfo1, setPageInfo1] = useState({});
     const [search1, setSearch1] = useState('');
     const [value, onChange] = useState('');
+    const [teacher, setTeacher] = useState('')
+    const [teacherData, setTeacherData] = useState('')
+    const [student, setStudent] = useState('')
+    const [studentData, setStudentData] = useState('')
 
     const tutToken = Cookies.get("tutorazzi_academic")
     const getTutToken = JSON.parse(tutToken)
     const token = getTutToken.access_token
 
+    const getTeacher = async () => {
+        const register = `${BASE_URL}/classes-teachers`
+        let response = await axios.get(register, {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token} `,
+            },
+        })
+
+        console.log(response.data.data)
+        setTeacherData(response.data.data)
+    }
+
+    const getStudent = async () => {
+        const register = `${BASE_URL}/classes-students?teacher_id=${teacher}`
+        let response = await axios.get(register, {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token} `,
+            },
+        })
+
+        console.log(response.data.data)
+        setStudentData(response.data.data)
+        // setStudent(response.data.data[0]?._id)
+    }
+
+    useEffect(() => {
+        getTeacher()
+    }, [])
+
+    useEffect(() => {
+        getStudent()
+    }, [teacher])
+
     const getRescheduleData = async () => {
-        let dateValue = value ? moment(value).format('YYYY-MM-DD') : " "; 
-        let register = `${BASE_URL}/upcoming-classes?limit=${limit}&page=${page}&search=${search}&date=${dateValue}`
-        console.log(register)
+        let dateValue = value ? moment(value).format('YYYY-MM-DD') : "";
+        let register = `${BASE_URL}/upcoming-classes?limit=${limit}&page=${page}&search=${search}&date=${dateValue}&teacher_id=${teacher}&student_id=${student}`
+        // console.log(register)
         let res = await axios.get(register, {
             headers: {
                 "Content-Type": "application/json",
@@ -50,11 +89,11 @@ const ClassIndex = () => {
     }
     useEffect(() => {
         getRescheduleData()
-    }, [limit, page, search, value])
+    }, [limit, page, search, value, teacher, student])
 
     const getPastData = async () => {
-        let dateValue = value ? moment(value).format('YYYY-MM-DD') : " "; 
-        let register = `${BASE_URL}/past-classes?limit=${limit1}&page=${page1}&search=${search1}&date=${dateValue}`
+        let dateValue = value ? moment(value).format('YYYY-MM-DD') : " ";
+        let register = `${BASE_URL}/past-classes?limit=${limit1}&page=${page1}&search=${search1}&date=${dateValue}&teacher_id=${teacher}&student_id=${student}`
         console.log(register)
         let res = await axios.get(register, {
             headers: {
@@ -68,16 +107,18 @@ const ClassIndex = () => {
     }
     useEffect(() => {
         getPastData()
-    }, [limit1, page1, search1, value])
+    }, [limit1, page1, search1, value, teacher, student])
 
     const paginationProps = {
         setPage,
         pageInfo
     }
     const paginationProps1 = {
-        setPage : setPage1,
-        pageInfo : pageInfo1
+        setPage: setPage1,
+        pageInfo: pageInfo1
     }
+
+
 
     const [inx, setInx] = useState(0)
 
@@ -95,11 +136,24 @@ const ClassIndex = () => {
                     <button onClick={() => setInx(0)} className={inx === 0 ? classes.active : ''}>Upcoming Classes</button>
                     <button onClick={() => setInx(1)} className={inx === 1 ? classes.active : ''}>Past Classes</button>
                 </div>
-          <div className={classes.sb_div}>
-          <SearchBar cls={classes.sb} search={search} setSearch={setSearch} />
-                <DatePicker className={classes.choose_date} onChange={onChange} value={value} />
-          </div>
+                <div className={classes.sb_div}>
+                    <select name="" id="" className={classes.selecttag} value={teacher} onChange={(e) => setTeacher(e.target.value)}>
+                        <option value="">Select Teacher</option>
 
+                        {teacherData && teacherData?.map((element, index) => (<option key={index} selected value={element._id}>{element.name}</option>))}
+
+                    </select>
+                    <select name="" id="" className={classes.selecttag} value={student} onChange={(e) => setStudent(e.target.value)}>
+                        <option value="">Select Student</option>
+                        {studentData && studentData?.map((element, index) => (<option key={index} value={element._id}>{element.name}</option>))}
+
+                    </select>
+                </div>
+
+            </div>
+            <div className={classes.sb_div2}>
+                <SearchBar cls={classes.sb} search={search} setSearch={setSearch} />
+                <DatePicker className={classes.choose_date} onChange={onChange} value={value} />
             </div>
 
             {
