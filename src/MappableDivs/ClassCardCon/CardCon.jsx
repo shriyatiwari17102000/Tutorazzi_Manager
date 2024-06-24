@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom'
 import ClassCard from '../../Components/ClassCard/ClassCard'
 import classes from './ClassCardCon.module.css'
 import NewPagination from '../../Components/NewPagination/NewPagination'
-const ClassCardCon = props => {
+import CardDiv from '../../Components/ClassCard/CardDiv'
+const CardCon = props => {
 console.log(props)
     const { data } = props
     console.log(data)
@@ -12,9 +13,9 @@ console.log(props)
         <div className={`${classes.container} ${props.cls}`} >
             {data?.length > 0 ? <div >
                 {data?.map(element => (
-                <Link className={classes.link}  to={`/classes/${props.link}/${element._id}`}>
-                    <ClassCard data={element} status={props.status} />
-                </Link>
+                <div className={classes.link} >
+                    <CardDiv data={element} status={props.status} />
+                </div>
             ))}
              <NewPagination {...props.paginationProps} />
             </div> : "No data found!" }
@@ -22,4 +23,4 @@ console.log(props)
     )
 }
 
-export default ClassCardCon
+export default CardCon

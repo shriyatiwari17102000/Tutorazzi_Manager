@@ -15,6 +15,8 @@ import DatePicker from 'react-date-picker'
 import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
 import moment from 'moment'
+import CardDiv from '../../../Components/ClassCard/CardDiv'
+import CardCon from '../../../MappableDivs/ClassCardCon/CardCon'
 
 const ClassIndex = () => {
 
@@ -28,11 +30,16 @@ const ClassIndex = () => {
     const [page1, setPage1] = useState(1);
     const [pageInfo1, setPageInfo1] = useState({});
     const [search1, setSearch1] = useState('');
+    const [limit2, setLimit2] = useState(10);
+    const [page2, setPage2] = useState(1);
+    const [pageInfo2, setPageInfo2] = useState({});
+    const [search2, setSearch2] = useState('');
     const [value, onChange] = useState('');
     const [teacher, setTeacher] = useState('')
     const [teacherData, setTeacherData] = useState('')
     const [student, setStudent] = useState('')
     const [studentData, setStudentData] = useState('')
+    const [missedData, setMissedData] = useState([])
 
     const tutToken = Cookies.get("tutorazzi_academic")
     const getTutToken = JSON.parse(tutToken)
@@ -108,6 +115,24 @@ const ClassIndex = () => {
     useEffect(() => {
         getPastData()
     }, [limit1, page1, search1, value, teacher, student])
+    const getMissedData = async () => {
+        let dateValue = value ? moment(value).format('YYYY-MM-DD') : " ";
+        let register = `${BASE_URL}/missed-classes?limit=${limit2}&page=${page2}&search=${search2}&date=${dateValue}&teacher_id=${teacher}&student_id=${student}`
+        console.log(register)
+        let res = await axios.get(register, {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
+        })
+        console.log(res.data.data)
+        setPageInfo2({ ...res.data.data, docs: null })
+        setMissedData(res.data.data?.docs)
+    }
+    
+    useEffect(() => {
+        getMissedData()
+    }, [limit2, page2, search2, value, teacher, student])
 
     const paginationProps = {
         setPage,
@@ -117,6 +142,10 @@ const ClassIndex = () => {
         setPage: setPage1,
         pageInfo: pageInfo1
     }
+    const paginationProps2 = {
+        setPage: setPage2,
+        pageInfo: pageInfo2
+    }
 
 
 
@@ -124,7 +153,8 @@ const ClassIndex = () => {
 
     const renderDiv = {
         0: <ClassCardCon link={'upcoming-details'} data={upcomingData} paginationProps={paginationProps} />,
-        1: <ClassCardCon link={'past-details'} data={pastData} paginationProps={paginationProps1} />
+        1: <ClassCardCon link={'past-details'} data={pastData} paginationProps={paginationProps1} />,
+        2: <CardCon data={missedData} paginationProps={paginationProps2} status={"Missed"} />
     }
 
 
@@ -135,6 +165,7 @@ const ClassIndex = () => {
                 <div className={classes.toggle_btns}>
                     <button onClick={() => setInx(0)} className={inx === 0 ? classes.active : ''}>Upcoming Classes</button>
                     <button onClick={() => setInx(1)} className={inx === 1 ? classes.active : ''}>Past Classes</button>
+                    <button onClick={() => setInx(2)} className={inx === 2 ? classes.active : ''}>Missed Classes</button>
                 </div>
                 <div className={classes.sb_div}>
                     <select name="" id="" className={classes.selecttag} value={teacher} onChange={(e) => setTeacher(e.target.value)}>
@@ -151,10 +182,18 @@ const ClassIndex = () => {
                 </div>
 
             </div>
-            <div className={classes.sb_div2}>
+          {inx === 0 &&   <div className={classes.sb_div2}>
                 <SearchBar cls={classes.sb} search={search} setSearch={setSearch} />
                 <DatePicker className={classes.choose_date} onChange={onChange} value={value} />
-            </div>
+            </div>}
+          {inx === 1 &&   <div className={classes.sb_div2}>
+                <SearchBar cls={classes.sb} search={search1} setSearch={setSearch1} />
+                <DatePicker className={classes.choose_date} onChange={onChange} value={value} />
+            </div>}
+          {inx === 2 &&   <div className={classes.sb_div2}>
+                <SearchBar cls={classes.sb} search={search2} setSearch={setSearch2} />
+                <DatePicker className={classes.choose_date} onChange={onChange} value={value} />
+            </div>}
 
             {
                 renderDiv[inx]

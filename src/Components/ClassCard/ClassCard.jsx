@@ -28,7 +28,7 @@ const ClassCard = (props) => {
     const tutToken = Cookies.get("tutorazzi_academic")
     const getTutToken = JSON.parse(tutToken)
     const token = getTutToken.access_token
-console.log(tag)
+    console.log(tag)
     const notifyStudent = async (e) => {
       e.preventDefault()
       let register = `${BASE_URL}/notify-student`
@@ -76,30 +76,31 @@ console.log(tag)
       }
     }
 
-    const handleResolve = async (e) => {
-      e.stopPropagation()
-      let register = `${BASE_URL}/mark-homework-done/${tagData}`
-      const myToast = toast.loading('Please Wait...')
-      // console.log(register)
-      try {
+    // const handleResolve = async (e) => {
+    //   e.stopPropagation()
+    //   let register = `${BASE_URL}/mark-homework-done/${tagData}`
+    //   const myToast = toast.loading('Please Wait...')
+    //   // console.log(register)
+    //   try {
 
-        let res = await axios.patch(register, {}, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token} `,
-          },
-        })
-        if (!res.data.success) {
-          ToasterUpdate(myToast, res.data.message, "error")
-        }
-        ToasterUpdate(myToast, res.data.message, "success")
-        props?.func()
-      } catch (error) {
-        console.log(error)
-        ToasterUpdate(myToast, error.message, "error")
-      }
+    //     let res = await axios.patch(register, {}, {
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //         Authorization: `Bearer ${token} `,
+    //       },
+    //     })
+    //     if (!res.data.success) {
+    //       ToasterUpdate(myToast, res.data.message, "error")
+    //     }
+    //     ToasterUpdate(myToast, res.data.message, "success")
+    //     props?.func()
+    //   } catch (error) {
+    //     console.log(error)
+    //     ToasterUpdate(myToast, error.message, "error")
+    //   }
 
-    };
+    // };
+
     const handleAccept = async (e) => {
       e.preventDefault()
       let register = `${BASE_URL}/accept-class/${tagData}`
@@ -140,22 +141,15 @@ console.log(tag)
         return <button className={`${classes.btn} ${classes.reschedule}`}>Notify Student</button>
       case 'Done':
         return <button className={`${classes.btn} ${classes.done}`}>Done</button>
+      case 'Missed':
+        return <button className={`${classes.btn} ${classes.reschedule}`}>Missed</button>
       case 'Pending':
         return (
           <>
-            {/* {!props.home ? (<>
-        <button type='button' className={`${classes.btn} ${classes.accept}`}  onClick={handleAccept}>Accept</button>
-        <button type='button' onClick={handleShow}  className={`${classes.btn} ${classes.reschedule}`}>Reschedule</button></>): (
-          <>
-            <button type='button' onClick={notifyStudent}  className={`${classes.btn} ${classes.reschedule}`}>Notify Student</button>
-            <button type='button' className={`${classes.btn} ${classes.accept}`}  onClick={handleResolve}>Resolve</button>
-        </>
-        )} */}
-
             {props.home && (
               <>
                 <button type='button' onClick={notifyStudent} className={`${classes.btn} ${classes.reschedule}`}>Notify Student</button>
-                {/* <button type='button' className={`${classes.btn} ${classes.accept}`} onClick={handleResolve}>Resolve</button> */}
+                
               </>
             )}
             {props.resource && (
@@ -163,9 +157,8 @@ console.log(tag)
             )}
             {!props.home && !props.resource && (
               <>
-                {/* <button type='button' id="button" className={`${classes.btn} ${classes.accept}`} onClick={handleAccept}>Accept</button> */}
-                {props?.data?.rescheduled_by !== "academic_manager" && <button type='button' onClick={handleAccept} id="button"  className={`${classes.btn} ${classes.accept}`}>Accept</button>}
-                <button type='button' id="button"  onClick={handleShow} className={`${classes.btn} ${classes.reschedule}`}>Reschedule</button>
+                {props?.data?.rescheduled_by !== "academic_manager" && <button type='button' onClick={handleAccept} id="button" className={`${classes.btn} ${classes.accept}`}>Accept</button>}
+                <button type='button' id="button" onClick={handleShow} className={`${classes.btn} ${classes.reschedule}`}>Reschedule</button>
               </>
             )}
 
@@ -205,9 +198,9 @@ console.log(tag)
       default:
         return <>
           <div className={classes.flex}>
-            {data.start_time &&(
-              <div style={{display: "flex", gap:"5px"}}>
-               <p><Moment format="hh:mm A">{data.start_time}</Moment>  &</p><p><Moment format="hh:mm A">{data.end_time}</Moment></p></div>
+            {data.start_time && (
+              <div style={{ display: "flex", gap: "5px" }}>
+                <p><Moment format="hh:mm A">{data.start_time}</Moment>  &</p><p><Moment format="hh:mm A">{data.end_time}</Moment></p></div>
             )}
             <p><Moment format='DD/MM/YYYY'>{data.start_time}</Moment></p>
           </div>

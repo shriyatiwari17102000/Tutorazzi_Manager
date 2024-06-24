@@ -66,7 +66,8 @@ const EditStuProfile = () => {
             id: 'mub',
             value: phone,
             func: setPhone,
-            ro: false   
+            ro: false   ,
+            type:"Number"
         },
         // {
         //     label: "Date Of Birth",
@@ -130,7 +131,8 @@ const EditStuProfile = () => {
             id: 'phn',
             value: parentPhone,
             func: setParentPhone,
-            ro: false
+            ro: false,
+            type:"Number"
         },
         {
             label: 'Email Id',
@@ -262,7 +264,7 @@ console.log(profileImg)
                 <div className={`${classes.flex2}`} style={{ border: "none", padding: "0" }}>
 
                     {data.map((element, index) => (
-                        <LabelledInput key={index} id={element.id} ro={element.ro} label={element.label} func={element.func} value={element.value} />
+                        <LabelledInput type={element.type} key={index} id={element.id} ro={element.ro} label={element.label} func={element.func} value={element.value} />
                     ))}
 
                     <div className={classes.select_div}>
@@ -285,7 +287,7 @@ console.log(profileImg)
                     <h4>Parent Detail</h4>
                     <div className={` ${classes.flex2}`}>
                         {parentData.map((element, index) => (
-                            <LabelledInput key={index} id={element.id} ro={element.ro} label={element.label} func={element.func} value={element.value} />
+                            <LabelledInput type={element.type} key={index} id={element.id} ro={element.ro} label={element.label} func={element.func} value={element.value} />
                         ))}
                     </div>
                 </div>

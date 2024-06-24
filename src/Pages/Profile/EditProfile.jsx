@@ -48,7 +48,8 @@ const [basicDetail, setBasicDetail] = useState({})
             id: 'mob',
             value: phone,
             func: setPhone,
-            ro: false
+            ro: false,
+            type:"Number"
         },
         {
             label: "Date Of Birth",
@@ -183,7 +184,7 @@ const [basicDetail, setBasicDetail] = useState({})
                 <div className={`${classes.flex2} `} style={{ border: "none", padding: "0" }}>
 
                     {data.map((element, index) => (
-                        <LabelledInput key={index} id={element.id} ro={element.ro} label={element.label} func={element.func} value={element.value} />
+                        <LabelledInput type={element.type} key={index} id={element.id} ro={element.ro} label={element.label} func={element.func} value={element.value} />
                     ))}
                     <div className={classes.select_div}>
                         <label htmlFor="gender" className={classes.select_label}>Gender</label>
