@@ -36,6 +36,7 @@ import Meet from './Components/DyteIo/Meet'
 import PrivateComponent from './Components/PrivateComponents/PrivateComponent'
 import EditStuProfile from './Pages/Students/EditStuProfile/EditStuProfile'
 import GroupChat from './Pages/GroupChat/GroupChat'
+import DoubtReq from './Pages/Classes/ClassesPages/DoubtReq'
 
 
 const App = () => {
@@ -95,6 +96,7 @@ const App = () => {
                 <Route path="reschedule-request" element={<RescheduleReq />} />
                 <Route path="resource-request" element={<ResourceReq />} />
                 <Route path="homework-request" element={<HomeworkReq />} />
+                <Route path="doubt-request" element={<DoubtReq />} />
               </Route>
               
               <Route path='/classes/upcoming-details/:id' element={<UpcomingClassDetail />} />

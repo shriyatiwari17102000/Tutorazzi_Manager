@@ -177,12 +177,27 @@ const getHomeworkData = async () => {
   data[3].h1 = res.data.data.homeworksResolved || 0
   data[3].h2 = res.data.data.homeworks
 }
+const getDoubtData = async () => {
+  let register = `${BASE_URL}/total-doubts`
+  // console.log(register)
+  let res = await axios.get(register, {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`
+    }
+  })
+  console.log(res.data.data)
+
+  data[4].h1 = res.data.data.doubtResolvedResponse || 0
+  data[4].h2 = res.data.data.doubtResponse
+}
  
 useEffect(() => {
   getTrialData()
   getRescheduleData()
   getResourceData()
   getHomeworkData()
+  getDoubtData()
 }, [])
 
   return (

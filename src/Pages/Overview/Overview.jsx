@@ -398,20 +398,7 @@ const Overview = () => {
     data[0].h1 = res.data.data?.acceptedClassResponse || 0;
     data[0].h2 = res.data.data?.pendingClassResponse || 0
   }
-  const getResourceData = async () => {
-    let register = `${BASE_URL}/total-resource-requests`
-    // console.log(register)
-    let res = await axios.get(register, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`
-      }
-    })
-    console.log(res.data.data)
-
-    data[2].h1 = res.data.data?.resourceResolvedRequests || 0
-    data[2].h2 = res.data.data?.resourcePendingRequests || 0
-  }
+ 
   const getHomeworkData = async () => {
     let register = `${BASE_URL}/total-homework-pending`
     // console.log(register)
@@ -427,7 +414,20 @@ const Overview = () => {
     data[3].h2 = res.data.data?.homeworks || 0
   }
 
-
+  const getDoubtData = async () => {
+    let register = `${BASE_URL}/total-doubts`
+    // console.log(register)
+    let res = await axios.get(register, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+      }
+    })
+    console.log(res.data.data)
+  
+    data[2].h1 = res.data.data.doubtResolvedResponse || 0
+    data[2].h2 = res.data.data.doubtResponse
+  }
   const getGraphData = async () => {
     let register = `${BASE_URL}/total-teachers-revenue?time=${dependTime}`
     // console.log(register)
@@ -479,10 +479,11 @@ const Overview = () => {
     getTrialData()
     // getUpcomingData()
     getRescheduleData()
-    getResourceData()
+    // getResourceData()
     getHomeworkData()
     getTrialListData()
     getPendingStudent()
+    getDoubtData()
   }, [])
 
   const navigate = useNavigate()
@@ -563,6 +564,7 @@ const Overview = () => {
         <Container cls={classes.inner_div}>
           <div className={classes.see_all}>
             <h4 className={classes.heading}>Pending Homeworks</h4>
+            <button style={{background:"none",border:"none", color:"blue", textDecoration:"underline"}} onClick={()=> navigate('/classes/homework-request')}>See all</button>
           </div>
 
           {pendingHomework.length > 0 ? pendingHomework?.map((item) => (
@@ -573,7 +575,7 @@ const Overview = () => {
         <Container cls={classes.inner_div}>
           <div className={classes.see_all}>
             <h4 className={classes.heading}>Pending Resource Request</h4>
-
+            <button style={{background:"none",border:"none", color:"blue", textDecoration:"underline"}} onClick={()=> navigate('/classes/resource-request')}>See all</button>
           </div>
           {pendingRequest.length > 0 ? pendingRequest.map((item, index) => (
             <TaskDashboard key={index} cls={classes.my_most_inner} date={false} alert={true} homeworkData={item} />

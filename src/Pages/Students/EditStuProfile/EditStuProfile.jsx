@@ -63,10 +63,10 @@ const EditStuProfile = () => {
         },
         {
             label: "Phone",
-            id: 'mob',
+            id: 'mub',
             value: phone,
             func: setPhone,
-            ro: true
+            ro: false   
         },
         // {
         //     label: "Date Of Birth",

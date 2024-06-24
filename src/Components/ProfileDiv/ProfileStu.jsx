@@ -115,7 +115,7 @@ useEffect(() => {
         </label>
         <div className={classes.d2}>
             <h3 style={{textTransform:"capitalize"}}>{userdata?.preferred_name}</h3>
-            <h5>Academic Manager</h5>
+            <h5>Student</h5>
         </div>
       
     </div>
