@@ -52,7 +52,7 @@ const TransferModal = ({ id, popupFunc, isPopup, func, setShow, show, data1, get
         const register = `${BASE_URL}/transfer-Class-Bundle/${data1?._id}`
 
         let bdy = {
-            teacher_id: data1.teacher_id
+            teacher_id: teacher
 
         }
         console.log(bdy)
