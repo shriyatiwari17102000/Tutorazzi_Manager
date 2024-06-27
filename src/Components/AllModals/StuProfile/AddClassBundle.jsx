@@ -143,7 +143,7 @@ const AddClassBundle = ({ popupFunc, isPopup, func, data1, id }) => {
                 <div className={classes.input_con}>
                     <label htmlFor="price">Price Per Class</label>
                 <div className={classes.boxed_input}>
-                    <div className={classes.sign}>$</div>
+                    <div className={classes.sign}>₹</div>
                     <input type="number" min={0}  value={price} onChange={(e)=> setPrice(e.target.value)} />
                 </div>
                 </div>
