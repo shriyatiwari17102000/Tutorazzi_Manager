@@ -90,7 +90,7 @@ const AddClassBundle = ({ popupFunc, isPopup, func, data1, id }) => {
 
     const handleDataUpload = async () => {
 
-        const register = `${BASE_URL}/extra-class-quote`
+        const register = `${BASE_URL}/Class-Bundle`
         // console.log(register)
         // console.log({ start_time: timeDate })
         let bdy = {
