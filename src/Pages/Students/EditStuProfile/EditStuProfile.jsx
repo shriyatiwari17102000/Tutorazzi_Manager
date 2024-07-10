@@ -227,7 +227,7 @@ const EditStuProfile = () => {
             // navigate("/auth-upload");
             ToasterUpdate(myToast, response.data.message, "success")
             console.log(data, "oooooo");
-            // navigate('/profile')
+            navigate(`/student/details/${id}`)
 
         } catch (error) {
             console.log(error)

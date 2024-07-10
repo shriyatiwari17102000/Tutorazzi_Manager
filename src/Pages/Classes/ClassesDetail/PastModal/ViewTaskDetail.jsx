@@ -39,10 +39,37 @@ const ViewTaskDetail = (props) => {
     useEffect(() => {
         getTaskData()
     }, [])
+    const downloadFile = (
+        filePath
+    ) => {
+        let fileName = filePath
+        console.log(fileName)
+
+        fetch(`${filePath}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/pdf',
+            },
+        })
+            .then(response => response.blob())
+            .then(blob => {
+                const url = window.URL.createObjectURL(new Blob([blob]));
+
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = fileName;
+
+                document.body.appendChild(link);
+
+                link.click();
+
+                link.parentNode.removeChild(link);
+            });
+    };
     return (
         <Modal cls={classes.popup} value={props.isPopup} Func={props.popupFunc}>
 
-            <Heading heading={'Task Information'} p={'You can see task information here'} />
+            <Heading heading={'Doubt Information'} p={'You can see task information here'} />
 
 
             <Container cls={`${classes.fold_body} ${classes.w1}`}>
@@ -58,6 +85,16 @@ const ViewTaskDetail = (props) => {
                         <h4>Answer</h4>
                         <p>{taskData?.answer}</p>
                     </div>}
+                    {taskData?.answer_document_id?.document_url && <div className={classes.task}>
+                        <h4 className={classes.para}>Answer pdf</h4>
+                        <p className={classes.p2} onClick={() => downloadFile(taskData?.answer_document_id?.document_url)}>Download  <a
+
+                            style={{ textAlign: "center", fontSize: "16px", cursor: "pointer" }}
+                        >
+                            <MdOutlineFileDownload />
+                        </a></p>
+                    </div>
+                    }
                     <div className={classes.task}>
                         <h4 className={classes.para}>Due Date</h4>
                         <p> <Moment format='DD/MM/YYYY'>{taskData?.due_date}</Moment></p>

@@ -173,20 +173,11 @@ const TrialClassPast = () => {
                     </UserDiv>
                 </Container>
              </div>
-                <Container cls={`${classes.inner_box1}`}>
-                    <h4 className={classes.secondary_heading}>Class Resources</h4>
-                    {data?.classDetails?.materials_url.map((item, index) => (
-                        <DownloadPdf item={item} />
-                    ))}
-                    {/* <DownloadPdf />
-                    <DownloadPdf />        
-                    <DownloadPdf />
-                    <DownloadPdf /> */}
-                </Container>
+               
                 <Container cls={`${classes.inner_box}`}>
                     <h4 className={classes.secondary_heading}>Teacher’s Instructions</h4>
                     <p className={`${classes.instruction}`}>
-                        {data?.classDetails?.notes}
+                        {data?.classDetails?.notes || "no data found!"}
                     </p>
                 </Container>
 
@@ -247,10 +238,19 @@ const TrialClassPast = () => {
                   </div>
                 </Container> */}
 
-
+<Container cls={`${classes.inner_box1}`}>
+                    <h4 className={classes.secondary_heading}>Class Resources</h4>
+                    {data?.classDetails?.materials_url.map((item, index) => (
+                        <DownloadPdf item={item} />
+                    ))}
+                    {/* <DownloadPdf />
+                    <DownloadPdf />        
+                    <DownloadPdf />
+                    <DownloadPdf /> */}
+                </Container>
 
                 <div className={`${classes.inner_box}`} style={{padding:"0"}}>
-                    <h4 className={classes.secondary_heading}>Pricing Section</h4>
+                    <h4 className={classes.secondary_heading} style={{marginTop:"30px"}}>Pricing Section</h4>
                     {quote?.length > 0 ? <div  className={classes.top_quote}>
                         <div className={classes.inn_quote}>
                             {

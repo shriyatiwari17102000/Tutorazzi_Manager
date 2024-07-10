@@ -9,14 +9,22 @@ import alert from '../../../../assets/alert-triangle.png'
 import Container from '../../../../UI/Container/Container'
 import ViewTaskDetail from './ViewTaskDetail'
 import ViewHomeworkDetail from './ViewHomeworkDetail'
-
-
+import { toast } from 'react-toastify'
+import axios from 'axios'
+import { BASE_URL } from '../../../../Apis/BaseUrl'
+import Cookies from "js-cookie"
 
 
 const HomeWorkModal = (props) => {
     const [openModal, setOpenModal] = useState(false)
     const[ID, setID] = useState('')
+    const[loading, setLoading] = useState(false)
 console.log(props)
+
+let profileTokenJson = Cookies.get("tutorazzi_academic");
+let profileToken = JSON.parse(profileTokenJson);
+let token = profileToken.access_token;
+
     const handleShow = (id) => {
         setOpenModal(true)
         setID(id)
@@ -53,6 +61,46 @@ console.log(props)
             link.parentNode.removeChild(link);
           });
       };
+      console.log(props?.id)
+      const handleRequest = async (id) => {
+
+        const register = `${BASE_URL}/request-re-upload/${id}`
+
+        const myToast = toast.loading('Please Wait...')
+        setLoading(true)
+        try {
+            const response = await axios.patch(register, {}, {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            })
+            console.log(response)
+            if (!response.data.success) {
+                throw new Error(response.data.message)
+            }
+            toast.update(myToast, {
+                render: response.data.message,
+                type: 'success',
+                isLoading: false,
+                autoClose: 1500
+            });
+        } catch (error) {
+            console.error('Error while uploading data:', error);
+
+            toast.update(myToast, {
+                render: error.message,
+                type: 'error',
+                isLoading: false,
+                autoClose: 1500
+            });
+        }
+        finally {
+            setLoading(false)
+        }
+    };
+
+    
     return (
         <>
             <Modal cls={classes.popup} value={props.isPopup} Func={props.popupFunc}>

@@ -31,7 +31,7 @@ const PastClassDetail = () => {
     const [quote, setQuote] = useState([])
     const [limit, setLimit] = useState(3)
     const [page, setPage] = useState(1)
-    const [pageInfo, setPageInfo] = useState({}) 
+    const [pageInfo, setPageInfo] = useState({})
 
 
     const handleOpenModal = (id) => {
@@ -90,7 +90,7 @@ const PastClassDetail = () => {
         console.log(res.data.data?.result?.docs)
         // setData(res.data.data)
         setPageInfo({ ...res.data.data?.result, docs: null })
-        setQuote(res.data.data.result?.docs)
+        setQuote(res.data.data?.result?.docs)
     }
 
     useEffect(() => {
@@ -134,12 +134,12 @@ const PastClassDetail = () => {
 
     return (
         <React.Fragment>
-            {data?.classDetails?.class_type== "Trial" ?  <Heading heading={'Past Class Details'} p={'Porem ipsum dolor sit amet, consectetur adipiscing elit.'} >
+            {data?.classDetails?.class_type == "Trial" ? <Heading heading={'Past Class Details'} p={'Porem ipsum dolor sit amet, consectetur adipiscing elit.'} >
                 <BlackButton func={popupHandler} funcVal={show} cls={classes.btn}>Add Quote</BlackButton>
             </Heading> : <Heading heading={'Past Class Details'} p={'Porem ipsum dolor sit amet, consectetur adipiscing elit.'} >
 
-</Heading>}
-            
+            </Heading>}
+
             <div className={classes.box}>
                 <Container cls={classes.header}>
                     <div className={classes.header_right}>
@@ -178,7 +178,7 @@ const PastClassDetail = () => {
                 <Container cls={`${classes.inner_box}`}>
                     <h4 className={classes.secondary_heading} style={{ color: "rgba(66, 77, 182, 1)" }}>Teacher’s Instructions</h4>
                     <p className={`${classes.instruction}`}>
-                        {data?.classDetails?.notes ? data?.classDetails?.notes :  <p style={{fontSize:"14px", color:"#989898"}}>no instructions found!</p>}
+                        {data?.classDetails?.notes ? data?.classDetails?.notes : <p style={{ fontSize: "14px", color: "#989898" }}>no instructions found!</p>}
                     </p>
                 </Container>
 
@@ -200,27 +200,27 @@ const PastClassDetail = () => {
                     }}>
                         <h6 style={{ fontSize: "15px", marginBlock: "15px", fontWeight: "500", }}>Student Instruction</h6>
 
-                        {data?.classDetails?.student_instructions || data?.classDetails?.student_instruction_document_url ? 
-                        <>
-                        <p style={{ fontSize: "14px", color: "#898989" }}>{data?.classDetails?.student_instructions}</p>
-                        {data?.classDetails?.student_instruction_document_url && <div className={classes.btns}>
-                            <button onClick={() => downloadFile(data?.classDetails?.student_instruction_document_url)}>Student instruction.pdf <FiDownload />
-                            </button>
-                        </div>}</> :  <p style={{fontSize:"14px", color:"#989898"}}>no data found!</p> }
+                        {data?.classDetails?.student_instructions || data?.classDetails?.student_instruction_document_url ?
+                            <>
+                                <p style={{ fontSize: "14px", color: "#898989" }}>{data?.classDetails?.student_instructions}</p>
+                                {data?.classDetails?.student_instruction_document_url && <div className={classes.btns}>
+                                    <button onClick={() => downloadFile(data?.classDetails?.student_instruction_document_url)}>Student instruction.pdf <FiDownload />
+                                    </button>
+                                </div>}</> : <p style={{ fontSize: "14px", color: "#989898" }}>no data found!</p>}
 
                     </div>
 
                     <div>
                         <h6 style={{ fontSize: "15px", marginBlock: "15px", fontWeight: "500" }}>Parent Instruction</h6>
-                        {data.classDetails?.parent_instructions || data?.classDetails?.parent_instruction_document_url ? 
-                        <>
-                          <p style={{ fontSize: "14px", color: "#898989" }}>{data.classDetails?.parent_instructions}</p>
-                        {data?.classDetails?.parent_instruction_document_url && <div className={classes.btns}>
-                            <button onClick={() => downloadFile(data?.classDetails?.parent_instruction_document_url)}>Parent instruction.pdf <FiDownload />
-                            </button>
-                        </div>}
-                        </> : <p style={{fontSize:"14px", color:"#989898"}}>no data found!</p> }
-                      
+                        {data.classDetails?.parent_instructions || data?.classDetails?.parent_instruction_document_url ?
+                            <>
+                                <p style={{ fontSize: "14px", color: "#898989" }}>{data.classDetails?.parent_instructions}</p>
+                                {data?.classDetails?.parent_instruction_document_url && <div className={classes.btns}>
+                                    <button onClick={() => downloadFile(data?.classDetails?.parent_instruction_document_url)}>Parent instruction.pdf <FiDownload />
+                                    </button>
+                                </div>}
+                            </> : <p style={{ fontSize: "14px", color: "#989898" }}>no data found!</p>}
+
 
                     </div>
                 </Container>
@@ -229,25 +229,25 @@ const PastClassDetail = () => {
 
                     <p style={{ fontSize: "14px", color: "#898989" }}>{data?.classDetails?.parent_complaints || "no data found!"}</p>
                 </Container>
-{data?.classDetails?.class_type == "Trial" && 
-                <div className={`${classes.inner_box}`} style={{padding:"0"}}>
-                    <h4 className={classes.secondary_heading}>Pricing Section</h4>
-                    {quote?.length > 0 ? <div  className={classes.top_quote}>
-                        <div className={classes.inn_quote}>
-                            {
-                                quote?.map((item, index) => (
-                                    // console.log(item)
-                                    <div key={index} className={classes.most_inn_quote} >
-                                        <UpcomingClassCard
-                                        cls={classes.new_cls}
-                                        func={getPricingData} data={item} id={data?.studentDetails?.user_id} />
-                                    </div>
-                                ))}
-                        </div>
-                        <NewPagination {...paginationProps} />
-                    </div> : "no data found!"}
-                   
-                </div>}
+                {data?.classDetails?.class_type == "Trial" &&
+                    <div className={`${classes.inner_box}`} style={{ padding: "0" }}>
+                        <h4 className={classes.secondary_heading} style={{marginTop:"30px"}}>Pricing Section</h4>
+                        {quote?.length > 0 ? <div className={classes.top_quote}>
+                            <div className={classes.inn_quote}>
+                                {
+                                    quote?.map((item, index) => (
+                                        // console.log(item)
+                                        <div key={index} className={classes.most_inn_quote} >
+                                            <UpcomingClassCard
+                                                cls={classes.new_cls}
+                                                func={getPricingData} data={item} id={data?.studentDetails?.user_id} />
+                                        </div>
+                                    ))}
+                            </div>
+                            <NewPagination {...paginationProps} />
+                        </div> : "no data found!"}
+
+                    </div>}
                 {/* <Container cls={`${classes.inner_box}  ${classes.widthh}`} >
                     <div>
                     <h4 className={classes.secondary_heading} style={{color: "rgba(66, 77, 182, 1)"}}>Rate Your Teacher</h4>

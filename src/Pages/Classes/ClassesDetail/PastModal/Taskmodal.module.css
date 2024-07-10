@@ -19,6 +19,13 @@
 .body > div:nth-child(4){
     width: 48%;
 }
+.ss_div{
+    display: flex;
+    & img {
+        width: 20px;
+        height: 20px;
+    }
+}
 
 .bottom {
     display: flex;
@@ -141,6 +148,7 @@
 
 .header h5 {
     font-weight: 500;
+    width: 65%;
 }
 
 .header img {}

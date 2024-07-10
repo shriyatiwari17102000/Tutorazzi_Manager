@@ -21,6 +21,36 @@
     gap: 20px;
     /* justify-content: space-between; */
 }
+.btns2{
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+}
+.btns2 button:nth-child(1){
+    color: black;
+    border: 1px solid #d9d9d9;
+    border-radius: 5px;
+    background: white;
+    width: 100%;
+    /* border: none; */
+    height: 45px;
+    width: 49.5%;
+    font-weight: 500;
+    font-size: 13px;
+}
+.btns2 button:nth-child(2){
+    color: white;
+    border: 1px solid #d9d9d9;
+    border-radius: 5px;
+    background: black;
+    width: 100%;
+    border: none;
+    height: 45px;
+    width: 49.5%;
+    font-weight: 500;
+    font-size: 13px;
+}
+
 
 .btns button:nth-child(1) {
     color: black;
