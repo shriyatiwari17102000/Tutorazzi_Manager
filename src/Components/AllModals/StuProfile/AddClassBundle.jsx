@@ -60,7 +60,7 @@ const AddClassBundle = ({ popupFunc, isPopup, func, data1, id }) => {
             },
         });
         console.log(response.data.data)
-        setCurriculum(response.data.data[0])
+        setCurriculum(response.data.data[0]?.curriculum_name)
         setCurrData(response.data.data)
 
         // getAllSubject()
