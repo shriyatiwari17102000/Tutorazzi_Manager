@@ -32,8 +32,27 @@ const AddClassBundle = ({ popupFunc, isPopup, func, data1, id }) => {
     const getTutToken = JSON.parse(tutToken)
     const token = getTutToken.access_token
 
+   
+
+    const getTeacher = async () => {
+        const register = `${BASE_URL}/all-teachers`
+        let response = await axios.get(register, {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token} `,
+            },
+        })
+
+        console.log(response.data.data)
+        setTeacherData(response.data.data?.docs)
+        setTeacher(response.data.data.docs[0].user_id)
+    }
+
+    useEffect(() => {
+        getTeacher()
+    }, [])
     const getAllCurriculum = async () => {
-        const register = `${BASE_URL}/curriculums`;
+        const register = `${BASE_URL}/curriculums?teacher_id=${teacher}`;
 
         const response = await axios.get(register, {
             headers: {
@@ -41,14 +60,14 @@ const AddClassBundle = ({ popupFunc, isPopup, func, data1, id }) => {
             },
         });
         console.log(response.data.data)
-        setCurriculum(response.data.data[0].name)
+        setCurriculum(response.data.data[0])
         setCurrData(response.data.data)
 
         // getAllSubject()
     }
     useEffect(() => {
         getAllCurriculum()
-    }, [])
+    }, [teacher])
 
     const getSubject = async () => {
         const register = `${BASE_URL}/subject-by-curriculum?curriculum=${curriculum}`
@@ -67,25 +86,6 @@ const AddClassBundle = ({ popupFunc, isPopup, func, data1, id }) => {
     useEffect(() => {
         getSubject()
     }, [curriculum])
-
-    const getTeacher = async () => {
-        const register = `${BASE_URL}/all-teachers`
-        let response = await axios.get(register, {
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token} `,
-            },
-        })
-
-        console.log(response.data.data?.docs[0].user_id)
-        setTeacherData(response.data.data?.docs)
-        setTeacher(response.data.data.docs[0].user_id)
-    }
-
-    useEffect(() => {
-        getTeacher()
-    }, [])
-
     // console.log(sub)
 
     const handleDataUpload = async () => {
@@ -150,13 +150,14 @@ const AddClassBundle = ({ popupFunc, isPopup, func, data1, id }) => {
                 <div className={classes.wd}>
                     <label className={classes.label1}>Select Teacher</label>
                     <select className={classes.input_div1} value={teacher} onChange={(e) => setTeacher(e.target.value)}>
+
                     {teacherData && teacherData?.map((element, index) => (<option key={index} selected value={element.user_id}>{element.preferred_name}</option>))}
                     </select>
                 </div>
                 <div className={classes.wd}>
                     <label className={classes.label1}>Select Curriculum</label>
                     <select className={classes.input_div1} value={curriculum} onChange={(e) => setCurriculum(e.target.value)}>
-                    {currData && currData?.map((element, index) => (<option key={index} selected value={element.name}>{element.name}</option>))}
+                    {currData && currData?.map((element, index) => (<option key={index} selected value={element.curriculum_name}>{element.curriculum_name}</option>))}
                     </select>
                 </div>
                 <div className={classes.wd}>
