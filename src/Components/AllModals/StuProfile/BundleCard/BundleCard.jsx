@@ -62,13 +62,11 @@ const BundleCard = (props) => {
                     <button className={classes.pend} onClick={handleShow}>Reschedule</button></div>)}
                 {data.status == "Done" && <button className={classes.don}>Done</button>}
                 {data.status == "Scheduled" && <button className={classes.pend}>Schedule</button>}
-            </div>
-            <div>
                 {data.status == "Pending" && (<div className={classes.pen_div}>
-               <button className={classes.pend} onClick={handleAccept} disabled={loading}>Pending</button>
+               <button className={classes.pend} disabled={loading}>Pending</button>
                  </div>)}
-            
             </div>
+           
         </div>
         {show && <RescheduleClasses isPopup={show} popupFunc={setShow} func={props?.func} data1={data} />}
         </>

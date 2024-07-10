@@ -54,10 +54,10 @@ const Students = () => {
                 </div>
             </Heading>
             <div>
-                {data.length > 0 ? <div>
+                {data?.length > 0 ? <div>
               <div className={classes.box}>
               {
-                  data.map((element, index) => (
+                  data?.map((element, index) => (
                     <Link to={`details/${element?.user_id?._id}`} key={index} className={classes.student}>
                         <UserDiv cls={classes.my_student_Card} data={element} >
                         <FaChevronRight className={classes.i} />

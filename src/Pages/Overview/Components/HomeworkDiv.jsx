@@ -25,7 +25,7 @@ const HomeworkDiv = props => {
         <div className={classes.homeowrk_fold_container}>
           {data?.length > 0 ? data?.slice().reverse().slice(0, 2).map((item, index) => (
             <HomeworkFold data={item} open={true} />
-          )) : "no data found!"}
+          )) :  <p style={{fontSize:"14px", color:"#989898"}}>no data found!</p>}
          
         </div>
       </Container>

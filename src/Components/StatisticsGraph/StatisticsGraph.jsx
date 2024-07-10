@@ -86,9 +86,9 @@ const StatisticsGraph = ({data, dependTime, setDependTime}) => {
       </div>
       <Chart options={options} series={series} type="area" height={278} />
       <div className={classes.tag}>
-        <p>Total Revenue &nbsp; ₹{data?.totalRevenue}</p>
-        <p>Teacher's Share &nbsp;₹{data?.payout}</p>
-        <p>Profit &nbsp;₹{data?.profit}</p>
+        <p>Total Revenue &nbsp; ₹{data?.totalRevenue?.toFixed(0)}</p>
+        <p>Teacher's Share &nbsp;₹{data?.payout?.toFixed(2)}</p>
+        <p>Profit &nbsp;₹{data?.profit?.toFixed(2)}</p>
       </div>
     </div>
   );

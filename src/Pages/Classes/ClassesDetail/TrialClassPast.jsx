@@ -236,7 +236,7 @@ const TrialClassPast = () => {
                            </div>
                     <TasksMap cls={classes.my_tasks} data={data?.taskResponse} func={getUpcomingData} />
                 </Container> */}
-                <Container cls={`${classes.inner_box}  ${classes.widthh}`} >
+                {/* <Container cls={`${classes.inner_box}  ${classes.widthh}`} >
                     <div>
                     <h4 className={classes.secondary_heading}>Rate Your Teacher</h4>
                     <RatingCard data={data?.teacherRatings} readonly={true} p={'Rate Teacher By Selecting From 1 to 5 Stars To Express your Views'} />
@@ -245,7 +245,7 @@ const TrialClassPast = () => {
                   <h4 className={classes.secondary_heading}>Rate this Class</h4>
                     <RatingCard data={data?.ratingsResponse} readonly={true} p={'Rate This Class By Selecting From 1 to 5 Stars To Express your Views'}/>
                   </div>
-                </Container>
+                </Container> */}
 
 
 

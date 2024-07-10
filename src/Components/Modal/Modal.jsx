@@ -8,13 +8,9 @@ import Heading from '../Heading/Heading'
 const MyModal = props => {
   return <Container cls={`${props.cls} ${classes.modal} ${props.value === true ? classes.visible : ''}`}>
     <div className={classes.body}>
-      {/* <Heading heading={props.heading} p={props.p} cls={classes.heading} /> */}
       {props.children}
     </div>
-    {/* <div className={classes.bottom}>
-      <button onClick={()=>props.Func(false)}>Cancel</button>
-      <BlackButton>Submit</BlackButton>
-    </div> */}
+  
   </Container>
 }
 

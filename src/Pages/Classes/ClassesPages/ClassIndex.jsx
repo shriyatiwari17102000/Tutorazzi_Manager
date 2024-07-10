@@ -115,6 +115,8 @@ const ClassIndex = () => {
     useEffect(() => {
         getPastData()
     }, [limit1, page1, search1, value, teacher, student])
+
+    
     const getMissedData = async () => {
         let dateValue = value ? moment(value).format('YYYY-MM-DD') : " ";
         let register = `${BASE_URL}/missed-classes?limit=${limit2}&page=${page2}&search=${search2}&date=${dateValue}&teacher_id=${teacher}&student_id=${student}`

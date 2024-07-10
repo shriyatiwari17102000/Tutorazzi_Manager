@@ -107,9 +107,11 @@ const PaymentDetails = () => {
                     <h4 className={classes.heading}>Class Details</h4>
                     {/* { */}
                         {/* // classData.map((item) => ( */}
-                            <div className={classes.inn_clss}>
+                        {data?.payment?.quote_id ?  <div className={classes.inn_clss}>
                                 <StuDetailCard data={data?.payment?.quote_id} cls={classes.my_class_details} />
-                            </div>
+                            </div> : <p style={{fontSize:"14px", color:"#989898"}}>no classes found!
+                            </p>}
+                           
                         {/* ))
                     } */}
                     {/* {

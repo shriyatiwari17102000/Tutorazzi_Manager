@@ -8,7 +8,7 @@ const TasksMap = props => {
     <div className={props.cls}>
       {data?.length > 0 ? data?.slice().reverse().slice(0, 2).map((item, index) => (
         <TaskCard data={item} func={props.func} />
-      )) : "no data found!"}
+      )) :  <p style={{fontSize:"14px", color:"#989898"}}>no data found!</p>}
       {/* <TaskCard isDone={true} />
       <TaskCard isDone={false} />
       <TaskCard isDone={true} />

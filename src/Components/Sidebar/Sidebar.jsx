@@ -30,6 +30,9 @@ const MySidebar = props => {
         <NavLink className={classes.link} to={'/student'}>
           Student Info
         </NavLink>
+        <NavLink className={classes.link} to={'/teacher'}>
+          All Teachers
+        </NavLink>
         <NavLink className={classes.link} to={'/payment'}>
           Payment
         </NavLink>

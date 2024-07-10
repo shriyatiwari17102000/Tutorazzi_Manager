@@ -218,9 +218,10 @@ const ClassCard = (props) => {
     <>
       <Container cls={`${classes.card} ${props.cls}`}>
         <div className={classes.card_data}>
-          <h3>{data.subject_name || data.class_id.subject_name} {data.alert && <span className={classes.red_span}>{data.alert}</span>}</h3>
+          <h3>{data.subject_name || data.class_id.subject_name} {data?.class_type === "Trial" && <span className={classes.red_trial}>Trial</span>} {data.alert && <span className={classes.red_span}>{data.alert}</span>}</h3>
           {dataLayout(props.layout)}
         </div>
+        
 
         <div className={classes.btn_container}>
           {/* {

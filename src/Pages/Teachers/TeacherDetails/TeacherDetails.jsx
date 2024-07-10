@@ -149,11 +149,7 @@ const TeacherDetails = () => {
             id: 'fn',
             value: teacherData?.user_id?.name
         },
-        // {
-        //     label: "Last Name",
-        //     id: 'ln',
-        //     value: 'Shrivastav'
-        // },
+        
         {
             label: "Email",
             id: 'em',
@@ -164,16 +160,6 @@ const TeacherDetails = () => {
             id: 'mob',
             value: teacherData?.user_id?.mobile_number
         },
-        // {
-        //     label: "Parent Email id",
-        //     id: 'em2',
-        //     value: 'Shrivastav@gmail.com'
-        // },
-        // {
-        //     label: "Parent Phone Number",
-        //     id: 'mob2',
-        //     value: '12329293993'
-        // },
         {
             label: "Grade",
             id: 'gr',
@@ -199,11 +185,6 @@ const TeacherDetails = () => {
             id: 'country',
             value: teacherData?.country
         },
-        // {
-        //     label: "Standard",
-        //     id: 'standard',
-        //     value: '12th'
-        // },
         {
             label: "Address",
             id: 's1',
@@ -361,9 +342,9 @@ const TeacherDetails = () => {
                 </Container> */}
                 <Container cls={classes.inner_box_5} >
                     <h4 className={classes.heading}>Latest Ticket</h4>
-                    {ticketData.map((item) => (
+                    {ticketData?.length > 0 ? ticketData?.map((item) => (
                         <TicketComp data={item} />
-                    ))}
+                    )) :  <p style={{fontSize:"14px", color:"#989898"}}>no data found!</p>}
 
                 </Container>
             </div>
