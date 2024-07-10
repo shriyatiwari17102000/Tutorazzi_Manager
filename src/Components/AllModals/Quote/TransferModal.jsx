@@ -37,9 +37,9 @@ const TransferModal = ({ id, popupFunc, isPopup, func, setShow, show, data1, get
             },
         })
 
-        console.log(response.data.data?.docs)
-        setTeacherData(response.data.data?.docs)
-        setTeacher(response.data.data.docs[0]?.user_id)
+        console.log(response?.data?.data)
+        setTeacherData(response?.data?.data?.docs)
+        setTeacher(response?.data?.data?.docs[0]?.user_id)
     }
 
     useEffect(() => {
@@ -92,13 +92,14 @@ const TransferModal = ({ id, popupFunc, isPopup, func, setShow, show, data1, get
 
                 <div style={{ width: "100%" }}>
                     <label className={classes.label1} >Select Teacher</label>
+                    {teacherData?.length > 0 ?
                     <select name="" id="" className={classes.selecttag} value={teacher} onChange={(e) => setTeacher(e.target.value)}>
 
-                        {teacherData && teacherData?.map((element, index) => (<option key={index} selected value={element.user_id}>{element.preferred_name}</option>))}
+                        { teacherData?.map((element, index) => (<option key={index} selected value={element.user_id}>{element.preferred_name}</option>)) }
 
                     </select>
 
-
+: <p style={{fontSize:"13px", fontWeight:"500", color :"#989898"}}>no teacher available!</p>}
                 </div>
 
 

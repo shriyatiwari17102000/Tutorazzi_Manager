@@ -10,7 +10,6 @@ import { BASE_URL } from '../../../Apis/BaseUrl'
 import classes from "./StuProfile.module.css"
 import Moment from 'react-moment'
 import BundleCard from './BundleCard/BundleCard'
-import AddExtraClass from '../Quote/AddExtraClass'
 import Container from '../../../UI/Container/Container'
 
 const BundleDetail = ({ popupFunc, handleClose1, isPopup, bundleInfo1, func, data1, stuId, setShowModal, setShowModal1, showModal1, showModal }) => {

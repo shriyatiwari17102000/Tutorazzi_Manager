@@ -108,7 +108,7 @@ const PaymentDetails = () => {
                     {/* { */}
                         {/* // classData.map((item) => ( */}
                         {data?.payment?.quote_id ?  <div className={classes.inn_clss}>
-                                <StuDetailCard data={data?.payment?.quote_id} cls={classes.my_class_details} />
+                                <StuDetailCard data={data?.payment?.quote_id} getData={getDetail} cls={classes.my_class_details} />
                             </div> : <p style={{fontSize:"14px", color:"#989898"}}>no classes found!
                             </p>}
                            
