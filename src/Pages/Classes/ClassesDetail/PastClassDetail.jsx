@@ -260,7 +260,7 @@ const PastClassDetail = () => {
                 </Container>               */}
 
             </div>
-            {show && <QuoteModal isPopup={show} popupFunc={setShow} func={getPricingData} data1={data} />}
+            {show && <QuoteModal teacher_name={data?.teacherDetails} isPopup={show} popupFunc={setShow} func={getPricingData} data1={data} />}
             {openModal && <TaskModal isPopup={openModal} func={getUpcomingData} popupFunc={setOpenModal} data={data} id={ID} />}
 
         </React.Fragment>

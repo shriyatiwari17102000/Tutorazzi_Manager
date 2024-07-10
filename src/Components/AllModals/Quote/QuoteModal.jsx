@@ -32,7 +32,7 @@ const QuoteModal = ({ popupFunc, isPopup, func, data1, teacher_name }) => {
 
     const getCurriculum = async () => {
         const register = `${BASE_URL}/subject-by-curriculum?curriculum=${data1?.
-            classDetails?.curriculum_name}`
+            classDetails?.curriculum_name}&teacher_id=${teacher_name?.user_id?._id}`
         let response = await axios.get(register, {
             headers: {
                 "Content-Type": "application/json",
@@ -40,9 +40,9 @@ const QuoteModal = ({ popupFunc, isPopup, func, data1, teacher_name }) => {
             },
         })
 
-        console.log(response.data.data[0])
+        console.log(response.data?.data[0])
         setSub(response.data.data)
-        setSubject(response.data.data[0])
+        setSubject(response.data?.data[0])
     }
 
     useEffect(() => {
@@ -129,7 +129,7 @@ const QuoteModal = ({ popupFunc, isPopup, func, data1, teacher_name }) => {
                 </div>
                 <div className={classes.wd}>
                     <label className={classes.label1}>Select Teacher</label>
-                    <input type="text" value={teacher_name}  className={classes.input_div1} readOnly/>
+                    <input type="text" value={teacher_name?.preferred_name}  className={classes.input_div1} readOnly/>
                     {/* <select className={classes.input_div1} value={teacher} onChange={(e) => setTeacher(e.target.value)}>
                     {teacherData && teacherData?.map((element, index) => (<option key={index} selected value={element.user_id}>{element.preferred_name}</option>))}
                     </select> */}
