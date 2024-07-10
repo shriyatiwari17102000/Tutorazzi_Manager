@@ -9,7 +9,7 @@ const {data} = props
     <div className={classes.div1}>
     <p>{data?.title}</p>
     {/* <img src="" alt="" /> */}
-    <img src={data?.status === "Resolved" ? '/done.png' : '/alert.png'} alt="" />
+    <img style={{height:"20px", width:"20px"}} src={data?.status === "Resolved" ? '/done.png' : '/alert.png'} alt="" />
     </div>
       <p className={classes.p}>Due Date <Moment format='DD/MM/YYYY'>{data?.createdAt}</Moment></p>
      <div className={classes.div2}>
