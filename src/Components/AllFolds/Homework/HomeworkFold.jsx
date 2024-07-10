@@ -29,8 +29,9 @@ const HomeworkFold = (props) => {
         filePath
       ) => {
         let fileName = filePath
-      
-        fetch(`https://tutorrazzi-prvx.onrender.com/${filePath}`, {
+        console.log(fileName)
+    
+        fetch(`${filePath}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/pdf',
@@ -109,7 +110,7 @@ const HomeworkFold = (props) => {
               {data?.description}
                 </p>
                 <div className={classes.btns}>
-                    <button onClick={() => downloadFile(data?.answer_document_id?.name)}>Download Homework</button>
+                    <button onClick={() => downloadFile(data?.answer_document_id?.document_url)}>Download Homework</button>
                     <button style={{background:"black", color:"white"}} onClick={handleRequest} disabled={loading}>Re-Upload Request</button>
                 </div>
             </div>

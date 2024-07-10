@@ -115,7 +115,9 @@ const AddClassBundle = ({ popupFunc, isPopup, func, data1, id }) => {
                     Authorization: `Bearer ${token} `,
                 },
             })
-
+            // if (!response.success) {
+            //     return toast.error(response.data.message)
+            // }
             console.log(response)
             ToasterUpdate(myToast, response.data.message, "success")
             func()

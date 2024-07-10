@@ -34,8 +34,9 @@ const DownloadPdf = (props) => {
     filePath
   ) => {
     let fileName = filePath
-  
-    fetch(`https://tutorrazzi-prvx.onrender.com/${filePath}`, {
+    console.log(fileName)
+
+    fetch(`${filePath}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/pdf',
@@ -62,7 +63,7 @@ const DownloadPdf = (props) => {
         <Container cls={classes.row_span}><IoDocumentOutline /></Container>
        <p style={{fontSize:"14px"}}> {data?.name}</p>
       </div>
-      <span onClick={() => downloadFile(data?.name)}>
+      <span onClick={() => downloadFile(data?.document_url)}>
         <a
 
           style={{ color: "black", textAlign: "center", fontSize: "20px", cursor: "pointer" }}
