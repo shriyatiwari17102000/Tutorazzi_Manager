@@ -75,6 +75,7 @@ const App = () => {
                 <Route path="reschedule-request" element={<RescheduleReq />} />
                 <Route path="resource-request" element={<ResourceReq />} />
                 <Route path="homework-request" element={<HomeworkReq />} />
+                <Route path="doubt-request" element={<DoubtReq />} />
                 </Route>
               <Route path='student'>
                 <Route index element={<Students />} />
