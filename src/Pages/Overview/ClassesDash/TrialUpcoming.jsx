@@ -9,7 +9,7 @@ const TrialUpcoming = (props) => {
     <div className={classes.cont}>
         <div className={classes.inn_div}>
         <h4>{data?.subject?.name}</h4>
-        <p style={{fontSize:'14px'}}>20 July</p>
+        <p style={{fontSize:'14px'}}><Moment format="DD/MM/YYYY">{data?.start_time}</Moment></p>
         </div>
         <div className={classes.inn_div2}>
             <p className={classes.tab}>1hr</p>
