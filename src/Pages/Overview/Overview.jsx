@@ -460,7 +460,7 @@ const Overview = () => {
 
   }
   const getTrialListData = async () => {
-    let register = `${BASE_URL}/trial-classes?limit=3&page=1`
+    let register = `${BASE_URL}/trial-classes?limit=3&page=1&is_pending=true`
     // console.log(register)
     let res = await axios.get(register, {
       headers: {
