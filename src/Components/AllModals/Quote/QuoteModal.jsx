@@ -40,7 +40,7 @@ const QuoteModal = ({ popupFunc, isPopup, func, data1, teacher_name }) => {
             },
         })
 
-        console.log(response.data?.data[0])
+        console.log(response.data?.data)
         setSub(response.data.data)
         setSubject(response.data?.data[0])
     }

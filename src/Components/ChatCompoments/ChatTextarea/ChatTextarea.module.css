@@ -41,7 +41,64 @@
     padding: 0;
     font-size: 14px;
 }
+.render_pdf{
+    border: 1px solid #ccc;
+    position: relative;
+    /* width: ; */
+    margin: 10px !important;
+    border-radius: 5px !important;
+}
 
+.render_pdf button{
+    border-radius: 50%;
+    background: black;
+    color: white !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: -10px;
+    top: -8px;
+    width: 20px;
+    height: 20px;
+}
+.render_pdf{
+    padding: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    width: 80%;
+}
+.render_img button > svg{
+    color: white !important;
+}
+.render_pdf button > svg{
+    color: white !important;
+}
+.render_img img{
+    width: 60px;
+    height: 60px;
+    border-radius:5px;
+}
+.render_img button{
+    border-radius: 50%;
+    background: black;
+    color: white !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: -10px;
+    top: -8px;
+    width: 20px;
+    height: 20px;
+}
+.render_img{
+    border: 1px solid #ccc;
+    position: relative;
+    width: max-content;
+    margin: 10px !important;
+    border-radius: 5px !important;
+}
 @media screen and (max-width:600px){
     .icon_btn{
         right: 14%;
