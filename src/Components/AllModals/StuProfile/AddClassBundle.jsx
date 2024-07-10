@@ -43,7 +43,7 @@ const AddClassBundle = ({ popupFunc, isPopup, func, data1, id }) => {
             },
         })
 
-        console.log(response.data.data)
+        console.log(response.data.data?.docs[0].user_id)
         setTeacherData(response.data.data?.docs)
         setTeacher(response.data.data.docs[0].user_id)
     }
@@ -51,7 +51,7 @@ const AddClassBundle = ({ popupFunc, isPopup, func, data1, id }) => {
     useEffect(() => {
         getTeacher()
     }, [])
-    const getAllCurriculum = async () => {
+ const getAllCurriculum = async () => {
         const register = `${BASE_URL}/curriculums?teacher_id=${teacher}`;
 
         const response = await axios.get(register, {
@@ -60,7 +60,7 @@ const AddClassBundle = ({ popupFunc, isPopup, func, data1, id }) => {
             },
         });
         console.log(response.data.data)
-        setCurriculum(response.data.data[0]?.curriculum_name)
+        setCurriculum(response.data.data[0].name)
         setCurrData(response.data.data)
 
         // getAllSubject()
@@ -115,9 +115,7 @@ const AddClassBundle = ({ popupFunc, isPopup, func, data1, id }) => {
                     Authorization: `Bearer ${token} `,
                 },
             })
-            // if (!response.success) {
-            //     return toast.error(response.data.message)
-            // }
+
             console.log(response)
             ToasterUpdate(myToast, response.data.message, "success")
             func()
@@ -152,14 +150,13 @@ const AddClassBundle = ({ popupFunc, isPopup, func, data1, id }) => {
                 <div className={classes.wd}>
                     <label className={classes.label1}>Select Teacher</label>
                     <select className={classes.input_div1} value={teacher} onChange={(e) => setTeacher(e.target.value)}>
-
                     {teacherData && teacherData?.map((element, index) => (<option key={index} selected value={element.user_id}>{element.preferred_name}</option>))}
                     </select>
                 </div>
                 <div className={classes.wd}>
                     <label className={classes.label1}>Select Curriculum</label>
                     <select className={classes.input_div1} value={curriculum} onChange={(e) => setCurriculum(e.target.value)}>
-                    {currData && currData?.map((element, index) => (<option key={index} selected value={element.curriculum_name}>{element.curriculum_name}</option>))}
+                    {currData && currData?.map((element, index) => (<option key={index} selected value={element.name}>{element.name}</option>))}
                     </select>
                 </div>
                 <div className={classes.wd}>

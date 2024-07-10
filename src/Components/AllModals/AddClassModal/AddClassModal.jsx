@@ -9,7 +9,7 @@ import LabelledInput from '../../LabelledInput/LabelledInput'
 const AddClassModal = (props) => {
     return (
         <Modal cls={`${classes.popup}`} value={props.isPopup} Func={props.popupFunc}>
-            <div className={classes.top}>
+            <div className={classesa.top}>
                 <Heading heading={'Add Class'} p={'You can Add a schedule meeting'} />
             </div>
 
