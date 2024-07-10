@@ -10,8 +10,8 @@ import { BASE_URL } from '../../../Apis/BaseUrl'
 import classes from "./Quote.module.css"
 import LabelledInput from '../../LabelledInput/LabelledInput'
 
-const QuoteModal = ({ popupFunc, isPopup, func, data1 }) => {
-    // console.log(data1)
+const QuoteModal = ({ popupFunc, isPopup, func, data1, teacher_name }) => {
+    console.log(teacher_name)
     const [query, setQuery] = useState('')
     const[sub, setSub] = useState([])
     const[subject, setSubject] = useState('')
@@ -129,9 +129,10 @@ const QuoteModal = ({ popupFunc, isPopup, func, data1 }) => {
                 </div>
                 <div className={classes.wd}>
                     <label className={classes.label1}>Select Teacher</label>
-                    <select className={classes.input_div1} value={teacher} onChange={(e) => setTeacher(e.target.value)}>
+                    <input type="text" value={teacher_name}  className={classes.input_div1} readOnly/>
+                    {/* <select className={classes.input_div1} value={teacher} onChange={(e) => setTeacher(e.target.value)}>
                     {teacherData && teacherData?.map((element, index) => (<option key={index} selected value={element.user_id}>{element.preferred_name}</option>))}
-                    </select>
+                    </select> */}
                 </div>
                 <div className={classes.wd}>
                     <label className={classes.label1}>Select No. of Classes</label>

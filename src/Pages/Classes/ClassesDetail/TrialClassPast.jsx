@@ -277,8 +277,8 @@ const TrialClassPast = () => {
                 </Container>
 
             </div>
-            {show && <QuoteModal isPopup={show} popupFunc={setShow} func={getUpcomingData} data1={data} />}
-            {openModal && <TaskModal isPopup={openModal} func={getUpcomingData} popupFunc={setOpenModal}  data={data} id={ID} />}
+            {show && <QuoteModal teacher_name={data?.teacherDetails?.preferred_name} isPopup={show} popupFunc={setShow} func={getUpcomingData} data1={data} />}
+            {openModal && <TaskModal isPopup={openModal} func={getUpcomingData}  popupFunc={setOpenModal}  data={data} id={ID} />}
         </React.Fragment>
     )
 }
