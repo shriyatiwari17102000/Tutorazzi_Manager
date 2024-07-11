@@ -111,7 +111,7 @@ let token = profileToken.access_token;
 
                 <Container cls={classes.fold_body}>
 
-                    {data?.length > 0 ? data?.slice().reverse().map((item) => (
+                    {data?.length > 0 ? data?.slice().map((item) => (
                         <div className={classes.fold_div}>
                             <div className={classes.fold_header}>
                                 <div style={{ display: "flex", justifyContent: "space-between", width: "100%" }}>

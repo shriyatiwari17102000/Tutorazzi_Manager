@@ -85,7 +85,7 @@ const TaskModal = (props) => {
 
                 <Container cls={`${classes.fold_body}`}>
                     {data?.doubtResponse?.length > 0 ?
-                        data?.doubtResponse?.slice()?.reverse()?.map((item, index) => (
+                        data?.doubtResponse?.slice()?.map((item, index) => (
 
                             <div className={classes.card}>
                                 <div className={classes.header}>

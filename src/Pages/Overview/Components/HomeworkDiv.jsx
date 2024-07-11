@@ -22,7 +22,7 @@ const HomeworkDiv = props => {
           <h4 className={`${classes.secondary_heading} w-auto`} style={{ width: "auto", textDecoration: "underline", fontSize: "13px", cursor: "pointer" }} onClick={handleOpenHomeModal} >See All</h4>
         </div>
         <div >
-          {data?.length > 0 ? data?.slice().reverse().slice(0, 2).map((item, index) => (
+          {data?.length > 0 ? data?.slice().slice(0, 2).map((item, index) => (
             <HomeworkFold data={item} open={true} cls={classes.homework_fold_container} func={props?.func} />
           )) :  <p style={{fontSize:"14px", color:"#989898"}}>no data found!</p>}
          
