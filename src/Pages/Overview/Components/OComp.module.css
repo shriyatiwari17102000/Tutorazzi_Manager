@@ -72,7 +72,8 @@
     flex-direction: column;
     row-gap: 20px;
     height: auto;
-    max-height: 500px;
+    max-height: 700px;
+    overflow: scroll;
 }
 .no_data {
     padding: 20px;
