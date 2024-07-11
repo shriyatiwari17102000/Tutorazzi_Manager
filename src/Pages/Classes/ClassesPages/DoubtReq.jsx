@@ -66,7 +66,7 @@ const getStudent = async () => {
 
     console.log(response.data.data)
     setStudentData(response.data.data)
-    setStudent(response.data.data[0]?._id)
+    // setStudent(response.data.data[0]?._id)
 }
 
 useEffect(() => {
@@ -111,7 +111,7 @@ useEffect(() => {
 
                     </select>
                     <select name="" id="" className={classes.selecttag} value={student} onChange={(e) => setStudent(e.target.value)}>
-                        {/* <option value="">Select Student</option> */}
+                        <option value="">Select Student</option>
                         {studentData && studentData?.map((element, index) => (<option key={index} value={element._id}>{element.name}</option>))}
 
                     </select>
