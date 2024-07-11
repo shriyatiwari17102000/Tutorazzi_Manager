@@ -124,7 +124,7 @@ const QuoteModal = ({ popupFunc, isPopup, func, data1, teacher_name }) => {
                 <div className={classes.wd}>
                     <label className={classes.label1}>Select Subject</label>
                     <select className={classes.input_div1} value={subject} onChange={(e) => setSubject(e.target.value)}>
-                    {sub && sub?.map((element, index) => (<option key={index} selected value={element}>{element}</option>))}
+                    {sub.length > 0 ? sub?.map((element, index) => (<option key={index} selected value={element}>{element}</option>)) :  <option value={""}>No subject found!</option>}
                     </select>
                 </div>
                 <div className={classes.wd}>
