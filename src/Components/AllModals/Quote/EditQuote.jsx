@@ -59,7 +59,7 @@ const EditQuote = ({ popupFunc, isPopup, func, data1 }) => {
     console.log(quoteData)
     let currName = quoteData?.curriculum_name
     const getCurriculum = async () => {
-        const register = `${BASE_URL}/subject-by-curriculum?curriculum=${currName}`
+        const register = `${BASE_URL}/subject-by-curriculum?curriculum=${currName}&teacher_id=${teacher}`
         let response = await axios.get(register, {
             headers: { 
                 "Content-Type": "application/json",
@@ -88,6 +88,7 @@ const EditQuote = ({ popupFunc, isPopup, func, data1 }) => {
 
         console.log(response.data.data?.docs)
         setTeacherData(response.data.data?.docs)
+setTeacher(response.data.data?.docs[0]?.user_id)
     }
 
     useEffect(() => {
