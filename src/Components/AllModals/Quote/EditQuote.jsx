@@ -69,7 +69,7 @@ const EditQuote = ({ popupFunc, isPopup, func, data1 }) => {
 
         console.log(response.data.data?.docs)
         setTeacherData(response.data.data?.docs)
-setTeacher(response.data.data?.docs[0]?.user_id)
+setTeacher(response?.data?.data?.docs[0]?.user_id)
     }
 
     useEffect(() => {
@@ -94,7 +94,7 @@ setTeacher(response.data.data?.docs[0]?.user_id)
 
     useEffect(() => {
         getCurriculum()
-    }, [currName])
+    }, [currName, teacher])
 
  
     console.log(subject)
