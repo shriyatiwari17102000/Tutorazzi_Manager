@@ -25,7 +25,7 @@ const TaskModal = (props) => {
         setID(id)
     }
 
-    
+
 
     let profileTokenJson = Cookies.get("tutorazzi_academic");
     let profileToken = JSON.parse(profileTokenJson);
@@ -86,24 +86,23 @@ const TaskModal = (props) => {
                 <Container cls={`${classes.fold_body}`}>
                     {data?.doubtResponse?.length > 0 ?
                         data?.doubtResponse?.slice()?.reverse()?.map((item, index) => (
-                            
+
                             <div className={classes.card}>
                                 <div className={classes.header}>
-                                <div style={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
-                                    <h5>{item.title}</h5>
-                                   <div className={classes.ss_div}>
-                                   <h4 className={`${classes.secondary_heading} w-auto`} style={{ width: "auto", textDecoration: "underline", fontSize: "13px", marginRight: "10px", cursor : "pointer" }} onClick={()=>handleShow(item._id)} >View Detail</h4>
-                                   <img src={item.status === "Done" ? '/done.png' : '/alert.png'} alt="" />
-                                   </div>
-                                </div>
-                                  
+                                    <div style={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
+                                        <h5>{item.title}</h5>
+                                        <div className={classes.ss_div}>
+                                            <h4 className={`${classes.secondary_heading} w-auto`} style={{ width: "auto", textDecoration: "underline", fontSize: "13px", marginRight: "10px", cursor: "pointer" }} onClick={() => handleShow(item._id)} >View Detail</h4>
+                                            <img src={item.status === "Resolved" ? '/done.png' : '/alert.png'} alt="" />
+                                        </div>
+                                    </div>
+
                                 </div>
                                 <p className={classes.p}>
                                     <Moment format="DD/MM/YYYY" utc>{item.due_date}</Moment>
                                 </p>
-
-                                {item?.status === "Pending" &&
-                                    <button type='button' onClick={() => handleMark(item._id)} className={classes.btn} disabled={isLoading}>Mark Done</button>}</div>
+                                   
+                                    </div>
                         ))
                         : <p>no data found!</p>
                     }
