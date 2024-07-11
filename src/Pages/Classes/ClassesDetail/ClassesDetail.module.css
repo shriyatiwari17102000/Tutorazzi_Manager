@@ -248,6 +248,34 @@
     height: 40px;
     margin-left: auto;
 }
+.btns {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* position: absolute;
+    bottom: 20px;
+    width: 93%; */
+}
+.btns button:nth-child(1) {
+    color: black;
+    border: 1px solid #d9d9d9;
+    border-radius: 5px;
+    background: white;
+    width: 200px;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;    
+    padding: 10px;
+    /* border: none; */
+}
+.btns button {
+    height: 45px;
+    width: 49.5%;
+    font-weight: 500;
+    font-size: 13px;
+}
 
 .trial_class_h6 {
     font-size: 14px;
