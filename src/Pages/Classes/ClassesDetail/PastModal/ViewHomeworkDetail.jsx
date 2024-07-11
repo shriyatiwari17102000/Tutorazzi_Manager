@@ -10,7 +10,7 @@ import Container from '../../../../UI/Container/Container'
 import { BASE_URL } from '../../../../Apis/BaseUrl'
 import axios from 'axios'
 import Cookies from "js-cookie"
-
+import {MdOutlineFileDownload} from "react-icons/md"
 
 
 const ViewHomeworkDetail = (props) => {
@@ -37,6 +37,34 @@ const ViewHomeworkDetail = (props) => {
     useEffect(() => {
         getHomeData()
     }, [])
+
+    const downloadFile = (
+        filePath
+    ) => {
+        let fileName = filePath
+        console.log(fileName)
+
+        fetch(`${filePath}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/pdf',
+            },
+        })
+            .then(response => response.blob())
+            .then(blob => {
+                const url = window.URL.createObjectURL(new Blob([blob]));
+
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = fileName;
+
+                document.body.appendChild(link);
+
+                link.click();
+
+                link.parentNode.removeChild(link);
+            });
+    };
 
     console.log(props.data)
     let data = props?.data
@@ -66,7 +94,16 @@ const ViewHomeworkDetail = (props) => {
                         <h4 className={classes.para}>Due Date</h4>
                         <p> <Moment format='DD/MM/YYYY'>{homeData?.due_date}</Moment></p>
                     </div>
-                   
+                   {homeData?.answer_document_id?.document_url && <div className={classes.task}>
+                        <h4 className={classes.para}>Answer pdf</h4>
+                        <p className={classes.p2} onClick={() => downloadFile(homeData?.answer_document_id?.document_url)}>Download  <a
+
+                            style={{ textAlign: "center", fontSize: "16px", cursor: "pointer" }}
+                        >
+                            <MdOutlineFileDownload />
+                        </a></p>
+                    </div>
+                    }
 
 
 

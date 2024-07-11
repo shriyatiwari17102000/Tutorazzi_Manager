@@ -17,7 +17,10 @@
 }
 
 .header img {}
-
+.ss_div{
+    display: flex;
+    align-items: center;
+}
 .p {
     font-size: 14px;
     color: #898989;

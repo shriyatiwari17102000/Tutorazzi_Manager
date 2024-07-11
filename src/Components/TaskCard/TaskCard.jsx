@@ -69,9 +69,12 @@ const TaskCard = props => {
                 <div className={classes.header}>
                     <div style={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
                         <h5>{props?.data?.title}</h5>
-                        <h4 className={`${classes.secondary_heading} w-auto`} style={{ width: "auto", textDecoration: "underline", fontSize: "13px", marginRight: "10px", cursor: "pointer" }} onClick={() => handleShow(props?.data?._id)} >View Detail</h4>
+                      <div className={classes.ss_div}>
+                      <h4 className={`${classes.secondary_heading} w-auto`} style={{ width: "auto", textDecoration: "underline", fontSize: "13px", marginRight: "10px", cursor: "pointer" }} onClick={() => handleShow(props?.data?._id)} >View Detail</h4>
+                      <img src={props?.data?.status === "Done" ? '/done.png' : '/alert.png'} alt="" />
+                      </div>
                     </div>
-                    <img src={props?.data?.status === "Done" ? '/done.png' : '/alert.png'} alt="" />
+                    
                 </div>
                 <p className={classes.p}>
                     <Moment format="DD/MM/YYYY" utc>{props?.data?.due_date}</Moment>
