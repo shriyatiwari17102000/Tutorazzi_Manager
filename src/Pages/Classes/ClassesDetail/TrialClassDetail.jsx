@@ -12,6 +12,7 @@ import Moment from 'react-moment'
 import { BiDislike } from 'react-icons/bi'
 import { FcLike } from "react-icons/fc";
 import SlotModal from '../../../Components/AllModals/ScheduleSlotModal/SlotModal'
+import {FiDownload} from "react-icons/fi"
 
 const TrialClassDetail = () => {
     const[data, setData] = useState([])

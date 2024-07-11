@@ -21,7 +21,7 @@ import { FaPlus } from 'react-icons/fa'
 import HomeWorkModal from './PastModal/HomeWorkModal'
 import TaskModal from './PastModal/TaskModal'
 import NewPagination from '../../../Components/NewPagination/NewPagination'
-
+import {FiDownload} from "react-icons/fi"
 
 const PastClassDetail = () => {
     const [show, setShow] = useState(false)

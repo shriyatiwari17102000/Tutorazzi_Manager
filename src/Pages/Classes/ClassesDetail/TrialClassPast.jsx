@@ -22,7 +22,7 @@ import NewPagination from '../../../Components/NewPagination/NewPagination'
 import { BiDislike } from 'react-icons/bi'
 import { FcLike } from 'react-icons/fc'
 import TaskModal from './PastModal/TaskModal'
-
+import {FiDownload} from "react-icons/fi"
 
 const TrialClassPast = () => {
     const [show, setShow] = useState(false)

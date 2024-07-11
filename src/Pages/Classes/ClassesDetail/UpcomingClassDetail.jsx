@@ -16,7 +16,7 @@ import moment from 'moment'
 import RescheduleClasses from '../../../Components/AllModals/RescheduleModal copy/RescheduleClasses'
 import { toast } from 'react-toastify'
 import ToasterUpdate from '../../../Components/Toaster/ToasterUpdate'
-
+import {FiDownload} from "react-icons/fi"
 
 const UpcomingClassDetail = () => {
     const [popup, setPop] = useState(false)
