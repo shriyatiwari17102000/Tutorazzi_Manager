@@ -54,6 +54,7 @@
     border: 1px solid #d9d9d9;
     color: #989898;
     padding: 10px;
+    outline: none;
 }
 .toggle_btns button{
     border: none;
@@ -67,4 +68,9 @@
 .toggle_btns button.active{
     background-color: black;
     color: white;
+}
+.top_sb_div{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }

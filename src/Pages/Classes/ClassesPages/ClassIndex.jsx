@@ -38,7 +38,7 @@ const ClassIndex = () => {
     const [teacher, setTeacher] = useState('')
     const [teacherData, setTeacherData] = useState('')
     const [student, setStudent] = useState('')
-    const [studentData, setStudentData] = useState('')
+    const [studentData, setStudentData] = useState([])
     const [missedData, setMissedData] = useState([])
 
     const tutToken = Cookies.get("tutorazzi_academic")
