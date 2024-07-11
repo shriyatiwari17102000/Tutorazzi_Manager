@@ -79,8 +79,8 @@ let des = "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore nob
         {data.status === "Pending" ? <button className={classes.pen_btn}>{data?.status}</button> : <button className={classes.pen_btn} style={{ color: "#04B90B", background: "#D5ffD7" }}>{data?.status}</button>}
 
         <div className={classes.btns}>
-          <button className={classes.cancel_btn} onClick={popupHandler1}>Edit</button>
-          <BlackButton cls={classes.bb} func={popupHandler} funcVal={show} > Add Extra Class</BlackButton>
+        {data.status === "Pending" &&  <button className={classes.cancel_btn} onClick={popupHandler1}>Edit</button>}
+          <BlackButton cls={`${data.status !== "Pending" ? classes.pend : classes.bb}`} func={popupHandler} funcVal={show} > Add Extra Class</BlackButton>
         </div>
       </Container>
       {show && <AddExtraClass id={id} isPopup={show} popupFunc={setShow} data1={data} func={func} />}
