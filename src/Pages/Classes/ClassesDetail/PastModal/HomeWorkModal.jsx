@@ -85,6 +85,7 @@ let token = profileToken.access_token;
                 isLoading: false,
                 autoClose: 1500
             });
+            props?.func()
         } catch (error) {
             console.error('Error while uploading data:', error);
 
