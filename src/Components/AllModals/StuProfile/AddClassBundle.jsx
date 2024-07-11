@@ -85,7 +85,7 @@ const AddClassBundle = ({ popupFunc, isPopup, func, data1, id }) => {
 
     useEffect(() => {
         getSubject()
-    }, [curriculum])
+    }, [curriculum, teacher])
     // console.log(sub)
 
     const handleDataUpload = async () => {
