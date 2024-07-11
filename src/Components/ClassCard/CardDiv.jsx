@@ -17,7 +17,7 @@ const CardDiv = (props) => {
                                 <div style={{ display: "flex", gap: "5px" }}>
                                     <p><Moment format="hh:mm A">{data.start_time}</Moment>  &</p><p><Moment format="hh:mm A">{data.end_time}</Moment></p></div>
                             )}
-                            <p><Moment format='DD/MM/YYYY'>{data.start_time}</Moment></p>
+                         {data?.start_time &&    <p><Moment format='DD/MM/YYYY'>{data.start_time}</Moment></p>}
                         </div>
                         <div className={classes.flex}>
                             <p>Teacher : <span>{data.teacher_name}</span></p>
