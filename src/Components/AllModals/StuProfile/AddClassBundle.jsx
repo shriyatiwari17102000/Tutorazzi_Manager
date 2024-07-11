@@ -70,7 +70,7 @@ const AddClassBundle = ({ popupFunc, isPopup, func, data1, id }) => {
     }, [teacher])
 
     const getSubject = async () => {
-        const register = `${BASE_URL}/subject-by-curriculum?curriculum=${curriculum}`
+        const register = `${BASE_URL}/subject-by-curriculum?curriculum=${curriculum}&teacher_id=${teacher}`
         let response = await axios.get(register, {
             headers: {
                 "Content-Type": "application/json",

@@ -57,6 +57,25 @@ const EditQuote = ({ popupFunc, isPopup, func, data1 }) => {
         getQuote()
     }, [])
     console.log(quoteData)
+
+    const getTeacher = async () => {
+        const register = `${BASE_URL}/all-teachers`
+        let response = await axios.get(register, {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token} `,
+            },
+        })
+
+        console.log(response.data.data?.docs)
+        setTeacherData(response.data.data?.docs)
+setTeacher(response.data.data?.docs[0]?.user_id)
+    }
+
+    useEffect(() => {
+        getTeacher()
+    }, [])
+
     let currName = quoteData?.curriculum_name
     const getCurriculum = async () => {
         const register = `${BASE_URL}/subject-by-curriculum?curriculum=${currName}&teacher_id=${teacher}`
@@ -77,24 +96,7 @@ const EditQuote = ({ popupFunc, isPopup, func, data1 }) => {
         getCurriculum()
     }, [currName])
 
-    const getTeacher = async () => {
-        const register = `${BASE_URL}/all-teachers`
-        let response = await axios.get(register, {
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token} `,
-            },
-        })
-
-        console.log(response.data.data?.docs)
-        setTeacherData(response.data.data?.docs)
-setTeacher(response.data.data?.docs[0]?.user_id)
-    }
-
-    useEffect(() => {
-        getTeacher()
-    }, [])
-
+ 
     console.log(subject)
 
     const handleDataUpload = async () => {
