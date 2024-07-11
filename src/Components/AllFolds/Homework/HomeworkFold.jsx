@@ -77,6 +77,7 @@ const HomeworkFold = (props) => {
                 isLoading: false,
                 autoClose: 1500
             });
+            props?.func()
         } catch (error) {
             console.error('Error while uploading data:', error);
 

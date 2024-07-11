@@ -23,7 +23,7 @@ const HomeworkDiv = props => {
         </div>
         <div >
           {data?.length > 0 ? data?.slice().reverse().slice(0, 2).map((item, index) => (
-            <HomeworkFold data={item} open={true} cls={classes.homework_fold_container} />
+            <HomeworkFold data={item} open={true} cls={classes.homework_fold_container} func={props?.func} />
           )) :  <p style={{fontSize:"14px", color:"#989898"}}>no data found!</p>}
          
         </div>
