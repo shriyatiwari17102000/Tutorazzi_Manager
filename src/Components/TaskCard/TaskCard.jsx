@@ -71,7 +71,7 @@ const TaskCard = props => {
                         <h5>{props?.data?.title}</h5>
                       <div className={classes.ss_div}>
                       <h4 className={`${classes.secondary_heading} w-auto`} style={{ width: "auto", textDecoration: "underline", fontSize: "13px", marginRight: "10px", cursor: "pointer" }} onClick={() => handleShow(props?.data?._id)} >View Detail</h4>
-                      <img src={props?.data?.status === "Done" ? '/done.png' : '/alert.png'} alt="" />
+                      <img src={props?.data?.status === "Resolved" ? '/done.png' : '/alert.png'} alt="" />
                       </div>
                     </div>
                     
