@@ -76,7 +76,9 @@ let des = "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore nob
           </button>
         )}
 
-        {data.status === "Pending" ? <button className={classes.pen_btn}>{data?.status}</button> : <button className={classes.pen_btn} style={{ color: "#04B90B", background: "#D5ffD7" }}>{data?.status}</button>}
+        {data.status === "Pending" && <button className={classes.pen_btn}>{data?.status}</button>}
+        {data.status === "Paid" && <button className={classes.pen_btn} style={{ color: "#04B90B", background: "#D5ffD7" }}>{data?.status}</button>}
+        {data.status === "Rejected" && <button className={classes.pen_btn} style={{background:"red", color:"white"}}>{data?.status}</button>}
 
         <div className={classes.btns}>
         {data.status === "Pending" &&  <button className={classes.cancel_btn} onClick={popupHandler1}>Edit</button>}
