@@ -350,7 +350,7 @@
     border: 1px solid #d9d9d9;
   }
   .grp_name{
-    background-color: #FFE4A3;
+    background-color: #f3f4ff;
     color: black;
     font-weight: 500;
     width: 40px;
@@ -615,7 +615,7 @@
   .message.user .msg_txt_div {
     width: fit-content;
     border-radius: 5px;
-    background: #FFE4A3;
+    background: #f3f4ff;
     /* padding: 15px; */
   }
   
