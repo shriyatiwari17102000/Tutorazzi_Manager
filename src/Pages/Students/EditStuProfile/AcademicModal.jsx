@@ -109,7 +109,7 @@ const AcademicModal = ({ popupFunc, isPopup, getData, id }) => {
 
                 <label htmlFor="subject" className={classes.select_label}>Subject</label>
                 <select className={classes.select_input} value={subject} onChange={(e) => setSubject(e.target.value)}>
-                    {subData && subData?.map((element, index) => (<option key={index} selected value={element}>{element}</option>))}
+                    {subData.length > 0 ? subData?.map((element, index) => (<option key={index} selected value={element}>{element}</option>)) : <option selected value={""}>no subject available!</option>}
                 </select>
                 {/* </div> */}
                 {/* 
