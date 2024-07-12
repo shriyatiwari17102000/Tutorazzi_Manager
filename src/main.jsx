@@ -20,12 +20,12 @@ import "firebase/auth";
 // };
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCIe2RSwPZoxGWxnk0EOtaXzD1Lgg_SMGA",
-  authDomain: "group-new-577c6.firebaseapp.com",
-  projectId: "group-new-577c6",
-  storageBucket: "group-new-577c6.appspot.com",
-  messagingSenderId: "982423893299",
-  appId: "1:982423893299:web:2d3114e9bdad1253a77a46"
+  apiKey: "AIzaSyDyREMCdZ6RuaCn9yaAjjDRU5T8cFGkGOs",
+  authDomain: "new-grp.firebaseapp.com",
+  projectId: "new-grp",
+  storageBucket: "new-grp.appspot.com",
+  messagingSenderId: "283418664535",
+  appId: "1:283418664535:web:de9eddbea04038580dcd12"
 };
 
 firebase.initializeApp(firebaseConfig)
