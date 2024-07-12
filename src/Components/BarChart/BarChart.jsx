@@ -20,7 +20,7 @@ class BarChart extends React.Component {
                     type: 'bar',
                     height: 450
                 },
-                    colors: ['#FFF3D6', '#333'],
+                    colors: ['#f3f4ff', '#333'],
                 plotOptions: {
                     bar: {
                         horizontal: false,

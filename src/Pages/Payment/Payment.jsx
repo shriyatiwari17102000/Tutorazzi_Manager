@@ -30,7 +30,7 @@ const data = [
     p: 'Other State',
     color: '#FFE198',
     icon: 'b',
-    bg: '#FFF3D6',
+    bg: '#f3f4ff',
     link: ''
   }]
 
