@@ -1,5 +1,5 @@
 import React from 'react';
-import doc from "../../Assets/doc.webp"
+import doc from "../../assets/doc.webp"
 
 const FallDoc = (props) => {
   // console.log(props.imgData)
