@@ -80,8 +80,8 @@ const TaskCard = props => {
                     <Moment format="DD/MM/YYYY" utc>{props?.data?.due_date}</Moment>
                 </p>
 
-                {props?.data?.status === "Pending" &&
-                    <button type='button' onClick={handleMark} className={classes.btn} disabled={isLoading}>Mark Done</button>}
+                {/* {props?.data?.status === "Pending" &&
+                    <button type='button' onClick={handleMark} className={classes.btn} disabled={isLoading}>Mark Done</button>} */}
             </Container>
             {openModal && <ViewTaskDetail id={ID} isPopup={openModal} popupFunc={setOpenModal} />}
         </>
