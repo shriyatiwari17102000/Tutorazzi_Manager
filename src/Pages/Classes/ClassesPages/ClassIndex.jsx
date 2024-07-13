@@ -177,7 +177,7 @@ const ClassIndex = () => {
 
                     </select>
                     <select name="" id="" className={classes.selecttag} value={student} onChange={(e) => setStudent(e.target.value)}>
-                        {/* <option value="">Select Student</option> */}
+                         <option value="">Select Student</option> 
                         {studentData && studentData?.map((element, index) => (<option key={index} value={element._id}>{element.name}</option>))}
 
                     </select>
