@@ -165,7 +165,7 @@ const ClassCard = (props) => {
             )}
             {!props.home && !props.resource && (
               <>
-              <button className={`${classes.btn} ${classes.reschedule}`}>Pending</button>;
+              <button className={`${classes.btn} ${classes.reschedule}`}>Pending</button>
                 {/* {props?.data?.rescheduled_by !== "academic_manager" && <button type='button' onClick={handleAccept} id="button" className={`${classes.btn} ${classes.accept}`}>Accept</button>}
                 <button type='button' id="button" onClick={handleShow} className={`${classes.btn} ${classes.reschedule}`}>Reschedule</button> */}
               </>
