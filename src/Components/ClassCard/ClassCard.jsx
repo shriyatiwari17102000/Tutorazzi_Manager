@@ -131,8 +131,16 @@ const ClassCard = (props) => {
         return <button className={`${classes.btn} ${classes.cancel}`}>Cancelled</button>
       case 'Scheduled':
         return <button className={`${classes.btn} ${classes.accept}`}>Accepted</button>
-      case 'reschedule':
-        return <button className={`${classes.btn} ${classes.reschedule}`}>Reschedule</button>
+        case 'rescheduled':
+          // { console.log(props) }
+          return (
+            <>
+              {props?.data?.rescheduled_by !== "academic_manager" && <button  id="button"  onClick={handleAccept} className={`${classes.btn} ${classes.accept}`}>Accept</button>}
+              <button  id="button"  onClick={handleShow} className={`${classes.btn} ${classes.reschedule}`}>Reschedule</button>
+            </>
+          );
+      // case 'reschedule':
+      //   return <button className={`${classes.btn} ${classes.reschedule}`}>Reschedule</button>
       case 'Resolved':
         return <button className={`${classes.btn} ${classes.done}`}>Resolved</button>
       case 'notify-teacher':
@@ -157,8 +165,9 @@ const ClassCard = (props) => {
             )}
             {!props.home && !props.resource && (
               <>
-                {props?.data?.rescheduled_by !== "academic_manager" && <button type='button' onClick={handleAccept} id="button" className={`${classes.btn} ${classes.accept}`}>Accept</button>}
-                <button type='button' id="button" onClick={handleShow} className={`${classes.btn} ${classes.reschedule}`}>Reschedule</button>
+              <button className={`${classes.btn} ${classes.reschedule}`}>Pending</button>;
+                {/* {props?.data?.rescheduled_by !== "academic_manager" && <button type='button' onClick={handleAccept} id="button" className={`${classes.btn} ${classes.accept}`}>Accept</button>}
+                <button type='button' id="button" onClick={handleShow} className={`${classes.btn} ${classes.reschedule}`}>Reschedule</button> */}
               </>
             )}
 
@@ -202,7 +211,7 @@ const ClassCard = (props) => {
               <div style={{ display: "flex", gap: "5px" }}>
                 <p><Moment format="hh:mm A">{data.start_time}</Moment>  &</p><p><Moment format="hh:mm A">{data.end_time}</Moment></p></div>
             )}
-            <p><Moment format='DD/MM/YYYY'>{data.start_time}</Moment></p>
+             {data.start_time && ( <p><Moment format='DD/MM/YYYY'>{data.start_time}</Moment></p>)}
           </div>
           <div className={classes.flex}>
             <p>Teacher : <span>{data.teacher_name}</span></p>
@@ -226,7 +235,7 @@ const ClassCard = (props) => {
         <div className={classes.btn_container}>
           {/* {
           data.status.map((element, index) => ( */}
-          {tagstoBtn(data?.status)}
+          {tagstoBtn(data?.class_reschedule_status)}
           {/* ))
         } */}
         </div>
