@@ -81,8 +81,9 @@ const TrialClassDetail = () => {
                         <div className={classes.header_right_profile}>P</div>
                         <div className={classes.header_right_inner}>
                             <h4 className={classes.secondary_heading}>Mathematics Class</h4>
-                            <h5> <Moment format="hh:mm A">{data?.classDetails?.start_time}</Moment> to <Moment format="hh:mm A">{data?.classDetails?.end_time}</Moment> </h5>
+                            {data?.classDetails?.start_time && <>  <h5> <Moment format="hh:mm A">{data?.classDetails?.start_time}</Moment> to <Moment format="hh:mm A">{data?.classDetails?.end_time}</Moment> </h5>
                             <h5><Moment format="DD/MM/YYYY">{data?.classDetails?.start_time}</Moment></h5>
+                            </>}
                         </div>
                     </div>
                     <button className={classes.header_btn}>View Recording</button>
