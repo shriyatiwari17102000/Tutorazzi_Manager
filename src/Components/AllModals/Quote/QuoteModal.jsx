@@ -16,7 +16,7 @@ const QuoteModal = ({ popupFunc, isPopup, func, data1, teacher_name }) => {
     const[sub, setSub] = useState([])
     const[subject, setSubject] = useState('')
     const[price, setPrice] = useState('')
-    const[classCount, setClassCount] = useState('')
+    const[classCount, setClassCount] = useState('1')
     const[classNames, setClassNames] = useState('')
     const [isLoading, setLoading] = useState(false)
     const[teacherData, setTeacherData] = useState([])
