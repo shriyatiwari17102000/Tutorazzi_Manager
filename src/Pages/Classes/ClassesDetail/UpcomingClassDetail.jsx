@@ -16,37 +16,37 @@ import moment from 'moment'
 import RescheduleClasses from '../../../Components/AllModals/RescheduleModal copy/RescheduleClasses'
 import { toast } from 'react-toastify'
 import ToasterUpdate from '../../../Components/Toaster/ToasterUpdate'
-import {FiDownload} from "react-icons/fi"
+import { FiDownload } from "react-icons/fi"
 
 const UpcomingClassDetail = () => {
     const [popup, setPop] = useState(false)
     const [data, setData] = useState([])
-    const[loading, setLoading] = useState(false)
-    const {id} = useParams()
+    const [loading, setLoading] = useState(false)
+    const { id } = useParams()
     console.log(id)
     const popupHandler = () => {
-        setPop(!popup) 
+        setPop(!popup)
     }
     const tutToken = Cookies.get("tutorazzi_academic")
     const getTutToken = JSON.parse(tutToken)
     const token = getTutToken.access_token
 
-    const getUpcomingData = async() => {
+    const getUpcomingData = async () => {
 
         let register = `${BASE_URL}/upcoming-class-details?class_id=${id}`
         let res = await axios.get(register, {
             headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
             }
-          })
-          console.log(res.data.data)
-          setData(res.data.data)
+        })
+        console.log(res.data.data)
+        setData(res.data.data)
     }
-// moment(data.classDetails.start_date)
-    useEffect(()=>{
+    // moment(data.classDetails.start_date)
+    useEffect(() => {
         getUpcomingData()
-    },[])
+    }, [])
     let teacherId = data?.teacherDetails?.user_id?._id
     let stu_id = data?.studentDetails?.user_id
     const navigate = useNavigate()
@@ -58,62 +58,62 @@ const UpcomingClassDetail = () => {
         navigate(`/student/details/${stu_id}`)
     }
 
-    const startMeet = async() => {
+    const startMeet = async () => {
         let register = `${BASE_URL}/join-class`
         const myToast = toast.loading('Please Wait...')
         setLoading(true)
-       try {
-        let res = await axios.post(register, {class_id : id}, {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`
-            }
-          })
-          if (!res.data.success) {
-                    ToasterUpdate(myToast, res.data.message, "error")
-                    return
+        try {
+            let res = await axios.post(register, { class_id: id }, {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
                 }
-          console.log(res)
-          let token1 = res.data.data.tokenData.token
-        //   setData(res.data.data)
-        navigate(`/meet/${token1}`);
-        ToasterUpdate(myToast, res.data.message, "success")
-       } catch (error) {
-        console.log(error)
-        ToasterUpdate(myToast, error.message, "error")
-       }
-       finally{
-        setLoading(false)
-       }
-      };
+            })
+            if (!res.data.success) {
+                ToasterUpdate(myToast, res.data.message, "error")
+                return
+            }
+            console.log(res)
+            let token1 = res.data.data.tokenData.token
+            //   setData(res.data.data)
+            navigate(`/meet/${token1}`);
+            ToasterUpdate(myToast, res.data.message, "success")
+        } catch (error) {
+            console.log(error)
+            ToasterUpdate(myToast, error.message, "error")
+        }
+        finally {
+            setLoading(false)
+        }
+    };
 
-      const downloadFile = (
+    const downloadFile = (
         filePath
-      ) => {
+    ) => {
         let fileName = filePath
         console.log(fileName)
-      
+
         fetch(`${filePath}`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/pdf',
-          },
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/pdf',
+            },
         })
-          .then(response => response.blob())
-          .then(blob => {
-            const url = window.URL.createObjectURL(new Blob([blob]));
-    
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = fileName;
-    
-            document.body.appendChild(link);
-    
-            link.click();
-    
-            link.parentNode.removeChild(link);
-          });
-      };
+            .then(response => response.blob())
+            .then(blob => {
+                const url = window.URL.createObjectURL(new Blob([blob]));
+
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = fileName;
+
+                document.body.appendChild(link);
+
+                link.click();
+
+                link.parentNode.removeChild(link);
+            });
+    };
 
     return (
         <React.Fragment>
@@ -143,15 +143,15 @@ const UpcomingClassDetail = () => {
                    
                 </Container> */}
                 <Container cls={`${classes.small_box} ${classes.inner_box} ${classes.hh}`}>
-                    <h4 className={classes.secondary_heading}style={{ color: "rgba(66, 77, 182, 1)"}}>Teacher's Details</h4>
+                    <h4 className={classes.secondary_heading} style={{ color: "rgba(66, 77, 182, 1)" }}>Teacher's Details</h4>
                     <UserDiv data={data?.teacherDetails}>
-                        <div className={classes.link} style={{cursor:"pointer"}}  onClick={handleNavigate}>View Profile</div>
+                        <div className={classes.link} style={{ cursor: "pointer" }} onClick={handleNavigate}>View Profile</div>
                     </UserDiv>
                 </Container>
                 <Container cls={`${classes.small_box} ${classes.inner_box}  ${classes.hh}`}>
-                    <h4 style={{ color: "rgba(66, 77, 182, 1)"}} className={classes.secondary_heading}>Student's Details</h4>
+                    <h4 style={{ color: "rgba(66, 77, 182, 1)" }} className={classes.secondary_heading}>Student's Details</h4>
                     <UserDiv data={data?.classDetails?.student_id} curr={data?.studentDetails?.curriculum}>
-                        <div className={classes.link} style={{cursor:"pointer"}} onClick={handleNavigateStudent}>View Profile</div>
+                        <div className={classes.link} style={{ cursor: "pointer" }} onClick={handleNavigateStudent}>View Profile</div>
                     </UserDiv>
                 </Container>
                 <Container cls={`${classes.inner_box}`} >
@@ -161,21 +161,30 @@ const UpcomingClassDetail = () => {
                         paddingBottom: "30px"
                     }}>
                         <h6 style={{ fontSize: "15px", marginBlock: "15px", fontWeight: "500", }}>Student Instruction</h6>
-                        <p style={{ fontSize: "14px", color: "#898989" }}>{data?.classDetails?.student_instructions}</p>
-                        {data?.classDetails?.student_instruction_document_url &&   <div className={classes.btns}>
-                      <button  onClick={()=> downloadFile(data?.classDetails?.student_instruction_document_url)}>Student instruction.pdf <FiDownload />
+                        {data?.classDetails?.student_instructions ? 
+                        <>                        <p style={{ fontSize: "14px", color: "#898989" }}>{data?.classDetails?.student_instructions}</p>
+                        {data?.classDetails?.student_instruction_document_url && <div className={classes.btns}>
+                            <button onClick={() => downloadFile(data?.classDetails?.student_instruction_document_url)}>Student instruction.pdf <FiDownload />
                             </button>
                         </div>}
-                       
+                        </> : "no data found!" }
+
                     </div>
+
 
                     <div>
                         <h6 style={{ fontSize: "15px", marginBlock: "15px", fontWeight: "500" }}>Parent Instruction</h6>
-                        <p style={{ fontSize: "14px", color: "#898989" }}>{data.classDetails?.parent_instructions}</p>
-                        {data?.classDetails?.parent_instruction_document_url &&   <div className={classes.btns}>
-                      <button  onClick={()=> downloadFile(data?.classDetails?.parent_instruction_document_url)}>Parent instruction.pdf <FiDownload />
-                            </button>
-                        </div>}
+                        {data.classDetails?.parent_instructions ?
+                            <>
+                                <p style={{ fontSize: "14px", color: "#898989" }}>{data.classDetails?.parent_instructions}</p>
+                                {data?.classDetails?.parent_instruction_document_url && <div className={classes.btns}>
+                                    <button onClick={() => downloadFile(data?.classDetails?.parent_instruction_document_url)}>Parent instruction.pdf <FiDownload />
+                                    </button>
+                                </div>}
+                            </>
+                            : "no data found!"}
+
+
                         {/* <div className={classes.btns}>
                             <button>Parent instruction.pdf <FiDownload />
                             </button>
@@ -183,9 +192,9 @@ const UpcomingClassDetail = () => {
                     </div>
                 </Container>
                 <Container cls={`${classes.inner_box}`}>
-                    <h4 className={classes.secondary_heading}style={{ color: "rgba(66, 77, 182, 1)"}}>Teacher’s Instructions</h4>
-                  {data?.classDetails?.notes ?  data?.classDetails?.notes : <div className={classes.teach_img}><img className={classes.my_img} src={img} alt="" />
-                    <p className={`${classes.page_para} ${classes.text_center}`}>No Information available from Teacher</p></div>}
+                    <h4 className={classes.secondary_heading} style={{ color: "rgba(66, 77, 182, 1)" }}>Teacher’s Instructions</h4>
+                    {data?.classDetails?.notes ? data?.classDetails?.notes : <div className={classes.teach_img}><img className={classes.my_img} src={img} alt="" />
+                        <p className={`${classes.page_para} ${classes.text_center}`}>No Information available from Teacher</p></div>}
                 </Container>
                 {/* <div className={`${classes.inner_box} ${classes.my_upcoming_classes}`}>
                     <h4 className={classes.secondary_heading}>My Upcoming Classes</h4>
@@ -200,8 +209,8 @@ const UpcomingClassDetail = () => {
                     {data?.classDetails?.materials_url.map((item, index) => (
                         <DownloadPdf item={item} />
                     ))}
-                </Container> }
-                
+                </Container>}
+
             </div>
             {popup && <RescheduleClasses isPopup={popup} popupFunc={setPop} func={getUpcomingData} data1={data} />}
         </React.Fragment>
