@@ -131,7 +131,7 @@ const ClassCard = (props) => {
         return <button className={`${classes.btn} ${classes.cancel}`}>Cancelled</button>
       case 'Scheduled':
         return <button className={`${classes.btn} ${classes.accept}`}>Accepted</button>
-        case 'rescheduled':
+        case 'Rescheduled':
           // { console.log(props) }
           return (
             <>
@@ -235,7 +235,7 @@ const ClassCard = (props) => {
         <div className={classes.btn_container}>
           {/* {
           data.status.map((element, index) => ( */}
-          {tagstoBtn(data?.class_reschedule_status)}
+          {tagstoBtn(data?.class_reschedule_status || data?.status )}
           {/* ))
         } */}
         </div>

@@ -174,9 +174,9 @@ const UpcomingClassDetail = () => {
 
                     <div>
                         <h6 style={{ fontSize: "15px", marginBlock: "15px", fontWeight: "500" }}>Parent Instruction</h6>
-                        {data.classDetails?.parent_instructions ?
+                        {data?.classDetails?.parent_instructions ?
                             <>
-                                <p style={{ fontSize: "14px", color: "#898989" }}>{data.classDetails?.parent_instructions}</p>
+                                <p style={{ fontSize: "14px", color: "#898989" }}>{data?.classDetails?.parent_instructions}</p>
                                 {data?.classDetails?.parent_instruction_document_url && <div className={classes.btns}>
                                     <button onClick={() => downloadFile(data?.classDetails?.parent_instruction_document_url)}>Parent instruction.pdf <FiDownload />
                                     </button>
