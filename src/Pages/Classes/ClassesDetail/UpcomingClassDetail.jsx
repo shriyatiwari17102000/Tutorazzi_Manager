@@ -192,8 +192,8 @@ const UpcomingClassDetail = () => {
                     </div>
                 </Container>
                 <Container cls={`${classes.inner_box}`}>
-                    <h4 className={classes.secondary_heading} style={{ color: "rgba(66, 77, 182, 1)" }}>Teacher’s Instructions</h4>
-                    {data?.classDetails?.notes ? data?.classDetails?.notes : <div className={classes.teach_img}><img className={classes.my_img} src={img} alt="" />
+                    <h4 className={classes.secondary_heading} style={{ color: "rgba(66, 77, 182, 1)", fontSize:"16px" }}>Teacher’s Instructions</h4>
+                    {data?.classDetails?.notes ? <p style={{color:"rgb(137, 137, 137)", fontSize:"14px"}}>{data?.classDetails?.notes} </p>: <div className={classes.teach_img}><img className={classes.my_img} src={img} alt="" />
                         <p className={`${classes.page_para} ${classes.text_center}`}>No Information available from Teacher</p></div>}
                 </Container>
                 {/* <div className={`${classes.inner_box} ${classes.my_upcoming_classes}`}>
