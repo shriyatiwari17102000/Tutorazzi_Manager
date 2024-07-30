@@ -39,7 +39,7 @@ const ViewHomeworkDetail = (props) => {
     }, [])
 
     const downloadFile = (
-        filePath
+        filePath, name
     ) => {
         let fileName = filePath
         console.log(fileName)
@@ -56,7 +56,7 @@ const ViewHomeworkDetail = (props) => {
 
                 const link = document.createElement('a');
                 link.href = url;
-                link.download = fileName;
+                link.download = name;
 
                 document.body.appendChild(link);
 
@@ -96,7 +96,7 @@ const ViewHomeworkDetail = (props) => {
                     </div>
                    {homeData?.answer_document_id?.document_url && <div className={classes.task}>
                         <h4 className={classes.para}>Answer pdf</h4>
-                        <p className={classes.p2} onClick={() => downloadFile(homeData?.answer_document_id?.document_url)}>Download  <a
+                        <p className={classes.p2} onClick={() => downloadFile(homeData?.answer_document_id?.document_url, homeData?.answer_document_id?.name)}>Download  <a
 
                             style={{ textAlign: "center", fontSize: "16px", cursor: "pointer" }}
                         >

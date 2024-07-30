@@ -27,7 +27,7 @@ const HomeworkFold = (props) => {
     const id = data?._id
 
     const downloadFile = (
-        filePath
+        filePath, name
     ) => {
         let fileName = filePath
         console.log(fileName)
@@ -44,7 +44,7 @@ const HomeworkFold = (props) => {
 
                 const link = document.createElement('a');
                 link.href = url;
-                link.download = fileName;
+                link.download = name;
 
                 document.body.appendChild(link);
 
@@ -113,7 +113,7 @@ const HomeworkFold = (props) => {
                         {data?.description}
                     </p>
                     {data.status === "Resolved" && <div className={classes.btns2} style={{ display: "flex" }}>
-                            <button onClick={() => downloadFile(data?.answer_document_id?.document_url)}>Download Homework</button>
+                            <button onClick={() => downloadFile(data?.answer_document_id?.document_url, data?.answer_document_id?.name)}>Download Homework</button>
                             <button style={{ background: "rgba(66, 77, 182, 1)" }} onClick={() => handleRequest(data._id)}>Request Reupload</button>
                         </div>}
                     {/* <div className={classes.btns}>

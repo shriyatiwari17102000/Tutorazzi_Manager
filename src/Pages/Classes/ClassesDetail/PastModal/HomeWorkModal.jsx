@@ -36,7 +36,7 @@ let token = profileToken.access_token;
 
    
     const downloadFile = (
-        filePath
+        filePath, name
       ) => {
           console.log(filePath)
         let fileName = filePath
@@ -52,7 +52,7 @@ let token = profileToken.access_token;
      
             const link = document.createElement('a');
             link.href = url;
-            link.download = fileName;
+            link.download = name;
     
             document.body.appendChild(link);
     
@@ -125,7 +125,7 @@ let token = profileToken.access_token;
                             {/* <p className={classes.para} style={{ marginTop: '10px' }}>{item.description}</p> */}
                             {item.status === "ReUpload" || item.status == "Resolved" && <div className={classes.btns2} style={{ display: "flex" }}>
                                 {console.log(item?.answer_document_id?.document_url)}
-                                <button onClick={()=> downloadFile(item?.answer_document_id?.document_url)}>Download Homework</button>
+                                <button onClick={()=> downloadFile(item?.answer_document_id?.document_url, item?.answer_document_id?.name)}>Download Homework</button>
                                 <button onClick={() => handleRequest(item._id)}>Request Reupload</button>
                             </div>}
                         </div>

@@ -41,7 +41,7 @@ const ViewTaskDetail = (props) => {
         getTaskData()
     }, [])
     const downloadFile = (
-        filePath
+        filePath, name
     ) => {
         let fileName = filePath
         console.log(fileName)
@@ -58,7 +58,7 @@ const ViewTaskDetail = (props) => {
 
                 const link = document.createElement('a');
                 link.href = url;
-                link.download = fileName;
+                link.download = name;
 
                 document.body.appendChild(link);
 
@@ -88,7 +88,7 @@ const ViewTaskDetail = (props) => {
                     </div>}
                     {taskData?.answer_document_id?.document_url && <div className={classes.task}>
                         <h4 className={classes.para}>Answer pdf</h4>
-                        <p className={classes.p2} onClick={() => downloadFile(taskData?.answer_document_id?.document_url)}>Download  <a
+                        <p className={classes.p2} onClick={() => downloadFile(taskData?.answer_document_id?.document_url, taskData?.answer_document_id?.name)}>Download  <a
 
                             style={{ textAlign: "center", fontSize: "16px", cursor: "pointer" }}
                         >

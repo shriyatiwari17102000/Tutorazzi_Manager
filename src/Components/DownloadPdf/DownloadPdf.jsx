@@ -31,7 +31,7 @@ const DownloadPdf = (props) => {
   // console.log(data)
 
   const downloadFile = (
-    filePath
+    filePath, name
   ) => {
     let fileName = filePath
     console.log(fileName)
@@ -48,7 +48,7 @@ const DownloadPdf = (props) => {
 
         const link = document.createElement('a');
         link.href = url;
-        link.download = fileName;
+        link.download = name;
 
         document.body.appendChild(link);
 
@@ -63,7 +63,7 @@ const DownloadPdf = (props) => {
         <Container cls={classes.row_span}><IoDocumentOutline /></Container>
        <p style={{fontSize:"14px"}}> {data?.name}</p>
       </div>
-      <span onClick={() => downloadFile(data?.document_url)}>
+      <span onClick={() => downloadFile(data?.document_url, data?.name)}>
         <a
 
           style={{ color: "black", textAlign: "center", fontSize: "20px", cursor: "pointer" }}

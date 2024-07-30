@@ -88,7 +88,7 @@ const UpcomingClassDetail = () => {
     };
 
     const downloadFile = (
-        filePath
+        filePath, name
     ) => {
         let fileName = filePath
         console.log(fileName)
@@ -105,7 +105,7 @@ const UpcomingClassDetail = () => {
 
                 const link = document.createElement('a');
                 link.href = url;
-                link.download = fileName;
+                link.download = name;
 
                 document.body.appendChild(link);
 
@@ -164,7 +164,7 @@ const UpcomingClassDetail = () => {
                         {data?.classDetails?.student_instructions ? 
                         <>                        <p style={{ fontSize: "14px", color: "#898989" }}>{data?.classDetails?.student_instructions}</p>
                         {data?.classDetails?.student_instruction_document_url && <div className={classes.btns}>
-                            <button onClick={() => downloadFile(data?.classDetails?.student_instruction_document_url)}>Student instruction.pdf <FiDownload />
+                            <button onClick={() => downloadFile(data?.classDetails?.student_instruction_document_url, data?.classDetails?.student_instruction_document)}>Student instruction.pdf <FiDownload />
                             </button>
                         </div>}
                         </> : "no data found!" }
@@ -178,7 +178,7 @@ const UpcomingClassDetail = () => {
                             <>
                                 <p style={{ fontSize: "14px", color: "#898989" }}>{data?.classDetails?.parent_instructions}</p>
                                 {data?.classDetails?.parent_instruction_document_url && <div className={classes.btns}>
-                                    <button onClick={() => downloadFile(data?.classDetails?.parent_instruction_document_url)}>Parent instruction.pdf <FiDownload />
+                                    <button onClick={() => downloadFile(data?.classDetails?.parent_instruction_document_url, data?.classDetails?.parent_instruction_document)}>Parent instruction.pdf <FiDownload />
                                     </button>
                                 </div>}
                             </>
