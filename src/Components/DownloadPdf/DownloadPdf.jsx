@@ -61,7 +61,7 @@ const DownloadPdf = (props) => {
     <div className={classes.row}>
       <div className={classes.row_inner}>
         <Container cls={classes.row_span}><IoDocumentOutline /></Container>
-       <p style={{fontSize:"14px"}}> {data?.name}</p>
+       <p style={{fontSize:"14px"}}> {data?.processedName}</p>
       </div>
       <span onClick={() => downloadFile(data?.document_url)}>
         <a
