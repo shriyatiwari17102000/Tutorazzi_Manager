@@ -164,7 +164,7 @@ const UpcomingClassDetail = () => {
                         {data?.classDetails?.student_instructions ? 
                         <>                        <p style={{ fontSize: "14px", color: "#898989" }}>{data?.classDetails?.student_instructions}</p>
                         {data?.classDetails?.student_instruction_document_url && <div className={classes.btns}>
-                            <button onClick={() => downloadFile(data?.classDetails?.student_instruction_document_url, data?.classDetails?.student_instruction_document)}>Student instruction.pdf <FiDownload />
+                            <button onClick={() => downloadFile(data?.classDetails?.student_instruction_document_url, data?.classDetails?.student_instructions_document)}>Student instruction.pdf <FiDownload />
                             </button>
                         </div>}
                         </> : "no data found!" }
