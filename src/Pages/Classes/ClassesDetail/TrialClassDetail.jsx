@@ -126,7 +126,7 @@ const TrialClassDetail = () => {
                         <h6 style={{ fontSize: "15px", marginBlock: "15px", fontWeight: "500" }}>Parent Instruction</h6>
                         <p style={{ fontSize: "14px", color: "#898989" }}>{data.classDetails?.parent_instructions}</p>
                         {data?.classDetails?.parent_instruction_document_url &&   <div className={classes.btns}>
-                      <button  onClick={()=> downloadFile(data?.classDetails?.parent_instruction_document_url , data?.classDetails?.parent_instruction_document)}>Parent instruction.pdf <FiDownload />
+                      <button  onClick={()=> downloadFile(data?.classDetails?.parent_instruction_document_url , data?.classDetails?.parent_instructions_document)}>Parent instruction.pdf <FiDownload />
                             </button>
                         </div>}
                         {/* <div className={classes.btns}>
