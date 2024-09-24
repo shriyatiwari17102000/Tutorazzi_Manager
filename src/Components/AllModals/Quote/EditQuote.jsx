@@ -22,6 +22,11 @@ const EditQuote = ({ popupFunc, isPopup, func, data1 }) => {
     const[teacherData, setTeacherData] = useState([])
     const[teacher, setTeacher] = useState("")
     const[quoteData, setQuoteData] = useState({})
+    const [teacher_amount, setTeacher_amount] = useState("")
+    const [errorMessage, setErrorMessage] = useState('');
+
+  
+
     const handleQueryChange = (e) => {
         setQuery(e.target.value);
     };
@@ -48,6 +53,7 @@ const EditQuote = ({ popupFunc, isPopup, func, data1 }) => {
         setClassCount(response.data.data?.class_count)
         setClassNames(response.data.data?.class_name)
         setSubject(response.data.data?.subject_name)
+        setTeacher_amount(response.data.data?.teacher_share)
         // console.log(subject)
         // setSub(response.data.data?.
         //     subject_curriculum_grade)
@@ -97,7 +103,19 @@ setTeacher(response?.data?.data?.docs[0]?.user_id)
     }, [currName, teacher])
 
  
-    console.log(subject)
+    // console.log(subject)
+
+    const handleInputChange = (e) => {
+        const value = e.target.value;
+
+        // Allow only values between 1 and 100
+        if (value === '' || (value >= 1 && value <= 100)) {
+            setTeacher_amount(value);
+            setErrorMessage(''); // Clear error message if input is valid
+        } else {
+            setErrorMessage('You can add a number between 1 to 100 only');
+        }
+    };
 
     const handleDataUpload = async () => {
 
@@ -114,7 +132,8 @@ setTeacher(response?.data?.data?.docs[0]?.user_id)
             class_name: classNames,
             subject: subject,
             curriculum: quoteData?.curriculum_name ,
-            grade: quoteData?.grade_name
+            grade: quoteData?.grade_name,
+            teacher_share : teacher_amount
 
         }
 
@@ -189,9 +208,22 @@ setTeacher(response?.data?.data?.docs[0]?.user_id)
                 </div>
 
                 <div className={classes.txtarea}>
+                    <label htmlFor="price">Teacher's Share (in %)</label>
+                    <div className={classes.boxed_input} >
+                        <input type="number" style={{ width: "100%" }} min={1} max={100} value={teacher_amount} onChange={handleInputChange}
+                        />
+                    </div>
+                    {errorMessage && (
+                        <p style={{ color: 'red' , fontSize:"13px"}}>{errorMessage}</p> // Display error message
+                    )}
+                </div>
+
+                <div className={classes.txtarea}>
                     <label htmlFor="txt">Description</label>
                     <textarea id="txt" onChange={handleQueryChange} value={query}></textarea>
                 </div>
+
+                
             </div>
 
             <div className={classes.bottom}>

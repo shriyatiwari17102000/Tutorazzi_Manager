@@ -156,12 +156,7 @@ const TrialClassPast = () => {
                     </div>
                     <button className={classes.header_btn}>View Recording</button>
                 </Container>
-                {/* <Container cls={classes.inner_box}>
-                    <h4 className={classes.secondary_heading}>Description</h4>
-                    <p className={classes.page_para}>
-                        {data?.classDetails?.details ? data?.classDetails?.details : "No description found..."}
-                    </p>
-                </Container> */}
+                
              <div style={{display:"flex", gap:"20px", width:"100%"}}>
              <Container cls={`${classes.inner_box}`}>
                     <h4 className={classes.secondary_heading}>Teacher's Details</h4>
@@ -216,40 +211,17 @@ const TrialClassPast = () => {
                       <button  onClick={()=> downloadFile(data?.classDetails?.parent_instruction_document_url, data?.classDetails?.parent_instructions_document)}>Parent instruction.pdf <FiDownload />
                             </button>
                         </div>}
-                        {/* <div className={classes.btns}>
-                            <button>Parent instruction.pdf <FiDownload />
-                            </button>
-                        </div> */}
+                        
                     </div>
                 </Container>
-                {/* <HomeworkDiv cls={classes.small_box} data={data?.homeworkResponse} />
-                <Container cls={`${classes.inner_box} ${classes.small_box} ${classes.my_task_container}`}>
-                <div style={{display:"flex", justifyContent:"space-between"}}>
-                           <h4 className={`${classes.secondary_heading} w-auto`} style={{width:"auto"}} >Task Information</h4>
-                           <h4 className={`${classes.secondary_heading} w-auto`} style={{width:"auto", textDecoration:"underline", fontSize:"13px", cursor : "pointer"}}  onClick={handleOpenModal} >See All</h4>
-                           </div>
-                    <TasksMap cls={classes.my_tasks} data={data?.taskResponse} func={getUpcomingData} />
-                </Container> */}
-                {/* <Container cls={`${classes.inner_box}  ${classes.widthh}`} >
-                    <div>
-                    <h4 className={classes.secondary_heading}>Rate Your Teacher</h4>
-                    <RatingCard data={data?.teacherRatings} readonly={true} p={'Rate Teacher By Selecting From 1 to 5 Stars To Express your Views'} />
-                    </div>
-                  <div>
-                  <h4 className={classes.secondary_heading}>Rate this Class</h4>
-                    <RatingCard data={data?.ratingsResponse} readonly={true} p={'Rate This Class By Selecting From 1 to 5 Stars To Express your Views'}/>
-                  </div>
-                </Container> */}
+              
 
 <Container cls={`${classes.inner_box1}`}>
                     <h4 className={classes.secondary_heading}>Class Resources</h4>
                     {data?.classDetails?.materials_url.map((item, index) => (
                         <DownloadPdf item={item} />
                     ))}
-                    {/* <DownloadPdf />
-                    <DownloadPdf />        
-                    <DownloadPdf />
-                    <DownloadPdf /> */}
+                  
                 </Container>
 
                 <div className={`${classes.inner_box}`} style={{padding:"0"}}>
@@ -258,7 +230,7 @@ const TrialClassPast = () => {
                         <div className={classes.inn_quote}>
                             {
                                 quote?.map((item, index) => (
-                                    // console.log(item)
+                                  
                                     <div key={index} className={classes.most_inn_quote} >
                                         <UpcomingClassCard
                                         cls={classes.new_cls}

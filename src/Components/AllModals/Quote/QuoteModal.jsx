@@ -13,18 +13,28 @@ import LabelledInput from '../../LabelledInput/LabelledInput'
 const QuoteModal = ({ popupFunc, isPopup, func, data1, teacher_name }) => {
     console.log(teacher_name)
     const [query, setQuery] = useState('')
-    const[sub, setSub] = useState([])
-    const[subject, setSubject] = useState('')
-    const[price, setPrice] = useState('')
-    const[classCount, setClassCount] = useState('1')
-    const[classNames, setClassNames] = useState('')
+    const [sub, setSub] = useState([])
+    const [subject, setSubject] = useState('')
+    const [price, setPrice] = useState('')
+    const [classCount, setClassCount] = useState('1')
+    const [classNames, setClassNames] = useState('')
     const [isLoading, setLoading] = useState(false)
-    const[teacherData, setTeacherData] = useState([])
-    const[teacher, setTeacher] = useState("")
-    const handleQueryChange = (e) => {
-        setQuery(e.target.value);
+    const [teacherData, setTeacherData] = useState([])
+    const [teacher_amount, setTeacher_amount] = useState("")
+    const [errorMessage, setErrorMessage] = useState('');
+
+    const handleInputChange = (e) => {
+        const value = e.target.value;
+
+        // Allow only values between 1 and 100
+        if (value === '' || (value >= 1 && value <= 100)) {
+            setTeacher_amount(value);
+            setErrorMessage(''); // Clear error message if input is valid
+        } else {
+            setErrorMessage('You can add a number between 1 to 100 only');
+        }
     };
-// console.log(data1?.classDetails?.curriculum_name)
+    // console.log(data1?.classDetails?.curriculum_name)
 
     const tutToken = Cookies.get("tutorazzi_academic")
     const getTutToken = JSON.parse(tutToken)
@@ -82,8 +92,9 @@ const QuoteModal = ({ popupFunc, isPopup, func, data1, teacher_name }) => {
             description: query,
             class_name: classNames,
             subject: subject,
-            curriculum: data1?.classDetails?.curriculum_name ,
-            grade: data1?.classDetails?.grade_name
+            curriculum: data1?.classDetails?.curriculum_name,
+            grade: data1?.classDetails?.grade_name,
+            teacher_share : teacher_amount
 
         }
 
@@ -119,24 +130,24 @@ const QuoteModal = ({ popupFunc, isPopup, func, data1, teacher_name }) => {
             </div>
 
             <div className={classes.body}>
-                <LabelledInput cls={classes.cls_W} id={'class name'} label={'Class package Name'} value={classNames} func={setClassNames}/>
+                <LabelledInput cls={classes.cls_W} id={'class name'} label={'Class package Name'} value={classNames} func={setClassNames} />
 
                 <div className={classes.wd}>
                     <label className={classes.label1}>Select Subject</label>
                     <select className={classes.input_div1} value={subject} onChange={(e) => setSubject(e.target.value)}>
-                    {sub.length > 0 ? sub?.map((element, index) => (<option key={index} selected value={element}>{element}</option>)) :  <option value={""}>No subject found!</option>}
+                        {sub.length > 0 ? sub?.map((element, index) => (<option key={index} selected value={element}>{element}</option>)) : <option value={""}>No subject found!</option>}
                     </select>
                 </div>
                 <div className={classes.wd}>
                     <label className={classes.label1}>Select Teacher</label>
-                    <input type="text" value={teacher_name?.preferred_name}  className={classes.input_div1} readOnly/>
+                    <input type="text" value={teacher_name?.preferred_name} className={classes.input_div1} readOnly />
                     {/* <select className={classes.input_div1} value={teacher} onChange={(e) => setTeacher(e.target.value)}>
                     {teacherData && teacherData?.map((element, index) => (<option key={index} selected value={element.user_id}>{element.preferred_name}</option>))}
                     </select> */}
                 </div>
                 <div className={classes.wd}>
                     <label className={classes.label1}>Select No. of Classes</label>
-                    <select className={classes.input_div1}  onChange={(e) => setClassCount(e.target.value)}>
+                    <select className={classes.input_div1} onChange={(e) => setClassCount(e.target.value)}>
                         <option selected value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -152,16 +163,23 @@ const QuoteModal = ({ popupFunc, isPopup, func, data1, teacher_name }) => {
                 {/* <LabelledInput cls={classes.wd} id={'price'} label={'Price Per Class'} value="gggg" /> */}
                 <div className={classes.input_con}>
                     <label htmlFor="price">Price Per Class</label>
-                <div className={classes.boxed_input}>
-                    <div className={classes.sign}>₹</div>
-                    <input type="number" min={0}  value={price} onChange={(e)=> setPrice(e.target.value)} />
-                </div>
+                    <div className={classes.boxed_input}>
+                        <div className={classes.sign}>₹</div>
+                        <input type="number" min={0} value={price} onChange={(e) => setPrice(e.target.value)} />
+                    </div>
                 </div>
 
-                {/* <div className={classes.txtarea}>
-                    <label htmlFor="txt">Description</label>
-                    <textarea id="txt" onChange={handleQueryChange} value={query}></textarea>
-                </div> */}
+
+                <div className={classes.txtarea}>
+                    <label htmlFor="price">Teacher's Share (in %)</label>
+                    <div className={classes.boxed_input} >
+                        <input type="number" style={{ width: "100%" }} min={1} max={100} value={teacher_amount} onChange={handleInputChange}
+                        />
+                    </div>
+                    {errorMessage && (
+                        <p style={{ color: 'red' , fontSize:"13px"}}>{errorMessage}</p> // Display error message
+                    )}
+                </div>
             </div>
 
             <div className={classes.bottom}>

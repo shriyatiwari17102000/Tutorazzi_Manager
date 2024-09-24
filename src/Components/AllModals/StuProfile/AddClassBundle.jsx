@@ -23,6 +23,20 @@ const AddClassBundle = ({ popupFunc, isPopup, func, data1, id }) => {
     const [isLoading, setLoading] = useState(false)
     const[teacherData, setTeacherData] = useState([])
     const[teacher, setTeacher] = useState("")
+    const [teacher_amount, setTeacher_amount] = useState("")
+    const [errorMessage, setErrorMessage] = useState('');
+
+    const handleInputChange = (e) => {
+        const value = e.target.value;
+
+        // Allow only values between 1 and 100
+        if (value === '' || (value >= 1 && value <= 100)) {
+            setTeacher_amount(value);
+            setErrorMessage(''); // Clear error message if input is valid
+        } else {
+            setErrorMessage('You can add a number between 1 to 100 only');
+        }
+    };
     const handleQueryChange = (e) => {
         setQuery(e.target.value);
     };
@@ -102,6 +116,8 @@ const AddClassBundle = ({ popupFunc, isPopup, func, data1, id }) => {
             subject : subject,
             class_name: classNames,
             curriculum: curriculum,
+            teacher_share : teacher_amount
+
             // grade: data1?.grade_name
             
         }
@@ -164,6 +180,17 @@ const AddClassBundle = ({ popupFunc, isPopup, func, data1, id }) => {
                     <select className={classes.input_div1} value={subject} onChange={(e) => setSubject(e.target.value)}>
                     {sub.length > 0 ? sub?.map((element, index) => (<option key={index} selected value={element}>{element}</option>)) :  <option value={""}>No subject found!</option>}
                     </select>
+                </div>
+
+                <div className={classes.txtarea}>
+                    <label htmlFor="price">Teacher's Share (in %)</label>
+                    <div className={classes.boxed_input} >
+                        <input type="number" style={{ width: "100%" }} min={1} max={100} value={teacher_amount} onChange={handleInputChange}
+                        />
+                    </div>
+                    {errorMessage && (
+                        <p style={{ color: 'red' , fontSize:"13px"}}>{errorMessage}</p> // Display error message
+                    )}
                 </div>
                 {/* <LabelledInput cls={classes.cls_W} id={'class name'} label={"Teacher's Name"} value={teacher} func={setTeacher}/> */}
 
