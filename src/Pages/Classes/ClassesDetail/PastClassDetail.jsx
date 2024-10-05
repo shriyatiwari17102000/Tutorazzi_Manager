@@ -238,7 +238,7 @@ const PastClassDetail = () => {
                                     quote?.map((item, index) => (
                                         // console.log(item)
                                         <div key={index} className={classes.most_inn_quote} >
-                                            <UpcomingClassCard
+                                            <UpcomingClassCard class_id={id}
                                                 cls={classes.new_cls}
                                                 func={getPricingData} data={item} id={data?.studentDetails?.user_id} />
                                         </div>

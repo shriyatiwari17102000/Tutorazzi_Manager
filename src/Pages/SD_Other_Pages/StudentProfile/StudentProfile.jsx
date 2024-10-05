@@ -35,11 +35,11 @@ const data = [
     id: 'mob2',
     value: '12329293993'
   },
-  {
-    label: "Grade",
-    id: 'gr',
-    value: 'A'
-  },
+  // {
+  //   label: "Grade",
+  //   id: 'gr',
+  //   value: 'A'
+  // },
   {
     label: "Country",
     id: 'cn',

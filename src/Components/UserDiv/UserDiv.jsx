@@ -29,7 +29,7 @@ const UserDiv = (props) => {
                     <h5> {props?.citData?.state} </h5>
                     </div>)}
                     {data?.total_exp && <h5>{props?.data?.total_exp} year of experience </h5>}
-                    {data?.grade && <h5>{data?.grade?.name}</h5>}
+                    {/* {data?.grade && <h5>{data?.grade?.name}</h5>} */}
                     {data?.rank && <div className={classes.rank}>{data?.rank}</div>}
                 </div>
             </div>

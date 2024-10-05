@@ -234,10 +234,15 @@
     color: #2A2A2A;
 }
 .border_box{
-    display: flex;
-    gap: 5%;
-    width: 100% !important;
-margin-block: 20px;
+    border: 1px solid #d9d9d9;
+    width: fit-content !important;
+    line-height: 1.8;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-block: 20px;
+    & p{
+        color: #7D7D7D;
+    }
 }
 .input_di{
     border-radius: var(--br);

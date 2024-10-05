@@ -135,14 +135,21 @@ const ViewProfileModal = ({ popupFunc, id, isPopup, func, data1 }) => {
                         </li>
                     </ul>
                     <ul>
-                        <li>
+                        {/* <li>
                             Address <span>{sub?.address}</span>
-                        </li>
+                        </li> */}
                         <li>
                             City <span>{sub?.city}</span>
                         </li>
                         <li>
                             State <span>{sub?.state}</span>
+                        </li>
+                        <li>
+                            Langauge <span> {sub?.language?.map((item, index) => (
+
+                                <span >{item}</span>
+
+                            ))}</span>
                         </li>
 
                     </ul>
@@ -150,13 +157,13 @@ const ViewProfileModal = ({ popupFunc, id, isPopup, func, data1 }) => {
                 <h6 className={classes.heading}>Curriculum information</h6>
                 <div>
                     <ul>
-                        <li style={{ gap: "85px", justifyContent: "flex-start" }} className={classes.btm_curr}>Curriculum <span>{sub?.curriculum_name}</span></li>
+                        <li style={{ gap: "85px", justifyContent: "flex-start" }} className={classes.btm_curr}>Curriculum <span>{sub?.default_curriculum}</span></li>
                     </ul>
                     <div style={{ display: "flex", justifyContent: "space-between" }}>
-                        <ul  className={classes.btm_ul}>
-                            {sub?.subjects?.map((item, index) => (
-                                <li style={{gap: "98px"}}> 
-                                    Subject {index + 1}<span >{item.name}</span>
+                        <ul className={classes.btm_ul}>
+                            {sub?.subject_curriculum?.map((item, index) => (
+                                <li style={{ gap: "98px" }}>
+                                    Subject {index + 1}<span >{item.subject}</span>
                                 </li>
                             ))}
                         </ul>

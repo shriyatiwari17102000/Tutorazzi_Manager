@@ -22,7 +22,7 @@ const QuoteModal = ({ popupFunc, isPopup, func, data1, teacher_name }) => {
     const [teacherData, setTeacherData] = useState([])
     const [teacher_amount, setTeacher_amount] = useState("")
     const [errorMessage, setErrorMessage] = useState('');
-
+const[description, setDescription] = useState('')
     const handleInputChange = (e) => {
         const value = e.target.value;
 
@@ -85,17 +85,18 @@ const QuoteModal = ({ popupFunc, isPopup, func, data1, teacher_name }) => {
         const myToast = toast.loading('Please Wait...')
         // console.log({ start_time: timeDate })
         let bdy = {
+            class_id :data1?.classDetails?.id, 
             teacher_id: data1?.classDetails?.teacher_id?.id,
             student_id: data1?.classDetails?.student_id?.id,
             amount: price,
             class_count: classCount,
-            description: query,
+            description: description,
             class_name: classNames,
-            subject: subject,
-            curriculum: data1?.classDetails?.curriculum_name,
-            grade: data1?.classDetails?.grade_name,
-            teacher_share : teacher_amount
-
+            // subject: subject,
+            // curriculum: data1?.classDetails?.curriculum_name,
+            // grade: data1?.classDetails?.grade_name,
+            teacher_share : teacher_amount,
+           
         }
 
         setLoading(true)
@@ -132,11 +133,21 @@ const QuoteModal = ({ popupFunc, isPopup, func, data1, teacher_name }) => {
             <div className={classes.body}>
                 <LabelledInput cls={classes.cls_W} id={'class name'} label={'Class package Name'} value={classNames} func={setClassNames} />
 
-                <div className={classes.wd}>
+                {/* <div className={classes.wd}>
                     <label className={classes.label1}>Select Subject</label>
                     <select className={classes.input_div1} value={subject} onChange={(e) => setSubject(e.target.value)}>
                         {sub.length > 0 ? sub?.map((element, index) => (<option key={index} selected value={element}>{element}</option>)) : <option value={""}>No subject found!</option>}
                     </select>
+                </div> */}
+                  <div className={classes.wd}>
+                    <label  className={classes.label1} htmlFor="price">Enter Teacher's Cut (in %)</label>
+                    {/* <div className={classes.boxed_input} > */}
+                        <input type="number" className={classes.input_div1} min={1} max={100} value={teacher_amount} onChange={handleInputChange}
+                        />
+                    {/* </div> */}
+                    {errorMessage && (
+                        <p style={{ color: 'red' , fontSize:"13px"}}>{errorMessage}</p> // Display error message
+                    )}
                 </div>
                 <div className={classes.wd}>
                     <label className={classes.label1}>Select Teacher</label>
@@ -169,17 +180,14 @@ const QuoteModal = ({ popupFunc, isPopup, func, data1, teacher_name }) => {
                     </div>
                 </div>
 
-
-                <div className={classes.txtarea}>
-                    <label htmlFor="price">Teacher's Share (in %)</label>
-                    <div className={classes.boxed_input} >
-                        <input type="number" style={{ width: "100%" }} min={1} max={100} value={teacher_amount} onChange={handleInputChange}
-                        />
-                    </div>
-                    {errorMessage && (
-                        <p style={{ color: 'red' , fontSize:"13px"}}>{errorMessage}</p> // Display error message
-                    )}
+                <div className={classes.textarea} style={{width : "100%"}}>
+                    <label  className={classes.label1} htmlFor="Description">Description</label>
+                    <textarea style={{width:"100%", border:"1px solid #d9d9d9", borderRadius:"5px", padding:"10px", outline:"none"}} rows={5} name="" id="" value={description} onChange={(e)=> setDescription(e.target.value)}></textarea>
+                        {/* <input type="number" className={classes.input_div1} min={1} max={100} value={teacher_amount} onChange={handleInputChange}
+                        /> */}
+                   
                 </div>
+              
             </div>
 
             <div className={classes.bottom}>

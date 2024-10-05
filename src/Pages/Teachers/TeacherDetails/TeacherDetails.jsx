@@ -160,11 +160,11 @@ const TeacherDetails = () => {
             id: 'mob',
             value: teacherData?.user_id?.mobile_number
         },
-        {
-            label: "Grade",
-            id: 'gr',
-            value: teacherData?.grade?.name
-        },
+        // {
+        //     label: "Grade",
+        //     id: 'gr',
+        //     value: teacherData?.grade?.name
+        // },
         {
             label: "gender",
             id: 'gd',

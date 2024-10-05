@@ -42,7 +42,7 @@ const BundleDetail = ({ popupFunc, handleClose1, isPopup, bundleInfo1, func, dat
         setIsShow(false);
     }
     let id = data1._id
-    // console.log(id)
+    console.log(id)
 
     const tutToken = Cookies.get("tutorazzi_academic")
     const getTutToken = JSON.parse(tutToken)

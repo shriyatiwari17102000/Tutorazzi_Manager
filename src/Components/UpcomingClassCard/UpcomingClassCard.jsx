@@ -34,7 +34,7 @@ import AddExtraClass from '../AllModals/Quote/AddExtraClass'
 import ViewProfileModal from '../AllModals/StuProfile/ViewProfileModal'
 import EditQuote from '../AllModals/Quote/EditQuote'
 
-const UpcomingClassCard = ({ data, func, id, cls }) => {
+const UpcomingClassCard = ({ data, func, id, cls, class_id }) => {
   const [show, setShow] = useState(false)
   const [isExpanded, setIsExpanded] = useState(false);
   const [show1, setShow1] = useState(false)
@@ -86,7 +86,7 @@ let des = "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore nob
         </div>
       </Container>
       {show && <AddExtraClass id={id} isPopup={show} popupFunc={setShow} data1={data} func={func} />}
-      {show1 && <EditQuote isPopup={show1} popupFunc={setShow1} data1={data} func={func} />}
+      {show1 && <EditQuote isPopup={show1} popupFunc={setShow1} data1={data} func={func} class_id={class_id} />}
     </>
   )
 }

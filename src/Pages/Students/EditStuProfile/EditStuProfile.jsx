@@ -35,6 +35,8 @@ const EditStuProfile = () => {
     const [loading, setLoading] = useState(false)
     const [basicDetail, setBasicDetail] = useState({})
     const [curriculum, setCurriculum] = useState('Curriculum 1');
+    const [language, setLanguage] = useState('')
+    const [languageData, setLanguageData] = useState([])
     const [subCurr, setSubCurr] = useState([])
     const [subject, setSubject] = useState('Subject 1');
     const [open, setOpen] = useState(false)
@@ -64,8 +66,8 @@ const EditStuProfile = () => {
             id: 'mub',
             value: phone,
             func: setPhone,
-            ro: false   ,
-            type:"Number"
+            // ro: true,
+            type: "Number"
         },
         // {
         //     label: "Date Of Birth",
@@ -92,13 +94,13 @@ const EditStuProfile = () => {
             func: setSchool,
             ro: false
         },
-        {
-            label: "Grade",
-            id: 'grade',
-            value: grade,
-            func: setGrade,
-            ro: false
-        },
+        // {
+        //     label: "Grade",
+        //     id: 'grade',
+        //     value: grade,
+        //     func: setGrade,
+        //     ro: false
+        // },
         {
             label: 'City',
             id: 'city',
@@ -130,7 +132,7 @@ const EditStuProfile = () => {
             value: parentPhone,
             func: setParentPhone,
             ro: false,
-            type:"Number"
+            type: "Number"
         },
         {
             label: 'Email Id',
@@ -175,7 +177,7 @@ const EditStuProfile = () => {
         setCity(res.data.data.studentDetails.city)
         setGender(res.data.data.studentDetails.gender)
         setSchool(res.data.data.studentDetails.school)
-        setGrade(res.data.data.studentDetails.grade_name)
+        // setGrade(res.data.data.studentDetails.grade_name)
         setState(res.data.data.studentDetails.state)
         // setCountry(res.data.data.profileDetails.country)
         // setAddress(res.data.data.profileDetails.address)
@@ -200,8 +202,10 @@ const EditStuProfile = () => {
     const handleEdit = async (e) => {
         e.preventDefault();
         let bdy = {
-            name, age, city, state, school, grade, gender,
-          mobile_number: phone, parent_name : parentName,  parent_mobile_number : parentPhone
+            name, age, city, state, school,
+            //  grade,
+            gender,
+            mobile_number: phone, parent_name: parentName,  language, parent_mobile_number: parentPhone
         }
 
 
@@ -244,7 +248,28 @@ const EditStuProfile = () => {
         }
 
     };
-console.log(profileImg)
+
+    const getLanguage = async () => {
+
+
+        let register = `${BASE_URL}/list`
+        // console.log(register)
+        let res = await axios.get(register, {
+          headers: {
+            "Content-Type": "application/json",
+           Authorization: `Bearer ${token}`
+          }
+        })
+        console.log(res.data.data)
+        // setNationalityData(res.data.data.nationality)
+        setLanguageData(res.data.data?.language)
+    
+    
+      }
+      useEffect(() => {
+        getLanguage()
+      }, [])
+    console.log(profileImg)
     return (
         <React.Fragment>
             {/* <PagePath /> */}
@@ -272,6 +297,14 @@ console.log(profileImg)
                             <option value="Female">Female</option>
                         </select>
                     </div>
+                    <div className={classes.select_div}>
+                        <label htmlFor="gender" className={classes.select_label}>Languages</label>
+                        <select value={language} className={classes.select_input} onChange={(e) => setLanguage(e.target.value)}>
+                           
+                            {languageData?.map((data, index) => <option key={index} value={data}>{data}</option>)}
+
+                        </select>
+                    </div>
                     {data3.map((element, index) => (
                         <LabelledInput key={index} id={element.id} ro={element.ro} label={element.label} func={element.func} value={element.value} />
                     ))}
@@ -291,9 +324,12 @@ console.log(profileImg)
                 </div>
                 <div style={{ width: "100%" }}>
                     <h4 style={{ marginBottom: "30px" }}>Academic Detail</h4>
-                        {subCurr?.map((item) => <>
-                            <div className={`${classes.border_box}`}>
-                            <input
+                    {subCurr?.map((item) => <>
+                        <div className={`${classes.border_box}`}>
+
+                            <h4>{item.subject}</h4>
+                            <p>{item.curriculum}</p>
+                            {/* <input
                                 className={classes.input_di}
                                 type="text"
                                 value={item.curriculum}
@@ -304,9 +340,9 @@ console.log(profileImg)
                                 type="text"
                                 value={item.subject}
                                 readOnly
-                            />
-                    </div>
-                        </>)}
+                            /> */}
+                        </div>
+                    </>)}
 
 
                     <button className={classes.add_aca} onClick={handleOpen}>
@@ -322,7 +358,7 @@ console.log(profileImg)
                 </div>
 
             </Container>
-            {open && <AcademicModal isPopup={open} popupFunc={setOpen} id={id}  getData={getData}/>}
+            {open && <AcademicModal isPopup={open} popupFunc={setOpen} id={id} getData={getData} />}
 
         </React.Fragment>
     )

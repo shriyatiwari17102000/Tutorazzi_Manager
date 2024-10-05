@@ -198,7 +198,7 @@ const StudentDetails = () => {
           <button className={classes.btn2} onClick={handleOpen}>Add Class bundle</button>
         </div>
 
-        <DataDivCon data={data} cls={classes.data_div_con} />
+        {/* <DataDivCon data={data} cls={classes.data_div_con} /> */}
         <Outlet />
         <div className={classes.sb_div}>
           <div className={classes.toggle_btns}>

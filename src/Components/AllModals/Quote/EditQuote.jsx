@@ -10,22 +10,22 @@ import { BASE_URL } from '../../../Apis/BaseUrl'
 import classes from "./Quote.module.css"
 import LabelledInput from '../../LabelledInput/LabelledInput'
 
-const EditQuote = ({ popupFunc, isPopup, func, data1 }) => {
+const EditQuote = ({ popupFunc, isPopup, func, data1, class_id }) => {
     // console.log(data1)
     const [query, setQuery] = useState('')
-    const[sub, setSub] = useState([])
-    const[subject, setSubject] = useState('')
-    const[price, setPrice] = useState('')
-    const[classCount, setClassCount] = useState('')
-    const[classNames, setClassNames] = useState('')
+    const [sub, setSub] = useState([])
+    const [subject, setSubject] = useState('')
+    const [price, setPrice] = useState('')
+    const [classCount, setClassCount] = useState('')
+    const [classNames, setClassNames] = useState('')
     const [isLoading, setLoading] = useState(false)
-    const[teacherData, setTeacherData] = useState([])
-    const[teacher, setTeacher] = useState("")
-    const[quoteData, setQuoteData] = useState({})
+    const [teacherData, setTeacherData] = useState([])
+    const [teacher, setTeacher] = useState("")
+    const [quoteData, setQuoteData] = useState({})
     const [teacher_amount, setTeacher_amount] = useState("")
     const [errorMessage, setErrorMessage] = useState('');
 
-  
+
 
     const handleQueryChange = (e) => {
         setQuery(e.target.value);
@@ -75,7 +75,7 @@ const EditQuote = ({ popupFunc, isPopup, func, data1 }) => {
 
         console.log(response.data.data?.docs)
         setTeacherData(response.data.data?.docs)
-setTeacher(response?.data?.data?.docs[0]?.user_id)
+        setTeacher(response?.data?.data?.docs[0]?.user_id)
     }
 
     useEffect(() => {
@@ -86,7 +86,7 @@ setTeacher(response?.data?.data?.docs[0]?.user_id)
     const getCurriculum = async () => {
         const register = `${BASE_URL}/subject-by-curriculum?curriculum=${currName}&teacher_id=${teacher}`
         let response = await axios.get(register, {
-            headers: { 
+            headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token} `,
             },
@@ -95,14 +95,14 @@ setTeacher(response?.data?.data?.docs[0]?.user_id)
         console.log(response.data.data)
         setSub(response.data.data)
         setSubject(response.data.data[0])
-        
+
     }
 
     useEffect(() => {
         getCurriculum()
     }, [currName, teacher])
 
- 
+
     // console.log(subject)
 
     const handleInputChange = (e) => {
@@ -124,16 +124,17 @@ setTeacher(response?.data?.data?.docs[0]?.user_id)
         const myToast = toast.loading('Please Wait...')
         // console.log({ start_time: timeDate })
         let bdy = {
+            class_id : class_id,
             teacher_id: quoteData?.teacher_id,
             student_id: quoteData?.student_id,
             amount: price,
             class_count: classCount,
             description: query,
             class_name: classNames,
-            subject: subject,
-            curriculum: quoteData?.curriculum_name ,
-            grade: quoteData?.grade_name,
-            teacher_share : teacher_amount
+            // subject: subject,
+            // curriculum: quoteData?.curriculum_name ,
+            // grade: quoteData?.grade_name,
+            teacher_share: teacher_amount
 
         }
 
@@ -169,23 +170,34 @@ setTeacher(response?.data?.data?.docs[0]?.user_id)
             </div>
 
             <div className={classes.body}>
-                <LabelledInput cls={classes.cls_W} id={'class name'} label={'Class package Name'} value={classNames} func={setClassNames}/>
+                <LabelledInput cls={classes.cls_W} id={'class name'} label={'Class package Name'} value={classNames} func={setClassNames} />
 
-                <div className={classes.wd}>
+                {/* <div className={classes.wd}>
                     <label className={classes.label1}>Select Subject</label>
                     <select className={classes.input_div1} value={subject} onChange={(e) => setSubject(e.target.value)}>
                     {sub?.length > 0 ? sub?.map((element, index) => (<option key={index} selected value={element}>{element}</option>)) : <option value={""}>No subject found!</option>}
                     </select>
+                </div> */}
+
+                <div className={classes.wd}>
+                    <label className={classes.label1} htmlFor="price">Enter Teacher's Cut (in %)</label>
+                    {/* <div className={classes.boxed_input} > */}
+                        <input type="number" className={classes.input_div1}  min={1} max={100} value={teacher_amount} onChange={handleInputChange}
+                        />
+                    {/* </div> */}
+                    {errorMessage && (
+                        <p style={{ color: 'red', fontSize: "13px" }}>{errorMessage}</p> // Display error message
+                    )}
                 </div>
                 <div className={classes.wd}>
                     <label className={classes.label1}>Select Teacher</label>
                     <select className={classes.input_div1} value={teacher} onChange={(e) => setTeacher(e.target.value)}>
-                    {teacherData && teacherData?.map((element, index) => (<option key={index} selected value={element.user_id}>{element.preferred_name}</option>))}
+                        {teacherData && teacherData?.map((element, index) => (<option key={index} selected value={element.user_id}>{element.preferred_name}</option>))}
                     </select>
                 </div>
                 <div className={classes.wd}>
                     <label className={classes.label1}>Select No. of Classes</label>
-                    <select className={classes.input_div1}  onChange={(e) => setClassCount(e.target.value)}>
+                    <select className={classes.input_div1} onChange={(e) => setClassCount(e.target.value)}>
                         <option selected value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -201,29 +213,20 @@ setTeacher(response?.data?.data?.docs[0]?.user_id)
                 {/* <LabelledInput cls={classes.wd} id={'price'} label={'Price Per Class'} value="gggg" /> */}
                 <div className={classes.input_con}>
                     <label htmlFor="price">Price Per Class</label>
-                <div className={classes.boxed_input}>
-                    <div className={classes.sign}>$</div>
-                    <input type="number" min={0}  value={price} onChange={(e)=> setPrice(e.target.value)} />
-                </div>
+                    <div className={classes.boxed_input}>
+                        <div className={classes.sign}>$</div>
+                        <input type="number" min={0} value={price} onChange={(e) => setPrice(e.target.value)} />
+                    </div>
                 </div>
 
-                <div className={classes.txtarea}>
-                    <label htmlFor="price">Teacher's Share (in %)</label>
-                    <div className={classes.boxed_input} >
-                        <input type="number" style={{ width: "100%" }} min={1} max={100} value={teacher_amount} onChange={handleInputChange}
-                        />
-                    </div>
-                    {errorMessage && (
-                        <p style={{ color: 'red' , fontSize:"13px"}}>{errorMessage}</p> // Display error message
-                    )}
-                </div>
+
 
                 <div className={classes.txtarea}>
                     <label htmlFor="txt">Description</label>
                     <textarea id="txt" onChange={handleQueryChange} value={query}></textarea>
                 </div>
 
-                
+
             </div>
 
             <div className={classes.bottom}>
