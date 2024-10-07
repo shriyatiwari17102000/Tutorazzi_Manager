@@ -4,6 +4,7 @@
     background-color: white;
     padding: 20px;
     width: 33%;
+    line-height: 1.5;
 }
 
 .cont1 {
@@ -88,7 +89,7 @@
     padding: 5px 15px;
     font-size: 13px;
     font-weight: 500;
-    margin-block: 10px;
+    /* margin-block: 10px; */
 }
 
 .like_btn {
@@ -99,7 +100,7 @@
     padding: 5px 15px;
     font-size: 13px;
     font-weight: 500;
-    margin-block: 10px;
+    /* margin-blocks: 10px; */
 }
 .dislike_btn {
     color: #E60000;
@@ -109,7 +110,7 @@
     padding: 5px 15px;
     font-size: 13px;
     font-weight: 500;
-    margin-block: 10px;
+    /* margin-block: 10px; */
 }
 
 .button {

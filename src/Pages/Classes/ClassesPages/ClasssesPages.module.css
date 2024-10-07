@@ -11,13 +11,14 @@
 .sb_div{
     display: flex;
     column-gap: 10px;
-    justify-content: space-between;
+    justify-content: end;
+    /* justify-content: space-between; */
 }
 .sb_div2{
     display: flex;
     column-gap: 10px;
     justify-content: end;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
     /* justify-content: space-between; */
 }
 .choose_date > div:nth-child(1) {
@@ -48,7 +49,7 @@
     margin-bottom: 30px;
 }
 .selecttag{
-    width: 100%;
+    /* width: 100%; */
     height: 45px;
     border-radius: 5px;
     border: 1px solid #d9d9d9;
@@ -73,4 +74,19 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+}
+
+.top_div{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+}
+.select_cont{
+    display: flex;
+    justify-content: space-between;
+    margin-block: 20px;
+}
+
+.mbb{
+    margin-bottom: 0 !important;
 }

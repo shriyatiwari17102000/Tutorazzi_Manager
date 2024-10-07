@@ -410,8 +410,8 @@ const Overview = () => {
    <div className={classes.in_div}>
    <div>
     <div className={classes.flexx}>
-       <h4 style={{marginBottom:"10px", fontWeight:"500", fontSize:"16px"}}>Pending classes which has no response from student</h4>
-       <button onClick={() => navigate('/classes')}>See more</button>
+       <h4 style={{fontWeight:"500", fontSize:"16px"}}>Pending classes which has no response from student</h4>
+       <button style={{backgroundColor:"white"}}  onClick={() => navigate('/classes')}>See more</button>
        </div>
           <div className={classes.up_div}>
             {noResponse?.map((item) => (
@@ -421,8 +421,8 @@ const Overview = () => {
     </div>
     <div className={classes.mtop}>
     <div className={classes.flexx} >
-       <h4 style={{marginBottom:"10px", fontWeight:"500", fontSize:"16px"}}>Liked</h4>
-       <button onClick={() => navigate('/classes')}>See more</button>
+       <h4 style={{fontWeight:"500", fontSize:"16px"}}>Liked</h4>
+       <button style={{backgroundColor:"white"}} onClick={() => navigate('/classes')}>See more</button>
        </div>
           <div className={classes.up_div}>
             {likedData?.map((item) => (
@@ -432,8 +432,8 @@ const Overview = () => {
     </div>
     <div className={classes.mtop}>
     <div className={classes.flexx}>
-       <h4 style={{marginBottom:"10px", fontWeight:"500", fontSize:"16px"}}>Disliked</h4>
-       <button onClick={() => navigate('/classes')}>See more</button>
+       <h4 style={{ fontWeight:"500", fontSize:"16px"}}>Disliked</h4>
+       <button style={{backgroundColor:"white"}}  onClick={() => navigate('/classes/trial-request')}>See more</button>
        </div>
           <div className={classes.up_div}>
             {dislikeData?.map((item) => (

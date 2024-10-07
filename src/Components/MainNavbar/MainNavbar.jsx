@@ -99,9 +99,9 @@ const MainNavbar = () => {
                         {/* <button><BsCalendarWeek /></button> */}
                         <button onClick={() => setNotification(!notification)}><AiOutlineBell /></button>
                         <button onClick={handleNavigate}><BiMessageDetail /></button>
-                        <div className={classes.profile_con} onClick={()=>navigate('/profile')}><FallbackImage imgData={img}/></div>
+                        <div className={classes.profile_con} onClick={() => navigate('/profile')}><FallbackImage imgData={img} /></div>
                         <button onClick={() => setSidebar(true)}><LuMenu />
-</button>
+                        </button>
                     </div>
 
 

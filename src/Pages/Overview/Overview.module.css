@@ -247,8 +247,9 @@ margin-bottom: 15px !important;
 .flexx{
     display: flex;
     justify-content: space-between;
+    margin-bottom: 15px;
     & button{
-        background-color: white;
+        background-color: #f9f9f9;
         border: none;
         color: rgba(66, 77, 182, 1);
         text-decoration: underline;
@@ -348,6 +349,7 @@ margin-bottom: 15px !important;
 .my_bar_container4{
     border: 1px solid #d9d9d9;
     border-radius: 5px;
+    background-color: white;
 }
 .my_bar_container4 > div{
     padding: 20px;

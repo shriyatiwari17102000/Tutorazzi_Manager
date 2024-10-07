@@ -10,7 +10,7 @@ const TrialBelow = (props) => {
             <div className={classes.inn_div}>
                 <h4>{data?.subject?.name}</h4>
                 <div className={classes.btn_div}>
-                    <button className={classes.tab}>Trial</button>
+                    <button className={classes.tab} >Trial</button>
                     {props.status == "liked" && <button className={classes.like_btn}>Liked</button>}
                     {props?.status == "disliked" && <button className={classes.dislike_btn}>Disliked</button>}
                 </div>
@@ -25,7 +25,7 @@ const TrialBelow = (props) => {
             </div>
 
             {props?.comment && <div>
-                <h5 style={{ marginBlock: "10px", fontSize: "15px" }}>Comments</h5>
+                <h5 style={{ marginBlock: "15px 20px", fontSize: "15px" }}>Comments</h5>
                 <p className={classes.p1} style={{ fontSize: "13px", fontWeight: "500" }}>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis doloribus itaque debitis assumenda qui id odio dicta eligendi obcaecati asperiores?
 

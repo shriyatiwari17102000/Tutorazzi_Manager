@@ -1,7 +1,7 @@
-.layout {
+/* .layout {
   display: flex;
   flex-direction: column;
-}
+} */
 
 /* .left {
   width: 18%;
@@ -48,3 +48,48 @@
     left: 0 !important;
   }
 } */
+
+
+.layout {
+  display: flex;
+}
+
+.left {
+  width: 18%;
+  background: var(--bg);
+  height: 100vh;
+  left: 0;
+  top: 0;
+  position: sticky;
+}
+.right {
+  width: 82%;
+  min-height: 101.5vh;
+  background: var(--sc);
+}
+
+@media screen and (max-width: 1200px) {
+  .right {
+    width: 70%;
+  }
+  .left {
+    width: 30%;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .right {
+    width: 100%;
+  }
+  .left {
+    position: fixed;
+    z-index: 22;
+    width: 100%;
+    left: -100%;
+    transition: 0.3s ease;background: white;
+
+  }
+
+  .sidebar_true {
+    left: 0 !important;
+  }
+}

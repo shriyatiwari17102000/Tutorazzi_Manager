@@ -4,6 +4,7 @@
     flex-direction: column;
     row-gap: 15px;
     position: relative;
+    background-color: white;
 }
 
 .card_title {

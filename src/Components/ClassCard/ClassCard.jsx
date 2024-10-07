@@ -207,6 +207,7 @@ const ClassCard = (props) => {
       default:
         return <>
           <div className={classes.flex}>
+           
             {data.start_time && (
               <div style={{ display: "flex", gap: "5px" }}>
                 <p><Moment format="hh:mm A">{data.start_time}</Moment>  &</p><p><Moment format="hh:mm A">{data.end_time}</Moment></p></div>
@@ -232,12 +233,15 @@ const ClassCard = (props) => {
         </div>
         
 
+        <div>
+        {data?.class_reschedule_status == "Rescheduled" && data?.rescheduled_by &&<p style={{color : "#989898", fontSize:"13px", marginBottom:"20px", textTransform:"capitalize"}}> Last update : {data?.rescheduled_by}</p>}
         <div className={classes.btn_container}>
           {/* {
           data.status.map((element, index) => ( */}
           {tagstoBtn(data?.class_reschedule_status || data?.status )}
           {/* ))
         } */}
+        </div>
         </div>
       </Container>
       {popup && <RescheduleClasses isPopup={popup} popupFunc={setPopup} func={props?.func} data1={data} />}

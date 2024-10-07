@@ -116,7 +116,7 @@ const ClassIndex = () => {
         getPastData()
     }, [limit1, page1, search1, value, teacher, student])
 
-    
+
     const getMissedData = async () => {
         let dateValue = value ? moment(value).format('YYYY-MM-DD') : " ";
         let register = `${BASE_URL}/missed-classes?limit=${limit2}&page=${page2}&search=${search2}&date=${dateValue}&teacher_id=${teacher}&student_id=${student}`
@@ -131,7 +131,7 @@ const ClassIndex = () => {
         setPageInfo2({ ...res.data.data, docs: null })
         setMissedData(res.data.data?.docs)
     }
-    
+
     useEffect(() => {
         getMissedData()
     }, [limit2, page2, search2, value, teacher, student])
@@ -162,13 +162,27 @@ const ClassIndex = () => {
 
     return (
         <React.Fragment>
-            <Heading cls={classes.heading} heading={'Classes'} p={'Porem ipsum dolor sit amet, consectetur adipiscing elit.'} />
-            <div className={classes.sb_div}>
-                <div className={classes.toggle_btns}>
-                    <button onClick={() => setInx(0)} className={inx === 0 ? classes.active : ''}>Upcoming Classes</button>
-                    <button onClick={() => setInx(1)} className={inx === 1 ? classes.active : ''}>Past Classes</button>
-                    <button onClick={() => setInx(2)} className={inx === 2 ? classes.active : ''}>Missed Classes</button>
-                </div>
+            <div className={classes.top_div}>
+                <Heading cls={classes.mbb}  heading={'Classes'} p={'Porem ipsum dolor sit amet, consectetur adipiscing elit.'} />
+                {inx === 0 && <div className={classes.sb_div2}>
+                    <SearchBar cls={classes.sb} search={search} setSearch={setSearch} />
+                    <DatePicker className={classes.choose_date} onChange={onChange} value={value} />
+                </div>}
+                {inx === 1 && <div className={classes.sb_div2}>
+                    <SearchBar cls={classes.sb} search={search1} setSearch={setSearch1} />
+                    <DatePicker className={classes.choose_date} onChange={onChange} value={value} />
+                </div>}
+                {inx === 2 && <div className={classes.sb_div2}>
+                    <SearchBar cls={classes.sb} search={search2} setSearch={setSearch2} />
+                    <DatePicker className={classes.choose_date} onChange={onChange} value={value} />
+                </div>}
+            </div>
+            <div className={classes.select_cont}>
+                <select className={classes.selecttag} onChange={(e) => setInx(Number(e.target.value))} value={inx}>
+                    <option value={0}>Upcoming Classes</option>
+                    <option value={1}>Past Classes</option>
+                    <option value={2}>Missed Classes</option>
+                </select>
                 <div className={classes.sb_div}>
                     <select name="" id="" className={classes.selecttag} value={teacher} onChange={(e) => setTeacher(e.target.value)}>
                         <option value="">Select Teacher</option>
@@ -177,25 +191,24 @@ const ClassIndex = () => {
 
                     </select>
                     <select name="" id="" className={classes.selecttag} value={student} onChange={(e) => setStudent(e.target.value)}>
-                         <option value="">Select Student</option> 
+                        <option value="">Select Student</option>
                         {studentData && studentData?.map((element, index) => (<option key={index} value={element._id}>{element.name}</option>))}
 
                     </select>
                 </div>
 
             </div>
-          {inx === 0 &&   <div className={classes.sb_div2}>
-                <SearchBar cls={classes.sb} search={search} setSearch={setSearch} />
-                <DatePicker className={classes.choose_date} onChange={onChange} value={value} />
-            </div>}
-          {inx === 1 &&   <div className={classes.sb_div2}>
-                <SearchBar cls={classes.sb} search={search1} setSearch={setSearch1} />
-                <DatePicker className={classes.choose_date} onChange={onChange} value={value} />
-            </div>}
-          {inx === 2 &&   <div className={classes.sb_div2}>
-                <SearchBar cls={classes.sb} search={search2} setSearch={setSearch2} />
-                <DatePicker className={classes.choose_date} onChange={onChange} value={value} />
-            </div>}
+            {/* <div className={classes.sb_div}> */}
+            {/* <div className={classes.toggle_btns}>
+                    <button onClick={() => setInx(0)} className={inx === 0 ? classes.active : ''}>Upcoming Classes</button>
+                    <button onClick={() => setInx(1)} className={inx === 1 ? classes.active : ''}>Past Classes</button>
+                    <button onClick={() => setInx(2)} className={inx === 2 ? classes.active : ''}>Missed Classes</button>
+                </div> */}
+
+
+            {/* </div> */}
+
+
 
             {
                 renderDiv[inx]

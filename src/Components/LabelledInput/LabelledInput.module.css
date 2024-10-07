@@ -30,3 +30,45 @@
   .password_toggle_icon:hover {
     color: #007bff; /* Adjust the hover color as needed */
   }
+
+
+  .bottom_btns{
+    margin-top: 10px;
+    display: flex;
+    column-gap: 10px;
+    justify-content: flex-end;
+}
+
+.bottom_btns .add_btn{
+    width: max-content;
+    padding-inline: 10px;
+    height: 30px;
+    font-weight: 500;
+    background: transparent;
+    border-radius:5px;
+    border: 2px solid black;
+}
+.bottom_btns .remove_btn{
+    width: max-content;
+    padding-inline: 10px;
+    height: 30px;
+    font-weight: 500;
+    color: red;
+    background: transparent;
+    border-radius:5px;
+    border: 2px solid red;
+}
+.add_more_input{
+    margin-bottom: 10px;
+}
+
+
+.errors {
+    position: absolute !important;
+    bottom: -18px !important;
+    font-size: 12px !important;
+    font-weight: 400 !important;
+    color: red !important;
+    animation: modalanimation 0.2s forwards;
+    right: 0;
+}
