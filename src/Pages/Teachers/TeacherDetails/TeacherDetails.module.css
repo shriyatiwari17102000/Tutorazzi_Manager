@@ -17,7 +17,7 @@
     }
 
     @media (width < 500px) {
-        grid-column: span 8;
+        grid-column: span 10;
     }
 }
 .inn_div{
@@ -289,4 +289,25 @@
 }
 .inn{
     grid-template-columns:repeat(1, 1fr)
+}
+
+@media screen and (max-width : 620px) {
+    .scroll_box{
+      flex-wrap: nowrap;
+      flex-direction: column;
+    }
+    .inn_div{
+        flex-direction: column;
+        gap: 15px;
+    }
+    .inner_box_12{
+        grid-column: span 10;
+    }
+    .inner_box_13{
+        grid-column: span 10;
+    }
+    .bank_div{
+        flex-direction: column;
+        gap: 0;
+    }
 }

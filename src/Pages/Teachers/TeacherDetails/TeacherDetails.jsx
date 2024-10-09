@@ -420,15 +420,15 @@ const TeacherDetails = () => {
                 </Container>
                 <Container cls={classes.inner_box_4} >
                     <h4 className={classes.heading}>Experience</h4>
-                
-                        <SwiperCard data={expdetail}/>
-                        {/* {expdetail?.map((element, index) => (
+                    <div className={classes.scroll_box}>
+                        {/* <SwiperCard data={expdetail}/> */}
+                        {expdetail?.map((element, index) => (
                             <div key={index} className={classes.experience}>
                                 <Experience key={index} data={element} />
 
                             </div>
-                        ))} */}
-                   
+                        ))}
+                   </div>
                 </Container>
                 <Container cls={classes.inner_box_6} >
                     <h4 className={classes.heading}>Testimonials</h4>

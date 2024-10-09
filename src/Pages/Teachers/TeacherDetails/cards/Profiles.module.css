@@ -8,8 +8,10 @@
     position: relative;
 }
 .main_div2{
-    width: 345px !important;
+    width: 360px !important;
     height: 200px !important;
+
+
 }
 .exp_btn{
     /* margin-top: 75px; */
@@ -33,4 +35,13 @@
 .main_div > p {
     font-size: 13px;
     color: #989898;
+}
+
+@media screen and (max-width : 620px) {
+    .main_div2{
+        width: 100% !important;
+    }
+    .main_div{
+        width: 100% !important;
+    }
 }
