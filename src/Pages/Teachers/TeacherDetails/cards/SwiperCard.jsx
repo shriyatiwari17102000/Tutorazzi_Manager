@@ -83,7 +83,7 @@ const SwiperCard = (props) => {
       modules={[Autoplay, Pagination, Navigation]} // Ensure Navigation module is included
       loop={true}
       autoplay={{
-        delay: 5000,
+        delay: 1000,
         disableOnInteraction: true,
       }}
       className={'home_slider home_slider1 whyneed1'}
