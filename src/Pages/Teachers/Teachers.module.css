@@ -8,6 +8,7 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    /* background-color: white; */
 }
 .teacher{
     padding: 20px;
@@ -18,6 +19,7 @@
     border-radius: var(--br);
     text-decoration: none;
     color: initial;
+    background-color: white;
 }
 .teacher > div:nth-child(1){
     width: calc(50% - 100px);

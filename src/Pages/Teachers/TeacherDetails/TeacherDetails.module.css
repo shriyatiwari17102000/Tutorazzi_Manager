@@ -1,15 +1,17 @@
 .grid {
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
+    grid-template-columns: repeat(10, 1fr);
     gap: 20px;
 }
 
 .inner_box_1 {
     padding: 20px;
     grid-column: span 2;
-    display: flex;
+    /* display: flex; */
     align-items: center;
-
+    background-color: #F3F4FF;
+    border: none;
+    height: 100px;
     @media (width < 1000px) {
         grid-column: span 4;
     }
@@ -28,17 +30,21 @@
 }
 
 .det_box {
-    display: flex;
+    /* display: flex; */
     column-gap: 10px;
     align-items: center;
+ 
 }
 
 .det_box h1 {
-    font-size: 36px;
+    font-size: 25px;
     font-weight: 500;
+    color: #424DB6;
 }
 
-.det_box p {}
+.det_box p {
+    margin-bottom: 10px;
+}
 
 .red_box {
     display: flex;
@@ -79,38 +85,78 @@
 
 .inner_box_2 {
     padding: 20px;
-    grid-column: 1 / span 8;
+    grid-column: 1 / span 10;
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
+    grid-template-columns: repeat(10, 1fr);
+    gap: 20px;
+}
+.inner_box_12 {
+    padding: 20px;
+    grid-column: span 6;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 20px;
+}
+.inner_box_13 {
+    padding: 20px;
+    grid-column: span 4;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
     gap: 20px;
 }
 
 .inner_box_3 {
     padding: 20px;
-    grid-column: span 8;
+    grid-column: span 10;
     display: flex;
     gap: 20px;
-    height: 250px;
+    /* height: 250px; */
     overflow: hidden;
     flex-direction: column;
 
-    @media (width > 1000px) {
-        grid-column: span 4;
-    }
+    /* @media (width > 1000px) {
+        grid-column: span 8;
+    } */
+}
+.info_div{
+    width: 100%;
+    display: flex;
+    grid-column: 1 / span 10;
+    width: 100%;
+    row-gap: 31px;
+    /* column-gap: 50px; */
 }
 .inner_box_6 {
     padding: 20px;
-    grid-column: span 8;
+    grid-column: span 10;
     display: block;
     /* gap: 20px; */
     /* display: grid; */
     /* grid-template-columns: repeat(8, 1fr); */
 }
+.inner_div{
+    & div {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        width: 250px;
+        line-height: 2;
+        & p {
+            font-size: 14px;
+            font-weight: 500;
+        }
+        & span{
+            font-size: 14px;
+            color: #989898;
+            font-weight: 500px;
+        }
+    }
+}
 .inner_box_6 > h4 {
     margin-bottom: 10px !important;
 }
 .inner_box_6>a {
-    grid-column: span 8;
+    grid-column: span 10;
 
     @media (width > 600px) {
         grid-column: span 4;
@@ -123,7 +169,7 @@
 
 .inner_box_2>div,
 .inner_box_5>a {
-    grid-column: span 8;
+    grid-column: span 10;
 
     @media (width > 600px) {
         grid-column: span 4;
@@ -135,7 +181,7 @@
 }
 
 .inner_box_2>div:last-child {
-    grid-column: span 8;
+    grid-column: span 10;
 
     @media (width > 1000px) {
         grid-column: span 6;
@@ -147,7 +193,7 @@
     text-align: start;
     font-weight: 500;
     grid-column: inherit;
-    grid-column: span 8;
+    grid-column: span 10;
 }
 
 .button_con {
@@ -178,19 +224,20 @@
 
 .scroll_box {
     display: flex;
-    flex-direction: column;
-    overflow: scroll;
-    row-gap: 20px;
-    height: calc(100% - 20px);
+    flex-wrap: wrap;
+    /* flex-direction: column; */
+    /* overflow: scroll; */
+    gap: 30px;
+    /* height: calc(100% - 20px); */
 }
 
 .inner_box_4 {
     padding: 20px;
-    grid-column: span 8;
+    grid-column: span 10;
     display: flex;
     gap: 20px;
-    height: 350px;
-    overflow: hidden;
+    /* height: 350px; */
+    /* overflow: hidden; */
     flex-direction: column;
 }
 
@@ -218,8 +265,28 @@
 
 .inner_box_5 {
     padding: 20px;
-    grid-column: span 8;
+    grid-column: span 10;
     gap: 20px;
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
+    grid-template-columns: repeat(10, 1fr);
+}
+
+.bank_div{
+    display: flex;
+    gap: 150px;
+    & div {
+        line-height: 2;
+        & p {
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            gap: 10px;
+            & span{
+                color:#989898
+            }
+        }
+    }
+}
+.inn{
+    grid-template-columns:repeat(1, 1fr)
 }

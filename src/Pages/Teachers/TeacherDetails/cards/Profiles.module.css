@@ -1,0 +1,36 @@
+.main_div{
+    border: 1px solid #d9d9d9;
+    /* width: 24% !important; */
+    padding: 10px 20px;
+    border-radius: 5px;
+    line-height: 1.6;
+    width: fit-content !important;
+    position: relative;
+}
+.main_div2{
+    width: 345px !important;
+    height: 200px !important;
+}
+.exp_btn{
+    /* margin-top: 75px; */
+    width: 90%;
+    border: 1px solid #d9d9d9;
+    border-radius: 5px;
+    background: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    font-weight: 500;
+    position: absolute;
+    left: 16px;
+    bottom: 17px;
+}
+
+.main_div > h3 {
+    font-size: 14px;
+    font-weight: 500;
+}
+.main_div > p {
+    font-size: 13px;
+    color: #989898;
+}

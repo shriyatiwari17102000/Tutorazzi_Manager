@@ -1,0 +1,164 @@
+.home_slider1 .swiper-pagination {
+    display: none;
+}
+
+.whyneed1 .swiper-button-next:after, 
+.swiper-rtl .swiper-button-prev:after {
+    content: 'next';
+    font-size: 12px ;
+}
+.whyneed1 .swiper-button-prev:after, 
+.swiper-rtl .swiper-button-prev:after {
+    content: 'prev';
+    font-size: 12px;
+}
+
+.whyneed1 .swiper-button-next, .swiper-button-prev, 
+.swiper-rtl .swiper-button-prev {
+    /* background: #999999 !important; */
+    /* color: white !important; */
+    height: 20px;
+    width: 20px;
+    border-radius: 50% !important;
+}
+.home_slider2{
+    height: 100%;
+    padding-bottom: 0 !important;
+}
+
+.slidemodal .swiper-button-next, .swiper-button-prev, 
+.swiper-rtl .swiper-button-prev {
+    /* background: #999999 !important; */
+    /* color: white !important; */
+    height: 20px ;
+    width: 20px ;
+    border-radius: 50% !important;
+    margin-inline:-4px;
+}
+/* .prmodal .swiper-button-prev{
+    height: 30px;
+    width: 30px;
+} */
+/* .prmodal .swiper-button-next{
+    height: 30px;
+    width: 30px;
+} */
+.slidemodal .swiper-button-next:after, 
+.swiper-rtl .swiper-button-prev:after {
+    content: 'next';
+    font-size: 8px !important ;
+}
+.slidemodal .swiper-button-prev:after, 
+.swiper-rtl .swiper-button-prev:after {
+    content: 'prev';
+    font-size: 8px !important;
+}
+@media screen and (max-width : 1000px) {
+    .hm3{
+        padding: 0 10px 10px !important;
+        /* padding: 0 10px 0 20px !important; */
+    }
+}
+@media screen and (max-width : 620px) {
+.home_slider1 {
+    padding: 0 !important;
+}
+.home_slider2{
+    padding: 0 0 40px 0 !important;
+}
+}
+.modal-dialog-centered{
+    justify-content: center !important;
+}
+/* .modal-content{
+    width: 1100px !important;
+} */
+
+@media screen and (max-width:620px) {
+    .modal-content{
+        width: 100% !important;
+    }
+    .slidemodal > .swiper-button-next, .swiper-button-prev, 
+.swiper-rtl .swiper-button-prev {
+    /* background: #999999 !important; */
+    /* color: white !important; */
+    height: 20px ;
+    width: 20px ;
+    border-radius: 50% !important;
+    margin-inline:-8px;
+}
+.slidemodal > .swiper-button-prev:after, 
+.swiper-rtl .swiper-button-prev:after {
+    content: 'prev';
+    font-size: 12px;
+}
+.slidemodal > .swiper-button-next:after, 
+.swiper-rtl .swiper-button-prev:after {
+    content: 'next';
+    font-size: 12px;
+}
+   }
+
+
+
+   .home_slider{
+    /* padding:0 20px 50px !important; */
+    margin: 0 20px !important;
+    }
+    .home_slider .img{
+        width: 100% !important;
+        border-radius: 10px;
+        /* height: 250px; */
+    }
+    .home_slider .img_mob{
+        width: 100% !important;
+        border-radius: 10px;
+        height: 420px;
+        display: none;
+    }
+    .home_slider .swiper-slide{
+    
+        /* margin-inline:20px !important; */
+    }
+    .home_slider .swiper-pagination-bullet {
+        position: relative;
+        z-index: 10;
+        width: 6px;
+            height: 6px;}
+    .home_slider .swiper-pagination-bullet-active {
+        position: relative;
+        z-index: 10;
+        width: 30px;
+        height: 6px;
+        border-radius: 10px;
+    background: #000 !important;
+    }
+        
+        /* .class="swiper-pagination-bullet-active" {
+        width: 56px;
+            height: 10px;
+            border-radius: 10px;} */
+    
+            @media screen and (max-width : 1000px) {
+                .home_slider{
+                    padding: 0 30px 50px !important;
+                }
+            }
+            @media screen and (max-width : 620px) {
+               .home_slider .img{
+                display: none;
+               }
+               .home_slider .img_mob{
+                display: block;
+               }
+               .hs1{
+                /* margin-top: 20px !important; */
+                padding: 0 !important;
+               }
+               .home_slider {
+                /* padding-bottom: 0 !important; */
+               }
+               .home_slider .swiper-slide {
+                /* margin-right: 0 !important; */
+               }
+            }
