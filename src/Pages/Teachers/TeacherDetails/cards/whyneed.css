@@ -20,6 +20,7 @@
     height: 20px;
     width: 20px;
     border-radius: 50% !important;
+    font-weight: 700;
 }
 .home_slider2{
     height: 100%;
@@ -30,10 +31,11 @@
 .swiper-rtl .swiper-button-prev {
     /* background: #999999 !important; */
     /* color: white !important; */
-    height: 20px ;
-    width: 20px ;
+    height: 20px !important;
+    width: 20px !important;
     border-radius: 50% !important;
-    margin-inline:-4px;
+    margin-inline: -4px;
+    font-weight: 700;
 }
 /* .prmodal .swiper-button-prev{
     height: 30px;
@@ -91,6 +93,7 @@
 .swiper-rtl .swiper-button-prev:after {
     content: 'prev';
     font-size: 12px;
+    font-weight: 700;
 }
 .slidemodal > .swiper-button-next:after, 
 .swiper-rtl .swiper-button-prev:after {
@@ -102,20 +105,10 @@
 
 
    .home_slider{
-    /* padding:0 20px 50px !important; */
-    margin: 0 20px !important;
+    padding: 0 28px !important;
+    margin: 0 !important;
     }
-    .home_slider .img{
-        width: 100% !important;
-        border-radius: 10px;
-        /* height: 250px; */
-    }
-    .home_slider .img_mob{
-        width: 100% !important;
-        border-radius: 10px;
-        height: 420px;
-        display: none;
-    }
+    
     .home_slider .swiper-slide{
     
         /* margin-inline:20px !important; */
