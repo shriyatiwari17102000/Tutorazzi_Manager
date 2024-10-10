@@ -46,6 +46,8 @@ const[graphData, setGraphData] = useState([])
 const [value, onChange] = useState('');
 const [years, setYears] = useState([]);
 const [selectedYear, setSelectedYear] = useState('');
+const [pendingStudent, setPendingStudent] = useState([])
+const[dependTime, setDependTime] = useState('week')
 
   const tutToken = Cookies.get("tutorazzi_academic")
   const getTutToken = JSON.parse(tutToken)
@@ -73,7 +75,7 @@ const paginationProps = {
   pageInfo
 }
 const getGraphData = async () => {
-  const axiosData = `${BASE_URL}/payment-stats?year=${selectedYear}`
+  const axiosData = `${BASE_URL}/payment-stats?time=${dependTime}`
   let res = await axios.get(axiosData, {
     headers: {
       "Content-Type": "application/json",
@@ -82,13 +84,13 @@ const getGraphData = async () => {
   })
 
   console.log(res.data.data)
-  setGraphData(res.data.data)
+  setGraphData(res.data.data?.graphDataArray)
 
 }
 
 useEffect(() => {
   getGraphData()
-}, [selectedYear])
+}, [dependTime])
 
 const fetchYears = async () => {
   try {
@@ -117,7 +119,7 @@ console.log(years, "years")
       <Heading heading={'Payments'} p={'You can see your Payments here and manage them'} />
     <Container  cls={classes.cont}>
       <Heading heading={'Stats Section'}   cls={classes.cont1} />
-    <PaymentGraph graphData={graphData} selectedYear={selectedYear} setSelectedYear={setSelectedYear} years={years} setYears={setYears}/>
+    <PaymentGraph graphData={graphData} selectedYear={selectedYear} setDependTime={setDependTime} dependTime={dependTime}/>
       <Heading heading={'Monthly Payments'}   cls={classes.cont2} />
     </Container>
       <Heading heading={'Payments Details'} p={''} >
