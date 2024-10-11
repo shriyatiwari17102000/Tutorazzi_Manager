@@ -18,6 +18,7 @@ const Students = () => {
     const [limit, setLimit] = useState(10);
     const [page, setPage] = useState(1);
     const [pageInfo, setPageInfo] = useState({});
+    const[total, setTotal] = useState('')
 
     const tutToken = Cookies.get("tutorazzi_academic")
     const getTutToken = JSON.parse(tutToken)
@@ -36,6 +37,7 @@ const Students = () => {
       console.log(res.data.data)
       setPageInfo({ ...res.data.data, docs: null })
       setData(res.data.data?.docs)
+      setTotal(res.data.data)
     }
     useEffect(() => {
       getData()
@@ -48,11 +50,13 @@ const Students = () => {
     // console.log(data[0].user_id)
     return (
         <React.Fragment>
-            <Heading heading={'All Students'} p={'Porem ipsum dolor sit amet, consectetur adipiscing elit.'}>
+            <Heading heading={`All Students (${total?.totalDocs})`} p={'Porem ipsum dolor sit amet, consectetur adipiscing elit.'}>
+            
                 <div className={classes.sb}>
                     <SearchBar search={search} setSearch={setSearch} />
                 </div>
             </Heading>
+      
             <div>
                 {data?.length > 0 ? <div>
               <div className={classes.box}>

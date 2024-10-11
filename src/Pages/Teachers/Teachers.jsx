@@ -15,6 +15,7 @@ import { MdStar } from 'react-icons/md'
 
 const Teachers = () => {
     const [data, setData] = useState([])
+    const [total, setTotal] = useState('');
     const [search, setSearch] = useState('');
     const [limit, setLimit] = useState(10);
     const [page, setPage] = useState(1);
@@ -37,6 +38,7 @@ const Teachers = () => {
       console.log(res.data.data)
       setPageInfo({ ...res.data.data, docs: null })
       setData(res.data.data?.docs)
+      setTotal(res.data.data)
     }
     useEffect(() => {
       getData()
@@ -49,7 +51,7 @@ const Teachers = () => {
 
     return (
         <React.Fragment>
-            <Heading heading={'All Teachers'} p={'Porem ipsum dolor sit amet, consectetur adipiscing elit.'}>
+            <Heading heading={`All Teachers (${total?.totalDocs})`} p={'Porem ipsum dolor sit amet, consectetur adipiscing elit.'}>
                 <div className={classes.sb}>
                     <SearchBar search={search} setSearch={setSearch} />
                 </div>

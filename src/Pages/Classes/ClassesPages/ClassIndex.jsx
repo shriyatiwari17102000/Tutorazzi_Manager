@@ -17,29 +17,42 @@ import 'react-calendar/dist/Calendar.css';
 import moment from 'moment'
 import CardDiv from '../../../Components/ClassCard/CardDiv'
 import CardCon from '../../../MappableDivs/ClassCardCon/CardCon'
+import NewTrial from './NewTrail'
+import ReqCardCon from '../../../MappableDivs/ClassCardCon/ReqCardCon'
+
 
 const ClassIndex = () => {
 
     const [upcomingData, setUpcomingData] = useState([])
+    const [rescheduleData, setRescheduleData] = useState([])
     const [pastData, setPastData] = useState([])
     const [limit, setLimit] = useState(10);
     const [page, setPage] = useState(1);
     const [pageInfo, setPageInfo] = useState({});
     const [search, setSearch] = useState('');
     const [limit1, setLimit1] = useState(10);
+    const [limit3, setLimit3] = useState(10);
+    const [limit4, setLimit4] = useState(10);
     const [page1, setPage1] = useState(1);
+    const [page3, setPage3] = useState(1);
+    const [page4, setPage4] = useState(1);
     const [pageInfo1, setPageInfo1] = useState({});
+    const [pageInfo4, setPageInfo4] = useState({});
+    const [pageInfo3, setPageInfo3] = useState({});
     const [search1, setSearch1] = useState('');
     const [limit2, setLimit2] = useState(10);
     const [page2, setPage2] = useState(1);
     const [pageInfo2, setPageInfo2] = useState({});
     const [search2, setSearch2] = useState('');
+    const [search3, setSearch3] = useState('');
+    const [search4, setSearch4] = useState('');
     const [value, onChange] = useState('');
     const [teacher, setTeacher] = useState('')
     const [teacherData, setTeacherData] = useState('')
     const [student, setStudent] = useState('')
     const [studentData, setStudentData] = useState([])
     const [missedData, setMissedData] = useState([])
+    const [trialData, setTrialData] = useState([])
 
     const tutToken = Cookies.get("tutorazzi_academic")
     const getTutToken = JSON.parse(tutToken)
@@ -80,7 +93,7 @@ const ClassIndex = () => {
         getStudent()
     }, [teacher])
 
-    const getRescheduleData = async () => {
+    const getUpcomingData = async () => {
         let dateValue = value ? moment(value).format('YYYY-MM-DD') : "";
         let register = `${BASE_URL}/upcoming-classes?limit=${limit}&page=${page}&search=${search}&date=${dateValue}&teacher_id=${teacher}&student_id=${student}`
         // console.log(register)
@@ -95,7 +108,7 @@ const ClassIndex = () => {
         setUpcomingData(res.data.data?.docs)
     }
     useEffect(() => {
-        getRescheduleData()
+        getUpcomingData()
     }, [limit, page, search, value, teacher, student])
 
     const getPastData = async () => {
@@ -136,6 +149,43 @@ const ClassIndex = () => {
         getMissedData()
     }, [limit2, page2, search2, value, teacher, student])
 
+
+    const getTrialData = async () => {
+        let dateValue = value ? moment(value).format('YYYY-MM-DD') : "";
+        let register = `${BASE_URL}/trial-classes?limit=${limit4}&page=${page4}&search=${search4}&date=${dateValue}&teacher_id=${teacher}&student_id=${student}`
+        console.log(register)
+        let res = await axios.get(register, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`
+          }
+        })
+        console.log(res.data.data)
+        setPageInfo4({ ...res.data.data, docs: null })
+        setTrialData(res.data.data?.docs)
+      }
+      useEffect(() => {
+        getTrialData()
+      }, [limit4, page4, search4, value, teacher, student])
+
+      const getRescheduleData = async () => {
+        let dateValue = value ? moment(value).format('YYYY-MM-DD') : ""; 
+        let register = `${BASE_URL}/rescheduled-classes?limit=${limit3}&page=${page3}&search=${search3}&date=${dateValue}&teacher_id=${teacher}&student_id=${student}`
+        console.log(register)
+        let res = await axios.get(register, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`
+          }
+        })
+        console.log(res.data.data)
+        setPageInfo3({ ...res.data.data, docs: null })
+        setRescheduleData(res.data.data?.docs)
+      }
+      useEffect(() => {
+        getRescheduleData()
+      }, [limit3, page3, search3, value, teacher, student])
+    
     const paginationProps = {
         setPage,
         pageInfo
@@ -148,6 +198,14 @@ const ClassIndex = () => {
         setPage: setPage2,
         pageInfo: pageInfo2
     }
+    const paginationProps3 = {
+        setPage: setPage3,
+        pageInfo: pageInfo3
+    }
+    const paginationProps4 = {
+        setPage: setPage4,
+        pageInfo: pageInfo4
+    }
 
 
 
@@ -156,7 +214,9 @@ const ClassIndex = () => {
     const renderDiv = {
         0: <ClassCardCon link={'upcoming-details'} data={upcomingData} paginationProps={paginationProps} />,
         1: <ClassCardCon link={'past-details'} data={pastData} paginationProps={paginationProps1} />,
-        2: <CardCon data={missedData} paginationProps={paginationProps2} status={"Missed"} />
+        2: <CardCon data={missedData} paginationProps={paginationProps2} status={"Missed"} />,
+        3:<ReqCardCon data={rescheduleData} paginationProps={paginationProps3} func={getRescheduleData}  /> ,
+        4: <ClassCardCon data={trialData} paginationProps={paginationProps4}  />
     }
 
 
@@ -176,12 +236,22 @@ const ClassIndex = () => {
                     <SearchBar cls={classes.sb} search={search2} setSearch={setSearch2} />
                     <DatePicker className={classes.choose_date} onChange={onChange} value={value} />
                 </div>}
+                {inx === 3 && <div className={classes.sb_div2}>
+                    <SearchBar cls={classes.sb} search={search3} setSearch={setSearch3} />
+                    <DatePicker className={classes.choose_date} onChange={onChange} value={value} />
+                </div>}
+                {inx === 4 && <div className={classes.sb_div2}>
+                    <SearchBar cls={classes.sb} search={search4} setSearch={setSearch4} />
+                    <DatePicker className={classes.choose_date} onChange={onChange} value={value} />
+                </div>}
             </div>
             <div className={classes.select_cont}>
                 <select className={classes.selecttag} onChange={(e) => setInx(Number(e.target.value))} value={inx}>
                     <option value={0}>Upcoming Classes</option>
                     <option value={1}>Past Classes</option>
                     <option value={2}>Missed Classes</option>
+                    <option value={3}>Pending Classes</option>
+                    <option value={4}>Trial Classes</option>
                 </select>
                 <div className={classes.sb_div}>
                     <select name="" id="" className={classes.selecttag} value={teacher} onChange={(e) => setTeacher(e.target.value)}>

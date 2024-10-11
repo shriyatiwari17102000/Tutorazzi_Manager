@@ -131,12 +131,12 @@ const Sidebar = (props) => {
         <NavLink className={classes.link} to={'/classes'}>
           Classes
         </NavLink>
-        <NavLink className={classes.link} to={'/reschedule-request'}>
+        {/* <NavLink className={classes.link} to={'/reschedule-request'}>
           Reschedule Classes
         </NavLink>
         <NavLink className={classes.link} to={'/trial-request'}>
           Trial Classes
-        </NavLink>
+        </NavLink> */}
         <NavLink className={classes.link} to={'/resource-request'}>
           Resource Requests
         </NavLink>
