@@ -19,6 +19,7 @@ import CardDiv from '../../../Components/ClassCard/CardDiv'
 import CardCon from '../../../MappableDivs/ClassCardCon/CardCon'
 import NewTrial from './NewTrail'
 import ReqCardCon from '../../../MappableDivs/ClassCardCon/ReqCardCon'
+import TrialTab from '../TrialTab'
 
 
 const ClassIndex = () => {
@@ -216,7 +217,7 @@ const ClassIndex = () => {
         1: <ClassCardCon link={'past-details'} data={pastData} paginationProps={paginationProps1} />,
         2: <CardCon data={missedData} paginationProps={paginationProps2} status={"Missed"} />,
         3:<ReqCardCon data={rescheduleData} paginationProps={paginationProps3} func={getRescheduleData}  /> ,
-        4: <ClassCardCon data={trialData} paginationProps={paginationProps4}  />
+        4: <TrialTab data={trialData} paginationProps={paginationProps4}  />
     }
 
 

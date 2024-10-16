@@ -37,6 +37,7 @@ import PrivateComponent from './Components/PrivateComponents/PrivateComponent'
 import EditStuProfile from './Pages/Students/EditStuProfile/EditStuProfile'
 import GroupChat from './Pages/GroupChat/GroupChat'
 import DoubtReq from './Pages/Classes/ClassesPages/DoubtReq'
+import TrialUpcoming from './Pages/Classes/ClassesDetail/TrialUpcoming'
 
 
 const App = () => {
@@ -104,8 +105,10 @@ const App = () => {
                 <Route path="resource-request" element={<ResourceReq />} />
                 <Route path="homework-request" element={<HomeworkReq />} />
                 <Route path="doubt-request" element={<DoubtReq />} />
+                {/* <Route path='/classes/trial-details/:id' element={<TrialClassDetail />} /> */}
               </Route>
               
+                <Route path='/classes/trial-upcoming-details/:id' element={<TrialUpcoming />} />
               <Route path='/classes/upcoming-details/:id' element={<UpcomingClassDetail />} />
               <Route path='/classes/past-details/:id' element={<PastClassDetail />} />
               <Route path='/classes/trial-details/:id' element={<TrialClassDetail />} />

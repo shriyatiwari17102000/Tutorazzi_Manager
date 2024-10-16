@@ -6,13 +6,12 @@ import Cookies from 'js-cookie'
 import Moment from 'react-moment'
 import moment from 'moment'
 import AddNewSlots from './AddNewSlots'
-import Heading from '../Heading/Heading'
-import Modal from '../Modal/Modal'
-import BlackButton from '../BlackButton/BlackButton'
-import { BASE_URL } from '../../Apis/BaseUrl'
+import { BASE_URL } from '../../../Apis/BaseUrl'
+import Modal from '../../Modal/Modal'
+import Heading from '../../Heading/Heading'
+import BlackButton from '../../BlackButton/BlackButton'
 
-
-const SlotModal = ({ popupFunc, isPopup, func, data1 }) => {
+const SlotModal2 = ({ popupFunc, isPopup, func, data1 }) => {
 
     const [itemdata, setItemdata] = useState('')
     const [data, setData] = useState([])
@@ -25,7 +24,7 @@ const SlotModal = ({ popupFunc, isPopup, func, data1 }) => {
     console.log(data1)
 
 
-    let profileTokenJson = Cookies.get("tutorazzi_academic");
+    let profileTokenJson = Cookies.get("tutorazzi_token");
     let profileToken = JSON.parse(profileTokenJson);
     let token = profileToken.access_token;
 
@@ -96,7 +95,6 @@ const SlotModal = ({ popupFunc, isPopup, func, data1 }) => {
         }
         finally {
             popupFunc(!isPopup)
-
             setLoading(false)
         }
     };
@@ -142,4 +140,4 @@ const SlotModal = ({ popupFunc, isPopup, func, data1 }) => {
     )
 }
 
-export default SlotModal
+export default SlotModal2
