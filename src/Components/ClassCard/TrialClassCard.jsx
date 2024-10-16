@@ -27,7 +27,7 @@ const TrialClassCard = (props) => {
     const data = props?.data1
     console.log(data)
 
-    const tutToken = Cookies.get("tutorazzi_token")
+    const tutToken = Cookies.get("tutorazzi_academic")
     const getTutToken = JSON.parse(tutToken)
     const token = getTutToken.access_token
 
@@ -63,7 +63,7 @@ const TrialClassCard = (props) => {
 // console.log(func)
     return (
         <>
-            <Container cls={`${classes.card} ${props.cls}`}>
+            <Container cls={`${classes.card} ${props.cls} main_link`}>
                 <div className={classes.card_data}>
                     <div className={classes.flex} style={{ alignItems: "center" }}>
 
@@ -91,12 +91,12 @@ const TrialClassCard = (props) => {
                 {data?.class_reschedule_status == "Rescheduled" && data?.rescheduled_by &&<p style={{color : "#989898", fontSize:"13px", marginBottom:"20px", textTransform:"capitalize"}}> Last update : {data?.rescheduled_by}</p>}
                 <div style={{ display: "flex", gap: "10px" }}>
                     {data?.class_reschedule_status === "Pending" && data.open_reschedule_t && (
-                        <button onClick={handleSlot} className={`${classes.btn} ${classes.reschedule}`}>
+                        <button onClick={handleSlot}  id='button' className={`${classes.btn} ${classes.reschedule}`}>
                             Select Slot
                         </button>)}
 
                    { data?.class_reschedule_status === "Rescheduled" && data.open_reschedule_t && (
-                        <button onClick={handleShow} className={`${classes.btn} ${classes.reschedule}`}>
+                        <button onClick={handleShow}  id='button' className={`${classes.btn} ${classes.reschedule}`}>
                             Rescheduled
                         </button>
                     )}

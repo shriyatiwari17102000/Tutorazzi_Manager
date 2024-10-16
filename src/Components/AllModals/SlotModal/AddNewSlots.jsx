@@ -24,7 +24,7 @@ const AddNewSlots = ({ popupFunc, isPopup, func, data1 }) => {
 
 
 
-  const studentToken = Cookies.get('tutorazzi_token')
+  const studentToken = Cookies.get('tutorazzi_academic')
   const getStuToken = JSON.parse(studentToken)
 
 
@@ -89,7 +89,7 @@ const AddNewSlots = ({ popupFunc, isPopup, func, data1 }) => {
                   unregister={unregister}  // Pass unregister here
         data={labelData} register={register} errors={errors} minCount={3} maxCount={5} name="+ Add more dates" />
         <div className={styles.bottom}>
-          <button type='button' onClick={() => popupFunc(false)} >Cancel</button>
+          <button type='button'  id='button' onClick={() => popupFunc(false)} >Cancel</button>
           <BlackButton disabled={isLoading} func={handleSubmit(submitHandler)}>Send Request</BlackButton>
         </div>
       </form>

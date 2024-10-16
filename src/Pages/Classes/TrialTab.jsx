@@ -54,10 +54,13 @@ const TrialTab = (props) => {
     const links = (event, data) => {
       console.log(data.is_past)
       let link = mylinks[`${data.is_past}`] + `/${data._id}`
-      if (event.target.id != "button") {
-        navigate(link)
-      }
-    //   navigate(link)
+    //   if (event.target.id != "button") {
+    //     navigate(link)
+    //   }
+    // //   navigate(link)
+    if (event.target.className.includes('main_link')) {
+      navigate(link)
+    }
     }
 
     return (<>

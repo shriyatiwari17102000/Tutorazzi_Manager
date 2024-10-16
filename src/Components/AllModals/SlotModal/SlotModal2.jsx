@@ -24,7 +24,7 @@ const SlotModal2 = ({ popupFunc, isPopup, func, data1 }) => {
     console.log(data1)
 
 
-    let profileTokenJson = Cookies.get("tutorazzi_token");
+    let profileTokenJson = Cookies.get("tutorazzi_academic");
     let profileToken = JSON.parse(profileTokenJson);
     let token = profileToken.access_token;
 
@@ -95,6 +95,7 @@ const SlotModal2 = ({ popupFunc, isPopup, func, data1 }) => {
         }
         finally {
             popupFunc(!isPopup)
+
             setLoading(false)
         }
     };
@@ -129,7 +130,7 @@ const SlotModal2 = ({ popupFunc, isPopup, func, data1 }) => {
                 </div>
 
                 <div className={classes.bottom}>
-                    <button type='submit' onClick={handleSendNewTimings}>Send New Timings</button>
+                    <button type='submit' onClick={handleSendNewTimings}  id='button'>Send New Timings</button>
                     <BlackButton disabled={isLoading} func={handleDataUpload}>Accept</BlackButton>
                 </div>
             </Modal>

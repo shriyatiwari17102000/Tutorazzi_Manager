@@ -22,7 +22,7 @@ const SlotModal = ({ popupFunc, isPopup, func, data1 }) => {
     let id = data1?.classDetails?.id
    
 
-    let profileTokenJson = Cookies.get("tutorazzi_token");
+    let profileTokenJson = Cookies.get("tutorazzi_academic");
     let profileToken = JSON.parse(profileTokenJson);
     let token = profileToken.access_token;
 
