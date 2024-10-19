@@ -90,12 +90,12 @@ const TrialClassCard = (props) => {
                 <div>
                 {data?.class_reschedule_status == "Rescheduled" && data?.rescheduled_by &&<p style={{color : "#989898", fontSize:"13px", marginBottom:"20px", textTransform:"capitalize"}}> Last update : {data?.rescheduled_by}</p>}
                 <div style={{ display: "flex", gap: "10px" }}>
-                    {data?.class_reschedule_status === "Pending" && data.open_reschedule_t && (
+                    {data?.class_reschedule_status === "Pending" && data.open_reschedule_am && (
                         <button onClick={handleSlot}  id='button' className={`${classes.btn} ${classes.reschedule}`}>
                             Select Slot
                         </button>)}
 
-                   { data?.class_reschedule_status === "Rescheduled" && data.open_reschedule_t && (
+                   { data?.class_reschedule_status === "Rescheduled" && data.open_reschedule_am && (
                         <button onClick={handleShow}  id='button' className={`${classes.btn} ${classes.reschedule}`}>
                             Rescheduled
                         </button>

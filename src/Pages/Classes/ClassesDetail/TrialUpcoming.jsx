@@ -113,7 +113,7 @@ const TrialUpcoming = () => {
     return (
         
         <React.Fragment>
-            <Heading heading={'Class Details'} p={'Porem ipsum dolor sit amet, consectetur adipiscing elit.'} btn={data?.classDetails?.class_status == "Pending" ? 'Show all Slots' : "Reschedule"} btnFunction={data?.classDetails?.class_status == "Pending" ? popupHandler : popupHandler2} btnValue={data?.classDetails?.class_status == "Pending" ? popup : popup2}/>
+            <Heading heading={'Trial Class Details'} p={'Porem ipsum dolor sit amet, consectetur adipiscing elit.'} btn={data?.classDetails?.class_status == "Pending" ? 'Show all Slots' : "Reschedule"} btnFunction={data?.classDetails?.class_status == "Pending" ? popupHandler : popupHandler2} btnValue={data?.classDetails?.class_status == "Pending" ? popup : popup2}/>
             <div className={classes.box}>
                 <Container cls={classes.header}>
                     <div className={classes.header_right}>

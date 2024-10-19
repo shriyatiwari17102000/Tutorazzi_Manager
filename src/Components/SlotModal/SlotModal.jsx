@@ -21,7 +21,7 @@ const SlotModal = ({ popupFunc, isPopup, func, data1 }) => {
     const [isSecondPopup, setSecondPopup] = useState(false); // State to manage second modal
 
 
-    let id = data1?.id
+    let id = data1?.classDetails?._id
     console.log(data1)
 
 
