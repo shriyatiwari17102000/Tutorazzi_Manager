@@ -21,8 +21,8 @@ const SlotModal = ({ popupFunc, isPopup, func, data1 }) => {
     const [isSecondPopup, setSecondPopup] = useState(false); // State to manage second modal
 
 
-    let id = data1?.classDetails?._id
-    console.log(data1)
+    let id = data1?.classDetails?._id || data1?._id
+    console.log(id)
 
 
     let profileTokenJson = Cookies.get("tutorazzi_academic");
