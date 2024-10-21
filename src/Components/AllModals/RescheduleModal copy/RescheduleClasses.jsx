@@ -1,86 +1,101 @@
 import React, { useState } from 'react'
-import Modal from '../../Modal/Modal'
-import Heading from '../../Heading/Heading'
+import { useForm } from 'react-hook-form'
+import Cookies from 'js-cookie'
 import { toast } from 'react-toastify'
 import axios from 'axios'
-import Cookies from 'js-cookie'
-import moment from 'moment'
-import ToasterUpdate from '../../Toaster/ToasterUpdate'
-import { BASE_URL } from '../../../Apis/BaseUrl'
 import styles from "./RescheduleModal.module.css"
+import { BASE_URL } from '../../../Apis/BaseUrl'
+import Modal from '../../Modal/Modal'
+import BlackButton from '../../BlackButton/BlackButton'
+import AddMoreInput from '../../LabelledInput/AddMoreInput'
+import moment from 'moment'
 
 const RescheduleClasses = ({ popupFunc, isPopup, func, data1 }) => {
-    // console.log("yyyyyyyyy")
-    const [isLoading, setLoading] = useState(false)
-    const [timeDate, setTimeDate] = useState(moment().format('YYYY-MM-DDTHH:mm'))
+  const [isLoading, setIsLoading] = useState(false)
 
-    let data = data1
-    console.log(data)
-    let id = data?.classDetails?._id ? data?.classDetails?._id : data?._id
-    console.log(id)
-     const tutToken = Cookies.get("tutorazzi_academic")
-    const getTutToken = JSON.parse(tutToken)
-    const token = getTutToken.access_token
+  const props_ = {
+    cls: `${styles.popup} my_button`,
+    value: isPopup,
+    Func: popupFunc,
 
-    // console.log(timeDate)
+  }
 
-    const handleDataUpload = async () => {
-      
-        const register = `${BASE_URL}/reschedule-class/${id}`
-        // console.log(register)
-        const myToast = toast.loading('Please Wait...')
-        setLoading(true)
-        // console.log({ start_time: timeDate })
+  const { register, handleSubmit, unregister, reset, formState: { errors } } = useForm()
 
-        try {
-            let response = await axios.patch(register, { start_time: timeDate }, {
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${token} `,
-                },
-            })
 
-            console.log(response)
-            ToasterUpdate(myToast, response.data.message, "success")
-            func()
-        } catch (error) {
-            ToasterUpdate(myToast, error.message, "error")
-        }
-        finally {
-            popupFunc(!isPopup)
-            setLoading(false)
 
-        }
+  const studentToken = Cookies.get('tutorazzi_token')
+  const getStuToken = JSON.parse(studentToken)
+
+
+  const token = getStuToken;
+
+  let id = data1?.classDetails?._id || data1?._id
+  console.log(id)
+
+  const submitHandler = async (data) => {
+
+    let newData = {
+      ...data
+    };
+    console.log(newData)
+    const myToast = toast.loading('Please Wait...')
+    setIsLoading(true)
+    try {
+      const response = await axios.patch(`${BASE_URL}/reschedule-class/${id}`,
+        newData, {
+        headers: {
+          'Authorization': `Bearer ${token?.access_token}`,
+          'Content-Type': 'application/json',
+        },
+      })
+
+      console.log(response)
+      if (!response.data.success) {
+        throw new Error(response.data.message)
+
+      }
+      toast.update(myToast, {
+        render: response.data.message,
+        type: 'success',
+        isLoading: false,
+        autoClose: 1500
+      });
+      func()
     }
+    catch (error) {
+      console.error('Error while uploading data:', error);
 
-   
-    let new_d = moment(new Date()).format('YYYY-MM-DDTHH:mm');
+      toast.update(myToast, {
+        render: error.message,
+        type: 'error',
+        isLoading: false,
+        autoClose: 1500
+      });
+    } finally {
+      setIsLoading(false);
+      popupFunc(!isPopup)
+    }
+  }
 
-    return (
-        <Modal cls={`${styles.popup}`} value={isPopup} Func={popupFunc}>
-            <div className={styles.top}>
-                <Heading heading={'Reschedule'} p={''} />
-            </div>
 
-            <div className={styles.body}>
+  const labelData = { "label": "Date & Time", "type": "datetime-local", "id": "start_time" }
+  let new_d = moment(new Date()).format('YYYY-MM-DDTHH:mm');
 
-                <form style={{ width: "100%" }}>
-                    <div className='px-3'>
-
-                        <label className={styles.modal_label}>
-                            Reschedule Date and Time
-                        </label>
-                        <input min={new_d} id='button' type="datetime-local" value={timeDate} onChange={(e) => setTimeDate(e.target.value)} className={`${styles.input_box2}`} required />
-                    </div>
-                </form>
-            </div>
-
-            <div className={styles.bottom}>
-                <button type='submit' onClick={() => { popupFunc(!isPopup) }}>Cancel</button>
-                <button style={{ background: "black", color: "white" }} id="button" disabled={isLoading} onClick={handleDataUpload}>Reschedule</button>
-            </div>
-        </Modal>
-    )
+  return (
+    <Modal {...props_} >
+      <h3 style={{marginBottom:"20px", fontWeight:500}}>Reschedule Class</h3>
+      <form>
+        <AddMoreInput cls2={styles.inpt} new_d={new_d}
+                  unregister={unregister}  // Pass unregister here
+        data={labelData} register={register} errors={errors} minCount={3} maxCount={5} name="+ Add more dates" />
+        <div className={styles.bottom}>
+          <button id='button' type='button' className='my_button' onClick={() => popupFunc(false)} >Cancel</button>
+          <BlackButton disabled={isLoading} func={handleSubmit(submitHandler)}>Send Request</BlackButton>
+        </div>
+      </form>
+    </Modal>
+  )
 }
 
 export default RescheduleClasses

@@ -98,8 +98,8 @@ const TrialClassCard = (props) => {
                         </button>)}
 
                    { data?.class_reschedule_status === "Rescheduled" && data.open_reschedule_am && (
-                        <button onClick={handleShow}  id='button' className={`${classes.btn} ${classes.reschedule}`}>
-                            Rescheduled
+                        <button onClick={handleSlot}  id='button' className={`${classes.btn} ${classes.reschedule}`}>
+                            Select Slot
                         </button>
                     )}
                    { data?.class_reschedule_status === "Done" && (

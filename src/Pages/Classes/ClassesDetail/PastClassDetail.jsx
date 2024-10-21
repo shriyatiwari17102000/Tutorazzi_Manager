@@ -145,7 +145,7 @@ const PastClassDetail = () => {
                     <div className={classes.header_right}>
                         <div className={classes.header_right_profile}>  {data && data?.classDetails?.subject?.name?.slice(0, 1).toUpperCase()}</div>
                         <div className={classes.header_right_inner}>
-                            <h4 className={classes.secondary_heading}>{data?.classDetails?.subject?.name} Class</h4>
+                            <h4 className={classes.secondary_heading}>{data?.classDetails?.subject?.name} Class  <span style={{fontSize:"13px", color:"#F45555", marginLeft:"10px"}}>{data?.classDetails?.meeting_duration + "min"}</span></h4>
                             <h5><Moment format="hh:mm A" utc>{data?.classDetails?.start_time}</Moment> & <Moment format="hh:mm A" utc>{data?.classDetails?.end_time}</Moment></h5>
                             <h5><Moment format="DD/MM/YYYY" utc >{data?.classDetails?.start_time}</Moment></h5>
                         </div>

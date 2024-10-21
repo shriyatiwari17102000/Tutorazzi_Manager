@@ -82,7 +82,7 @@ const RequestedClassCard = (props) => {
                         </p>}
 
                     </div>
-                
+
                     {data?.start_time &&
                         <div className={classes.flex}>
                             <p><Moment format='hh:mm A' utc>{data?.start_time}</Moment> & <Moment format='hh:mm A' utc>{data?.end_time}</Moment></p>
@@ -102,27 +102,28 @@ const RequestedClassCard = (props) => {
             )}
              {data.start_time && ( <p><Moment format='DD/MM/YYYY'>{data.start_time}</Moment></p>)}
           </div> */}
-          {/* <div className={classes.flex}>
+                {/* <div className={classes.flex}>
             <p>Teacher : <span>{data.teacher_name}</span></p>
             <p>Student : <span>{data.student_name}</span></p>
           </div> */}
-                <div>       {data?.class_reschedule_status == "Rescheduled" && data?.rescheduled_by &&<p style={{color : "#989898", fontSize:"13px", marginBottom:"20px", textTransform:"capitalize"}}> Last update : {data?.rescheduled_by}</p>}
-                    
-                {data?.rescheduled_by && <p style={{color : "#989898", fontSize:"13px", marginBottom:"20px", textTransform:"capitalize"}}> Last update : {data?.rescheduled_by}</p>}
+                <div>      
+                     {/* {data?.class_reschedule_status == "Rescheduled" && data?.rescheduled_by && <p style={{ color: "#989898", fontSize: "13px", marginBottom: "20px", textTransform: "capitalize" }}> Last update : {data?.rescheduled_by}</p>} */}
+
+                    {data?.rescheduled_by && <p style={{ color: "#989898", fontSize: "13px", marginBottom: "20px", textTransform: "capitalize" }}> Last update : {data?.rescheduled_by}</p>}
 
 
 
-                <div style={{ display: "flex", gap: "10px" , justifyContent:"endc"}}>
-                    {data?.class_reschedule_status === "Pending" && data.open_reschedule_am ? (
-                        <button onClick={handleSlot} className={`${classes.btn} ${classes.reschedule}`}>
-                            Select Slot
-                        </button>
-                    ) : data?.class_reschedule_status === "Rescheduled" && data.open_reschedule_am ? (
-                        <button onClick={handleShow} className={`${classes.btn} ${classes.reschedule}`}>
-                            Rescheduled
-                        </button>
-                    ) : null}
-                </div>
+                    <div style={{ display: "flex", gap: "10px", justifyContent: "end" }}>
+                        {data?.class_reschedule_status === "Pending" && data.open_reschedule_am ? (
+                            <button onClick={handleSlot} className={`${classes.btn} ${classes.reschedule}`}>
+                                Select Slot
+                            </button>
+                        ) : data?.class_reschedule_status === "Rescheduled" && data.open_reschedule_am ? (
+                            <button onClick={handleSlot} className={`${classes.btn} ${classes.reschedule}`}>
+                                Select Slot
+                            </button>
+                        ) : null}
+                    </div>
                 </div>
             </Container>
             {popup && <RescheduleClasses isPopup={popup} popupFunc={setPop} func={func} data1={data} />}

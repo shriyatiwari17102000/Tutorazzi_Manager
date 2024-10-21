@@ -118,7 +118,8 @@ const UpcomingClassDetail = () => {
     return (
         <React.Fragment>
             <Heading heading={'Upcoming Class Details'} p={'Porem ipsum dolor sit amet, consectetur adipiscing elit.'} >
-                <BlackButton func={popupHandler} funcVal={popup} cls={classes.btn}>Reschedule</BlackButton>
+            {data?.classDetails?.rescheduled_by !== "academic_manager" && 
+                <BlackButton func={popupHandler} funcVal={popup} cls={classes.btn}>Reschedule</BlackButton>}
             </Heading>
             <div className={classes.box}>
                 <Container cls={classes.header}>
