@@ -17,6 +17,8 @@ const AcademicModal = ({ popupFunc, isPopup, getData, id }) => {
     const [curriculum, setCurriculum] = useState("")
     const [subject, setSubject] = useState("")
     const [isLoading, setLoading] = useState(false)
+    const [gradeData, setGradeData] = useState([])
+    const [grade, setGrade] = useState("")
 
     let profileTokenJson = Cookies.get("tutorazzi_academic");
     let profileToken = JSON.parse(profileTokenJson);
@@ -30,8 +32,8 @@ const AcademicModal = ({ popupFunc, isPopup, getData, id }) => {
                 Authorization: `Bearer ${token}`,
             },
         });
-        // console.log(response.data.data)
-        setCurriculum(response.data.data[0].name)
+        console.log(response.data.data[0].curriculum)
+        setCurriculum(response.data.data[0].curriculum)
         setCurrData(response.data.data)
 
         // getAllSubject()
@@ -40,7 +42,27 @@ const AcademicModal = ({ popupFunc, isPopup, getData, id }) => {
         getAllCurriculum()
     }, [])
 
+    const getAllGrade = async () => {
+        if (curriculum !== "") {
+            const register = `${BASE_URL}/grades?curriculum=${curriculum}`;
+
+            const response = await axios.get(register, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            // console.log(response.data.data)
+            setGradeData(response.data.data)
+            setGrade(response.data?.data[0])
+        }
+      
+    }
+    useEffect(() => {
+        getAllGrade()
+    }, [curriculum])
+
     const getAllSubject = async () => {
+    if (curriculum !== "") {
         const register = `${BASE_URL}/subject-by-curriculum?curriculum=${curriculum}`;
 
         const response = await axios.get(register, {
@@ -48,9 +70,10 @@ const AcademicModal = ({ popupFunc, isPopup, getData, id }) => {
                 Authorization: `Bearer ${token}`,
             },
         });
-        // console.log(response.data.data)
+        console.log(response.data.data)
         setSubData(response.data.data)
-        setSubject(response.data.data[0])
+        setSubject(response.data?.data[0])
+    }
     }
     useEffect(() => {
         getAllSubject()
@@ -60,7 +83,8 @@ const AcademicModal = ({ popupFunc, isPopup, getData, id }) => {
         const myToast = toast.loading('Please Wait...')
         let experienceData = {
             curriculum: curriculum,
-            subject: subject,
+            subject: subject, 
+            grade : grade,
             student_id : id
         }
         setLoading(true)
@@ -104,14 +128,17 @@ const AcademicModal = ({ popupFunc, isPopup, getData, id }) => {
                 {/* <div className={classes.select_div}> */}
                 <label htmlFor="curriculum" className={classes.select_label}>Curriculum</label>
                 <select className={classes.select_input} value={curriculum} onChange={(e) => setCurriculum(e.target.value)}>
-                    {currData && currData?.map((element, index) => (<option key={index} value={element.name}>{element.name}</option>))}
+                    {currData && currData?.map((element, index) => (<option key={index} value={element.curriculum}>{element.curriculum}</option>))}
                 </select>
 
                 <label htmlFor="subject" className={classes.select_label}>Subject</label>
                 <select className={classes.select_input} value={subject} onChange={(e) => setSubject(e.target.value)}>
                     {subData.length > 0 ? subData?.map((element, index) => (<option key={index} selected value={element}>{element}</option>)) : <option selected value={""}>no subject available!</option>}
                 </select>
-                {/* </div> */}
+                <label htmlFor="grade" className={classes.select_label}>Grade</label>
+                <select name='grade' className={classes.select_input} value={grade} onChange={(e) => setGrade(e.target.value)}>
+                    {gradeData && gradeData?.map((element, index) => (<option key={index} selected value={element} >{element}</option>))}
+                </select>
                 {/* 
                 <LabelledInput  cls={classes.wd} func={setStartYear} value={subject} id={'subject'} label={'Subject'} /> */}
                 {/* <LabelledInput  cls={classes.wd} func={setEndYear} value={endYear} id={'curriculum'} label={'Curriculum'} /> */}

@@ -9,6 +9,7 @@ const CurriculumSubject = (props) => {
         <h3>{data?.subject}</h3>
     
         <p>{data?.curriculum + " " + "Curriculum"}</p>
+        <p>Grade : {data?.grade}</p>
     </div>
   )
 }

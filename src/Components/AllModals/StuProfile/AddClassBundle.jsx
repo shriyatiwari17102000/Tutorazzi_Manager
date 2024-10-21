@@ -25,6 +25,8 @@ const AddClassBundle = ({ popupFunc, isPopup, func, data1, id }) => {
     const[teacher, setTeacher] = useState("")
     const [teacher_amount, setTeacher_amount] = useState("")
     const [errorMessage, setErrorMessage] = useState('');
+    const [gradeData, setGradeData] = useState([])
+    const [grade, setGrade] = useState("")
 
     const handleInputChange = (e) => {
         const value = e.target.value;
@@ -45,8 +47,7 @@ const AddClassBundle = ({ popupFunc, isPopup, func, data1, id }) => {
     const tutToken = Cookies.get("tutorazzi_academic")
     const getTutToken = JSON.parse(tutToken)
     const token = getTutToken.access_token
-
-   
+  
 
     const getTeacher = async () => {
         const register = `${BASE_URL}/all-teachers`
@@ -74,7 +75,7 @@ const AddClassBundle = ({ popupFunc, isPopup, func, data1, id }) => {
             },
         });
         console.log(response.data.data)
-        setCurriculum(response.data.data[0].name)
+        setCurriculum(response.data.data[0].curriculum)
         setCurrData(response.data.data)
 
         // getAllSubject()
@@ -83,7 +84,27 @@ const AddClassBundle = ({ popupFunc, isPopup, func, data1, id }) => {
         getAllCurriculum()
     }, [teacher])
 
+    const getAllGrade = async () => {
+        if (curriculum !== "") {
+            const register = `${BASE_URL}/grades?curriculum=${curriculum}&teacher_id=${teacher}`;
+
+            const response = await axios.get(register, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            // console.log(response.data.data)
+            setGradeData(response.data.data)
+            setGrade(response.data?.data[0])
+        }
+      
+    }
+    useEffect(() => {
+        getAllGrade()
+    }, [curriculum, teacher])
+
     const getSubject = async () => {
+       if (curriculum !== "") {
         const register = `${BASE_URL}/subject-by-curriculum?curriculum=${curriculum}&teacher_id=${teacher}`
         let response = await axios.get(register, {
             headers: {
@@ -92,9 +113,10 @@ const AddClassBundle = ({ popupFunc, isPopup, func, data1, id }) => {
             },
         })
 
-        console.log(response.data.data)
-        setSub(response.data.data)
-        setSubject(response.data.data[0])
+        console.log(response.data?.data)
+        setSub(response.data?.data)
+        setSubject(response.data?.data[0])
+       }
     }
 
     useEffect(() => {
@@ -116,8 +138,8 @@ const AddClassBundle = ({ popupFunc, isPopup, func, data1, id }) => {
             subject : subject,
             class_name: classNames,
             curriculum: curriculum,
-            teacher_share : teacher_amount
-
+            teacher_share : teacher_amount,
+grade:grade
             // grade: data1?.grade_name
             
         }
@@ -172,7 +194,7 @@ const AddClassBundle = ({ popupFunc, isPopup, func, data1, id }) => {
                 <div className={classes.wd}>
                     <label className={classes.label1}>Select Curriculum</label>
                     <select className={classes.input_div1} value={curriculum} onChange={(e) => setCurriculum(e.target.value)}>
-                    {currData && currData?.map((element, index) => (<option key={index} selected value={element.name}>{element.name}</option>))}
+                    {currData && currData?.map((element, index) => (<option key={index} selected value={element.curriculum}>{element.curriculum}</option>))}
                     </select>
                 </div>
                 <div className={classes.wd}>
@@ -181,7 +203,12 @@ const AddClassBundle = ({ popupFunc, isPopup, func, data1, id }) => {
                     {sub.length > 0 ? sub?.map((element, index) => (<option key={index} selected value={element}>{element}</option>)) :  <option value={""}>No subject found!</option>}
                     </select>
                 </div>
-
+                <div style={{width:"100%"}}>
+                <label htmlFor="grade" className={classes.label1}>Grade</label>
+                <select name='grade'  className={classes.input_div1}  value={grade} onChange={(e) => setGrade(e.target.value)}>
+                    {gradeData.length > 0 ? gradeData?.map((element, index) => (<option key={index} selected value={element} >{element}</option>)) : <option value={""}>No grades found!</option>}
+                </select>
+                </div>
                 <div className={classes.txtarea}>
                     <label htmlFor="price">Teacher's Share (in %)</label>
                     <div className={classes.boxed_input} >
