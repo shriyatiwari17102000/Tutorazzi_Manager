@@ -234,7 +234,7 @@ const ClassCard = (props) => {
         
 
         <div>
-        {data?.class_reschedule_status == "Rescheduled" && data?.rescheduled_by &&<p style={{color : "#989898", fontSize:"13px", marginBottom:"20px", textTransform:"capitalize"}}> Last update : {data?.rescheduled_by}</p>}
+        {data?.rescheduled_by &&<p style={{color : "#989898", fontSize:"13px", marginBottom:"20px", textTransform:"capitalize"}}> Last update : {data?.rescheduled_by}</p>}
         <div className={classes.btn_container}>
           {/* {
           data.status.map((element, index) => ( */}

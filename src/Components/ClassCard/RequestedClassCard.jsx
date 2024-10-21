@@ -106,9 +106,13 @@ const RequestedClassCard = (props) => {
             <p>Teacher : <span>{data.teacher_name}</span></p>
             <p>Student : <span>{data.student_name}</span></p>
           </div> */}
-                <div>
-                {data?.class_reschedule_status == "Rescheduled" && data?.rescheduled_by &&<p style={{color : "#989898", fontSize:"13px", marginBottom:"20px", textTransform:"capitalize"}}> Last update : {data?.rescheduled_by}</p>}
-                <div style={{ display: "flex", gap: "10px" }}>
+                <div>       {data?.class_reschedule_status == "Rescheduled" && data?.rescheduled_by &&<p style={{color : "#989898", fontSize:"13px", marginBottom:"20px", textTransform:"capitalize"}}> Last update : {data?.rescheduled_by}</p>}
+                    
+                {data?.rescheduled_by && <p style={{color : "#989898", fontSize:"13px", marginBottom:"20px", textTransform:"capitalize"}}> Last update : {data?.rescheduled_by}</p>}
+
+
+
+                <div style={{ display: "flex", gap: "10px" , justifyContent:"endc"}}>
                     {data?.class_reschedule_status === "Pending" && data.open_reschedule_am ? (
                         <button onClick={handleSlot} className={`${classes.btn} ${classes.reschedule}`}>
                             Select Slot

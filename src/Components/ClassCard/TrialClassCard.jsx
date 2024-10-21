@@ -88,8 +88,10 @@ const TrialClassCard = (props) => {
                     </div>
                 </div>
                 <div>
-                {data?.class_reschedule_status == "Rescheduled" && data?.rescheduled_by &&<p style={{color : "#989898", fontSize:"13px", marginBottom:"20px", textTransform:"capitalize"}}> Last update : {data?.rescheduled_by}</p>}
-                <div style={{ display: "flex", gap: "10px" }}>
+                {data?.rescheduled_by && data?.class_reschedule_status !== "Done" &&  <p style={{color : "#989898", fontSize:"13px", marginBottom:"20px", textTransform:"capitalize"}}> Last update : {data?.rescheduled_by}</p>}
+
+                
+                <div style={{ display: "flex", gap: "10px" , justifyContent:"end"  }}>
                     {data?.class_reschedule_status === "Pending" && data.open_reschedule_am && (
                         <button onClick={handleSlot}  id='button' className={`${classes.btn} ${classes.reschedule}`}>
                             Select Slot
@@ -108,6 +110,11 @@ const TrialClassCard = (props) => {
                    { data?.class_reschedule_status === "Scheduled" && (
                         <button onClick={handleShow} className={`${classes.btn} ${classes.accept}`}>
                             Accepted
+                        </button>
+                    )}
+                   { data?.class_reschedule_status === "Cancelled" && (
+                        <button onClick={handleShow} className={`${classes.btn} ${classes.cancel}`}>
+                            Cancelled
                         </button>
                     )}
                 </div>
